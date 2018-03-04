@@ -1,2 +1,2 @@
-# jsgam
-JavaScript adventure game maker
+# JSGAM
+JavaScript adventure game maker using Pixi.js as renderer.
