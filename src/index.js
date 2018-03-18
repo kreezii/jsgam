@@ -23,7 +23,7 @@ game.addResource('player','/test/sources/player.json');
 game.main=function(){
 //game.scenes[1].objects[0].sprite.off('pointerup');
 //game.scenes[1].objects[0].sprite.on('pointerup', function(){console.log("Now you do it");});
-//if(game.scenes[game.currentScene].name=="Entrada") console.log("Hey!");
+if(game.scenes[game.currentScene].name=="Entrada") console.log("Hey!");
 console.log();
 }
 
