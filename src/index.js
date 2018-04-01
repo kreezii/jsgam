@@ -5,26 +5,34 @@
 
 import * as PIXI from 'pixi.js';
 import tweenManager from 'k8w-pixi-tween';
+import 'pixi-layers';
 import {dragonBones} from '../lib/dragonBones.js';
 import './version.js';
-
+export * from './game.js';
 const factory=dragonBones.PixiFactory.factory;
 
-export {game} from './core.js'
+//Testing area (TEMPORAL)
+//////////////////////////////////
+import * as JSGAM from './game.js'
+//Set screen size
+JSGAM.init(800,600);
 
-//Testing
-import {game} from './core.js'
-game.create(800,600);
-game.addResource('scene','/test/sources/scenes.json');
-game.addResource('ui','/test/sources/ui.json');
-game.addResource('player','/test/sources/player.json');
+//Add resource files
+JSGAM.load(['/test/sources/scenes.json',
+            '/test/sources/objects.json',
+            '/test/sources/spritesheet.json',
+            '/test/sources/player.json',
+          ]
+);
+//Add game logics function
+JSGAM.main(gameConfig);
+//Run the game
+JSGAM.run();
 
 
-game.main=function(){
-//game.scenes[1].objects[0].sprite.off('pointerup');
-//game.scenes[1].objects[0].sprite.on('pointerup', function(){console.log("Now you do it");});
-if(game.scenes[game.currentScene].name=="Entrada") console.log("Hey!");
-console.log();
+//Game logics
+function gameConfig(){
+  JSGAM.mainScene("Title");
+  //JSGAM.game.player.move();
 }
-
-game.load();
+//////////////////////////////////

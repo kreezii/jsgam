@@ -4,9 +4,9 @@
   "description": "JavaScript Graphic Adventure Maker",
   "author": "",
   "main": "./dist/jsgam.js",
-  "repository" :{
-    "type" : "git",
-    "url" : "https://github.com/kreezii/jsgam.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kreezii/jsgam.git"
   },
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "k8w-pixi-tween": "^0.7.6",
+    "pixi-layers": "^0.1.7",
     "pixi-sound": "^2.0.1",
     "pixi.js": "^4.7.0"
   },
