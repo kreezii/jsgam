@@ -8,8 +8,9 @@ import tweenManager from 'k8w-pixi-tween';
 import 'pixi-layers';
 import {dragonBones} from '../lib/dragonBones.js';
 import './version.js';
-export * from './game.js';
 const factory=dragonBones.PixiFactory.factory;
+export * from './game.js';
+
 
 //Testing area (TEMPORAL)
 //////////////////////////////////
@@ -20,7 +21,7 @@ JSGAM.init(800,600);
 //Add resource files
 JSGAM.load(['/test/sources/scenes.json',
             '/test/sources/objects.json',
-            '/test/sources/spritesheet.json',
+            '/test/sources/atlas.json',
             '/test/sources/player.json',
           ]
 );

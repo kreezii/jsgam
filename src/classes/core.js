@@ -7,17 +7,25 @@ class Core{
     this.objectsJSON=[];
     this.player={};
     this.playerTween;
+    this.actionMenu;
     this.resources;
     this.currentScene;
+    this.selectedObject=null;
     this.app=new PIXI.Application(width,height);
-    this.app.stage = new PIXI.display.Stage();//Z-order
-  //  this.app.stage.group.enableSort = true;//Z-order
-    this.sortGroup= new PIXI.display.Group(0, true);//Z-order
+
+    //Z-Order
+    this.app.stage = new PIXI.display.Stage();
+    this.sortGroup= new PIXI.display.Group(0, true);
     this.sortGroup.on('sort', function (sprite) {
       sprite.zOrder = -sprite.y;
-    });//Z-order
+    });
+    this.onTopGroup = new PIXI.display.Group(1,false);
+    this.UIGroup = new PIXI.display.Group(2,false);
     this.layer=new PIXI.display.Layer(this.sortGroup);
+    this.layeronTop=new PIXI.display.Layer(this.onTopGroup);
+    this.layerUI=new PIXI.display.Layer(this.UIGroup);
     this.layer.group.enableSort = true;
+
     this.width=width;
     this.height=height;
 
@@ -30,6 +38,8 @@ class Core{
     if(!objectID) document.body.appendChild(this.app.view);
     else document.getElementById(objectID).appendChild(this.app.view);
     this.app.stage.addChild(this.layer);//Z-order
+    this.app.stage.addChild(this.layeronTop);//Z-order
+    this.app.stage.addChild(this.layerUI);//Z-order
   }
 
   searchScene(nameScene){
@@ -55,6 +65,7 @@ class Core{
     }
     return numberObject;
   }
+
   loop(){
     PIXI.tweenManager.update();
   }
@@ -63,8 +74,19 @@ class Core{
     let nextScene=this.searchScene(sceneName);
     this.scenes[this.currentScene].container.visible=false;
     this.scenes[nextScene].container.visible=true;
-    this.currentScene=nextScene.index;
+    this.currentScene=nextScene;
     this.player.sprite.visible=this.scenesJSON[nextScene].Player;
+  }
+  showMenu(object){
+    //Requires improvement
+    let posY=50;
+    if(object.sprite.anchor.y>0) posY+=object.sprite.height;
+    this.actionMenu.container.x=object.sprite.x-object.sprite.width/2;
+    this.actionMenu.container.y=object.sprite.y-posY;
+    this.actionMenu.container.visible=true;
+  }
+  hideMenu(){
+    this.actionMenu.container.visible=false;
   }
 };
 

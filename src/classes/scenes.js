@@ -1,5 +1,6 @@
-import {game,movePlayer} from '../game.js';
+import {game} from '../game.js';
 import {gameObject} from './objects.js';
+var Walkable=require('walkable');
 
 export class gameScene{
   constructor(sceneName,index){
@@ -13,9 +14,17 @@ export class gameScene{
     this.background.width=game.app.renderer.width;
     this.background.height=game.app.renderer.height;
     this.background.parentLayer = game.layer;//Z-order
-    if(game.scenesJSON[index].Player){
+
+    if(game.scenesJSON[index].Player!=undefined){
+      game.player.sprite.x=game.scenesJSON[index].Player[0];
+      game.player.sprite.y=game.scenesJSON[index].Player[1];
       this.background.interactive=true;
-      this.background.on('pointerup',movePlayer);
+      this.background.buttonMode=true;
+      this.background.hitArea=new PIXI.Polygon(game.scenesJSON[index].WalkArea);
+      this.background.on('pointerup',function(event){game.player.move(event);game.hideMenu();game.selectedObject=false;});
+
+      this.walkable=new Walkable(game.app.screen.width,game.app.screen.height);
+      this.walkable.addPolygon(this.background.hitArea.points);
     }
 
     this.container.addChild(this.background);
@@ -28,5 +37,9 @@ export class gameScene{
       }
     }
 
+  }
+
+  getPath(fromX,fromY,toX,toY){
+    return this.walkable.findPath(fromX, fromY, toX, toY, 1);
   }
 };

@@ -28,7 +28,8 @@
     "k8w-pixi-tween": "^0.7.6",
     "pixi-layers": "^0.1.7",
     "pixi-sound": "^2.0.1",
-    "pixi.js": "^4.7.0"
+    "pixi.js": "^4.7.0",
+    "walkable": "^1.0.3"
   },
   "module": "src/index.js"
 }

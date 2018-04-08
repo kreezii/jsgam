@@ -2,6 +2,7 @@ import {game} from './game.js';
 import {gameScene} from './classes/scenes.js';
 import {gameObject} from './classes/objects.js';
 import {Player} from './classes/player.js'
+import {Menu} from './classes/menu.js'
 
 function loadingProgress(loader,resources){
   let percent=Math.floor(PIXI.loader.progress);
@@ -56,8 +57,11 @@ function buildGame(loader,resources){
     game.scenes[i]=new gameScene(game.scenesJSON[i].Name,i);
     game.app.stage.addChild(game.scenes[i].container);
   }
-
   game.app.stage.addChild(game.player.sprite);
+
+  //Build context menu
+  game.actionMenu=new Menu();
+  game.app.stage.addChild(game.actionMenu.container);
 
   PIXI.loader.reset();
   game.ticker=new PIXI.ticker.Ticker();
