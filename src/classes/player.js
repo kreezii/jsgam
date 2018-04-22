@@ -16,13 +16,14 @@ export class Player{
       this.sprite.y=0;
       this.sprite.scale.set(0.2);
       this.sprite.parentLayer = game.layer;//Z-order
+      this.lock=false;
     }
 
     move(event){
-      if(!this.tween.active){
+      if(/*!this.tween.active && */!this.lock){
         var newPosition=event.data.getLocalPosition(game.app.stage);
         this.sprite.animation.play("walk");
-
+        this.lock=true;
         if(this.sprite.x<newPosition.x) this.sprite.armature.flipX=true;
         else this.sprite.armature.flipX=false;
 
@@ -34,10 +35,13 @@ export class Player{
         this.tween.time = 1000;
         this.tween.speed = 0.5;
         this.tween.start();
-        this.tween.on('end',function(){
-          game.player.sprite.animation.play("stand");
-          if(game.selectedObject) game.showMenu(game.selectedObject);
-        });
+        this.tween.on('end', playerStop);
       }
     }
 };
+
+function playerStop(){
+  game.player.lock=false;
+  game.player.sprite.animation.play("stand");
+  if(game.selectedObject) game.showMenu();
+}

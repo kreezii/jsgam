@@ -1,55 +1,27 @@
 import {game} from '../game.js';
 
-export class inventory{
-  constructor(data,index){
-      this.name=data.Name;
-      this.index=index;
-      this.description=data.Description;
-      this.container=new PIXI.Container();
-      this.container.x = (game.app.screen.width - this.sprite.width) / 2;
-      this.container.y = (game.app.screen.height - this.sprite.height) / 2;
-      this.container.visible=false;
-      this.icon=new PIXI.Sprite(PIXI.Texture.fromFrame("inventory.png"));
-      this.icon.x=game.app.screen.width - this.sprite.width;
-      this.icon.y=game.app.screen.height - this.sprite.height;
-      this.icon.on('pointerup',this.click);
-    }
-    click(){
-      if (this.container.visible) this.container.visible = false;
-      else this.container.visible = true;
-    }
-};
-
-export class inventoryObject{
+export class Inventory{
   constructor(){
-
-  }
+      this.container=new PIXI.Container();
+      this.container.visible=false;
+      this.objects=[];
+      this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(game.inventoryBack));
+      this.background.width=game.app.screen.width/2;
+      this.background.height=game.app.screen.height/2;
+      this.background.parentLayer = game.layerUI;
+      this.container.x = (game.app.screen.width - this.background.width) / 2;
+      this.container.y = (game.app.screen.height - this.background.height) / 2;
+      this.icon=new PIXI.Sprite(PIXI.Texture.fromFrame(game.inventoryIcon));
+      this.icon.x=game.app.screen.width - this.icon.width;
+      this.icon.y=game.app.screen.height - this.icon.height;
+      this.icon.interactive=true;
+      this.icon.buttonMode=true;
+      this.icon.parentLayer = game.layerUI;
+      this.icon.on('pointerup',showHide);
+      this.container.addChild(this.background);
+    }
 };
 
-function onDragStart(event) {
-  // store a reference to the data
-  // the reason for this is because of multitouch
-  // we want to track the movement of this particular touch
-  this.posX = this.x;
-  this.posY = this.y;
-  this.data = event.data;
-  this.alpha = 0.5;
-  this.dragging = true;
-}
-
-function onDragEnd() {
-  this.x = this.posX;
-  this.y = this.posY;
-  this.alpha = 1;
-  this.dragging = false;
-  // set the interaction data to null
-  this.data = null;
-}
-
-function onDragMove() {
-  if (this.dragging) {
-    var newPosition = this.data.getLocalPosition(this.parent);
-    this.x = newPosition.x;
-    this.y = newPosition.y;
-  }
+function showHide(){
+  game.showInventory();
 }

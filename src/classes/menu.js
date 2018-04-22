@@ -36,18 +36,12 @@ class iconMenu{
   }
 };
 
-function showMenu(){
-  game.menu.container.x=game.selectedObject.sprite.x;
-  game.menu.container.y=game.selectedObject.sprite.y-50;
-  game.menu.container.visible=true;
-}
-
 function look(){
-  console.log(game.selectedObject.description);
+  console.log(game.objects[game.selectedObject].description);
 }
 
 function take(){
-  console.log("Take this");
+  game.take();
 }
 
 function use(){
