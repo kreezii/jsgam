@@ -8,7 +8,7 @@ import {Inventory} from './classes/inventory.js'
 function loadingProgress(loader,resources){
   let percent=Math.floor(PIXI.loader.progress);
   game.loadingText.text="Loading "+percent+ "%";
-  console.log(percent);
+  //console.log(percent);
 };
 
 function loadConfigFiles(loader,resources){
@@ -47,13 +47,14 @@ function buildGame(loader,resources){
   game.resources=resources;
 
   //Build Player
-  game.player=new Player("Dragon");
+  game.player=new Player("Armature");
   game.app.stage.addChild(game.player.sprite);
 
   //Build inventory
   game.inventory=new Inventory();
   game.app.stage.addChild(game.inventory.container);
   game.app.stage.addChild(game.inventory.icon);
+  game.inventory.setIcon("top-right"); //Create settings.json to change pos
 
   //Build context menu
   game.actionMenu=new Menu();

@@ -1,7 +1,9 @@
 import {game} from '../game.js';
 import * as PIXI from 'pixi.js';
 import {dragonBones} from '../../lib/dragonBones.js';
-import tweenManager from 'k8w-pixi-tween';
+
+import {checkPath} from './utils.js';
+//import tweenManager from 'k8w-pixi-tween';
 
 const factory=dragonBones.PixiFactory.factory;
 export class Player{
@@ -14,29 +16,45 @@ export class Player{
       this.sprite.visible=false;
       this.sprite.x=0;
       this.sprite.y=0;
-      this.sprite.scale.set(0.2);
+      //this.sprite.scale.set(2);
       this.sprite.parentLayer = game.layer;//Z-order
       this.lock=false;
     }
 
     move(event){
-      if(/*!this.tween.active && */!this.lock){
+      if(!this.lock)
+      {
+        game.hideMenu();
         var newPosition=event.data.getLocalPosition(game.app.stage);
-        this.sprite.animation.play("walk");
-        this.lock=true;
-        if(this.sprite.x<newPosition.x) this.sprite.armature.flipX=true;
-        else this.sprite.armature.flipX=false;
+        let obstacles=game.scenes[game.currentScene].obstacles;
+        let walkingArea=game.scenes[game.currentScene].walkArea;
+        let pathResult=checkPath(newPosition,obstacles,walkingArea);
+        if(pathResult){
+          newPosition=pathResult;
+        }
 
         var path = new PIXI.tween.TweenPath();
 
         let findPath=game.scenes[game.currentScene].getPath(this.sprite.x,this.sprite.y,newPosition.x,newPosition.y);
-        path.drawShape(new PIXI.Polygon(findPath));
-        this.tween.path=path;
-        this.tween.time = 1000;
-        this.tween.speed = 0.5;
-        this.tween.start();
-        this.tween.on('end', playerStop);
+        if(findPath.length>0){
+          this.sprite.animation.play("walk");
+          this.lock=true;
+          if(this.sprite.x<newPosition.x) this.sprite.armature.flipX=false;
+          else this.sprite.armature.flipX=true;
+          //let findPath=getPath({x:this.sprite.x,y:this.sprite.y},newPosition,game.scenes[game.currentScene].obstacles);
+          path.drawShape(new PIXI.Polygon(findPath));
+          this.tween.path=path;
+          let animationTime=Math.abs(this.sprite.x-newPosition.x)*10+Math.abs(this.sprite.y-newPosition.y)*10;
+          this.tween.time = animationTime;
+          this.tween.speed = 1;
+          this.tween.start();
+          this.tween.on('end', playerStop);
+        }
       }
+    }
+
+    talk(){
+
     }
 };
 
