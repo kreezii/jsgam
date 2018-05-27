@@ -1,6 +1,5 @@
 import {Core} from './classes/core.js';
 import {loadingProgress,loadConfigFiles} from './load.js';
-
 var game;
 
 function init(width,height,objectID){
@@ -39,19 +38,9 @@ function mainScene(sceneName){
   game.currentScene=sceneIndex;
   game.scenes[sceneIndex].container.visible=true;
 //  let tmpSound=game.resources[game.scenes[sceneIndex].music];
+if(game.scenes[sceneIndex].music!=undefined)
   PIXI.sound.play(game.scenes[sceneIndex].music,{loop:true});
 //  console.log(PIXI.sound.exists("Title"));
-};
-
-function inventoryPosition(posX,posY,sizeW,sizeH){
-  game.inventory.icon.x=posX;
-  game.inventory.icon.y=posY;
-
-  if(sizeH!=undefined && sizeH!=undefined){
-    game.inventory.icon.width=sizeW;
-    game.inventory.icon.height=sizeH;
-  }
-
 };
 
 export {
@@ -61,6 +50,5 @@ export {
   load,
   main,
   mainScene,
-  inventoryPosition,
   run
 };

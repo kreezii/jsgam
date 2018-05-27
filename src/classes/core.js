@@ -1,5 +1,5 @@
 class Core{
-  constructor(width,height,objectID){
+  constructor(width,height){
     this.files=[];
     this.scenes=[];
     this.objects=[];
@@ -13,7 +13,7 @@ class Core{
     this.currentScene;
     this.selectedObject=null;
     this.inventory;
-    this.inventoryBack="inventory-background.png";
+    this.inventoryBack="inventory-bg.png";
     this.inventoryIcon="inventory-icon.png";
     this.app=new PIXI.Application(width,height);
 
@@ -28,8 +28,9 @@ class Core{
     this.layer=new PIXI.display.Layer(this.sortGroup);
     this.layeronTop=new PIXI.display.Layer(this.onTopGroup);
     this.layerUI=new PIXI.display.Layer(this.UIGroup);
-    this.layerUI.group.enableSort = true;
-    this.layer.group.enableSort = true;
+    //this.layerUI.group.enableSort = true;
+    //this.layer.group.enableSort = true;
+    this.app.stage.group.enableSort = true;
 
     this.width=width;
     this.height=height;
@@ -40,8 +41,11 @@ class Core{
           fill: 'white',
           align: 'left'
     });
+document.body.appendChild(this.app.view);
+    /*
     if(!objectID) document.body.appendChild(this.app.view);
     else document.getElementById(objectID).appendChild(this.app.view);
+    */
     this.app.stage.addChild(this.layer);//Z-order
     this.app.stage.addChild(this.layeronTop);//Z-order
     this.app.stage.addChild(this.layerUI);//Z-order
@@ -80,17 +84,24 @@ class Core{
     this.scenes[this.currentScene].container.visible=false;
     this.scenes[nextScene].container.visible=true;
     PIXI.sound.stop(this.scenes[this.currentScene].music);
+    if(this.scenes[nextScene].music!=undefined)
+      PIXI.sound.play(this.scenes[nextScene].music,{loop:true});
     this.currentScene=nextScene;
-    this.player.sprite.visible=this.scenesJSON[nextScene].Player;
+    this.player.sprite.visible=this.scenes[this.currentScene].player;
+    let inventoryOpt=this.scenes[this.currentScene].inventory;
+    if(inventoryOpt) this.inventory.icon.visible=true;
   }
 
   showMenu(){
     //Requires improvement
-    let selectedSprite=this.objects[this.selectedObject].sprite;
+  //  let selectedSprite=this.objects[this.selectedObject].sprite;
+  /*  let selectedSprite=this.objects[this.selectedObject];
     let posY=50;
     if(selectedSprite.anchor.y>0) posY+=selectedSprite.height;
     this.actionMenu.container.x=selectedSprite.x-selectedSprite.width/2;
-    this.actionMenu.container.y=selectedSprite.y-posY;
+    this.actionMenu.container.y=selectedSprite.y-posY;*/
+    this.actionMenu.container.x=0;
+    this.actionMenu.container.y=0;
     this.actionMenu.container.visible=true;
   }
 
@@ -98,61 +109,6 @@ class Core{
     this.actionMenu.container.visible=false;
   }
 
-  showInventory(){
-    if (this.inventory.container.visible){
-      this.inventory.container.visible = false;
-      this.player.lock=false;
-    }else{
-      this.inventory.container.visible = true;
-      this.player.lock=true;
-    }
-  }
-
-  take(){
-    let selectedSprite=this.objects[this.selectedObject].sprite;
-    this.inventory.container.addChild(selectedSprite);
-    this.inventory.objects.push(selectedSprite);
-    this.selectedObject.sprite.parentLayer=this.layerUI;
-    this.selectedObject.sprite.x=0+this.selectedObject.sprite.width;
-    this.selectedObject.sprite.y=0+this.selectedObject.sprite.height;
-    this.selectedObject.sprite.on('pointerdown', onDragStart)
-                              .on('pointerup', onDragEnd)
-                              .on('pointerupoutside', onDragEnd)
-                              .on('pointermove', onDragMove);
-    this.selectedObject=false;
-    this.hideMenu();
-  }
-
-  updateInvetory(){
-
-  }
 };
 
-function onDragStart(event) {
-  // store a reference to the data
-  // the reason for this is because of multitouch
-  // we want to track the movement of this particular touch
-  this.posX = this.x;
-  this.posY = this.y;
-  this.data = event.data;
-  this.alpha = 0.5;
-  this.dragging = true;
-}
-
-function onDragEnd() {
-  this.x = this.posX;
-  this.y = this.posY;
-  this.alpha = 1;
-  this.dragging = false;
-  // set the interaction data to null
-  this.data = null;
-}
-
-function onDragMove() {
-  if (this.dragging) {
-    var newPosition = this.data.getLocalPosition(this.parent);
-    this.x = newPosition.x;
-    this.y = newPosition.y;
-  }
-}
 export {Core};

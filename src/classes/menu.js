@@ -9,30 +9,31 @@ export class Menu{
       }
       this.container=new PIXI.Container();
 
-      this.look=new iconMenu(PIXI.Texture.fromFrame("look.png"),iconSize,iconPos[0]);
-      this.take=new iconMenu(PIXI.Texture.fromFrame("take.png"),iconSize,iconPos[1]);
-      this.use=new iconMenu(PIXI.Texture.fromFrame("use.png"),iconSize,iconPos[2]);
+      this.look=new iconMenu(PIXI.Texture.fromFrame("menu-look.png"),iconSize,iconPos[0]);
+      this.take=new iconMenu(PIXI.Texture.fromFrame("menu-take.png"),iconSize,iconPos[1]);
+      this.use=new iconMenu(PIXI.Texture.fromFrame("menu-use.png"),iconSize,iconPos[2]);
 
       this.container.visible=false;
 
-      this.container.addChild(this.look.sprite);
-      this.container.addChild(this.take.sprite);
-      this.container.addChild(this.use.sprite);
+      this.container.addChild(this.look);
+      this.container.addChild(this.take);
+      this.container.addChild(this.use);
 
-      this.look.sprite.on('pointerdown',look);
-      this.take.sprite.on('pointerdown',take);
-      this.use.sprite.on('pointerdown',use);
+      this.look.on('pointerdown',look);
+      this.take.on('pointerdown',take);
+      this.use.on('pointerdown',use);
     }
 };
-class iconMenu{
+
+class iconMenu extends PIXI.Sprite{
   constructor(texture,size,pos){
-    this.sprite=new PIXI.Sprite(texture);
-    this.sprite.width=size;
-    this.sprite.height=size;
-    this.sprite.interactive=true;
-    this.sprite.buttonMode=true;
-    this.sprite.x=pos;
-    this.sprite.parentLayer = game.layerUI;
+    super(texture);
+    this.width=size;
+    this.height=size;
+    this.interactive=true;
+    this.buttonMode=true;
+    this.x=pos;
+    this.parentLayer = game.layerUI;
   }
 };
 
@@ -41,7 +42,7 @@ function look(){
 }
 
 function take(){
-  game.take();
+  game.objects[game.selectedObject].take();
 }
 
 function use(){
