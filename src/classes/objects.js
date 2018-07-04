@@ -1,11 +1,12 @@
 import {game} from '../game.js';
 import * as PIXI from 'pixi.js';
 import {boxesIntersect,collision} from './utils.js';
+import {resolvePuzzle} from'./puzzle.js';
 
 export class gameObject extends PIXI.Sprite{
   constructor(data,index){
     if(data.Texture) super(PIXI.Texture.fromFrame(data.Texture));
-    if(data.Area){
+    else if(data.Area){
       super(PIXI.Texture.EMPTY);
       this.hitArea=new PIXI.Polygon(data.Area);
     }
@@ -28,19 +29,26 @@ export class gameObject extends PIXI.Sprite{
     if(data.Interactive){
       this.interactive=data.Interactive;
       this.buttonMode=true;
+      this.longPress=false;
+      if(!data.Button) this.on('pointerdown', onTouchStart)
+                           .on('pointerup', onTouchEnd);
       if(data.Door){
-        this.newScene=data.Door;
-        this.on('pointerup', Goto);
+        this.door=true;
+        this.newScene=data.Door.To;
+        this.playerPos=data.Door.Player;
+        this.use=Goto;
+        if(data.Button) this.on('pointerup', Goto);
       }else if(this.takable){
         this.on('pointerdown', onTakeStart)
                                   .on('pointerup', onTakeEnd)
                                   .on('pointerupoutside', onTakeEnd)
                                   .on('pointermove', onTakeMove);
-      }else this.on('pointerup', Examine);
+      }
     }
 
-    if(data.Use) this.puzzle=data.Use;
+    if(data.Use) this.usable=data.Use;
   }
+
   take(){
     game.inventory.container.addChild(this);
     game.inventory.objects.push(this);
@@ -54,55 +62,58 @@ export class gameObject extends PIXI.Sprite{
                               .on('pointerupoutside', onDragEnd)
                               .on('pointermove', onDragMove);
     game.selectedObject=false;
-    game.hideMenu();
     game.inventory.update();
   }
-
 };
 
 function Goto(){
-  game.goScene(this.newScene);
+  game.goScene(this.newScene,this.playerPos);
 }
 
-function Examine(event){
+//Object events when touch start and ends
+function onTouchStart(event){
+    this.pressing=setTimeout(function(){game.longPress=true;}, 500);
+}
+
+function onTouchEnd(event){
+  clearTimeout(this.pressing);
   game.selectedObject=this.index;
   game.player.move(event);
-
 }
 
 //Drag the object while It is in the Inventory
 function onDragStart(event) {
   // we want to track the movement of this particular touch
+  game.player.lock=true;
   this.posX = this.x;
   this.posY = this.y;
   this.data = event.data;
+  this.objectEvent=event;
   this.alpha = 0.5;
   this.dragging = true;
 }
 
 function onDragEnd() {
-  let targetObj=game.objects[game.searchObject(this.puzzle.Target)];
-  let result=collision(targetObj.hitArea.points,this.x,this.y);
-  this.setParent(game.inventory.container);
-  this.x = this.posX;
-  this.y = this.posY;
+  if(this.data){
+    if(this.usable){
+      let targetObj=game.objects[game.searchObject(this.usable.Target)];
+      let result;
+      if(targetObj.hitArea) result=collision(targetObj.hitArea.points,this.x,this.y);
+      else result=targetObj.containsPoint(new PIXI.Point(this.x,this.y))
+      if(result && targetObj.parent.visible)
+      {
+        resolvePuzzle(this,targetObj);
+      }//else game.player.say(game.settings.NotUsable[game.mainLanguage]);
+    }
+    this.x = this.posX;
+    this.y = this.posY;
+    this.setParent(game.inventory.container);
+  }
   this.alpha = 1;
   this.dragging = false;
   // set the interaction data to null
   this.data = null;
-
-  console.log(result)
-  if(result)
-  {
-
-    if(this.puzzle.Result[0]=="DoorTo"){
-      targetObj.newScene=this.puzzle.Result[1];
-      targetObj.removeAllListeners();
-    setTimeout(function(){  targetObj.on('pointerup',Goto)});
-      //setTimeout();
-    }
-    console.log("Open door")
-  }
+  setTimeout(function(){ game.player.lock=false;}, 50);
 }
 
 function onDragMove() {
@@ -130,9 +141,10 @@ function onTakeStart(event) {
 }
 
 function onTakeEnd() {
+
   if(boxesIntersect(this,game.inventory.icon)){
     this.take();
-  }else{
+  }else if(this.data){
     this.setParent(this.oldParent);
     this.parentLayer = game.layer;
     this.x = this.posX;
@@ -143,9 +155,9 @@ function onTakeEnd() {
   this.alpha = 1;
   this.dragging = false;
   // set the interaction data to null
-  this.data = null;
-  setTimeout(function(){ game.player.lock=false; }, 5);
 
+  this.data = null;
+  setTimeout(function(){ game.player.lock=false; }, 50);
 }
 
 function onTakeMove() {

@@ -28,27 +28,10 @@ function run(){
   PIXI.loader.load(loadConfigFiles);
 };
 
-//Function to run after loader ends
-function main(mainFunction){
-  game.start=mainFunction;
-};
-
-function mainScene(sceneName){
-  let sceneIndex=game.searchScene(sceneName);
-  game.currentScene=sceneIndex;
-  game.scenes[sceneIndex].container.visible=true;
-//  let tmpSound=game.resources[game.scenes[sceneIndex].music];
-if(game.scenes[sceneIndex].music!=undefined)
-  PIXI.sound.play(game.scenes[sceneIndex].music,{loop:true});
-//  console.log(PIXI.sound.exists("Title"));
-};
-
 export {
   game,
   init,
   loadDefaults,
   load,
-  main,
-  mainScene,
   run
 };

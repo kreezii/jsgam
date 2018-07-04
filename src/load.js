@@ -2,7 +2,6 @@ import {game} from './game.js';
 import {gameScene} from './classes/scenes.js';
 import {gameObject} from './classes/objects.js';
 import {Player} from './classes/player.js'
-import {Menu} from './classes/menu.js'
 import {Inventory} from './classes/inventory.js'
 
 function loadingProgress(loader,resources){
@@ -14,12 +13,16 @@ function loadingProgress(loader,resources){
 function loadConfigFiles(loader,resources){
   game.loadingText.visible=false;
   for(let i=0;i<game.files.length;i++){
-    if(resources[game.files[i]].data.Scenes){
+    if(resources[game.files[i]].data==null){
+      console.log("Error parsing JSON files")
+    }else if(resources[game.files[i]].data.Scenes){
       let tempArray=game.scenesJSON.concat(resources[game.files[i]].data.Scenes);
       game.scenesJSON=tempArray;
     }else if(resources[game.files[i]].data.Objects){
       let tempArray=game.objectsJSON.concat(resources[game.files[i]].data.Objects);
       game.objectsJSON=tempArray;
+    }else if(resources[game.files[i]].data.Settings){
+      game.settings=resources[game.files[i]].data.Settings;
     }
   }
 
@@ -54,11 +57,7 @@ function buildGame(loader,resources){
   game.inventory=new Inventory();
   game.app.stage.addChild(game.inventory.container);
   game.app.stage.addChild(game.inventory.icon);
-  game.inventory.setIcon("top-right"); //Create settings.json to change pos
-
-  //Build context menu
-  game.actionMenu=new Menu();
-  game.app.stage.addChild(game.actionMenu.container);
+  game.inventory.setIcon(game.settings.Inventory); //Create settings.json to change pos
 
   //Build objects
   for(let i=0;i<game.objectsJSON.length;i++){
@@ -70,6 +69,8 @@ function buildGame(loader,resources){
     game.scenes[i]=new gameScene(game.scenesJSON[i],i);
     game.app.stage.addChild(game.scenes[i].container);
   }
+  //Add texts
+  game.app.stage.addChild(game.playerText);
 
   PIXI.loader.reset();
   game.ticker=new PIXI.ticker.Ticker();

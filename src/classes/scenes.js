@@ -1,7 +1,6 @@
 import {game} from '../game.js';
 import {gameObject} from './objects.js';
 var Walkable=require('walkable');
-//import * as PolyK from 'polyk';
 
 export class gameScene{
   constructor(data,index){
@@ -17,10 +16,10 @@ export class gameScene{
     this.background.height=game.app.screen.height;
     this.background.parentLayer = game.layer;//Z-order
 
-    if(data.Player!=undefined){
+    if(data.Player){
+
       this.player=true;
-      game.player.sprite.x=game.scenesJSON[index].Player[0];
-      game.player.sprite.y=game.scenesJSON[index].Player[1];
+      this.playerSize=data.Player.Size;
       this.background.interactive=true;
       this.background.buttonMode=true;
       this.background.on('pointerup',gotoXY);
@@ -28,12 +27,11 @@ export class gameScene{
       this.walkable=new Walkable(game.app.screen.width,game.app.screen.height);
       if(game.scenesJSON[index].WalkArea!=undefined){
         this.walkArea=game.scenesJSON[index].WalkArea;
-        //this.walkable.addPolygon(PolyK.Reverse(this.walkArea));
         this.walkable.addPolygon(this.walkArea);
       }
 
       if(game.scenesJSON[index].Obstacles!=undefined){
-        this.obstacles=game.scenesJSON[index].Obstacles;
+        this.obstacles=Object.values(game.scenesJSON[index].Obstacles);
         for(let i=0;i<this.obstacles.length;i++){
           this.walkable.addPolygon(this.obstacles[i]);
         }
@@ -57,7 +55,7 @@ export class gameScene{
   }
 
   getPath(fromX,fromY,toX,toY){
-    return this.walkable.findPath(fromX, fromY, toX, toY, 1);
+    return this.walkable.findPath(fromX, fromY, toX, toY, 0);
   }
 };
 

@@ -4,11 +4,13 @@ class Core{
     this.scenes=[];
     this.objects=[];
     this.sounds=[];
+    this.settings=[];
+    this.mainLanguage=0;
+    this.timeout;
     this.scenesJSON=[];
     this.objectsJSON=[];
     this.player={};
     this.playerTween;
-    this.actionMenu;
     this.resources;
     this.currentScene;
     this.selectedObject=null;
@@ -16,7 +18,7 @@ class Core{
     this.inventoryBack="inventory-bg.png";
     this.inventoryIcon="inventory-icon.png";
     this.app=new PIXI.Application(width,height);
-
+    this.longPress=false;
     //Z-Order
     this.app.stage = new PIXI.display.Stage();
     this.sortGroup= new PIXI.display.Group(0, true);
@@ -34,14 +36,30 @@ class Core{
 
     this.width=width;
     this.height=height;
-
+    this.textStyle = new PIXI.TextStyle({
+        fontFamily: 'Arial',
+        fontSize: 20,
+        fontWeight: 'bold',
+        fill: '#ffffff', // gradient
+        stroke: '#000000',
+        strokeThickness: 5,
+        align: 'center',
+        wordWrap: true,
+        wordWrapWidth: this.app.screen.width/2
+    });
     this.loadingText=new PIXI.Text("0 %", {
           fontFamily: 'Arial',
           fontSize: 35,
           fill: 'white',
           align: 'left'
     });
-document.body.appendChild(this.app.view);
+
+    this.playerText=new PIXI.Text("", this.textStyle);
+
+    this.playerText.parentLayer = this.layerUI;
+    this.playerText.anchor.set(0.5);
+    this.playerText.visible=false;
+    document.body.appendChild(this.app.view);
     /*
     if(!objectID) document.body.appendChild(this.app.view);
     else document.getElementById(objectID).appendChild(this.app.view);
@@ -77,9 +95,12 @@ document.body.appendChild(this.app.view);
 
   loop(){
     PIXI.tweenManager.update();
+    //Scale Player
+    let scalePlayer=this.player.sprite.y/this.app.screen.height*this.scenes[this.currentScene].playerSize;
+    this.player.sprite.scale.set(scalePlayer);
   }
 
-  goScene(sceneName){
+  goScene(sceneName,pos){
     let nextScene=this.searchScene(sceneName);
     this.scenes[this.currentScene].container.visible=false;
     this.scenes[nextScene].container.visible=true;
@@ -87,27 +108,20 @@ document.body.appendChild(this.app.view);
     if(this.scenes[nextScene].music!=undefined)
       PIXI.sound.play(this.scenes[nextScene].music,{loop:true});
     this.currentScene=nextScene;
-    this.player.sprite.visible=this.scenes[this.currentScene].player;
+    if(pos){
+      this.player.sprite.x=pos[0];
+      this.player.sprite.y=pos[1];
+      this.player.sprite.visible=this.scenes[this.currentScene].player;
+    }
+
     let inventoryOpt=this.scenes[this.currentScene].inventory;
     if(inventoryOpt) this.inventory.icon.visible=true;
   }
 
-  showMenu(){
-    //Requires improvement
-  //  let selectedSprite=this.objects[this.selectedObject].sprite;
-  /*  let selectedSprite=this.objects[this.selectedObject];
-    let posY=50;
-    if(selectedSprite.anchor.y>0) posY+=selectedSprite.height;
-    this.actionMenu.container.x=selectedSprite.x-selectedSprite.width/2;
-    this.actionMenu.container.y=selectedSprite.y-posY;*/
-    this.actionMenu.container.x=0;
-    this.actionMenu.container.y=0;
-    this.actionMenu.container.visible=true;
-  }
-
-  hideMenu(){
-    this.actionMenu.container.visible=false;
-  }
+  start(){
+    this.currentScene=0;
+    this.goScene(this.settings.MainScene);
+  };
 
 };
 

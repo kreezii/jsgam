@@ -11,42 +11,24 @@ function collision(polygon,x,y)
 {
   return PolyK.ContainsPoint(polygon,x,y);
 }
-/*
-function checkPath(newpos,polygons,walkPoly){
-  let checkPoint=false;
-  let changePosition=null;
-  if(polygons==undefined){polygons=[];}
-  for(let i=0;i<polygons.length && !checkPoint ;i++){
-    checkPoint=PolyK.ContainsPoint(polygons[i],newpos.x,newpos.y);
-  }
-  if(checkPoint){
-    changePosition=PolyK.ClosestEdge(walkPoly,newpos.x,newpos.y).point;
-    var newPos={x:Math.round(changePosition.x)-10,y:Math.round(changePosition.y)+10}
-  }
-
-  return newPos;
-}
-*/
 
 function checkPath(newpos,obstaclesPolys,walkPoly){
   let changePosition;
-  let checkPoint;
   let newPos;
 
   if(!PolyK.ContainsPoint(walkPoly,newpos.x,newpos.y))
   {
     changePosition=PolyK.ClosestEdge(walkPoly,newpos.x,newpos.y).point;
-    newPos={x:Math.round(changePosition.x),y:Math.round(changePosition.y)+10}
-    //  while(walkPoly.indexOf(newPos.x)){ console.log(newPos.x);newPos.x+=1;}
-
-  }/*else if(obstaclesPolys!=undefined){
-    for(let i=0;i<obstaclesPolys.length && !checkPoint ;i++){
-      checkPoint=PolyK.ContainsPoint(obstaclesPolys[i],newpos.x,newpos.y);
-      changePosition=PolyK.ClosestEdge(walkPoly,newpos.x,newpos.y).point;
-      break;
+    newPos={x:Math.round(changePosition.x)+1,y:Math.round(changePosition.y)+1}
+  }else if(obstaclesPolys!=undefined){
+    for(let i=0;i<obstaclesPolys.length ;i++){
+      if(PolyK.ContainsPoint(obstaclesPolys[i],newpos.x,newpos.y)){
+        changePosition=PolyK.ClosestEdge(walkPoly,newpos.x,newpos.y).point;
+        newPos={x:Math.round(changePosition.x)+1,y:Math.round(changePosition.y)+1}
+        break;
+      }
     }
-  }*/
-
+  }
   return newPos;
 }
 

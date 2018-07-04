@@ -1,7 +1,6 @@
 import {game} from '../game.js';
 import * as PIXI from 'pixi.js';
 import {dragonBones} from '../../lib/dragonBones.js';
-
 import {checkPath} from './utils.js';
 //import tweenManager from 'k8w-pixi-tween';
 
@@ -16,7 +15,6 @@ export class Player{
       this.sprite.visible=false;
       this.sprite.x=0;
       this.sprite.y=0;
-      //this.sprite.scale.set(2);
       this.sprite.parentLayer = game.layer;//Z-order
       this.lock=false;
     }
@@ -24,7 +22,9 @@ export class Player{
     move(event){
       if(!this.lock)
       {
-        game.hideMenu();
+        clearTimeout(game.timeout);
+        game.inventory.hide();
+        game.playerText.visible=false;
         var newPosition=event.data.getLocalPosition(game.app.stage);
         let obstacles=game.scenes[game.currentScene].obstacles;
         let walkingArea=game.scenes[game.currentScene].walkArea;
@@ -41,10 +41,11 @@ export class Player{
           this.lock=true;
           if(this.sprite.x<newPosition.x) this.sprite.armature.flipX=false;
           else this.sprite.armature.flipX=true;
-          //let findPath=getPath({x:this.sprite.x,y:this.sprite.y},newPosition,game.scenes[game.currentScene].obstacles);
           path.drawShape(new PIXI.Polygon(findPath));
           this.tween.path=path;
-          let animationTime=Math.abs(this.sprite.x-newPosition.x)*10+Math.abs(this.sprite.y-newPosition.y)*10;
+          //Needs improvement
+          let animationTime=Math.abs(this.sprite.x-newPosition.x)*5+Math.abs(this.sprite.y-newPosition.y)*5+findPath.length*100;
+
           this.tween.time = animationTime;
           this.tween.speed = 1;
           this.tween.start();
@@ -53,13 +54,40 @@ export class Player{
       }
     }
 
-    talk(){
-
+    say(textToSay){
+      game.player.lock=true;
+      game.playerText.text=textToSay;
+      let textInfo=game.playerText.getBounds();
+      let playerPos=game.player.sprite.getBounds();
+      let textPosX=playerPos.x+playerPos.width/2;
+      if(textPosX+textInfo.width>game.app.screen.width) textPosX=game.app.screen.width-textInfo.width;
+      game.playerText.x=textPosX;
+      game.playerText.y=playerPos.y;
+      game.playerText.visible=true;
+      game.player.sprite.animation.stop();
+      this.sprite.animation.play("speak");
+      game.timeout=setTimeout(shutUp, 3000);
     }
 };
 
 function playerStop(){
-  game.player.lock=false;
   game.player.sprite.animation.play("stand");
-  if(game.selectedObject) game.showMenu();
+
+  if(game.selectedObject){
+    let currentObject=game.objects[game.selectedObject];
+    if(game.longPress && currentObject.use || currentObject.door){
+      currentObject.use();
+    }else{
+      game.player.say(currentObject.description[game.mainLanguage]);
+    }
+    game.longPress=false;
+  }
+  game.player.lock=false;
+}
+
+function shutUp(){
+  game.player.sprite.animation.play("stand");
+  game.player.lock=false;
+  game.selectedObject=null;
+  game.playerText.visible=false;
 }
