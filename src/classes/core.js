@@ -3,12 +3,14 @@ class Core{
     this.files=[];
     this.scenes=[];
     this.objects=[];
+    this.characters=[];
     this.sounds=[];
     this.settings=[];
     this.mainLanguage=0;
     this.timeout;
     this.scenesJSON=[];
     this.objectsJSON=[];
+    this.charactersJSON=[];
     this.player={};
     this.playerTween;
     this.resources;
@@ -93,11 +95,35 @@ class Core{
     return numberObject;
   }
 
+  searchCharacter(nameCharacter){
+    let numberCharacter;
+    for(let i=0;i<this.characters.length;i++){
+      if(nameCharacter==this.characters[i].name){
+
+        numberCharacter=i;
+        break;
+      }
+    }
+    return numberCharacter;
+  }
+
   loop(){
     PIXI.tweenManager.update();
+    let animationProgress=this.player.sprite.animation.getState(this.player.state);
+    if(animationProgress!=null)
+    {
+      if(this.player.state=="take" && animationProgress.isCompleted){
+        this.objects[this.selectedObject].take();
+        this.player.stand();
+      }else if(this.player.state=="use" && animationProgress.isCompleted){
+        this.objects[this.selectedObject].use();
+        this.player.stand();
+      }
+    }
     //Scale Player
     let scalePlayer=this.player.sprite.y/this.app.screen.height*this.scenes[this.currentScene].playerSize;
     this.player.sprite.scale.set(scalePlayer);
+
   }
 
   goScene(sceneName,pos){
@@ -113,7 +139,6 @@ class Core{
       this.player.sprite.y=pos[1];
       this.player.sprite.visible=this.scenes[this.currentScene].player;
     }
-
     let inventoryOpt=this.scenes[this.currentScene].inventory;
     if(inventoryOpt) this.inventory.icon.visible=true;
   }

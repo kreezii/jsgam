@@ -33,6 +33,12 @@ export class Inventory{
       }else if(position=="top-right"){
         this.icon.x=game.app.screen.width - this.icon.width;
         this.icon.y=0;
+      }else if(position=="bottom-left"){
+        this.icon.x=0;
+        this.icon.y=game.app.screen.height - this.icon.height;
+      }else if(position=="bottom-top"){
+        this.icon.x=game.app.screen.width - this.icon.width;
+        this.icon.y=0;
       }
     }
     remove(nameObject)
@@ -66,7 +72,7 @@ function showHide(){
   if (game.inventory.container.visible){
     game.inventory.container.visible = false;
     game.player.lock=false;
-  }else{
+  }else if(!game.player.lock){
     game.inventory.container.visible = true;
     game.player.lock=true;
   }

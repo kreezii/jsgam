@@ -22,7 +22,7 @@ export class gameScene{
       this.playerSize=data.Player.Size;
       this.background.interactive=true;
       this.background.buttonMode=true;
-      this.background.on('pointerup',gotoXY);
+      this.background.on('pointerup',movePlayer);
 
       this.walkable=new Walkable(game.app.screen.width,game.app.screen.height);
       if(game.scenesJSON[index].WalkArea!=undefined){
@@ -45,10 +45,22 @@ export class gameScene{
     this.container.addChild(this.background);
 
     let sceneObjects=game.scenesJSON[index].Objects;
-    for(let i=0;i<sceneObjects.length;i++){
-      let objectIndex=game.searchObject(sceneObjects[i]);
-      if(objectIndex!=undefined){
-        this.container.addChild(game.objects[objectIndex]);
+    if(sceneObjects){
+      for(let i=0;i<sceneObjects.length;i++){
+        let objectIndex=game.searchObject(sceneObjects[i]);
+        if(objectIndex!=undefined){
+          this.container.addChild(game.objects[objectIndex]);
+        }
+      }
+    }
+
+    let sceneCharacters=game.scenesJSON[index].Characters;
+    if(sceneCharacters){
+      for(let i=0;i<sceneCharacters.length;i++){
+        let characterIndex=game.searchCharacter(sceneCharacters[i]);
+        if(characterIndex!=undefined){
+          this.container.addChild(game.characters[characterIndex].sprite);
+        }
       }
     }
 
@@ -59,9 +71,9 @@ export class gameScene{
   }
 };
 
-function gotoXY(event){
-  if(!game.player.lock){
-    game.player.move(event);
+function movePlayer(event){
+    game.player.action=null;
     game.selectedObject=null;
-  }
+    game.player.lock=false;
+    game.player.move(event.data.getLocalPosition(game.app.stage));
 }

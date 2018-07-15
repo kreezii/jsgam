@@ -1,6 +1,7 @@
 import {game} from './game.js';
 import {gameScene} from './classes/scenes.js';
 import {gameObject} from './classes/objects.js';
+import {Character} from './classes/character.js';
 import {Player} from './classes/player.js'
 import {Inventory} from './classes/inventory.js'
 
@@ -21,6 +22,9 @@ function loadConfigFiles(loader,resources){
     }else if(resources[game.files[i]].data.Objects){
       let tempArray=game.objectsJSON.concat(resources[game.files[i]].data.Objects);
       game.objectsJSON=tempArray;
+    }else if(resources[game.files[i]].data.Characters){
+      let tempArray=game.charactersJSON.concat(resources[game.files[i]].data.Characters);
+      game.charactersJSON=tempArray;
     }else if(resources[game.files[i]].data.Settings){
       game.settings=resources[game.files[i]].data.Settings;
     }
@@ -42,6 +46,14 @@ function loadConfigFiles(loader,resources){
   .add('playerJson', resources["player"].data.Player.Json)
   .add('playerSkeleton', resources["player"].data.Player.Skeleton);
 
+  //Load Character resources
+  let tempCharas=resources["characters"].data.Characters;
+  for(let i=0;i<tempCharas.length;i++){
+    PIXI.loader.add(tempCharas[i].name+"Tex", tempCharas[i].Texture)
+    .add(tempCharas[i].name+'Json', tempCharas[i].Json)
+    .add(tempCharas[i].name+'Skeleton', tempCharas[i].Skeleton);
+  }
+
   PIXI.loader.load(buildGame);
 };
 
@@ -62,6 +74,11 @@ function buildGame(loader,resources){
   //Build objects
   for(let i=0;i<game.objectsJSON.length;i++){
     game.objects[i]=new gameObject(game.objectsJSON[i],i);
+  }
+
+  //Build characters
+  for(let i=0;i<game.charactersJSON.length;i++){
+    game.characters[i]=new Character(game.charactersJSON[i],i);
   }
 
   //Build Scenes
