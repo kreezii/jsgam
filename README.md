@@ -1,17 +1,10 @@
 # JSGAM
 JavaScript Adventure Game Maker is a game engine inspired on classic graphical point-and-click adventure games.
 
-## A little of history...
-The adventure starts in **2009**. The first concept of the project was to make games with verbs (look, take, talk...) like the old **SCUMM** games.
-
 The project is in **pre-alpha** stage.
 
-## Current project stage
-**What works?**
-*
-
 ## Author
-* **R.Vañes** aka Kreezii
+* **R.Vañes**
 
 ## Built With
 
