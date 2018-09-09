@@ -23,21 +23,20 @@ export class Player{
     }
 
     move(newPosition){
-      if(!this.lock)
+      if(!this.tween.active)
       {
         clearTimeout(game.timeout);
         game.inventory.hide();
         game.playerText.visible=false;
         //var newPosition=event.data.getLocalPosition(game.app.stage);
-        let obstacles=game.scenes[game.currentScene].obstacles;
-        let walkingArea=game.scenes[game.currentScene].walkArea;
+        let obstacles=game.scenes[game.currentScene].data.Obstacles;
+        let walkingArea=game.scenes[game.currentScene].data.WalkArea;
         let pathResult=checkPath(newPosition,obstacles,walkingArea);
         if(pathResult){
           newPosition=pathResult;
         }
 
         var path = new PIXI.tween.TweenPath();
-
         let findPath=game.scenes[game.currentScene].getPath(this.sprite.x,this.sprite.y,newPosition.x,newPosition.y);
         if(findPath.length>0){
           this.animate("walk");
@@ -51,7 +50,6 @@ export class Player{
 
           this.tween.time = animationTime;
           this.tween.speed = 1;
-
           this.tween.start();
         }
       }
@@ -85,12 +83,12 @@ export class Player{
 function tweenEnd(){
   if(game.selectedObject){
     let currentObject=game.objects[game.selectedObject];
-    if(game.player.action=="use" && currentObject.use || currentObject.door){
+    if(game.player.action=="use"){
       game.player.animate("use",1);
     }else if(game.player.action=="take"){
       game.player.animate("take",1);
     }else{
-      game.player.say(currentObject.description[game.mainLanguage]);
+      game.player.say(currentObject.data.Description[game.mainLanguage]);
     }
   }else{
      game.player.stand();

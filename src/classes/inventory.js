@@ -26,7 +26,6 @@ export class Inventory{
     }
 
     setIcon(position){
-      //this.icon.visible=true;
       if(position=="bottom-right"){
         this.icon.x=game.app.screen.width - this.icon.width;
         this.icon.y=game.app.screen.height - this.icon.height;
@@ -41,15 +40,19 @@ export class Inventory{
         this.icon.y=0;
       }
     }
+
     remove(nameObject)
     {
-      this.objects.splice(this.searchObject(nameObject),1);
+      let objectToRemove=this.searchObject(nameObject);
+      this.objects.splice(objectToRemove,1);
+      game.objects[game.searchObject(nameObject)].destroy();
       this.update();
     }
+
     searchObject(nameObject){
       let numberObject;
       for(let i=0;i<this.objects.length;i++){
-        if(nameObject==this.objects[i].name){
+        if(nameObject==this.objects[i].data.Name){
 
           numberObject=i;
           break;
@@ -71,9 +74,7 @@ export class Inventory{
 function showHide(){
   if (game.inventory.container.visible){
     game.inventory.container.visible = false;
-    game.player.lock=false;
-  }else if(!game.player.lock){
+  }else if(/*game.player.tween.active*/game.player.action!="take"){
     game.inventory.container.visible = true;
-    game.player.lock=true;
   }
 }

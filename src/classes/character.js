@@ -7,6 +7,7 @@ import {checkPath} from './utils.js';
 const factory=dragonBones.PixiFactory.factory;
 export class Character{
     constructor(data){
+      this.data=data;
       factory.parseDragonBonesData(game.resources[data.name+'Skeleton'].data);
       factory.parseTextureAtlasData(game.resources[data.name+'Json'].data,game.resources[data.name+'Tex'].texture);
       this.sprite = factory.buildArmatureDisplay(data.Name);

@@ -1,9 +1,10 @@
 import {game} from './game.js';
-import {gameScene} from './classes/scenes.js';
+import {gameScene,LogoScreen,TitleScreen} from './classes/scenes.js';
 import {gameObject} from './classes/objects.js';
 import {Character} from './classes/character.js';
-import {Player} from './classes/player.js'
-import {Inventory} from './classes/inventory.js'
+import {Player} from './classes/player.js';
+import {Puzzle} from './classes/puzzle.js';
+import {Inventory} from './classes/inventory.js';
 
 function loadingProgress(loader,resources){
   let percent=Math.floor(PIXI.loader.progress);
@@ -25,6 +26,9 @@ function loadConfigFiles(loader,resources){
     }else if(resources[game.files[i]].data.Characters){
       let tempArray=game.charactersJSON.concat(resources[game.files[i]].data.Characters);
       game.charactersJSON=tempArray;
+    }else if(resources[game.files[i]].data.Puzzles){
+      let tempArray=game.puzzlesJSON.concat(resources[game.files[i]].data.Puzzles);
+      game.puzzlesJSON=tempArray;
     }else if(resources[game.files[i]].data.Settings){
       game.settings=resources[game.files[i]].data.Settings;
     }
@@ -60,7 +64,6 @@ function loadConfigFiles(loader,resources){
 function buildGame(loader,resources){
   game.loadingText.destroy();
   game.resources=resources;
-
   //Build Player
   game.player=new Player("Armature");
   game.app.stage.addChild(game.player.sprite);
@@ -76,10 +79,19 @@ function buildGame(loader,resources){
     game.objects[i]=new gameObject(game.objectsJSON[i],i);
   }
 
+  //Build puzzles
+  for(let i=0;i<game.puzzlesJSON.length;i++){
+    game.puzzles[i]=new Puzzle(game.puzzlesJSON[i],i);
+  }
+
   //Build characters
   for(let i=0;i<game.charactersJSON.length;i++){
     game.characters[i]=new Character(game.charactersJSON[i],i);
   }
+
+  //Build Logo and Main screens
+  game.logoScreen=new LogoScreen();
+  game.titleScreen=new TitleScreen();
 
   //Build Scenes
   for(let i=0;i<game.scenesJSON.length;i++){
@@ -88,7 +100,6 @@ function buildGame(loader,resources){
   }
   //Add texts
   game.app.stage.addChild(game.playerText);
-
   PIXI.loader.reset();
   game.ticker=new PIXI.ticker.Ticker();
   game.ticker.add(deltaTime=>game.loop(deltaTime));

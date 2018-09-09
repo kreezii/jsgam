@@ -1,20 +1,19 @@
 import {game} from '../game.js';
 import * as PIXI from 'pixi.js';
 import {boxesIntersect,collision} from './utils.js';
-import {resolvePuzzle} from'./puzzle.js';
 
 export class gameObject extends PIXI.Sprite{
   constructor(data,index){
-    if(data.Texture) super(PIXI.Texture.fromFrame(data.Texture));
-    else if(data.Area){
+    if(data.Texture){
+      super(PIXI.Texture.fromFrame(data.Texture));
+    }else if(data.Area){
       super(PIXI.Texture.EMPTY);
       this.hitArea=new PIXI.Polygon(data.Area);
     }
-    this.name=data.Name;
+    this.data=data;
     this.index=index;
-    this.description=data.Description;
-    this.takable=data.Take;
-    this.usable=data.Use;
+
+    //this.usable=data.Use;
 
     if(data.Position){
       this.x=data.Position[0];
@@ -30,7 +29,6 @@ export class gameObject extends PIXI.Sprite{
     if(data.Interactive){
       this.interactive=data.Interactive;
       this.buttonMode=true;
-      this.longPress=false;
       if(!data.Button) this.on('pointerdown', onTouchStart)
                            .on('pointerup', onTouchEnd);
       if(data.Door){
@@ -39,11 +37,12 @@ export class gameObject extends PIXI.Sprite{
         this.playerPos=data.Door.Player;
         this.use=Goto;
         if(data.Button) this.on('pointerup', Goto);
-      }else if(this.takable){
-        this.on('pointerdown', onTakeStart)
-                                  .on('pointerup', onTakeEnd)
-                                  .on('pointerupoutside', onTakeEnd)
-                                  .on('pointermove', onTakeMove);
+        else this.on('pointerup',onDoorTouch);
+      }else if(data.Take){
+        this.on('pointerdown', onTakeStart).on('pointerdown', onDragStart)
+                                  .on('pointerup', onTakeEnd).on('pointerup', onDragEnd)
+                                  .on('pointerupoutside', onTakeEnd).on('pointerupoutside', onDragEnd)
+                                  .on('pointermove', onDragMove);
       }else if(this.usable){
       //  this.use=
       }
@@ -61,90 +60,79 @@ export class gameObject extends PIXI.Sprite{
     this.y=0;
     this.removeAllListeners();
     this.on('pointerdown', onDragStart)
-                              .on('pointerup', onDragEnd)
-                              .on('pointerupoutside', onDragEnd)
-                              .on('pointermove', onDragMove);
+                              .on('pointerup', onInventoryEnd).on('pointerup', onDragEnd)
+                              .on('pointerupoutside', onInventoryEnd).on('pointerupoutside', onDragEnd)
+                              .on('pointermove', onDragMove).on('pointermove', onInventoryMove);
     game.inventory.update();
     game.selectedObject=false;
     game.player.action=null;
   }
 };
 
+function onDoorTouch(){
+  game.player.action="use";
+}
+
 function Goto(){
-  game.goScene(this.newScene,this.playerPos);
+  game.changeScene(this.newScene,this.playerPos);
 }
 
 //Object events when touch start and ends
 function onTouchStart(event){
-  if(this.usable) this.pressing=setTimeout(function(){game.player.action="use"}, 500);
+  this.interaction = event.data;
+  //if(this.usable) this.pressing=setTimeout(function(){game.player.action="use"}, 500);
 }
 
 function onTouchEnd(event){
-  if(!game.player.lock)
+
+  if(this.interaction)
   {
-    clearTimeout(this.pressing);
+    //clearTimeout(this.pressing);
     game.selectedObject=this.index;
     game.player.move(event.data.getLocalPosition(game.app.stage));
+    //game.player.move({x:this.x,y:this.y});
   }
 }
 
 //Drag the object while It is in the Inventory
 function onDragStart(event) {
   // we want to track the movement of this particular touch
-  game.player.lock=true;
   this.posX = this.x;
   this.posY = this.y;
-  this.data = event.data;
-  this.objectEvent=event;
+  this.interaction = event.data;
+  //this.objectEvent=event;
   this.alpha = 0.5;
   this.dragging = true;
 }
 
 function onDragEnd() {
-  if(this.data){
-    if(this.usable){
-      let originObj;
-      let targetObj;
-      let result;
-      let check;
+  this.alpha = 1;
+  this.dragging = false;
+  // set the interaction data to null
+  this.interaction = null;
+}
 
-      if(this.usable.Origin){
-        originObj=game.objects[game.searchObject(this.usable.Origin)];
-        targetObj=this;
-        check=originObj;
-      }else{
-        originObj=this;
-        targetObj=game.objects[game.searchObject(this.usable.Target)];
-        check=targetObj;
-      }
-
-      if(check.hitArea) result=collision(check.hitArea.points,this.x,this.y);
-      else result=check.containsPoint(new PIXI.Point(this.x,this.y))
-      if(result && targetObj.parent.visible)
-      {
-        resolvePuzzle(originObj,targetObj);
-      }//else game.player.say(game.settings.NotUsable[game.mainLanguage]);
-    }
+function onInventoryEnd(){
+  if(this.interaction){
+    game.checkPuzzle(this.data.Name);
     this.x = this.posX;
     this.y = this.posY;
     this.setParent(game.inventory.container);
   }
-
-  this.alpha = 1;
-  this.dragging = false;
-  // set the interaction data to null
-  this.data = null;
-
-  setTimeout(function(){ game.player.lock=false;}, 50);
 
 }
 
 function onDragMove() {
   if (this.dragging) {
     this.setParent(game.app.stage);
-    var newPosition = this.data.getLocalPosition(this.parent);
+    var newPosition = this.interaction.getLocalPosition(this.parent);
     this.x = newPosition.x;
     this.y = newPosition.y;
+  }
+}
+
+function onInventoryMove() {
+  if (this.dragging) {
     if(!boxesIntersect(this,game.inventory.container)){
       game.inventory.container.visible=false;
     }
@@ -155,40 +143,18 @@ function onDragMove() {
 function onTakeStart(event) {
   this.oldParent=this.parent;
   this.parentLayer=game.layerUI;
-  this.posX = this.x;
-  this.posY = this.y;
-  this.data = event.data;
-  this.objectEvent=event;
-  this.alpha = 0.5;
-  this.dragging = true;
 }
 
 function onTakeEnd() {
-  if(boxesIntersect(this,game.inventory.icon)) game.player.action="take";
+  if(this.interaction){
+    if(collision(this,game.inventory.icon)) game.player.action="take";
 
-  this.setParent(this.oldParent);
-  this.parentLayer = game.layer;
-  this.x = this.posX;
-  this.y = this.posY;
+    this.setParent(this.oldParent);
+    this.parentLayer = game.layer;
+    this.x = this.posX;
+    this.y = this.posY;
 
-  game.selectedObject=this.index;
-  game.player.lock=false;
-  game.player.move({x:this.posX,y:this.posY});
-
-  this.alpha = 1;
-  this.dragging = false;
-
-  // set the interaction data to null
-  this.data = null;
-}
-
-function onTakeMove() {
-  if (this.dragging) {
-    game.player.lock=true;
-    this.setParent(game.app.stage);
-    var newPosition = this.data.getLocalPosition(this.parent);
-    this.x = newPosition.x;
-    this.y = newPosition.y;
-
+    game.selectedObject=this.index;
+    game.player.move({x:this.posX,y:this.posY});
   }
 }

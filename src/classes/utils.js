@@ -7,9 +7,15 @@ function boxesIntersect(a, b)
   return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
 }
 
-function collision(polygon,x,y)
+function collision(a, b)
 {
-  return PolyK.ContainsPoint(polygon,x,y);
+  let result;
+  if(a!=undefined && b !=undefined){
+
+    if(b.hitArea) result=PolyK.ContainsPoint(b.hitArea.points,a.x,a.y);
+    else result=boxesIntersect(a,b);
+  }
+  return result;
 }
 
 function checkPath(newpos,obstaclesPolys,walkPoly){

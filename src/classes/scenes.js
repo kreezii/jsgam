@@ -4,11 +4,8 @@ var Walkable=require('walkable');
 
 export class gameScene{
   constructor(data,index){
-    this.name=data.Name;
+    this.data=data;
     this.index=index;
-    this.music=data.Music;
-    this.player=false;
-    this.inventory=data.Inventory;
     this.container=new PIXI.Container();
     this.container.visible=false;
     this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(data.Background));
@@ -17,34 +14,27 @@ export class gameScene{
     this.background.parentLayer = game.layer;//Z-order
 
     if(data.Player){
-
-      this.player=true;
-      this.playerSize=data.Player.Size;
       this.background.interactive=true;
       this.background.buttonMode=true;
       this.background.on('pointerup',movePlayer);
 
       this.walkable=new Walkable(game.app.screen.width,game.app.screen.height);
-      if(game.scenesJSON[index].WalkArea!=undefined){
-        this.walkArea=game.scenesJSON[index].WalkArea;
-        this.walkable.addPolygon(this.walkArea);
+      if(data.WalkArea!=undefined){
+        this.walkable.addPolygon(data.WalkArea);
       }
 
-      if(game.scenesJSON[index].Obstacles!=undefined){
-        this.obstacles=Object.values(game.scenesJSON[index].Obstacles);
-        for(let i=0;i<this.obstacles.length;i++){
-          this.walkable.addPolygon(this.obstacles[i]);
+      if(data.Obstacles!=undefined){
+        let obstacles=Object.values(data.Obstacles);
+        this.data.Obstacles=obstacles;
+        for(let i=0;i<this.data.Obstacles.length;i++){
+          this.walkable.addPolygon(this.data.Obstacles[i]);
         }
       }
     }
 
-
-    if(data.Inventory!=undefined){
-      this.inventory=data.Inventory;
-    }
     this.container.addChild(this.background);
 
-    let sceneObjects=game.scenesJSON[index].Objects;
+    let sceneObjects=data.Objects;
     if(sceneObjects){
       for(let i=0;i<sceneObjects.length;i++){
         let objectIndex=game.searchObject(sceneObjects[i]);
@@ -54,7 +44,7 @@ export class gameScene{
       }
     }
 
-    let sceneCharacters=game.scenesJSON[index].Characters;
+    let sceneCharacters=data.Characters;
     if(sceneCharacters){
       for(let i=0;i<sceneCharacters.length;i++){
         let characterIndex=game.searchCharacter(sceneCharacters[i]);
@@ -71,9 +61,54 @@ export class gameScene{
   }
 };
 
+export class LogoScreen{
+  constructor(){
+    this.container=new PIXI.Container();
+    this.container.visible=false;
+    this.logo=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.Logo));
+    this.logo.anchor.set(0.5);
+    this.logo.x=game.app.screen.width/2;
+    this.logo.y=game.app.screen.height/2;
+    this.container.addChild(this.logo);
+    game.app.stage.addChild(this.container);
+  }
+}
+
+export class TitleScreen{
+  constructor(){
+    this.container=new PIXI.Container();
+    this.container.visible=false;
+    this.optionsContainer=new PIXI.Container();
+    this.newGame=new PIXI.Text("0 %", {
+          fontFamily: 'Arial',
+          fontSize: 35,
+          fill: 'white',
+          align: 'left'
+    });
+    this.continue=new PIXI.Text("0 %", {
+          fontFamily: 'Arial',
+          fontSize: 35,
+          fill: 'white',
+          align: 'left'
+    });
+    this.options=new PIXI.Text("0 %", {
+          fontFamily: 'Arial',
+          fontSize: 35,
+          fill: 'white',
+          align: 'left'
+    });
+
+    this.container.addChild(this.newGame);
+    this.container.addChild(this.continue);
+    this.container.addChild(this.options);
+
+    game.app.stage.addChild(this.container);
+    game.app.stage.addChild(this.optionsContainer);
+  }
+}
+
 function movePlayer(event){
     game.player.action=null;
     game.selectedObject=null;
-    game.player.lock=false;
     game.player.move(event.data.getLocalPosition(game.app.stage));
 }
