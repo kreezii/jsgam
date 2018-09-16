@@ -1,8 +1,6 @@
 import {game} from '../game.js';
-import * as PIXI from 'pixi.js';
 import {dragonBones} from '../../lib/dragonBones.js';
 import {checkPath} from './utils.js';
-//import tweenManager from 'k8w-pixi-tween';
 
 const factory=dragonBones.PixiFactory.factory;
 export class Player{
@@ -18,16 +16,15 @@ export class Player{
       this.sprite.x=0;
       this.sprite.y=0;
       this.action=null;
-      this.sprite.parentLayer = game.layer;//Z-order
       this.lock=false;
+      this.sprite.parentLayer = game.layer;//Z-order
     }
 
     move(newPosition){
       if(!this.tween.active)
       {
-        clearTimeout(game.timeout);
         game.inventory.hide();
-        game.playerText.visible=false;
+        game.playerText.hide();
         //var newPosition=event.data.getLocalPosition(game.app.stage);
         let obstacles=game.scenes[game.currentScene].data.Obstacles;
         let walkingArea=game.scenes[game.currentScene].data.WalkArea;
@@ -56,21 +53,16 @@ export class Player{
     }
 
     say(textToSay){
-      this.lock=true;
-      game.playerText.text=textToSay;
-      let textInfo=game.playerText.getBounds();
-      let playerPos=this.sprite.getBounds();
-      let textPosX=playerPos.x+playerPos.width/2;
-      if(textPosX+textInfo.width>game.app.screen.width) textPosX=game.app.screen.width-textInfo.width;
-      game.playerText.x=textPosX;
-      game.playerText.y=playerPos.y;
-      game.playerText.visible=true;
-      this.animate("speak");
+      game.playerText.Text.text=textToSay;
+      game.playerText.show();
+      if(game.timeout) game.timeout.clear();
+      game.timeout = PIXI.setTimeout(10,function(){game.playerText.hide();})
     }
 
     stand(){
       this.lock=false;
       this.action=null;
+      game.selectedObject=null;
       this.animate("stand");
     }
 
@@ -81,13 +73,19 @@ export class Player{
 };
 
 function tweenEnd(){
+
   if(game.selectedObject){
     let currentObject=game.objects[game.selectedObject];
+    //Check the player is facing the object
+  //  if(game.player.sprite.x<currentObject.x) game.player.sprite.armature.flipX=false;
+  //  else game.player.sprite.armature.flipX=true;
+
     if(game.player.action=="use"){
       game.player.animate("use",1);
     }else if(game.player.action=="take"){
       game.player.animate("take",1);
     }else{
+      game.player.animate("speak",3);
       game.player.say(currentObject.data.Description[game.mainLanguage]);
     }
   }else{

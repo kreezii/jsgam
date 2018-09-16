@@ -1,5 +1,4 @@
 import {game} from '../game.js';
-import * as PIXI from 'pixi.js';
 import {boxesIntersect,collision} from './utils.js';
 
 export class gameObject extends PIXI.Sprite{
@@ -13,8 +12,6 @@ export class gameObject extends PIXI.Sprite{
     this.data=data;
     this.index=index;
 
-    //this.usable=data.Use;
-
     if(data.Position){
       this.x=data.Position[0];
       this.y=data.Position[1];
@@ -26,7 +23,7 @@ export class gameObject extends PIXI.Sprite{
     if(!data.Area)this.anchor.set(0.5,1);
     this.parentLayer = game.layer;
 
-    if(data.Interactive){
+    if(data.Interactive || data.Door || data.Take || data.Use){
       this.interactive=data.Interactive;
       this.buttonMode=true;
       if(!data.Button) this.on('pointerdown', onTouchStart)
@@ -40,32 +37,38 @@ export class gameObject extends PIXI.Sprite{
         else this.on('pointerup',onDoorTouch);
       }else if(data.Take){
         this.on('pointerdown', onTakeStart).on('pointerdown', onDragStart)
-                                  .on('pointerup', onTakeEnd).on('pointerup', onDragEnd)
-                                  .on('pointerupoutside', onTakeEnd).on('pointerupoutside', onDragEnd)
-                                  .on('pointermove', onDragMove);
-      }else if(this.usable){
-      //  this.use=
+            .on('pointerup', onTakeEnd).on('pointerup', onDragEnd)
+            .on('pointerupoutside', onTakeEnd).on('pointerupoutside', onDragEnd)
+            .on('pointermove', onDragMove);
+      }else if(data.Use){
+        this.holding=0;
+        this.use=InventoryUse;
+        this.on('pointerdown', onDragStart)
+            .on('pointerup', onUseEnd).on('pointerup', onDragEnd)
+            .on('pointerupoutside', onUseEnd).on('pointerupoutside', onDragEnd)
+            .on('pointermove', onUseMove);
       }
     }
 
-    if(data.Use) this.usable=data.Use;
+  //  if(data.Use) this.usable=data.Use;
   }
 
   take(){
     game.inventory.container.addChild(this);
     game.inventory.objects.push(this);
     this.parentLayer=game.layerUI;
-    this.anchor.set(0,0);
+    //this.anchor.set(0.5,1);
     this.x=0;
     this.y=0;
     this.removeAllListeners();
     this.on('pointerdown', onDragStart)
-                              .on('pointerup', onInventoryEnd).on('pointerup', onDragEnd)
-                              .on('pointerupoutside', onInventoryEnd).on('pointerupoutside', onDragEnd)
-                              .on('pointermove', onDragMove).on('pointermove', onInventoryMove);
+        .on('pointerup', onInventoryEnd).on('pointerup', onDragEnd)
+        .on('pointerupoutside', onInventoryEnd).on('pointerupoutside', onDragEnd)
+        .on('pointermove', onDragMove).on('pointermove', onInventoryMove);
     game.inventory.update();
     game.selectedObject=false;
     game.player.action=null;
+    this.use=InventoryUse;
   }
 };
 
@@ -85,9 +88,10 @@ function onTouchStart(event){
 
 function onTouchEnd(event){
 
-  if(this.interaction)
+  if(this.interaction && !game.player.lock)
   {
     //clearTimeout(this.pressing);
+    //game.player.action="say";
     game.selectedObject=this.index;
     game.player.move(event.data.getLocalPosition(game.app.stage));
     //game.player.move({x:this.x,y:this.y});
@@ -112,12 +116,35 @@ function onDragEnd() {
   this.interaction = null;
 }
 
-function onInventoryEnd(){
+function onInventoryEnd(event){
   if(this.interaction){
+
     game.checkPuzzle(this.data.Name);
+    game.player.lock=true;
+    game.player.action="use";
+    game.selectedObject=this.index;
+    game.player.move(event.data.getLocalPosition(game.app.stage));
     this.x = this.posX;
     this.y = this.posY;
     this.setParent(game.inventory.container);
+  }
+
+}
+
+function onUseMove(event){
+  if(this.dragging) {
+    this.holding+=1;
+  }
+}
+
+function onUseEnd(event){
+  if(this.interaction && this.holding>3){
+    this.holding=0;
+    game.checkPuzzle(this.data.Name);
+    game.player.lock=true;
+    game.player.action="use";
+    game.selectedObject=this.index;
+    game.player.move({x:this.x,y:this.y});
   }
 
 }
@@ -153,8 +180,17 @@ function onTakeEnd() {
     this.parentLayer = game.layer;
     this.x = this.posX;
     this.y = this.posY;
-
+    game.player.lock=true;
     game.selectedObject=this.index;
     game.player.move({x:this.posX,y:this.posY});
+  }
+}
+
+function InventoryUse(){
+  if(game.currentPuzzle){
+    game.currentPuzzle.resolvePuzzle();
+    game.currentPuzzle=false;
+  }else{
+    game.player.say(game.settings.NotUsable[game.mainLanguage]);
   }
 }

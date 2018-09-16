@@ -1,22 +1,26 @@
 import {game} from './game.js';
-import {gameScene,LogoScreen,TitleScreen} from './classes/scenes.js';
+import {gameScene} from './classes/scenes.js';
+import {LogoScreen,TitleScreen} from './classes/menu.js';
 import {gameObject} from './classes/objects.js';
 import {Character} from './classes/character.js';
 import {Player} from './classes/player.js';
 import {Puzzle} from './classes/puzzle.js';
 import {Inventory} from './classes/inventory.js';
+import {Text} from './classes/text.js'
 
+//Called when a file is loaded
 function loadingProgress(loader,resources){
   let percent=Math.floor(PIXI.loader.progress);
   game.loadingText.text="Loading "+percent+ "%";
   //console.log(percent);
 };
 
+//Load JSON configuration files
 function loadConfigFiles(loader,resources){
   game.loadingText.visible=false;
   for(let i=0;i<game.files.length;i++){
     if(resources[game.files[i]].data==null){
-      console.log("Error parsing JSON files")
+      console.log("Error parsing JSON file:"+" '"+game.files[i]+"'")
     }else if(resources[game.files[i]].data.Scenes){
       let tempArray=game.scenesJSON.concat(resources[game.files[i]].data.Scenes);
       game.scenesJSON=tempArray;
@@ -61,8 +65,9 @@ function loadConfigFiles(loader,resources){
   PIXI.loader.load(buildGame);
 };
 
+//Create all elements and add it to the game (PIXI.stage)
 function buildGame(loader,resources){
-  game.loadingText.destroy();
+  game.loadingText.destroy(); //We don't need it anymore
   game.resources=resources;
   //Build Player
   game.player=new Player("Armature");
@@ -98,8 +103,10 @@ function buildGame(loader,resources){
     game.scenes[i]=new gameScene(game.scenesJSON[i],i);
     game.app.stage.addChild(game.scenes[i].container);
   }
-  //Add texts
-  game.app.stage.addChild(game.playerText);
+  //Build text fields
+  game.playerText=new Text();
+  game.app.stage.addChild(game.playerText.container);
+
   PIXI.loader.reset();
   game.ticker=new PIXI.ticker.Ticker();
   game.ticker.add(deltaTime=>game.loop(deltaTime));

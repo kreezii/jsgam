@@ -29,6 +29,7 @@
     "pixi-filters": "^2.6.1",
     "pixi-layers": "^0.1.9",
     "pixi-sound": "^2.0.3",
+    "pixi-timeout": "^1.0.4",
     "pixi.js": "^4.8.2",
     "polyk": "^0.24.0",
     "walkable": "^1.0.3"

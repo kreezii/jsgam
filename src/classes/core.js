@@ -1,6 +1,6 @@
 import * as filters from 'pixi-filters';
 
-class Core{
+export class Core{
   constructor(width,height,objectID){
     this.files=[];
     this.logoScreen;
@@ -21,13 +21,23 @@ class Core{
     this.playerTween;
     this.resources;
     this.currentScene;
+    this.currentPuzzle;
     this.selectedObject=null;
     this.inventory;
     this.inventoryBack="inventory-bg.png";
     this.inventoryIcon="inventory-icon.png";
     this.app=new PIXI.Application(width,height,{autoResize: true});
     this.OldFimFilter=new filters.OldFilmFilter();
+    this.GodRayFilter=new filters.GodrayFilter();
+    this.ReflectionFilter=new filters.ReflectionFilter({
+      mirror:false,
+      boundary:0,
+      amplitude:[2,2],
+      waveLength:[200,200]
+    }
+    );
     this.longPress=false;
+
     //Z-Order
     this.app.stage = new PIXI.display.Stage();
     this.sortGroup= new PIXI.display.Group(0, true);
@@ -45,33 +55,49 @@ class Core{
 
     this.width=width;
     this.height=height;
-    this.textStyle = new PIXI.TextStyle({
-        fontFamily: 'Arial',
-        fontSize: 20,
-        fontWeight: 'bold',
-        fill: '#ffffff', // gradient
-        stroke: '#000000',
-        strokeThickness: 5,
+
+    this.buttonTextStyle= new PIXI.TextStyle({
+        dropShadowAngle: 0.5,
+        dropShadowBlur: 3,
+        dropShadowDistance: 0,
+        fill: "white",
+        fontSize: 32,
+        fontVariant: "small-caps",
+        fontWeight: "bold",
+        lineJoin: "round",
         align: 'center',
-        wordWrap: true,
-        wordWrapWidth: this.app.screen.width/2
+        strokeThickness: 8
     });
+
     this.loadingText=new PIXI.Text("0 %", {
           fontFamily: 'Arial',
           fontSize: 35,
           fill: 'white',
           align: 'left'
     });
+    this.playerText;
+    /*
+    this.textContainer=new PIXI.Container();
+    this.textBackground=new PIXI.Sprite(PIXI.Texture.WHITE);
+    this.textBackground.width=this.width;
+    this.textBackground.height=this.height/3;
+    this.textBackground.tint='black';
+    this.textBackground.alpha=0.5;
+    this.textContainer.addChild(this.textBackground);
 
-    this.playerText=new PIXI.Text("", this.textStyle);
+    this.playerText=new PIXI.Text("sdvsvs", this.textStyle);
+    this.playerText.position.set(0,0);
+    this.textContainer.addChild(this.playerText);
+    this.textContainer.visible=false;
 
     this.playerText.parentLayer = this.layerUI;
     this.playerText.anchor.set(0.5);
     this.playerText.visible=false;
+    */
     //document.body.appendChild(this.app.view);
 
-    if(!objectID) document.body.appendChild(this.app.view);
-    else document.getElementById(objectID).appendChild(this.app.view);
+    document.body.appendChild(this.app.view);
+    //document.getElementById('jsgam-canvas').appendChild(this.app.view);
 
     this.app.stage.addChild(this.layer);//Z-order
     this.app.stage.addChild(this.layeronTop);//Z-order
@@ -90,6 +116,10 @@ class Core{
     return numberScene;
   }
 
+  getCurrentScene(){
+    return this.scenes[this.currentScene];
+  }
+
   searchObject(nameObject){
     let numberObject;
     for(let i=0;i<this.objects.length;i++){
@@ -101,7 +131,7 @@ class Core{
     }
     return numberObject;
   }
-
+/*
   searchPuzzle(namePuzzle){
     let numberPuzzle;
     for(let i=0;i<this.puzzles.length;i++){
@@ -113,7 +143,7 @@ class Core{
     }
     return numberPuzzle;
   }
-
+*/
   searchCharacter(nameCharacter){
     let numberCharacter;
     for(let i=0;i<this.characters.length;i++){
@@ -126,6 +156,23 @@ class Core{
     return numberCharacter;
   }
 
+  checkFilters(){
+    let activeFilters=this.scenes[this.currentScene].data.Filters;
+    let filtersList=[];
+    if(activeFilters=="Godray") filtersList.push(this.GodRayFilter);
+    else if(activeFilters=="Reflection"){
+      filtersList.push(this.ReflectionFilter);
+    //  this.ReflectionFilter.boundary=0;
+    //  this.ReflectionFilter.mirror=false;
+    }
+    return filtersList;
+  }
+
+  animateFilters(){
+    this.GodRayFilter.time += this.app.ticker.elapsedMS / 1000;
+    this.ReflectionFilter.time += 0.1;
+  }
+
   loop(){
     PIXI.tweenManager.update();
     let animationProgress=this.player.sprite.animation.getState(this.player.state);
@@ -135,10 +182,14 @@ class Core{
         this.objects[this.selectedObject].take();
         this.player.stand();
       }else if(this.player.state=="use" && animationProgress.isCompleted){
-        this.objects[this.selectedObject].use();
+        if(this.objects[this.selectedObject].use) this.objects[this.selectedObject].use();
+        this.player.stand();
+      }else if(animationProgress.isCompleted){
         this.player.stand();
       }
     }
+    if(this.layer.filters != []) this.animateFilters();
+
     //Scale Player
     //let scalePlayer=this.player.sprite.y/this.app.screen.height*this.scenes[this.currentScene].playerSize;
     //this.player.sprite.scale.set(scalePlayer);
@@ -148,9 +199,9 @@ class Core{
   changeScene(sceneName,pos){
     this.player.action=null;
     let nextScene=this.searchScene(sceneName);
-    this.scenes[this.currentScene].container.visible=false;
-    this.scenes[nextScene].container.visible=true;
-    PIXI.sound.stop(this.scenes[this.currentScene].data.Music);
+    this.scenes[this.currentScene].hide();
+    this.scenes[nextScene].show();
+    if(this.scenes[this.currentScene].data.Music!=undefined)PIXI.sound.stop(this.scenes[this.currentScene].data.Music);
     if(this.scenes[nextScene].data.Music!=undefined)
       PIXI.sound.play(this.scenes[nextScene].data.Music,{loop:true});
     this.currentScene=nextScene;
@@ -159,47 +210,43 @@ class Core{
       this.player.sprite.y=pos[1];
       this.player.sprite.visible=this.scenes[this.currentScene].data.Player;
     }
-    let inventoryOpt=this.scenes[this.currentScene].data.Inventory;
-    if(inventoryOpt) this.inventory.icon.visible=true;
+    if(this.scenes[this.currentScene].data.Filters){
+      this.layer.filters = this.checkFilters();
+    }else{
+      this.layer.filters = [];
+    }
+    //let inventoryOpt=this.scenes[this.currentScene].data.Inventory;
+    //if(inventoryOpt) this.inventory.icon.visible=true;
   }
 
   checkPuzzle(nameObject){
+    let found=false;
     for(let i=0;i<this.puzzles.length;i++){
       if(nameObject==this.puzzles[i].data.Source ||
          nameObject==this.puzzles[i].data.Target){
-           this.puzzles[i].resolvePuzzle();
+           //found=this.puzzles[i];
+           //console.log(this.puzzles[i].checkCollision())
+           if(this.puzzles[i].checkCollision()) found=this.puzzles[i];
            break;
       }
     }
+    this.currentPuzzle=found;
   }
 
+  //Show Logo Screen then the Title Screen
   start(){
-    this.currentScene=0;
-    this.changeScene(this.settings.MainScene);
-  };
+    this.logoScreen.show();
+  }
 
   resize() {
     var w = window.innerWidth * 0.95;
     var h = window.innerHeight * 0.95;
-var ratio = Math.min( w/this.app.screen.width,  h/this.app.screen.height);
-    //this part resizes the canvas but keeps ratio the same
-  //  this.app.renderer.view.style.width = w + "px";
-  //  this.app.renderer.view.style.height = h + "px";
-
-    //this part adjusts the ratio:
-    let scaleX;
-    let scaleY;
-
+    var ratio = Math.min( w/this.width,  h/this.height);
     this.app.renderer.resize(w,h);
-    this.app.stage.position.set(0,0);
-    //this.app.stage.scale.set(ratio,ratio);
-    this.app.stage.width=w;
-    this.app.stage.height=h;
-    //this.app.view.style.width=w;
-    //this.app.stage.scale.set(ratio,ratio);
+    this.app.stage.scale.set(ratio);
 
   }
 
-};
+}
 
-export {Core};
+//export {Core};*
