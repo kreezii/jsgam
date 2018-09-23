@@ -3,10 +3,11 @@ import {gameScene} from './classes/scenes.js';
 import {LogoScreen,TitleScreen} from './classes/menu.js';
 import {gameObject} from './classes/objects.js';
 import {Character} from './classes/character.js';
+import {Dialogue} from './classes/dialogue.js';
 import {Player} from './classes/player.js';
 import {Puzzle} from './classes/puzzle.js';
 import {Inventory} from './classes/inventory.js';
-import {Text} from './classes/text.js'
+import {TextField} from './classes/text.js'
 
 //Called when a file is loaded
 function loadingProgress(loader,resources){
@@ -20,7 +21,7 @@ function loadConfigFiles(loader,resources){
   game.loadingText.visible=false;
   for(let i=0;i<game.files.length;i++){
     if(resources[game.files[i]].data==null){
-      console.log("Error parsing JSON file:"+" '"+game.files[i]+"'")
+      console.log("Error found in JSON file:"+" '"+game.files[i]+"'")
     }else if(resources[game.files[i]].data.Scenes){
       let tempArray=game.scenesJSON.concat(resources[game.files[i]].data.Scenes);
       game.scenesJSON=tempArray;
@@ -30,6 +31,9 @@ function loadConfigFiles(loader,resources){
     }else if(resources[game.files[i]].data.Characters){
       let tempArray=game.charactersJSON.concat(resources[game.files[i]].data.Characters);
       game.charactersJSON=tempArray;
+    }else if(resources[game.files[i]].data.Dialogues){
+      let tempArray=game.dialoguesJSON.concat(resources[game.files[i]].data.Dialogues);
+      game.dialoguesJSON=tempArray;
     }else if(resources[game.files[i]].data.Puzzles){
       let tempArray=game.puzzlesJSON.concat(resources[game.files[i]].data.Puzzles);
       game.puzzlesJSON=tempArray;
@@ -77,7 +81,7 @@ function buildGame(loader,resources){
   game.inventory=new Inventory();
   game.app.stage.addChild(game.inventory.container);
   game.app.stage.addChild(game.inventory.icon);
-  game.inventory.setIcon(game.settings.Inventory); //Create settings.json to change pos
+  game.inventory.setIcon(game.settings.Inventory.Position); //Create settings.json to change pos
 
   //Build objects
   for(let i=0;i<game.objectsJSON.length;i++){
@@ -87,6 +91,11 @@ function buildGame(loader,resources){
   //Build puzzles
   for(let i=0;i<game.puzzlesJSON.length;i++){
     game.puzzles[i]=new Puzzle(game.puzzlesJSON[i],i);
+  }
+
+  //Build dialogues
+  for(let i=0;i<game.dialoguesJSON.length;i++){
+    game.dialogues[i]=new Dialogue(game.dialoguesJSON[i],i);
   }
 
   //Build characters
@@ -103,9 +112,10 @@ function buildGame(loader,resources){
     game.scenes[i]=new gameScene(game.scenesJSON[i],i);
     game.app.stage.addChild(game.scenes[i].container);
   }
+
   //Build text fields
-  game.playerText=new Text();
-  game.app.stage.addChild(game.playerText.container);
+  game.textField=new TextField();
+  game.app.stage.addChild(game.textField.container);
 
   PIXI.loader.reset();
   game.ticker=new PIXI.ticker.Ticker();

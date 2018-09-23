@@ -23,19 +23,22 @@ export class gameObject extends PIXI.Sprite{
     if(!data.Area)this.anchor.set(0.5,1);
     this.parentLayer = game.layer;
 
-    if(data.Interactive || data.Door || data.Take || data.Use){
-      this.interactive=data.Interactive;
+    if(data.Look || data.Door || data.Take || data.Use){
+      this.interactive=true;
       this.buttonMode=true;
-      if(!data.Button) this.on('pointerdown', onTouchStart)
-                           .on('pointerup', onTouchEnd);
+
+      //On touch examine the item
+      this.on('pointertap',onTap);
+
       if(data.Door){
         this.door=true;
         this.newScene=data.Door.To;
         this.playerPos=data.Door.Player;
-        this.use=Goto;
-        if(data.Button) this.on('pointerup', Goto);
-        else this.on('pointerup',onDoorTouch);
-      }else if(data.Take){
+        this.use=ChangeRoom;
+        this.on('pointerup',onDoorTouch);
+      }
+
+      if(data.Take){
         this.on('pointerdown', onTakeStart).on('pointerdown', onDragStart)
             .on('pointerup', onTakeEnd).on('pointerup', onDragEnd)
             .on('pointerupoutside', onTakeEnd).on('pointerupoutside', onDragEnd)
@@ -49,15 +52,12 @@ export class gameObject extends PIXI.Sprite{
             .on('pointermove', onUseMove);
       }
     }
-
-  //  if(data.Use) this.usable=data.Use;
   }
 
   take(){
     game.inventory.container.addChild(this);
     game.inventory.objects.push(this);
     this.parentLayer=game.layerUI;
-    //this.anchor.set(0.5,1);
     this.x=0;
     this.y=0;
     this.removeAllListeners();
@@ -76,25 +76,19 @@ function onDoorTouch(){
   game.player.action="use";
 }
 
-function Goto(){
+function ChangeRoom(){
   game.changeScene(this.newScene,this.playerPos);
 }
 
-//Object events when touch start and ends
-function onTouchStart(event){
-  this.interaction = event.data;
-  //if(this.usable) this.pressing=setTimeout(function(){game.player.action="use"}, 500);
-}
-
-function onTouchEnd(event){
-
-  if(this.interaction && !game.player.lock)
+function onTap(event){
+  if(game.player.action==null) game.player.action="look";
+  if(!game.player.lock)
   {
-    //clearTimeout(this.pressing);
-    //game.player.action="say";
+    let moveTo={x:this.x,y:this.y};
+    if(this.data.Area) moveTo=event.data.getLocalPosition(game.app.stage);
+    game.player.lock=true;
     game.selectedObject=this.index;
-    game.player.move(event.data.getLocalPosition(game.app.stage));
-    //game.player.move({x:this.x,y:this.y});
+    game.player.move(moveTo);
   }
 }
 
@@ -153,8 +147,10 @@ function onDragMove() {
   if (this.dragging) {
     this.setParent(game.app.stage);
     var newPosition = this.interaction.getLocalPosition(this.parent);
-    this.x = newPosition.x;
-    this.y = newPosition.y;
+    let bounds=this.getBounds();
+    //We can only move the object inside the stage
+    if(newPosition.x>bounds.width/2 && newPosition.x<game.width-bounds.width/2) this.x = newPosition.x;
+    if(newPosition.y>bounds.height && newPosition.y<game.height) this.y = newPosition.y;
   }
 }
 
@@ -175,7 +171,6 @@ function onTakeStart(event) {
 function onTakeEnd() {
   if(this.interaction){
     if(collision(this,game.inventory.icon)) game.player.action="take";
-
     this.setParent(this.oldParent);
     this.parentLayer = game.layer;
     this.x = this.posX;

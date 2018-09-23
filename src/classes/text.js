@@ -13,9 +13,23 @@ var textStyle = new PIXI.TextStyle({
   //wordWrapWidth: game.width
 });
 
-export class Text{
+var buttonTextStyle= new PIXI.TextStyle({
+    dropShadowAngle: 0.5,
+    dropShadowBlur: 3,
+    dropShadowDistance: 0,
+    fill: "white",
+    fontSize: 32,
+    fontVariant: "small-caps",
+    fontWeight: "bold",
+    lineJoin: "round",
+    align: 'center',
+    strokeThickness: 8
+});
+
+export class TextField{
   constructor(){
     this.container=new PIXI.Container();
+    this.dialogueOptions=new PIXI.Container();
 
     this.Background=new PIXI.Sprite(PIXI.Texture.WHITE);
     this.Background.width=game.width;
@@ -23,14 +37,13 @@ export class Text{
     this.Background.tint='black';
     this.Background.alpha=0.5;
 
-    this.Text=new PIXI.Text("", textStyle);
-    this.Text.anchor.set(0.5,0);
-    this.Text.x=game.width/2;
-    this.Text.y=0;
+    this.Field=new PIXI.Text("", textStyle);
+    this.Field.anchor.set(0.5,0);
+    this.Field.x=game.width/2;
+    this.Field.y=0;
 
     this.container.addChild(this.Background);
-    this.container.addChild(this.Text);
-  //  this.container.y=game.height-this.container.height;
+    this.container.addChild(this.Field);
     this.container.visible=false;
     this.container.parentLayer = game.layerUI;
     }
@@ -40,6 +53,29 @@ export class Text{
     }
 
     show(){
+      this.Background.height=this.Field.height;
       this.container.visible=true;
     }
-};
+}
+
+export class TextButton extends PIXI.Text{
+    constructor(text,posV){
+      super(text,buttonTextStyle);
+      this.interactive=true;
+      this.buttonMode=true;
+      this.anchor.set(0.5);
+      this.x=this.width/2;
+      this.y=posV*this.height*1.5;
+    }
+}
+
+class DialogueOption extends PIXI.Text{
+    constructor(text,posV){
+      super(text,textStyle);
+      this.interactive=true;
+      this.buttonMode=true;
+      this.anchor.set(0.5);
+      this.x=this.width/2;
+      this.y=posV*this.height*1.5;
+    }
+}

@@ -28,7 +28,10 @@ export class Puzzle{
       if(this.data.Modify.Door) this.createDoor(target)
     }
 
-    if(this.data.Say) game.player.say(this.data.Say[game.mainLanguage]);
+    if(this.data.Say){
+      game.player.animate("speak",3);
+      game.player.say(this.data.Say[game.mainLanguage]);
+    }
 
     if(this.data.Destroy){
       game.inventory.remove(this.data.Source);
@@ -55,18 +58,27 @@ export class Puzzle{
     target.door=true;
     target.newScene=this.data.Modify.Door.To;
     target.playerPos=this.data.Modify.Door.Player;
-    target.on('pointerup',onDoorTouch);
-    target.use=Goto;
+    target.removeAllListeners();
+    target.on('pointertap',onDoorTouch);
+    target.use=ChangeRoom;
   }
 
   createInventoryObject(){
     game.objects[game.searchObject(this.data.Combine)].take();
   }
 }
-function onDoorTouch(){
+function onDoorTouch(event){
   game.player.action="use";
+  if(!game.player.lock)
+  {
+    let moveTo={x:this.x,y:this.y};
+    if(this.data.Area) moveTo=event.data.getLocalPosition(game.app.stage);
+    game.player.lock=true;
+    game.selectedObject=this.index;
+    game.player.move(moveTo);
+  }
 }
 
-function Goto(){
+function ChangeRoom(){
   game.changeScene(this.newScene,this.playerPos);
 }

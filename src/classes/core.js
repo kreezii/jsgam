@@ -8,6 +8,7 @@ export class Core{
     this.scenes=[];
     this.objects=[];
     this.characters=[];
+    this.dialogues=[];
     this.puzzles=[];
     this.sounds=[];
     this.settings=[];
@@ -16,17 +17,20 @@ export class Core{
     this.scenesJSON=[];
     this.objectsJSON=[];
     this.charactersJSON=[];
+    this.dialoguesJSON=[];
     this.puzzlesJSON=[];
     this.player={};
     this.playerTween;
     this.resources;
     this.currentScene;
     this.currentPuzzle;
+    this.currentDialogue;
     this.selectedObject=null;
+    this.selectedCharacter=null;
     this.inventory;
-    this.inventoryBack="inventory-bg.png";
-    this.inventoryIcon="inventory-icon.png";
-    this.app=new PIXI.Application(width,height,{autoResize: true});
+    this.inventoryBack;
+    this.inventoryIcon;
+    this.app=new PIXI.Application(width,height,{autoResize: true,resolution: devicePixelRatio});
     this.OldFimFilter=new filters.OldFilmFilter();
     this.GodRayFilter=new filters.GodrayFilter();
     this.ReflectionFilter=new filters.ReflectionFilter({
@@ -56,48 +60,17 @@ export class Core{
     this.width=width;
     this.height=height;
 
-    this.buttonTextStyle= new PIXI.TextStyle({
-        dropShadowAngle: 0.5,
-        dropShadowBlur: 3,
-        dropShadowDistance: 0,
-        fill: "white",
-        fontSize: 32,
-        fontVariant: "small-caps",
-        fontWeight: "bold",
-        lineJoin: "round",
-        align: 'center',
-        strokeThickness: 8
-    });
-
     this.loadingText=new PIXI.Text("0 %", {
           fontFamily: 'Arial',
           fontSize: 35,
           fill: 'white',
           align: 'left'
     });
-    this.playerText;
-    /*
-    this.textContainer=new PIXI.Container();
-    this.textBackground=new PIXI.Sprite(PIXI.Texture.WHITE);
-    this.textBackground.width=this.width;
-    this.textBackground.height=this.height/3;
-    this.textBackground.tint='black';
-    this.textBackground.alpha=0.5;
-    this.textContainer.addChild(this.textBackground);
-
-    this.playerText=new PIXI.Text("sdvsvs", this.textStyle);
-    this.playerText.position.set(0,0);
-    this.textContainer.addChild(this.playerText);
-    this.textContainer.visible=false;
-
-    this.playerText.parentLayer = this.layerUI;
-    this.playerText.anchor.set(0.5);
-    this.playerText.visible=false;
-    */
+    this.textField;
     //document.body.appendChild(this.app.view);
 
     document.body.appendChild(this.app.view);
-    //document.getElementById('jsgam-canvas').appendChild(this.app.view);
+    //document.getElementById('frame').appendChild(this.app.view);
 
     this.app.stage.addChild(this.layer);//Z-order
     this.app.stage.addChild(this.layeronTop);//Z-order
@@ -144,10 +117,21 @@ export class Core{
     return numberPuzzle;
   }
 */
+  searchDialogue(nameDialogue){
+    let numberDialogue;
+    for(let i=0;i<this.dialogues.length;i++){
+      if(nameDialogue==this.dialogues[i].data.Name){
+        numberDialogue=i;
+        break;
+      }
+    }
+    return numberDialogue;
+  }
+
   searchCharacter(nameCharacter){
     let numberCharacter;
     for(let i=0;i<this.characters.length;i++){
-      if(nameCharacter==this.characters[i].data.Name){
+      if(nameCharacter==this.characters[i].sprite.data.Name){
 
         numberCharacter=i;
         break;
@@ -175,16 +159,18 @@ export class Core{
 
   loop(){
     PIXI.tweenManager.update();
-    let animationProgress=this.player.sprite.animation.getState(this.player.state);
+    let currentPlayerAnimation=this.player.sprite.animation.lastAnimationName;
+    let animationProgress=this.player.sprite.animation.getState(currentPlayerAnimation);
+
     if(animationProgress!=null)
     {
-      if(this.player.state=="take" && animationProgress.isCompleted){
+      if(currentPlayerAnimation=="take" && animationProgress.isCompleted){
         this.objects[this.selectedObject].take();
         this.player.stand();
-      }else if(this.player.state=="use" && animationProgress.isCompleted){
+      }else if(currentPlayerAnimation=="use" && animationProgress.isCompleted){
         if(this.objects[this.selectedObject].use) this.objects[this.selectedObject].use();
         this.player.stand();
-      }else if(animationProgress.isCompleted){
+      }else if(currentPlayerAnimation=="speak" && animationProgress.isCompleted && !this.currentDialogue){
         this.player.stand();
       }
     }
@@ -238,13 +224,14 @@ export class Core{
     this.logoScreen.show();
   }
 
+  //Resizes the game view
   resize() {
     var w = window.innerWidth * 0.95;
     var h = window.innerHeight * 0.95;
-    var ratio = Math.min( w/this.width,  h/this.height);
-    this.app.renderer.resize(w,h);
-    this.app.stage.scale.set(ratio);
 
+    var ratio = Math.min( w/this.width,  h/this.height);
+    this.app.renderer.resize(this.width*ratio,this.height*ratio);
+    this.app.stage.scale.set(ratio);
   }
 
 }

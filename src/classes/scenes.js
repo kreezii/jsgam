@@ -14,7 +14,7 @@ export class gameScene{
     if(data.Player){
       this.background.interactive=true;
       this.background.buttonMode=true;
-      this.background.on('pointerup',movePlayer);
+      this.background.on('pointertap',movePlayer);
 
     //  this.walkable=new Walkable(game.app.screen.width,game.app.screen.height);
     this.walkable=new Walkable(game.width,game.height);
@@ -70,6 +70,7 @@ function movePlayer(event){
   if(!game.player.lock){
     game.player.action=null;
     game.selectedObject=null;
+    game.selectedCharacter=null;
     game.player.move(event.data.getLocalPosition(game.app.stage));
   }
 }

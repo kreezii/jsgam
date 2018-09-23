@@ -1,4 +1,5 @@
 import {game} from '../game.js';
+import {TextButton} from './text.js';
 
 export class LogoScreen{
   constructor(){
@@ -26,46 +27,55 @@ export class LogoScreen{
   }
 }
 
-class TextButton extends PIXI.Text{
-    constructor(text,posV){
-      super(text,game.buttonTextStyle);
-      this.interactive=true;
-      this.buttonMode=true;
-      this.anchor.set(0.5);
-      this.x=this.width/2;
-      this.y=posV*this.height*1.5;
-    }
-}
-
 export class TitleScreen{
   constructor(){
     this.container=new PIXI.Container();
     this.container.visible=false;
-    this.buttonContainer=new PIXI.Container();
+    this.menuContainer=new PIXI.Container();
     this.optionsContainer=new PIXI.Container();
+    this.optionsContainer.visible=false;
     this.creditsContainer=new PIXI.Container();
 
     this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.TittleScreenBackground));
     this.newGame=new TextButton(game.settings.TextNewGame[game.mainLanguage],0);
+    this.newGame.on('pointerup', StartAdventure);
     this.continue=new TextButton(game.settings.TextContinue[game.mainLanguage],1);
     this.options=new TextButton(game.settings.TextOptions[game.mainLanguage],2);
-    this.credits=new TextButton(game.settings.TextCredits[game.mainLanguage],3);
-    this.buttonContainer.addChild(this.newGame);
-    this.buttonContainer.addChild(this.continue);
-    this.buttonContainer.addChild(this.options);
-    this.buttonContainer.addChild(this.credits);
-    this.buttonContainer.x = game.width / 2;
-    this.buttonContainer.y = game.height / 2;
-    this.buttonContainer.pivot.x = this.buttonContainer.width / 2;
-    this.buttonContainer.pivot.y = this.buttonContainer.height / 2;
-
-    this.newGame.on('pointerup', StartAdventure);
     this.options.on('pointerup', ShowOptions);
+    this.credits=new TextButton(game.settings.TextCredits[game.mainLanguage],3);
+
+    this.languages=[];
+    for(let i=0;i<game.settings.Languages.length;i++){
+      this.languages[i]=new TextButton(game.settings.Languages[i],i);
+      this.languages[i].alpha=0.5;
+      this.languages[i].on('pointerup', SelectLanguage);
+      this.optionsContainer.addChild(this.languages[i]);
+    }
+    this.languages[game.mainLanguage].alpha=1.0;
+    this.backButton=new TextButton(game.settings.Back[game.mainLanguage],this.languages.length);
+    this.backButton.on('pointerup', Back);
+    this.optionsContainer.addChild(this.backButton);
+
+    this.optionsContainer.x = game.width / 2;
+    this.optionsContainer.y = game.height / 2;
+    this.optionsContainer.pivot.x = this.optionsContainer.width / 2;
+    this.optionsContainer.pivot.y = this.optionsContainer.height / 2;
+
+    this.menuContainer.addChild(this.newGame);
+    this.menuContainer.addChild(this.continue);
+    this.menuContainer.addChild(this.options);
+    this.menuContainer.addChild(this.credits);
+    this.menuContainer.x = game.width / 2;
+    this.menuContainer.y = game.height / 2;
+    this.menuContainer.pivot.x = this.menuContainer.width / 2;
+    this.menuContainer.pivot.y = this.menuContainer.height / 2;
+
     this.container.addChild(this.background);
-    this.container.addChild(this.buttonContainer);
+    this.container.addChild(this.menuContainer);
+    this.container.addChild(this.optionsContainer);
     game.app.stage.addChild(this.container);
-    game.app.stage.addChild(this.optionsContainer);
   }
+
   show(){
     this.container.visible=true;
     PIXI.sound.play(game.settings.TittleScreenMusic,{loop:true});
@@ -86,10 +96,34 @@ function StartAdventure(){
 
 function ShowOptions(){
 
-  game.titleScreen.buttonContainer.visible=false;
+  game.titleScreen.menuContainer.visible=false;
   game.titleScreen.optionsContainer.visible=true;
 
 }
+
+function SelectLanguage(){
+  let selected=game.settings.Languages.indexOf(this.text);
+  if(selected!=-1){
+    game.titleScreen.languages[game.mainLanguage].alpha=0.5;
+    this.alpha=1.0;
+    game.mainLanguage=game.settings.Languages.indexOf(this.text);
+    UpdateMenu();
+  }
+
+}
+
+function UpdateMenu(){
+  game.titleScreen.newGame.text=game.settings.TextNewGame[game.mainLanguage];
+  game.titleScreen.continue.text=game.settings.TextContinue[game.mainLanguage];
+  game.titleScreen.options.text=game.settings.TextOptions[game.mainLanguage];
+  game.titleScreen.credits.text=game.settings.TextCredits[game.mainLanguage];
+}
+
+function Back(){
+  game.titleScreen.menuContainer.visible=true;
+  game.titleScreen.optionsContainer.visible=false;
+}
+
 function FadeIn(){
   game.logoScreen.logo.alpha+=0.01;
 
