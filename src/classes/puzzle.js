@@ -1,5 +1,5 @@
 import {game} from '../game.js';
-import {collision} from './utils.js';
+import {collision} from '../collisions.js';
 
 export class Puzzle{
   constructor(data,index){

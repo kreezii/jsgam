@@ -37,10 +37,9 @@ export class Core{
       mirror:false,
       boundary:0,
       amplitude:[2,2],
-      waveLength:[200,200]
+      waveLength:[100,100]
     }
     );
-    this.longPress=false;
 
     //Z-Order
     this.app.stage = new PIXI.display.Stage();
@@ -67,7 +66,6 @@ export class Core{
           align: 'left'
     });
     this.textField;
-    //document.body.appendChild(this.app.view);
 
     document.body.appendChild(this.app.view);
     //document.getElementById('frame').appendChild(this.app.view);
@@ -170,10 +168,11 @@ export class Core{
       }else if(currentPlayerAnimation=="use" && animationProgress.isCompleted){
         if(this.objects[this.selectedObject].use) this.objects[this.selectedObject].use();
         this.player.stand();
-      }else if(currentPlayerAnimation=="speak" && animationProgress.isCompleted && !this.currentDialogue){
+      }else if(currentPlayerAnimation=="speak" && animationProgress.isCompleted){
         this.player.stand();
       }
     }
+
     if(this.layer.filters != []) this.animateFilters();
 
     //Scale Player
@@ -219,6 +218,10 @@ export class Core{
     this.currentPuzzle=found;
   }
 
+  DialogueChoice(selected){
+    this.currentDialogue.choice=selected;
+    this.currentDialogue.next();
+  }
   //Show Logo Screen then the Title Screen
   start(){
     this.logoScreen.show();

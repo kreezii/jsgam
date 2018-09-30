@@ -1,13 +1,11 @@
-import {game} from '../game.js';
-import {dragonBones} from '../../lib/dragonBones.js';
-import {checkPath} from './utils.js';
+import {game,dbfactory} from '../game.js';
+import {checkPath} from '../collisions.js';
 
-const factory=dragonBones.PixiFactory.factory;
 export class Player{
     constructor(armature){
-      factory.parseDragonBonesData(game.resources.playerSkeleton.data);
-      factory.parseTextureAtlasData(game.resources.playerJson.data,game.resources.playerTex.texture);
-      this.sprite = factory.buildArmatureDisplay(armature);
+      dbfactory.parseDragonBonesData(game.resources.playerSkeleton.data);
+      dbfactory.parseTextureAtlasData(game.resources.playerJson.data,game.resources.playerTex.texture);
+      this.sprite = dbfactory.buildArmatureDisplay(armature);
       this.tween=PIXI.tweenManager.createTween(this.sprite);
       this.tween.on('end', tweenEnd);
       this.sprite.animation.play("stand");
@@ -56,11 +54,11 @@ export class Player{
       game.textField.Field.text=textToSay;
       game.textField.show();
       if(game.timeout) game.timeout.clear();
-      game.timeout = PIXI.setTimeout(10,function(){game.textField.hide();})
+      game.timeout = PIXI.setTimeout(game.settings.TextSpeed,function(){game.textField.hide();})
     }
 
     stand(){
-      this.lock=false;
+      if(!game.currentDialogue) this.lock=false;
       this.action=null;
       game.selectedObject=null;
       this.animate("stand");

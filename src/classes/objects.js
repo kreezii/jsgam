@@ -1,5 +1,5 @@
 import {game} from '../game.js';
-import {boxesIntersect,collision} from './utils.js';
+import {boxesIntersect,collision} from '../collisions.js';
 
 export class gameObject extends PIXI.Sprite{
   constructor(data,index){

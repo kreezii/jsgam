@@ -1,6 +1,6 @@
 {
   "name": "jsgam",
-  "version": "5.0.0",
+  "version": "5.0.1pre-alpha",
   "description": "JavaScript Graphic Adventure Maker",
   "author": "",
   "main": "./dist/jsgam.js",
@@ -9,20 +9,28 @@
     "url": "https://github.com/kreezii/jsgam.git"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production"
   },
-  "keywords": [],
+  "keywords": [
+    "game",
+    "engine",
+    "adventure",
+    "JSON",
+    "javascript",
+    "HTML5",
+    "pixi.js"
+  ],
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "webpack": "^4.17.2",
-    "webpack-cli": "^2.1.5",
-    "webpack-dev-server": "^3.1.8"
+    "webpack": "^4.20.1",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
     "k8w-pixi-tween": "^0.7.6",

@@ -1,8 +1,9 @@
 import {Core} from './classes/core.js';
 import {loadingProgress,loadConfigFiles} from './load.js';
 
-//Global variable
+//Global variables
 var game;
+const dbfactory=dragonBones.PixiFactory.factory;
 
 //Initialize the game
 function init(width,height,objectID){
@@ -36,6 +37,7 @@ function run(){
 
 export {
   game,
+  dbfactory,
   init,
   loadDefaults,
   load,

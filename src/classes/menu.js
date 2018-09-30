@@ -37,24 +37,30 @@ export class TitleScreen{
     this.creditsContainer=new PIXI.Container();
 
     this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.TittleScreenBackground));
-    this.newGame=new TextButton(game.settings.TextNewGame[game.mainLanguage],0);
+    this.newGame=new TextButton(game.settings.TextNewGame[game.mainLanguage]);
     this.newGame.on('pointerup', StartAdventure);
-    this.continue=new TextButton(game.settings.TextContinue[game.mainLanguage],1);
-    this.options=new TextButton(game.settings.TextOptions[game.mainLanguage],2);
+    this.continue=new TextButton(game.settings.TextContinue[game.mainLanguage]);
+    this.options=new TextButton(game.settings.TextOptions[game.mainLanguage]);
     this.options.on('pointerup', ShowOptions);
-    this.credits=new TextButton(game.settings.TextCredits[game.mainLanguage],3);
+    this.credits=new TextButton(game.settings.TextCredits[game.mainLanguage]);
+
+    //Values by default until save progress is implemented
+    this.continue.alpha=0.5;
+    this.continue.interactive=false;
 
     this.languages=[];
     for(let i=0;i<game.settings.Languages.length;i++){
       this.languages[i]=new TextButton(game.settings.Languages[i],i);
-      this.languages[i].alpha=0.5;
       this.languages[i].on('pointerup', SelectLanguage);
       this.optionsContainer.addChild(this.languages[i]);
+      if(i>0)this.languages[i].y=this.languages[i-1].y+this.languages[i-1].height;
     }
-    this.languages[game.mainLanguage].alpha=1.0;
+    this.languages[game.mainLanguage].tint="0xFF0000";
     this.backButton=new TextButton(game.settings.Back[game.mainLanguage],this.languages.length);
     this.backButton.on('pointerup', Back);
     this.optionsContainer.addChild(this.backButton);
+    let latestOption=game.settings.Languages.length-1;
+    this.backButton.y=this.languages[latestOption].y+this.languages[latestOption].height;
 
     this.optionsContainer.x = game.width / 2;
     this.optionsContainer.y = game.height / 2;
@@ -65,6 +71,8 @@ export class TitleScreen{
     this.menuContainer.addChild(this.continue);
     this.menuContainer.addChild(this.options);
     this.menuContainer.addChild(this.credits);
+    this.sortMenu();
+
     this.menuContainer.x = game.width / 2;
     this.menuContainer.y = game.height / 2;
     this.menuContainer.pivot.x = this.menuContainer.width / 2;
@@ -83,6 +91,13 @@ export class TitleScreen{
 
   hide(){
     this.container.visible=false;
+  }
+
+  sortMenu(){
+    this.newGame.y=0;
+    this.continue.y=this.newGame.y+this.newGame.height*1.5;
+    this.options.y=this.continue.y+this.continue.height*1.5;
+    this.credits.y=this.options.y+this.options.height*1.5;
   }
 }
 
@@ -104,8 +119,8 @@ function ShowOptions(){
 function SelectLanguage(){
   let selected=game.settings.Languages.indexOf(this.text);
   if(selected!=-1){
-    game.titleScreen.languages[game.mainLanguage].alpha=0.5;
-    this.alpha=1.0;
+    game.titleScreen.languages[game.mainLanguage].tint="0xFFFFFF";
+    this.tint="0xFF0000";
     game.mainLanguage=game.settings.Languages.indexOf(this.text);
     UpdateMenu();
   }

@@ -1,17 +1,10 @@
-import {game} from '../game.js';
-import * as PIXI from 'pixi.js';
-import {dragonBones} from '../../lib/dragonBones.js';
-import {checkPath} from './utils.js';
-import {TextButton} from './text.js';
-
-const factory=dragonBones.PixiFactory.factory;
+import {game,dbfactory} from '../game.js';
 
 export class Character{
     constructor(data,index){
-
-      factory.parseDragonBonesData(game.resources[data.name+'Skeleton'].data);
-      factory.parseTextureAtlasData(game.resources[data.name+'Json'].data,game.resources[data.name+'Tex'].texture);
-      this.sprite = factory.buildArmatureDisplay(data.Name);
+      dbfactory.parseDragonBonesData(game.resources[data.name+'Skeleton'].data);
+      dbfactory.parseTextureAtlasData(game.resources[data.name+'Json'].data,game.resources[data.name+'Tex'].texture);
+      this.sprite = dbfactory.buildArmatureDisplay(data.Name);
       this.tween=PIXI.tweenManager.createTween(this.sprite);
       this.sprite.data=data;
       this.sprite.index=index;
