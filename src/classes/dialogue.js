@@ -6,44 +6,54 @@ export class Dialogue{
     this.index=index;
     this.timeout;
     this.firstTime=true;
+    this.choiceList=0;
+    this.currentList;
     this.choice=null;
   }
 
   start(){
+    this.firstTime=false;
+    game.player.stand();
     game.player.lock=true;
-    game.player.animate("speak",3);
-    game.textField.changeText(this.data.Intro[game.mainLanguage]);
-    game.textField.showText();
-    game.textField.show();
     if(this.timeout) this.timeout.clear();
     this.timeout = PIXI.setTimeout(this.data.Speed,DialogueTimeout);
+    game.textField.show();
+    this.next();
   }
 
   next(){
-    if(this.firstTime){
-      game.player.say(this.data.FirstTime[game.mainLanguage])
-      this.firstTime=false;
-      if(this.timeout) this.timeout.clear();
+    if(this.choice!=null){
+      let choiceSelected=this.data.Choices[this.choiceList][this.choice];
+      game.player.say(choiceSelected.Answer[game.mainLanguage]);
       this.timeout = PIXI.setTimeout(this.data.Speed,DialogueTimeout);
-    }else if(this.choice!=null){
-      game.player.say(this.data.Answers[this.choice][game.mainLanguage]);
-      this.timeout = PIXI.setTimeout(this.data.Speed,DialogueTimeout);
+      if(choiceSelected.EndDialogue) this.end();
+      if(choiceSelected.Link>=0) this.choiceList=choiceSelected.Link;
       this.choice=null;
-    }else this.choices();
+    }else{
+      if(game.timeout)  game.timeout.clear();
+      if(this.timeout) this.timeout.clear();
+      this.checkChoices();
+      game.textField.showChoices();
+    }
   }
 
-  choices(){
-    if(game.timeout)  game.timeout.clear();
-    if(this.timeout) this.timeout.clear();
-
-    for(let i=0;i<this.data.Choices.length;i++){
-      game.textField.Choices[i].text=this.data.Choices[i][game.mainLanguage];
+  checkChoices(){
+    game.textField.clearChoices();
+    for(let i=0;i<this.data.Choices[this.choiceList].length;i++){
+      if(this.data.Choices[this.choiceList][i].clicked && this.data.Choices[this.choiceList][i].Repeat==false){
+        game.textField.Choices[i].alpha=0.5;
+      }else game.textField.Choices[i].alpha=1;
+      game.textField.Choices[i].visible=true;
+      game.textField.Choices[i].text=this.data.Choices[this.choiceList][i].Text[game.mainLanguage];
     }
-    game.textField.showChoices();
   }
 
   end(){
-
+    game.textField.hide();
+    if(this.timeout) this.timeout.clear();
+    this.choice=null;
+    game.currentDialogue=false;
+    game.player.stand();
   }
 }
 

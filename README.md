@@ -9,19 +9,23 @@ What can do the engine at the current stage?
 * Display scenes with static objects
 * Move the player in a walkable area
 * Player avoiding obstacles in the walkable area
-* Take to the inventory objects
+* Take objects to the inventory
 * Use and combine objects
 * Change between rooms
 * Add filters to the scene
-* Partial non-playable characters implementation
+* Dialogues with non-playable characters
+* Music and Sounds
 
 ### TO-DO
-* Finish the menu buttons (only play works)
-* Dialogues with non playable characters
-* Cut-scenes
+
+The next list must be complete before the first alpha is released.
+
 * Save/Load the game progress
+* Cut-scenes
+* Credits screen
 * Animation for objects
 * Check for critical errors
+* Voices (optional)
 
 Is it ready for a short adventure? **Not yet**
 

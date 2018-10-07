@@ -41,7 +41,8 @@ export class Puzzle{
       game.inventory.remove(this.data.Target);
     }
 
-    if(this.data.Combine) this.createInventoryObject();
+    if(this.data.Combine) this.createInventoryObject(this.data.Combine);
+    if(this.data.GiveItem) this.createInventoryObject(this.data.GiveItem);
 
     if(this.data.Create){
       let objectIndex=game.searchObject(this.data.Create);
@@ -63,8 +64,8 @@ export class Puzzle{
     target.use=ChangeRoom;
   }
 
-  createInventoryObject(){
-    game.objects[game.searchObject(this.data.Combine)].take();
+  createInventoryObject(objectName){
+    game.objects[game.searchObject(objectName)].take();
   }
 }
 function onDoorTouch(event){

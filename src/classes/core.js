@@ -220,8 +220,10 @@ export class Core{
 
   DialogueChoice(selected){
     this.currentDialogue.choice=selected;
+    this.currentDialogue.data.Choices[this.currentDialogue.choiceList][selected].clicked=true;
     this.currentDialogue.next();
   }
+
   //Show Logo Screen then the Title Screen
   start(){
     this.logoScreen.show();

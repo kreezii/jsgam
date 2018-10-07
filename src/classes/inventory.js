@@ -79,5 +79,5 @@ export class Inventory{
 
 function InventoryClick(){
   if (game.inventory.container.visible) game.inventory.hide();
-  else if(game.player.action!="take")  game.inventory.show();
+  else if(game.player.action!="take" && !game.player.lock)  game.inventory.show();
 }

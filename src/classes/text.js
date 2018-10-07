@@ -58,10 +58,11 @@ export class TextField{
     this.container.addChild(this.Field);
     this.container.addChild(this.choicesContainer);
     this.container.visible=false;
+  //  this.choicesContainer.width = game.width;
+  //  this.choicesContainer.x = game.width / 2;
 
-    this.choicesContainer.x = game.width / 2;
   //  this.choicesContainer.y = 0;
-    this.choicesContainer.pivot.x = this.choicesContainer.width / 2;
+    //this.choicesContainer.pivot.x = this.choicesContainer.width / 2;
 
     this.choicesContainer.visible=false;
 
@@ -80,6 +81,7 @@ export class TextField{
     }
 
     showChoices(){
+      this.sortChoices();
       this.Field.visible=false;
       this.choicesContainer.visible=true;
       this.Background.height=this.container.height;
@@ -88,7 +90,13 @@ export class TextField{
     sortChoices(){
       for(let i=0;i<this.Choices.length;i++){
         this.Choices[i].anchor.set(0.5,0);
-        this.Choices[i].x=this.choicesContainer.width/2;
+        this.Choices[i].x=game.width/2;
+      }
+    }
+
+    clearChoices(){
+      for(let i=0;i<this.Choices.length;i++){
+        this.Choices[i].visible=false;
       }
     }
 
@@ -105,7 +113,8 @@ export class TextField{
 export class TextButton extends PIXI.Text{
     constructor(text){
       super(text,buttonTextStyle);
-  //    this.index=index;
+    //  this.index;
+    //  this.times=0;
       this.interactive=true;
       this.buttonMode=true;
     //  this.anchor.set(0.5);
@@ -113,6 +122,5 @@ export class TextButton extends PIXI.Text{
 }
 
 function onChoiceTap(){
-  game.DialogueChoice(this.index);
-  console.log(this.index)
+  if(this.alpha==1) game.DialogueChoice(this.index);
 }
