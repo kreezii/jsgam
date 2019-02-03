@@ -21,7 +21,8 @@ export class gameObject extends PIXI.Sprite{
     }
 
     if(!data.Area)this.anchor.set(0.5,1);
-    this.parentLayer = game.layer;
+    if(data.Layer=="Front") this.parentLayer=game.layeronTop;
+    else this.parentLayer = game.layer;
 
     if(data.Look || data.Door || data.Take || data.Use){
       this.interactive=true;

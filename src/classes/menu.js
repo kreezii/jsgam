@@ -35,14 +35,15 @@ export class TitleScreen{
     this.optionsContainer=new PIXI.Container();
     this.optionsContainer.visible=false;
     this.creditsContainer=new PIXI.Container();
+    this.creditsContainer.visible=false;
 
-    this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.TittleScreenBackground));
-    this.newGame=new TextButton(game.settings.TextNewGame[game.mainLanguage]);
+    this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.TitleScreen.Background));
+    this.newGame=new TextButton(game.settings.Text.NewGame[game.mainLanguage]);
     this.newGame.on('pointerup', StartAdventure);
-    this.continue=new TextButton(game.settings.TextContinue[game.mainLanguage]);
-    this.options=new TextButton(game.settings.TextOptions[game.mainLanguage]);
+    this.continue=new TextButton(game.settings.Text.Continue[game.mainLanguage]);
+    this.options=new TextButton(game.settings.Text.Options[game.mainLanguage]);
     this.options.on('pointerup', ShowOptions);
-    this.credits=new TextButton(game.settings.TextCredits[game.mainLanguage]);
+    this.credits=new TextButton(game.settings.Text.Credits[game.mainLanguage]);
 
     //Values by default until save progress is implemented
     this.continue.alpha=0.5;
@@ -56,7 +57,7 @@ export class TitleScreen{
       if(i>0)this.languages[i].y=this.languages[i-1].y+this.languages[i-1].height;
     }
     this.languages[game.mainLanguage].tint="0xFF0000";
-    this.backButton=new TextButton(game.settings.Back[game.mainLanguage],this.languages.length);
+    this.backButton=new TextButton(game.settings.Text.Back[game.mainLanguage],this.languages.length);
     this.backButton.on('pointerup', Back);
     this.optionsContainer.addChild(this.backButton);
     let latestOption=game.settings.Languages.length-1;
@@ -81,12 +82,13 @@ export class TitleScreen{
     this.container.addChild(this.background);
     this.container.addChild(this.menuContainer);
     this.container.addChild(this.optionsContainer);
+    this.container.addChild(this.creditsContainer);
     game.app.stage.addChild(this.container);
   }
 
   show(){
     this.container.visible=true;
-    PIXI.sound.play(game.settings.TittleScreenMusic,{loop:true});
+    PIXI.sound.play(game.settings.TitleScreen.Music,{loop:true});
   }
 
   hide(){
@@ -128,10 +130,10 @@ function SelectLanguage(){
 }
 
 function UpdateMenu(){
-  game.titleScreen.newGame.text=game.settings.TextNewGame[game.mainLanguage];
-  game.titleScreen.continue.text=game.settings.TextContinue[game.mainLanguage];
-  game.titleScreen.options.text=game.settings.TextOptions[game.mainLanguage];
-  game.titleScreen.credits.text=game.settings.TextCredits[game.mainLanguage];
+  game.titleScreen.newGame.text=game.settings.Text.NewGame[game.mainLanguage];
+  game.titleScreen.continue.text=game.settings.Text.Continue[game.mainLanguage];
+  game.titleScreen.options.text=game.settings.Text.Options[game.mainLanguage];
+  game.titleScreen.credits.text=game.settings.Text.Credits[game.mainLanguage];
 }
 
 function Back(){

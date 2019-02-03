@@ -18,13 +18,15 @@ export class Character{
       this.sprite.on('pointertap',interactNPC);
     }
 
-    say(textToSay){
-      game.playerText.Text.text=textToSay;
-      game.playerText.show();
-      if(game.timeout) game.timeout.clear();
-      game.timeout = PIXI.setTimeout(10,function(){game.playerText.hide();})
-    }
+/*    say(textToSay){
+      game.textField.Field.text=textToSay;
+      game.textField.show();
+      this.animate("speak",3);
+    }*/
 
+    animate(animation,times){
+      this.sprite.animation.fadeIn(animation,0.25,times);
+    }
 };
 
 function interactNPC(){

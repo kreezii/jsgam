@@ -52,7 +52,9 @@ export class Player{
 
     say(textToSay){
       game.textField.Field.text=textToSay;
+      game.textField.Field.tint=0xFFFFFF;
       game.textField.show();
+      this.animate("speak",3);
       if(game.timeout) game.timeout.clear();
       game.timeout = PIXI.setTimeout(game.settings.TextSpeed,function(){game.textField.hide();})
     }
@@ -84,7 +86,7 @@ function tweenEnd(){
     }else if(game.player.action=="take"){
       game.player.animate("take",1);
     }else if(game.player.action=="look"){
-      game.player.animate("speak",3);
+    //  game.player.animate("speak",3);
       game.player.say(currentObject.data.Description[game.mainLanguage]);
     }
   }else if(game.selectedCharacter!=null){
@@ -93,7 +95,7 @@ function tweenEnd(){
     else game.player.sprite.armature.flipX=true;
 
     if(game.player.action=="look"){
-      game.player.animate("speak",3);
+//      game.player.animate("speak",3);
       game.player.say(currentCharacter.data.Description[game.mainLanguage]);
     }else if(game.player.action=="talk"){
       game.currentDialogue.start();

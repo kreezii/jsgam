@@ -38,6 +38,9 @@ export class TextField{
     this.Background.tint='black';
     this.Background.alpha=0.5;
 
+    this.CharacterPic=new PIXI.Sprite(PIXI.Texture.EMPTY);
+    this.CharacterPic.visible=false;
+
     this.Field=new PIXI.Text("", textStyle);
     this.Field.anchor.set(0.5,0);
     this.Field.x=game.width/2;
@@ -56,6 +59,7 @@ export class TextField{
 
     this.container.addChild(this.Background);
     this.container.addChild(this.Field);
+    this.container.addChild(this.CharacterPic);
     this.container.addChild(this.choicesContainer);
     this.container.visible=false;
   //  this.choicesContainer.width = game.width;
@@ -75,6 +79,7 @@ export class TextField{
 
     show(){
       this.Background.height=this.Field.height;
+      if(this.CharacterPic.height>this.Field.height && this.CharacterPic.visible) this.Background.height=this.CharacterPic.height;
       this.container.visible=true;
       this.Field.visible=true;
       this.choicesContainer.visible=false;
@@ -84,7 +89,7 @@ export class TextField{
       this.sortChoices();
       this.Field.visible=false;
       this.choicesContainer.visible=true;
-      this.Background.height=this.container.height;
+      this.Background.height=this.choicesContainer.height;
     }
 
     sortChoices(){
@@ -107,6 +112,14 @@ export class TextField{
 
     changeText(newText){
       this.Field.text=newText;
+    }
+
+    showAvatar(){
+      this.CharacterPic.visible=true;
+    }
+
+    hideAvatar(){
+      this.CharacterPic.visible=false;
     }
 }
 

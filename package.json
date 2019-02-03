@@ -23,22 +23,22 @@
   ],
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "babel-loader": "^8.0.2",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-loader": "^8.0.4",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "webpack": "^4.20.1",
-    "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.9"
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
     "k8w-pixi-tween": "^0.7.6",
     "pixi-filters": "^2.6.1",
     "pixi-layers": "^0.1.9",
-    "pixi-sound": "^2.0.3",
+    "pixi-sound": "^2.0.4",
     "pixi-timeout": "^1.0.4",
-    "pixi.js": "^4.8.2",
+    "pixi.js": "^4.8.3",
     "polyk": "^0.24.0",
     "walkable": "^1.0.3"
   },

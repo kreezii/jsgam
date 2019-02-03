@@ -6,6 +6,7 @@ export class Core{
     this.logoScreen;
     this.titleScreen;
     this.scenes=[];
+    this.cutscenes=[];
     this.objects=[];
     this.characters=[];
     this.dialogues=[];
@@ -15,6 +16,7 @@ export class Core{
     this.mainLanguage=0;
     this.timeout;
     this.scenesJSON=[];
+    this.cutscenesJSON=[];
     this.objectsJSON=[];
     this.charactersJSON=[];
     this.dialoguesJSON=[];
@@ -220,7 +222,7 @@ export class Core{
 
   DialogueChoice(selected){
     this.currentDialogue.choice=selected;
-    this.currentDialogue.data.Choices[this.currentDialogue.choiceList][selected].clicked=true;
+    this.currentDialogue.data.Branches[this.currentDialogue.currentBranch].Choices[selected].clicked=true;
     this.currentDialogue.next();
   }
 
@@ -240,5 +242,3 @@ export class Core{
   }
 
 }
-
-//export {Core};*

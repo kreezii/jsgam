@@ -18,13 +18,13 @@ What can do the engine at the current stage?
 
 ### TO-DO
 
-The next list must be complete before the first alpha is released.
+In order of priority.
 
-* Save/Load the game progress
-* Cut-scenes
 * Credits screen
-* Animation for objects
-* Check for critical errors
+* Cut-scenes
+* Save/Load the game progress
+* Documentation
+* Animated objects
 * Voices (optional)
 
 Is it ready for a short adventure? **Not yet**
