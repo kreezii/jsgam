@@ -1,6 +1,6 @@
 import {game} from './game.js';
 import {gameScene} from './classes/scenes.js';
-import {gameCutScene} from './classes/cutscenes.js';
+import {gameCutscene} from './classes/cutscenes.js';
 import {LogoScreen,TitleScreen} from './classes/menu.js';
 import {gameObject} from './classes/objects.js';
 import {Character} from './classes/character.js';
@@ -26,8 +26,8 @@ function loadConfigFiles(loader,resources){
     }else if(resources[game.files[i]].data.Scenes){
       let tempArray=game.scenesJSON.concat(resources[game.files[i]].data.Scenes);
       game.scenesJSON=tempArray;
-    }else if(resources[game.files[i]].data.CutScenes){
-      let tempArray=game.cutscenesJSON.concat(resources[game.files[i]].data.CutScenes);
+    }else if(resources[game.files[i]].data.Cutscenes){
+      let tempArray=game.cutscenesJSON.concat(resources[game.files[i]].data.Cutscenes);
       game.cutscenesJSON=tempArray;
     }else if(resources[game.files[i]].data.Objects){
       let tempArray=game.objectsJSON.concat(resources[game.files[i]].data.Objects);
@@ -119,7 +119,7 @@ function buildGame(loader,resources){
 
   //Build CutScenes
   for(let i=0;i<game.cutscenesJSON.length;i++){
-    game.cutscenes[i]=new gameCutScene(game.cutscenesJSON[i],i);
+    game.cutscenes[i]=new gameCutscene(game.cutscenesJSON[i],i);
     game.app.stage.addChild(game.cutscenes[i].container);
   }
   //Build text fields

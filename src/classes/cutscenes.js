@@ -13,11 +13,14 @@ var textStyle = new PIXI.TextStyle({
   //wordWrapWidth: game.width
 });
 
-export class gameCutScene{
+export class gameCutscene{
   constructor(data,index){
     this.container=new PIXI.Container();
     this.container.visible=false;
     this.sequenceIndex=0;
+    this.data=data;
+    this.index=index;
+
     if(data.Video){
       /*
       var texture = PIXI.Texture.fromVideo('/demo/sources/video.mp4');
@@ -45,11 +48,14 @@ export class gameCutScene{
       this.image.buttonMode=true;
       this.image.on('pointertap',nextElement);
 
+      this.container.addChild(this.image);
+
       this.Field=new PIXI.Text("", textStyle);
       this.Field.anchor.set(0.5,0);
       this.Field.x=game.width/2;
       this.Field.y=this.image.height+this.Field.height/2;
 
+      this.container.addChild(this.Field);
     }
   }
 
@@ -60,6 +66,10 @@ export class gameCutScene{
   gotoScene(){
 
   }
+
+  end(){
+
+  }
 };
 
 function skipVideo(){
@@ -67,5 +77,12 @@ function skipVideo(){
 }
 
 function nextElement(){
+  let thisCutscene=game.cutscenes[game.currentCutscene];
 
+  if(thisCutscene.sequenceIndex<thisCutscene.data.Sequence.length-1){
+    thisCutscene.sequenceIndex+=1;
+    thisCutscene.image.texture(PIXI.Texture.fromFrame(thisCutscene.data.Sequence[thisCutscene.sequenceIndex].Image));
+  }else{
+    thisCutscene.end();
+  }
 }

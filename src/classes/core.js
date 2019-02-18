@@ -25,6 +25,7 @@ export class Core{
     this.playerTween;
     this.resources;
     this.currentScene;
+    this.currentCutscene;
     this.currentPuzzle;
     this.currentDialogue;
     this.selectedObject=null;

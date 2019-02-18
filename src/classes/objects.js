@@ -65,7 +65,8 @@ export class gameObject extends PIXI.Sprite{
     this.on('pointerdown', onDragStart)
         .on('pointerup', onInventoryEnd).on('pointerup', onDragEnd)
         .on('pointerupoutside', onInventoryEnd).on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove).on('pointermove', onInventoryMove);
+        .on('pointermove', onDragMove).on('pointermove', onInventoryMove)
+        .on('pointertap',onInventoryTap);
     game.inventory.update();
     game.selectedObject=false;
     game.player.action=null;
@@ -82,9 +83,10 @@ function ChangeRoom(){
 }
 
 function onTap(event){
-  if(game.player.action==null) game.player.action="look";
-  if(!game.player.lock)
+  //if(game.player.action==null) game.player.action="look";
+  if(!game.player.lock && !this.moved)
   {
+    game.player.action="look";
     let moveTo={x:this.x,y:this.y};
     if(this.data.Area) moveTo=event.data.getLocalPosition(game.app.stage);
     game.player.lock=true;
@@ -99,9 +101,9 @@ function onDragStart(event) {
   this.posX = this.x;
   this.posY = this.y;
   this.interaction = event.data;
-  //this.objectEvent=event;
   this.alpha = 0.5;
   this.dragging = true;
+  this.moved = false;
 }
 
 function onDragEnd() {
@@ -112,8 +114,7 @@ function onDragEnd() {
 }
 
 function onInventoryEnd(event){
-  if(this.interaction){
-
+  if(this.interaction && this.moved){
     game.checkPuzzle(this.data.Name);
     game.player.lock=true;
     game.player.action="use";
@@ -129,6 +130,7 @@ function onInventoryEnd(event){
 function onUseMove(event){
   if(this.dragging) {
     this.holding+=1;
+    //this.moved=true;
   }
 }
 
@@ -146,6 +148,7 @@ function onUseEnd(event){
 
 function onDragMove() {
   if (this.dragging) {
+    this.moved=true;
     this.setParent(game.app.stage);
     var newPosition = this.interaction.getLocalPosition(this.parent);
     let bounds=this.getBounds();
@@ -157,10 +160,16 @@ function onDragMove() {
 
 function onInventoryMove() {
   if (this.dragging) {
+    this.moved=true;
     if(!boxesIntersect(this,game.inventory.container)){
       game.inventory.container.visible=false;
     }
   }
+}
+
+function onInventoryTap() {
+  if(!this.moved)
+    game.player.say(this.data.Description[game.mainLanguage]);
 }
 
 //Drag the object while It is in the scene
@@ -171,14 +180,16 @@ function onTakeStart(event) {
 
 function onTakeEnd() {
   if(this.interaction){
-    if(collision(this,game.inventory.icon)) game.player.action="take";
+    if(collision(this,game.inventory.icon)){
+      game.player.action="take";
+      game.player.lock=true;
+      game.selectedObject=this.index;
+      game.player.move({x:this.posX,y:this.posY});
+    }
     this.setParent(this.oldParent);
     this.parentLayer = game.layer;
     this.x = this.posX;
     this.y = this.posY;
-    game.player.lock=true;
-    game.selectedObject=this.index;
-    game.player.move({x:this.posX,y:this.posY});
   }
 }
 
