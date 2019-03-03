@@ -74,8 +74,13 @@ export class gameObject extends PIXI.Sprite{
   }
 };
 
-function onDoorTouch(){
+function onDoorTouch(event){
   game.player.action="use";
+  let moveTo={x:this.x,y:this.y};
+  if(this.data.Area) moveTo=event.data.getLocalPosition(game.app.stage);
+  game.player.lock=true;
+  game.selectedObject=this.index;
+  game.player.move(moveTo);
 }
 
 function ChangeRoom(){
@@ -129,13 +134,13 @@ function onInventoryEnd(event){
 
 function onUseMove(event){
   if(this.dragging) {
-    this.holding+=1;
-    //this.moved=true;
+  //  this.holding+=1;
+    this.moved=true;
   }
 }
 
 function onUseEnd(event){
-  if(this.interaction && this.holding>3){
+  if(this.interaction && this.moved){
     this.holding=0;
     game.checkPuzzle(this.data.Name);
     game.player.lock=true;

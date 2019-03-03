@@ -1,105 +1,47 @@
 import {game} from '../game.js';
 import {TextButton} from './text.js';
 
-export class LogoScreen{
+export class Menu{
   constructor(){
     this.container=new PIXI.Container();
-    this.container.visible=false;
-    this.logo=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.Logo));
-    this.logo.alpha=0;
-    this.logo.anchor.set(0.5);
-    this.logo.x=game.width/2;
-    this.logo.y=game.height/2;
-    this.container.addChild(this.logo);
-    this.ticker=new PIXI.ticker.Ticker();
-    this.ticker.add(FadeIn);
-    this.logo.interactive=true;
-    this.logo.on('pointerup', SkipLogo);
-    game.app.stage.addChild(this.container);
-  }
-  show(){
-    this.ticker.start();
-    this.container.visible=true;
-  }
-
-  hide(){
-    this.container.visible=false;
-  }
-}
-
-export class TitleScreen{
-  constructor(){
-    this.container=new PIXI.Container();
-    this.container.visible=false;
-    this.menuContainer=new PIXI.Container();
-    this.optionsContainer=new PIXI.Container();
-    this.optionsContainer.visible=false;
-    this.creditsContainer=new PIXI.Container();
-    this.creditsContainer.visible=false;
-
-    this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.TitleScreen.Background));
     this.newGame=new TextButton(game.settings.Text.NewGame[game.mainLanguage]);
     this.newGame.on('pointerup', StartAdventure);
     this.continue=new TextButton(game.settings.Text.Continue[game.mainLanguage]);
     this.options=new TextButton(game.settings.Text.Options[game.mainLanguage]);
     this.options.on('pointerup', ShowOptions);
+    this.help=new TextButton(game.settings.Text.Help[game.mainLanguage]);
     this.credits=new TextButton(game.settings.Text.Credits[game.mainLanguage]);
 
     //Values by default until save progress is implemented
     this.continue.alpha=0.5;
     this.continue.interactive=false;
 
-    this.languages=[];
-    for(let i=0;i<game.settings.Languages.length;i++){
-      this.languages[i]=new TextButton(game.settings.Languages[i],i);
-      this.languages[i].on('pointerup', SelectLanguage);
-      this.optionsContainer.addChild(this.languages[i]);
-      if(i>0)this.languages[i].y=this.languages[i-1].y+this.languages[i-1].height;
-    }
-    this.languages[game.mainLanguage].tint="0xFF0000";
-    this.backButton=new TextButton(game.settings.Text.Back[game.mainLanguage],this.languages.length);
-    this.backButton.on('pointerup', Back);
-    this.optionsContainer.addChild(this.backButton);
-    let latestOption=game.settings.Languages.length-1;
-    this.backButton.y=this.languages[latestOption].y+this.languages[latestOption].height;
-
-    this.optionsContainer.x = game.width / 2;
-    this.optionsContainer.y = game.height / 2;
-    this.optionsContainer.pivot.x = this.optionsContainer.width / 2;
-    this.optionsContainer.pivot.y = this.optionsContainer.height / 2;
-
-    this.menuContainer.addChild(this.newGame);
-    this.menuContainer.addChild(this.continue);
-    this.menuContainer.addChild(this.options);
-    this.menuContainer.addChild(this.credits);
+    this.container.addChild(this.newGame);
+    this.container.addChild(this.continue);
+    this.container.addChild(this.options);
+    this.container.addChild(this.help);
+    this.container.addChild(this.credits);
     this.sortMenu();
 
-    this.menuContainer.x = game.width / 2;
-    this.menuContainer.y = game.height / 2;
-    this.menuContainer.pivot.x = this.menuContainer.width / 2;
-    this.menuContainer.pivot.y = this.menuContainer.height / 2;
-
-    this.container.addChild(this.background);
-    this.container.addChild(this.menuContainer);
-    this.container.addChild(this.optionsContainer);
-    this.container.addChild(this.creditsContainer);
-    game.app.stage.addChild(this.container);
-  }
-
-  show(){
-    this.container.visible=true;
-    PIXI.sound.play(game.settings.TitleScreen.Music,{loop:true});
-  }
-
-  hide(){
-    this.container.visible=false;
+    this.container.x = game.width / 2;
+    this.container.y = game.height / 2;
+    this.container.pivot.x = this.container.width / 2;
+    this.container.pivot.y = this.container.height / 2;
   }
 
   sortMenu(){
     this.newGame.y=0;
     this.continue.y=this.newGame.y+this.newGame.height*1.5;
     this.options.y=this.continue.y+this.continue.height*1.5;
-    this.credits.y=this.options.y+this.options.height*1.5;
+    this.help.y=this.options.y+this.options.height*1.5;
+    this.credits.y=this.help.y+this.help.height*1.5;
+  }
+
+  update(){
+    this.newGame.text=game.settings.Text.NewGame[game.mainLanguage];
+    this.continue.text=game.settings.Text.Continue[game.mainLanguage];
+    this.options.text=game.settings.Text.Options[game.mainLanguage];
+    this.credits.text=game.settings.Text.Credits[game.mainLanguage];
   }
 }
 
@@ -111,58 +53,24 @@ function StartAdventure(){
   game.changeScene(game.settings.MainScene,game.settings.PlayerPosition);
 }
 
+function Continue(){
+
+}
+
 function ShowOptions(){
 
-  game.titleScreen.menuContainer.visible=false;
-  game.titleScreen.optionsContainer.visible=true;
+  game.titleScreen.menu.container.visible=false;
+  game.titleScreen.options.container.visible=true;
 
 }
 
-function SelectLanguage(){
-  let selected=game.settings.Languages.indexOf(this.text);
-  if(selected!=-1){
-    game.titleScreen.languages[game.mainLanguage].tint="0xFFFFFF";
-    this.tint="0xFF0000";
-    game.mainLanguage=game.settings.Languages.indexOf(this.text);
-    UpdateMenu();
-  }
+function Help(){
 
 }
 
-function UpdateMenu(){
-  game.titleScreen.newGame.text=game.settings.Text.NewGame[game.mainLanguage];
-  game.titleScreen.continue.text=game.settings.Text.Continue[game.mainLanguage];
-  game.titleScreen.options.text=game.settings.Text.Options[game.mainLanguage];
-  game.titleScreen.credits.text=game.settings.Text.Credits[game.mainLanguage];
-}
+function ShowCredits(){
 
-function Back(){
-  game.titleScreen.menuContainer.visible=true;
-  game.titleScreen.optionsContainer.visible=false;
-}
+  game.titleScreen.menu.container.visible=false;
+  game.titleScreen.creditsContainer.visible=true;
 
-function FadeIn(){
-  game.logoScreen.logo.alpha+=0.01;
-
-  if(game.logoScreen.logo.alpha>1){
-    game.logoScreen.ticker.stop();
-    game.logoScreen.ticker.remove(FadeIn);
-    game.logoScreen.ticker.add(FadeOut);
-    game.timeout = PIXI.setTimeout(3,function(){game.logoScreen.ticker.start();})
-  }
-}
-
-function FadeOut(){
-  game.logoScreen.logo.alpha-=0.01;
-
-  if(game.logoScreen.logo.alpha<0){
-      SkipLogo();
-  }
-}
-
-function SkipLogo(){
-  game.logoScreen.hide();
-  if(game.logoScreen.ticker) game.logoScreen.ticker.destroy();
-  if(game.timeout) game.timeout.clear();
-  game.titleScreen.show();
 }

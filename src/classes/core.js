@@ -21,6 +21,7 @@ export class Core{
     this.charactersJSON=[];
     this.dialoguesJSON=[];
     this.puzzlesJSON=[];
+    this.creditsJSON=[];
     this.player={};
     this.playerTween;
     this.resources;

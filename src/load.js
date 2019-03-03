@@ -1,7 +1,8 @@
 import {game} from './game.js';
-import {gameScene} from './classes/scenes.js';
-import {gameCutscene} from './classes/cutscenes.js';
-import {LogoScreen,TitleScreen} from './classes/menu.js';
+import {gameScene} from './classes/scene.js';
+import {gameCutscene} from './classes/cutscene.js';
+import {TitleScreen} from './classes/title.js';
+import {LogoScreen} from './classes/logo.js';
 import {gameObject} from './classes/objects.js';
 import {Character} from './classes/character.js';
 import {Dialogue} from './classes/dialogue.js';
@@ -41,6 +42,8 @@ function loadConfigFiles(loader,resources){
     }else if(resources[game.files[i]].data.Puzzles){
       let tempArray=game.puzzlesJSON.concat(resources[game.files[i]].data.Puzzles);
       game.puzzlesJSON=tempArray;
+    }else if(resources[game.files[i]].data.Credits){
+      game.creditsJSON=resources[game.files[i]].data.Credits;
     }else if(resources[game.files[i]].data.Settings){
       game.settings=resources[game.files[i]].data.Settings;
     }
