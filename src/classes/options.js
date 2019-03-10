@@ -34,6 +34,7 @@ function SelectLanguage(){
     this.tint="0xFF0000";
     game.mainLanguage=game.settings.Languages.indexOf(this.text);
     game.titleScreen.menu.update();
+    game.titleScreen.credits.update();
   }
 
 }

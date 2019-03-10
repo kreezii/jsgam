@@ -1,7 +1,7 @@
 import {game} from '../game.js';
 var Walkable=require('walkable');
 
-export class gameScene{
+export class Scene{
   constructor(data,index){
     this.data=data;
     this.index=index;
@@ -55,15 +55,38 @@ export class gameScene{
   }
 
   hide(){
-      this.container.visible=false;
+    if(this.data.Music!=undefined) PIXI.sound.stop(this.data.Music);
+    this.container.visible=false;
   }
 
   show(){
-      this.container.visible=true;
+    if(this.data.Music!=undefined) PIXI.sound.play(this.data.Music,{loop:true});
+    this.container.visible=true;
+    if(this.data.Player && game.player.sprite.visible==false) game.player.show();
+    if(this.data.Filters){
+      game.layer.filters = game.checkFilters();
+    }else{
+      game.layer.filters = [];
+    }
   }
+
+  showCutScene(){
+    game.currentCutscene=game.searchCutScene(this.data.CutScene);
+  //  if(!game.cutscenes[currentCutscene].played)
+  //  {
+      this.container.visible=false;
+      game.cutscenes[game.currentCutscene].show();
+  //  }
+  }
+
+  hideCutScene(){
+    this.container.visible=true;
+  }
+
   getPath(fromX,fromY,toX,toY){
     return this.walkable.findPath(fromX, fromY, toX, toY, 0);
   }
+
 };
 
 function movePlayer(event){

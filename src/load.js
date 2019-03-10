@@ -1,9 +1,9 @@
 import {game} from './game.js';
-import {gameScene} from './classes/scene.js';
-import {gameCutscene} from './classes/cutscene.js';
+import {Scene} from './classes/scene.js';
+import {CutScene} from './classes/cutscene.js';
 import {TitleScreen} from './classes/title.js';
 import {LogoScreen} from './classes/logo.js';
-import {gameObject} from './classes/objects.js';
+import {Objeto} from './classes/object.js';
 import {Character} from './classes/character.js';
 import {Dialogue} from './classes/dialogue.js';
 import {Player} from './classes/player.js';
@@ -14,8 +14,7 @@ import {TextField} from './classes/text.js'
 //Called when a file is loaded
 function loadingProgress(loader,resources){
   let percent=Math.floor(PIXI.loader.progress);
-  game.loadingText.text="Loading "+percent+ "%";
-  //console.log(percent);
+  game.loadingText.text=percent+ "%";
 };
 
 //Load JSON configuration files
@@ -92,7 +91,7 @@ function buildGame(loader,resources){
 
   //Build objects
   for(let i=0;i<game.objectsJSON.length;i++){
-    game.objects[i]=new gameObject(game.objectsJSON[i],i);
+    game.objects[i]=new Objeto(game.objectsJSON[i],i);
   }
 
   //Build puzzles
@@ -116,13 +115,13 @@ function buildGame(loader,resources){
 
   //Build Scenes
   for(let i=0;i<game.scenesJSON.length;i++){
-    game.scenes[i]=new gameScene(game.scenesJSON[i],i);
+    game.scenes[i]=new Scene(game.scenesJSON[i],i);
     game.app.stage.addChild(game.scenes[i].container);
   }
 
   //Build CutScenes
   for(let i=0;i<game.cutscenesJSON.length;i++){
-    game.cutscenes[i]=new gameCutscene(game.cutscenesJSON[i],i);
+    game.cutscenes[i]=new CutScene(game.cutscenesJSON[i],i);
     game.app.stage.addChild(game.cutscenes[i].container);
   }
   //Build text fields

@@ -13,13 +13,14 @@ var textStyle = new PIXI.TextStyle({
   //wordWrapWidth: game.width
 });
 
-export class gameCutscene{
+export class CutScene{
   constructor(data,index){
     this.container=new PIXI.Container();
     this.container.visible=false;
     this.sequenceIndex=0;
     this.data=data;
     this.index=index;
+    this.played=false;
 
     if(data.Video){
       /*
@@ -59,16 +60,20 @@ export class gameCutscene{
     }
   }
 
+  show(){
+      this.container.visible=true;
+  }
+
+  hide(){
+      this.container.visible=false;
+  }
+
   next(){
 
   }
 
-  gotoScene(){
-
-  }
-
   end(){
-
+    game.changeScene(game.currentScene);
   }
 };
 
@@ -81,7 +86,7 @@ function nextElement(){
 
   if(thisCutscene.sequenceIndex<thisCutscene.data.Sequence.length-1){
     thisCutscene.sequenceIndex+=1;
-    thisCutscene.image.texture(PIXI.Texture.fromFrame(thisCutscene.data.Sequence[thisCutscene.sequenceIndex].Image));
+    thisCutscene.image.texture=(PIXI.Texture.fromFrame(thisCutscene.data.Sequence[thisCutscene.sequenceIndex].Image));
   }else{
     thisCutscene.end();
   }

@@ -1,7 +1,7 @@
 import {game} from '../game.js';
 import {boxesIntersect,collision} from '../collisions.js';
 
-export class gameObject extends PIXI.Sprite{
+export class Objeto extends PIXI.Sprite{
   constructor(data,index){
     if(data.Texture){
       super(PIXI.Texture.fromFrame(data.Texture));

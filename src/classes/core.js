@@ -25,10 +25,10 @@ export class Core{
     this.player={};
     this.playerTween;
     this.resources;
-    this.currentScene;
-    this.currentCutscene;
-    this.currentPuzzle;
-    this.currentDialogue;
+    this.currentScene=null;
+    this.currentCutscene=null;
+    this.currentPuzzle=null;
+    this.currentDialogue=null;
     this.selectedObject=null;
     this.selectedCharacter=null;
     this.inventory;
@@ -95,6 +95,17 @@ export class Core{
     return this.scenes[this.currentScene];
   }
 
+  searchCutScene(nameScene){
+    let numberScene;
+    for(let i=0;i<this.cutscenes.length;i++){
+      if(nameScene==this.cutscenes[i].data.Name){
+        numberScene=i;
+        break;
+      }
+    }
+    return numberScene;
+  }
+
   searchObject(nameObject){
     let numberObject;
     for(let i=0;i<this.objects.length;i++){
@@ -106,19 +117,7 @@ export class Core{
     }
     return numberObject;
   }
-/*
-  searchPuzzle(namePuzzle){
-    let numberPuzzle;
-    for(let i=0;i<this.puzzles.length;i++){
-      if(namePuzzle==this.puzzles[i].data.Name){
 
-        numberPuzzle=i;
-        break;
-      }
-    }
-    return numberPuzzle;
-  }
-*/
   searchDialogue(nameDialogue){
     let numberDialogue;
     for(let i=0;i<this.dialogues.length;i++){
@@ -186,26 +185,27 @@ export class Core{
   }
 
   changeScene(sceneName,pos){
-    this.player.action=null;
     let nextScene=this.searchScene(sceneName);
-    this.scenes[this.currentScene].hide();
-    this.scenes[nextScene].show();
-    if(this.scenes[this.currentScene].data.Music!=undefined)PIXI.sound.stop(this.scenes[this.currentScene].data.Music);
-    if(this.scenes[nextScene].data.Music!=undefined)
-      PIXI.sound.play(this.scenes[nextScene].data.Music,{loop:true});
-    this.currentScene=nextScene;
+
+    if(nextScene!=this.currentScene)
+    {
+      if(this.currentScene!=null) this.scenes[this.currentScene].hide();
+      this.currentScene=nextScene;
+      this.scenes[nextScene].show();
+    }
+
+    this.player.stand();
     if(pos){
       this.player.sprite.x=pos[0];
       this.player.sprite.y=pos[1];
-      this.player.sprite.visible=this.scenes[this.currentScene].data.Player;
     }
-    if(this.scenes[this.currentScene].data.Filters){
-      this.layer.filters = this.checkFilters();
-    }else{
-      this.layer.filters = [];
+    /*
+    if(this.scenes[this.currentScene].data.CutScene){
+      if(this.player.sprite.visible)this.player.hide();
+      this.inventory.icon.visible=false;
+      this.scenes[this.currentScene].showCutScene();
     }
-    //let inventoryOpt=this.scenes[this.currentScene].data.Inventory;
-    //if(inventoryOpt) this.inventory.icon.visible=true;
+    */
   }
 
   checkPuzzle(nameObject){
@@ -222,7 +222,7 @@ export class Core{
     this.currentPuzzle=found;
   }
 
-  DialogueChoice(selected){
+  dialogueChoice(selected){
     this.currentDialogue.choice=selected;
     this.currentDialogue.data.Branches[this.currentDialogue.currentBranch].Choices[selected].clicked=true;
     this.currentDialogue.next();

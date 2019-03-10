@@ -70,6 +70,14 @@ export class Player{
       this.sprite.animation.fadeIn(animation,0.25,times);
       //this.state=animation;
     }
+
+    show(){
+      this.sprite.visible=true;
+    }
+
+    hide(){
+      this.sprite.visible=false;
+    }
 };
 
 function tweenEnd(){

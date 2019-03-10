@@ -1,5 +1,5 @@
 # JSGAM
-JavaScript Adventure Game Maker is a game engine inspired on classic graphical point-and-click adventure games.
+JavaScript Adventure Game Maker is a game engine inspired on classic graphical point-and-click adventure games but adapted for new times.
 
 The project is in **pre-alpha** stage.
 
@@ -15,19 +15,18 @@ What can do the engine at the current stage?
 * Add filters to the scene
 * Dialogues with non-playable characters
 * Music and Sounds
+* Credits screen
 
 ### TO-DO
 
 In order of priority.
-
-* Credits screen
-* Cut-scenes
+* Cut-scenes (Implementing...)
 * Save/Load the game progress
 * Documentation
 * Animated objects
 * Voices (optional)
 
-Is it ready for a short adventure? **Not yet**
+Is it ready for a short adventure? **Almost, but not yet**
 
 ## Author
 * **R.Vañes**
@@ -40,5 +39,6 @@ Is it ready for a short adventure? **Not yet**
 * [Pixi-Layers](https://github.com/pixijs/pixi-display)
 * [Pixi-Sound](https://github.com/pixijs/pixi-sound)
 * [Pixi-Filters](https://github.com/pixijs/pixi-filters)
+* [Pixi-Multistyle-Text](https://github.com/tleunen/pixi-multistyle-text)
 * [PolyK](http://polyk.ivank.net/)
 * [Walkable](https://github.com/implicit-invocation/walkable)

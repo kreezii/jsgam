@@ -1,31 +1,5 @@
 import {game} from '../game.js';
 
-var textStyle = new PIXI.TextStyle({
-  align: "center",
-  dropShadow: true,
-  dropShadowAlpha: 0.5,
-  dropShadowBlur: 5,
-  dropShadowDistance: 2,
-  fill: "white",
-  fontFamily: "\"Palatino Linotype\", \"Book Antiqua\", Palatino, serif",
-  fontSize: 25,
-  fontWeight: "bold"
-  //wordWrapWidth: game.width
-});
-
-var buttonTextStyle= new PIXI.TextStyle({
-    dropShadowAngle: 0.5,
-    dropShadowBlur: 3,
-    dropShadowDistance: 0,
-    fill: "white",
-    fontSize: 32,
-    fontVariant: "small-caps",
-    fontWeight: "bold",
-    lineJoin: "round",
-    align: 'center',
-    strokeThickness: 8
-});
-
 export class TextField{
   constructor(){
     this.container=new PIXI.Container();
@@ -41,14 +15,14 @@ export class TextField{
     this.CharacterPic=new PIXI.Sprite(PIXI.Texture.EMPTY);
     this.CharacterPic.visible=false;
 
-    this.Field=new PIXI.Text("", textStyle);
+    this.Field=new PIXI.Text("", game.settings.TextStyle);
     this.Field.anchor.set(0.5,0);
     this.Field.x=game.width/2;
     this.Field.y=0;
 
     for(let i=0;i<3;i++){
       this.Choices[i]=new TextButton("Option");
-      this.Choices[i].style=textStyle;
+      this.Choices[i].style=game.settings.TextStyle;
       this.Choices[i].on('pointertap', onChoiceTap);
       this.Choices[i].index=i;
       this.choicesContainer.addChild(this.Choices[i]);
@@ -125,7 +99,7 @@ export class TextField{
 
 export class TextButton extends PIXI.Text{
     constructor(text){
-      super(text,buttonTextStyle);
+      super(text,game.settings.ButtonTextStyle);
     //  this.index;
     //  this.times=0;
       this.interactive=true;
@@ -135,5 +109,5 @@ export class TextButton extends PIXI.Text{
 }
 
 function onChoiceTap(){
-  if(this.alpha==1) game.DialogueChoice(this.index);
+  if(this.alpha==1) game.dialogueChoice(this.index);
 }
