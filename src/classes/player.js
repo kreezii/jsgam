@@ -3,8 +3,8 @@ import {checkPath} from '../collisions.js';
 
 export class Player{
     constructor(armature){
-      dbfactory.parseDragonBonesData(game.resources.playerSkeleton.data);
-      dbfactory.parseTextureAtlasData(game.resources.playerJson.data,game.resources.playerTex.texture);
+      dbfactory.parseDragonBonesData(PIXI.loader.resources.playerSkeleton.data);
+      dbfactory.parseTextureAtlasData(PIXI.loader.resources.playerJson.data,PIXI.loader.resources.playerTex.texture);
       this.sprite = dbfactory.buildArmatureDisplay(armature);
       this.tween=PIXI.tweenManager.createTween(this.sprite);
       this.tween.on('end', tweenEnd);

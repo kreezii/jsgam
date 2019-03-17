@@ -11,7 +11,7 @@ export class CreditsScreen{
     this.container.on('pointerup', GotoMenu);
 
     this.buildText();
-    if(game.creditsJSON.Background!=undefined) this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(game.creditsJSON.Background));
+    if(game.creditsJSON.Background!=undefined) this.background=new PIXI.Sprite(PIXI.Texture.from(game.creditsJSON.Background));
 
     this.structuredText = new MultiStyleText(this.text,game.creditsJSON.Style);
 
@@ -58,7 +58,7 @@ export class CreditsScreen{
     this.text += "\n";
     }
   }
-  
+
   update(){
     this.buildText();
     this.structuredText.text=this.text;

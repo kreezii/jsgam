@@ -12,7 +12,7 @@ export class TitleScreen{
     this.options=new Options();
     this.credits=new CreditsScreen();
 
-    this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.TitleScreen.Background));
+    this.background=new PIXI.Sprite(PIXI.Texture.from(game.settings.TitleScreen.Background));
 
     this.container.addChild(this.background);
     this.container.addChild(this.menu.container);

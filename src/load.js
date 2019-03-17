@@ -20,9 +20,11 @@ function loadingProgress(loader,resources){
 //Load JSON configuration files
 function loadConfigFiles(loader,resources){
   game.loadingText.visible=false;
+  //Temporary store the config files
   for(let i=0;i<game.files.length;i++){
     if(resources[game.files[i]].data==null){
-      console.log("Error found in JSON file:"+" '"+game.files[i]+"'")
+      //Show a message in console if find something wrong in JSON's files
+      console.log("Error found in JSON file:"+" '"+game.files[i]+"'");
     }else if(resources[game.files[i]].data.Scenes){
       let tempArray=game.scenesJSON.concat(resources[game.files[i]].data.Scenes);
       game.scenesJSON=tempArray;
@@ -50,13 +52,25 @@ function loadConfigFiles(loader,resources){
 
   PIXI.loader.reset();
   game.loadingText.visible=true;
-  PIXI.loader.onProgress.add(loadingProgress);
+  PIXI.loader.onLoad.add(loadingProgress);
 
   //Load Sounds
   let soundSrc=resources["sounds"].data.Sounds;
   for(let i=0;i<soundSrc.length;i++){
     let tmpSound=soundSrc[i].Src;
     if(tmpSound!="") PIXI.loader.add(soundSrc[i].Name,tmpSound);
+  }
+
+  //Fix for load mp4 as videos instead as audio because of pixi-sound
+  PIXI.sound.utils.extensions.splice(PIXI.sound.utils.extensions.indexOf('mp4'), 1);
+  PIXI.loaders.Resource.setExtensionXhrType('mp4', undefined);
+  PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
+
+  //Load Vids
+  let vidSrc=resources["vids"].data.Vids;
+  for(let i=0;i<vidSrc.length;i++){
+    let tmpVid=vidSrc[i].Src;
+    if(tmpVid!="") PIXI.loader.add(vidSrc[i].Name,tmpVid);
   }
 
   //Load Player resources
@@ -67,9 +81,9 @@ function loadConfigFiles(loader,resources){
   //Load Character resources
   let tempCharas=resources["characters"].data.Characters;
   for(let i=0;i<tempCharas.length;i++){
-    PIXI.loader.add(tempCharas[i].name+"Tex", tempCharas[i].Texture)
-    .add(tempCharas[i].name+'Json', tempCharas[i].Json)
-    .add(tempCharas[i].name+'Skeleton', tempCharas[i].Skeleton);
+    PIXI.loader.add(tempCharas[i].Name+"Tex", tempCharas[i].Texture)
+    .add(tempCharas[i].Name+'Json', tempCharas[i].Json)
+    .add(tempCharas[i].Name+'Skeleton', tempCharas[i].Skeleton);
   }
 
   PIXI.loader.load(buildGame);
@@ -78,7 +92,7 @@ function loadConfigFiles(loader,resources){
 //Create all elements and add it to the game (PIXI.stage)
 function buildGame(loader,resources){
   game.loadingText.destroy(); //We don't need it anymore
-  game.resources=resources;
+
   //Build Player
   game.player=new Player("Armature");
   game.app.stage.addChild(game.player.sprite);
@@ -93,21 +107,25 @@ function buildGame(loader,resources){
   for(let i=0;i<game.objectsJSON.length;i++){
     game.objects[i]=new Objeto(game.objectsJSON[i],i);
   }
+  delete game.objectsJSON;
 
   //Build puzzles
   for(let i=0;i<game.puzzlesJSON.length;i++){
     game.puzzles[i]=new Puzzle(game.puzzlesJSON[i],i);
   }
+  delete game.puzzlesJSON;
 
   //Build dialogues
   for(let i=0;i<game.dialoguesJSON.length;i++){
     game.dialogues[i]=new Dialogue(game.dialoguesJSON[i],i);
   }
+  delete game.dialoguesJSON;
 
   //Build characters
   for(let i=0;i<game.charactersJSON.length;i++){
     game.characters[i]=new Character(game.charactersJSON[i],i);
   }
+  delete game.charactersJSON;
 
   //Build Logo and Main screens
   game.logoScreen=new LogoScreen();
@@ -118,20 +136,27 @@ function buildGame(loader,resources){
     game.scenes[i]=new Scene(game.scenesJSON[i],i);
     game.app.stage.addChild(game.scenes[i].container);
   }
+  delete game.scenesJSON;
 
   //Build CutScenes
   for(let i=0;i<game.cutscenesJSON.length;i++){
     game.cutscenes[i]=new CutScene(game.cutscenesJSON[i],i);
     game.app.stage.addChild(game.cutscenes[i].container);
   }
+  delete game.cutscenesJSON;
+
   //Build text fields
   game.textField=new TextField();
   game.app.stage.addChild(game.textField.container);
 
   PIXI.loader.reset();
+
+  //Game loop start
   game.ticker=new PIXI.ticker.Ticker();
   game.ticker.add(deltaTime=>game.loop(deltaTime));
   game.ticker.start();
+
+  //Launch the game
   game.start();
 };
 

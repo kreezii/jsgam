@@ -4,11 +4,16 @@ import {boxesIntersect,collision} from '../collisions.js';
 export class Objeto extends PIXI.Sprite{
   constructor(data,index){
     if(data.Texture){
-      super(PIXI.Texture.fromFrame(data.Texture));
+      super(PIXI.Texture.from(data.Texture));
     }else if(data.Area){
       super(PIXI.Texture.EMPTY);
       this.hitArea=new PIXI.Polygon(data.Area);
+    }else if(data.Animation){
+      super(PIXI.Texture.EMPTY);
+  
+      //let animatedSprite=new
     }
+
     this.data=data;
     this.index=index;
 

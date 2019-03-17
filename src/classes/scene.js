@@ -1,5 +1,5 @@
 import {game} from '../game.js';
-var Walkable=require('walkable');
+import Walkable from 'walkable';
 
 export class Scene{
   constructor(data,index){
@@ -7,9 +7,9 @@ export class Scene{
     this.index=index;
     this.container=new PIXI.Container();
     this.container.visible=false;
-    this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(data.Background));
-    //this.background.width=game.app.screen.width;
-    //this.background.height=game.app.screen.height;
+    this.background=new PIXI.Sprite(PIXI.Texture.from(data.Background));
+    this.background.width=game.width;
+    this.background.height=game.height;
     this.background.parentLayer = game.layer;//Z-order
     if(data.Player){
       this.background.interactive=true;
@@ -63,24 +63,12 @@ export class Scene{
     if(this.data.Music!=undefined) PIXI.sound.play(this.data.Music,{loop:true});
     this.container.visible=true;
     if(this.data.Player && game.player.sprite.visible==false) game.player.show();
+    if(game.inventory.icon.visible==false) game.inventory.showIcon();
     if(this.data.Filters){
       game.layer.filters = game.checkFilters();
     }else{
       game.layer.filters = [];
     }
-  }
-
-  showCutScene(){
-    game.currentCutscene=game.searchCutScene(this.data.CutScene);
-  //  if(!game.cutscenes[currentCutscene].played)
-  //  {
-      this.container.visible=false;
-      game.cutscenes[game.currentCutscene].show();
-  //  }
-  }
-
-  hideCutScene(){
-    this.container.visible=true;
   }
 
   getPath(fromX,fromY,toX,toY){

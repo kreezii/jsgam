@@ -31,7 +31,7 @@ function run(){
   game.loadingText.x=game.width/2;
   game.loadingText.y=game.height/2;
   game.app.stage.addChild(game.loadingText);
-  PIXI.loader.onProgress.add(loadingProgress);
+  PIXI.loader.onLoad.add(loadingProgress);
   PIXI.loader.load(loadConfigFiles);
 };
 

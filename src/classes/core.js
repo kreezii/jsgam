@@ -1,5 +1,6 @@
 import * as filters from 'pixi-filters';
 
+
 export class Core{
   constructor(width,height,objectID){
     this.files=[];
@@ -24,7 +25,6 @@ export class Core{
     this.creditsJSON=[];
     this.player={};
     this.playerTween;
-    this.resources;
     this.currentScene=null;
     this.currentCutscene=null;
     this.currentPuzzle=null;
@@ -34,6 +34,9 @@ export class Core{
     this.inventory;
     this.inventoryBack;
     this.inventoryIcon;
+
+    this.videos;
+
     this.app=new PIXI.Application(width,height,{autoResize: true,resolution: devicePixelRatio});
     this.OldFimFilter=new filters.OldFilmFilter();
     this.GodRayFilter=new filters.GodrayFilter();
@@ -158,6 +161,7 @@ export class Core{
     this.ReflectionFilter.time += 0.1;
   }
 
+  //Game loop
   loop(){
     PIXI.tweenManager.update();
     let currentPlayerAnimation=this.player.sprite.animation.lastAnimationName;
@@ -184,6 +188,7 @@ export class Core{
 
   }
 
+  //Change game scenes
   changeScene(sceneName,pos){
     let nextScene=this.searchScene(sceneName);
 
@@ -191,7 +196,6 @@ export class Core{
     {
       if(this.currentScene!=null) this.scenes[this.currentScene].hide();
       this.currentScene=nextScene;
-      this.scenes[nextScene].show();
     }
 
     this.player.stand();
@@ -199,15 +203,27 @@ export class Core{
       this.player.sprite.x=pos[0];
       this.player.sprite.y=pos[1];
     }
-    /*
+
     if(this.scenes[this.currentScene].data.CutScene){
+      //Hide Player & Inventory Icon
       if(this.player.sprite.visible)this.player.hide();
-      this.inventory.icon.visible=false;
-      this.scenes[this.currentScene].showCutScene();
+      this.inventory.hideIcon();
+
+      //Show CutScene if it wasn't showed yet
+      this.currentCutscene=this.searchCutScene(this.scenes[this.currentScene].data.CutScene);
+      if(this.cutscenes[this.currentCutscene].played){
+        this.currentCutscene=null;
+        this.scenes[this.currentScene].show();
+      }else{
+        this.cutscenes[this.currentCutscene].show();
+      }
+    }else{
+      this.scenes[this.currentScene].show();
     }
-    */
+
   }
 
+  //Check if an object is part of a puzzle
   checkPuzzle(nameObject){
     let found=false;
     for(let i=0;i<this.puzzles.length;i++){

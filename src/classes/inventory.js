@@ -5,14 +5,14 @@ export class Inventory{
       this.container=new PIXI.Container();
       this.container.visible=false;
       this.objects=[];
-      this.background=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.Inventory.Background));
+      this.background=new PIXI.Sprite(PIXI.Texture.from(game.settings.Inventory.Background));
       this.background.width=game.width/2;
       this.background.height=game.height/2;
       this.background.parentLayer = game.layerUI;
       this.container.x = (game.width - this.background.width) / 2;
       this.container.y = (game.height - this.background.height) / 2;
       this.border=10;
-      this.icon=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.Inventory.Icon));
+      this.icon=new PIXI.Sprite(PIXI.Texture.from(game.settings.Inventory.Icon));
       this.icon.visible=false;
       this.icon.interactive=true;
       this.icon.buttonMode=true;
@@ -27,6 +27,14 @@ export class Inventory{
 
     hide(){
       this.container.visible=false;
+    }
+
+    showIcon(){
+      this.icon.visible=true;
+    }
+
+    hideIcon(){
+      this.icon.visible=false;
     }
 
     setIcon(position){

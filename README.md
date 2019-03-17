@@ -16,11 +16,11 @@ What can do the engine at the current stage?
 * Dialogues with non-playable characters
 * Music and Sounds
 * Credits screen
+* Cut-scenes
 
 ### TO-DO
 
 In order of priority.
-* Cut-scenes (Implementing...)
 * Save/Load the game progress
 * Documentation
 * Animated objects

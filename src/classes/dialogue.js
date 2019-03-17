@@ -95,7 +95,7 @@ export class Dialogue{
   }
 
   NPCSay(textToSay){
-    game.textField.CharacterPic.texture=PIXI.Texture.fromFrame(game.characters[game.selectedCharacter].sprite.data.Avatar);
+    game.textField.CharacterPic.texture=PIXI.Texture.from(game.characters[game.selectedCharacter].sprite.data.Avatar);
     game.textField.showAvatar();
     game.textField.Field.tint=0xCCFFD9;
     game.textField.Field.text=textToSay;

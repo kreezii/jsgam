@@ -56,7 +56,6 @@ export class Menu{
 
 function StartAdventure(){
   game.titleScreen.container.visible=false;
-  //game.currentScene=0;
   PIXI.sound.stopAll();
   game.inventory.icon.visible=true;
   game.changeScene(game.settings.MainScene,game.settings.PlayerPosition);

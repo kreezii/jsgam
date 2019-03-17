@@ -4,7 +4,7 @@ export class LogoScreen{
   constructor(){
     this.container=new PIXI.Container();
     this.container.visible=false;
-    this.logo=new PIXI.Sprite(PIXI.Texture.fromFrame(game.settings.Logo));
+    this.logo=new PIXI.Sprite(PIXI.Texture.from(game.settings.Logo));
     this.logo.alpha=0;
     this.logo.anchor.set(0.5);
     this.logo.x=game.width/2;

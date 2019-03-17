@@ -2,8 +2,8 @@ import {game,dbfactory} from '../game.js';
 
 export class Character{
     constructor(data,index){
-      dbfactory.parseDragonBonesData(game.resources[data.name+'Skeleton'].data);
-      dbfactory.parseTextureAtlasData(game.resources[data.name+'Json'].data,game.resources[data.name+'Tex'].texture);
+      dbfactory.parseDragonBonesData(PIXI.loader.resources[data.Name+'Skeleton'].data);
+      dbfactory.parseTextureAtlasData(PIXI.loader.resources[data.Name+'Json'].data,PIXI.loader.resources[data.Name+'Tex'].texture);
       this.sprite = dbfactory.buildArmatureDisplay(data.Name);
       this.tween=PIXI.tweenManager.createTween(this.sprite);
       this.sprite.data=data;
