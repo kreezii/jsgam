@@ -19,6 +19,10 @@ function loadingProgress(loader,resources){
 
 //Load JSON configuration files
 function loadConfigFiles(loader,resources){
+  let vidFiles;
+  let sndFiles;
+  let animFiles;
+
   game.loadingText.visible=false;
   //Temporary store the config files
   for(let i=0;i<game.files.length;i++){
@@ -34,6 +38,8 @@ function loadConfigFiles(loader,resources){
     }else if(resources[game.files[i]].data.Objects){
       let tempArray=game.objectsJSON.concat(resources[game.files[i]].data.Objects);
       game.objectsJSON=tempArray;
+    }else if(resources[game.files[i]].data.Player){
+      game.playerJSON=resources[game.files[i]].data.Player;
     }else if(resources[game.files[i]].data.Characters){
       let tempArray=game.charactersJSON.concat(resources[game.files[i]].data.Characters);
       game.charactersJSON=tempArray;
@@ -47,6 +53,12 @@ function loadConfigFiles(loader,resources){
       game.creditsJSON=resources[game.files[i]].data.Credits;
     }else if(resources[game.files[i]].data.Settings){
       game.settings=resources[game.files[i]].data.Settings;
+    }else if(resources[game.files[i]].data.Sounds){
+      sndFiles=resources[game.files[i]].data.Sounds;
+    }else if(resources[game.files[i]].data.Vids){
+      vidFiles=resources[game.files[i]].data.Vids;
+    }else if(resources[game.files[i]].data.Animations){
+      animFiles=resources[game.files[i]].data.Animations;
     }
   }
 
@@ -55,7 +67,7 @@ function loadConfigFiles(loader,resources){
   PIXI.loader.onLoad.add(loadingProgress);
 
   //Load Sounds
-  let soundSrc=resources["sounds"].data.Sounds;
+  let soundSrc=sndFiles;
   for(let i=0;i<soundSrc.length;i++){
     let tmpSound=soundSrc[i].Src;
     if(tmpSound!="") PIXI.loader.add(soundSrc[i].Name,tmpSound);
@@ -67,19 +79,26 @@ function loadConfigFiles(loader,resources){
   PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
 
   //Load Vids
-  let vidSrc=resources["vids"].data.Vids;
+  let vidSrc=vidFiles;
   for(let i=0;i<vidSrc.length;i++){
     let tmpVid=vidSrc[i].Src;
     if(tmpVid!="") PIXI.loader.add(vidSrc[i].Name,tmpVid);
   }
 
+  //Load Animations
+  let animSrc=animFiles;
+  for(let i=0;i<animSrc.length;i++){
+    let tmpAnim=animSrc[i].Src;
+    if(tmpAnim!="") PIXI.loader.add(animSrc[i].Name,tmpAnim);
+  }
+
   //Load Player resources
-  PIXI.loader.add('playerTex', resources["player"].data.Player.Texture)
-  .add('playerJson', resources["player"].data.Player.Json)
-  .add('playerSkeleton', resources["player"].data.Player.Skeleton);
+  PIXI.loader.add('playerTex', game.playerJSON.Texture)
+  .add('playerJson', game.playerJSON.Json)
+  .add('playerSkeleton', game.playerJSON.Skeleton);
 
   //Load Character resources
-  let tempCharas=resources["characters"].data.Characters;
+  let tempCharas=game.charactersJSON;
   for(let i=0;i<tempCharas.length;i++){
     PIXI.loader.add(tempCharas[i].Name+"Tex", tempCharas[i].Texture)
     .add(tempCharas[i].Name+'Json', tempCharas[i].Json)
@@ -94,8 +113,9 @@ function buildGame(loader,resources){
   game.loadingText.destroy(); //We don't need it anymore
 
   //Build Player
-  game.player=new Player("Armature");
+  game.player=new Player(game.playerJSON.Armature);
   game.app.stage.addChild(game.player.sprite);
+  delete game.playerJSON;
 
   //Build inventory
   game.inventory=new Inventory();

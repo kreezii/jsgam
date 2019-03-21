@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "k8w-pixi-tween": "^0.7.6",
+    "localforage": "^1.7.3",
     "pixi-filters": "^2.7.0",
     "pixi-layers": "^0.1.10",
     "pixi-multistyle-text": "^0.7.0",

@@ -1,7 +1,7 @@
 # JSGAM
 JavaScript Adventure Game Maker is a game engine inspired on classic graphical point-and-click adventure games but adapted for new times.
 
-The project is in **pre-alpha** stage.
+The project is in **alpha** stage.
 
 ## Progress
 What can do the engine at the current stage?
@@ -17,16 +17,16 @@ What can do the engine at the current stage?
 * Music and Sounds
 * Credits screen
 * Cut-scenes
+* Animated objects
 
 ### TO-DO
 
 In order of priority.
-* Save/Load the game progress
+* Save/Load the game progress (on progress...)
 * Documentation
-* Animated objects
 * Voices (optional)
 
-Is it ready for a short adventure? **Almost, but not yet**
+Is it ready for a short adventure? **Yes, but...** needs to be documented, probably with unexpected (and funny) bugs and cannot save game progress yet.
 
 ## Author
 * **R.Vañes**

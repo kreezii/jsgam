@@ -1,5 +1,5 @@
 import * as filters from 'pixi-filters';
-
+import localforage from 'localforage';
 
 export class Core{
   constructor(width,height,objectID){
@@ -16,6 +16,7 @@ export class Core{
     this.settings=[];
     this.mainLanguage=0;
     this.timeout;
+    this.playerJSON=[];
     this.scenesJSON=[];
     this.cutscenesJSON=[];
     this.objectsJSON=[];
@@ -35,7 +36,8 @@ export class Core{
     this.inventoryBack;
     this.inventoryIcon;
 
-    this.videos;
+
+    this.gameProgress={};
 
     this.app=new PIXI.Application(width,height,{autoResize: true,resolution: devicePixelRatio});
     this.OldFimFilter=new filters.OldFilmFilter();
@@ -169,13 +171,13 @@ export class Core{
 
     if(animationProgress!=null)
     {
-      if(currentPlayerAnimation=="take" && animationProgress.isCompleted){
+      if(currentPlayerAnimation==this.player.animations.Take && animationProgress.isCompleted){
         this.objects[this.selectedObject].take();
         this.player.stand();
-      }else if(currentPlayerAnimation=="use" && animationProgress.isCompleted){
+      }else if(currentPlayerAnimation==this.player.animations.Use && animationProgress.isCompleted){
         if(this.objects[this.selectedObject].use) this.objects[this.selectedObject].use();
         this.player.stand();
-      }else if(currentPlayerAnimation=="speak" && animationProgress.isCompleted){
+      }else if(currentPlayerAnimation==this.player.animations.Say && animationProgress.isCompleted){
         this.player.stand();
       }
     }
@@ -196,6 +198,7 @@ export class Core{
     {
       if(this.currentScene!=null) this.scenes[this.currentScene].hide();
       this.currentScene=nextScene;
+      this.saveGameProgress();
     }
 
     this.player.stand();
@@ -247,6 +250,13 @@ export class Core{
   //Show Logo Screen then the Title Screen
   start(){
     this.logoScreen.show();
+  }
+
+  saveGameProgress(){
+    this.gameProgress.currentScene=this.currentScene;
+    localforage.setItem('key', 'this.currentScene');
+  //  console.log(this.gameProgress)
+  //  console.log(localforage.getItem('key'))
   }
 
   //Resizes the game view

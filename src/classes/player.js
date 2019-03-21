@@ -8,7 +8,17 @@ export class Player{
       this.sprite = dbfactory.buildArmatureDisplay(armature);
       this.tween=PIXI.tweenManager.createTween(this.sprite);
       this.tween.on('end', tweenEnd);
-      this.sprite.animation.play("stand");
+      if(game.playerJSON.Animations!=undefined)
+        this.animations=game.playerJSON.Animations;
+      else
+        this.animations={
+          Stand:"stand",
+          Walk:"walk",
+          Take:"take",
+          Use:"use",
+          Say:"speak"
+        };
+      this.sprite.animation.play(this.animations.Stand);
       this.state="stand";
       this.sprite.visible=false;
       this.sprite.x=0;
@@ -34,7 +44,7 @@ export class Player{
         var path = new PIXI.tween.TweenPath();
         let findPath=game.scenes[game.currentScene].getPath(this.sprite.x,this.sprite.y,newPosition.x,newPosition.y);
         if(findPath.length>0){
-          this.animate("walk");
+          this.animate(this.animations.Walk);
           this.lock=true;
           if(this.sprite.x<newPosition.x) this.sprite.armature.flipX=false;
           else this.sprite.armature.flipX=true;
@@ -54,7 +64,7 @@ export class Player{
       game.textField.Field.text=textToSay;
       game.textField.Field.tint=0xFFFFFF;
       game.textField.show();
-      this.animate("speak",3);
+      this.animate(this.animations.Say,3);
       if(game.timeout) game.timeout.clear();
       game.timeout = PIXI.setTimeout(game.settings.TextSpeed,function(){game.textField.hide();})
     }
@@ -63,7 +73,7 @@ export class Player{
       if(!game.currentDialogue) this.lock=false;
       this.action=null;
       game.selectedObject=null;
-      this.animate("stand");
+      this.animate(this.animations.Stand);
     }
 
     animate(animation,times){
@@ -90,9 +100,9 @@ function tweenEnd(){
       else game.player.sprite.armature.flipX=true;
     }
     if(game.player.action=="use"){
-      game.player.animate("use",1);
+      game.player.animate(game.player.animations.Use,1);
     }else if(game.player.action=="take"){
-      game.player.animate("take",1);
+      game.player.animate(game.player.animations.Take,1);
     }else if(game.player.action=="look"){
     //  game.player.animate("speak",3);
       game.player.say(currentObject.data.Description[game.mainLanguage]);

@@ -1,17 +1,24 @@
 import {game} from '../game.js';
 import {boxesIntersect,collision} from '../collisions.js';
 
-export class Objeto extends PIXI.Sprite{
+export class Objeto extends PIXI.extras.AnimatedSprite{
   constructor(data,index){
     if(data.Texture){
-      super(PIXI.Texture.from(data.Texture));
+      super([PIXI.Texture.from(data.Texture)],false);
     }else if(data.Area){
-      super(PIXI.Texture.EMPTY);
+      super([PIXI.Texture.EMPTY],false);
       this.hitArea=new PIXI.Polygon(data.Area);
     }else if(data.Animation){
-      super(PIXI.Texture.EMPTY);
-  
-      //let animatedSprite=new
+      let spritesheet=PIXI.loader.resources[data.Animation.Name].spritesheet;
+
+      let frames = [];
+      for (var i = 0; i < spritesheet._frameKeys.length; i++) {
+          frames.push(PIXI.Texture.from(spritesheet._frameKeys[i]));
+      }
+
+      super(frames);
+      this.animationSpeed=data.Animation.Speed;
+      this.play();
     }
 
     this.data=data;
@@ -76,6 +83,8 @@ export class Objeto extends PIXI.Sprite{
     game.selectedObject=false;
     game.player.action=null;
     this.use=InventoryUse;
+    //If it's an animated object we stop its animation
+    if(this.playing) this.stop();
   }
 };
 
