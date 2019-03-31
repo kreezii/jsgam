@@ -31,8 +31,8 @@ export class Player{
     move(newPosition){
       if(!this.tween.active)
       {
-        game.inventory.hide();
-        game.textField.hide();
+        //game.inventory.hide();
+        //game.textField.hide();
         //var newPosition=event.data.getLocalPosition(game.app.stage);
         let obstacles=game.scenes[game.currentScene].data.Obstacles;
         let walkingArea=game.scenes[game.currentScene].data.WalkArea;
@@ -61,12 +61,21 @@ export class Player{
     }
 
     say(textToSay){
+      this.lock=true;
       game.textField.Field.text=textToSay;
       game.textField.Field.tint=0xFFFFFF;
       game.textField.show();
-      this.animate(this.animations.Say,3);
+      this.animate(this.animations.Say);
       if(game.timeout) game.timeout.clear();
-      game.timeout = PIXI.setTimeout(game.settings.TextSpeed,function(){game.textField.hide();})
+      game.timeout = PIXI.setTimeout(game.settings.Text.Timeout,SayEnd);
+    }
+
+    take(){
+      this.animate(this.animations.Take,1);
+    }
+
+    use(){
+      this.animate(this.animations.Use,1);
     }
 
     stand(){
@@ -78,7 +87,6 @@ export class Player{
 
     animate(animation,times){
       this.sprite.animation.fadeIn(animation,0.25,times);
-      //this.state=animation;
     }
 
     show(){
@@ -90,37 +98,44 @@ export class Player{
     }
 };
 
+//Executed when player is on the destination point
 function tweenEnd(){
   if(game.selectedObject!=null){
 
     let currentObject=game.objects[game.selectedObject];
+
     //Check the player is facing the object, ignore if it's a door
     if(!currentObject.door){
       if(game.player.sprite.x<currentObject.x) game.player.sprite.armature.flipX=false;
       else game.player.sprite.armature.flipX=true;
     }
+
     if(game.player.action=="use"){
-      game.player.animate(game.player.animations.Use,1);
+      game.player.use();
     }else if(game.player.action=="take"){
-      game.player.animate(game.player.animations.Take,1);
+      game.player.take();
     }else if(game.player.action=="look"){
-    //  game.player.animate("speak",3);
       game.player.say(currentObject.data.Description[game.mainLanguage]);
     }
+
   }else if(game.selectedCharacter!=null){
+
     let currentCharacter=game.characters[game.selectedCharacter].sprite;
     if(game.player.sprite.x<currentCharacter.x) game.player.sprite.armature.flipX=false;
     else game.player.sprite.armature.flipX=true;
 
     if(game.player.action=="look"){
-//      game.player.animate("speak",3);
       game.player.say(currentCharacter.data.Description[game.mainLanguage]);
     }else if(game.player.action=="talk"){
       game.currentDialogue.start();
-    //  game.player.animate("speak",3);
-    //  game.player.say(game.currentDialogue.data.Intro[game.mainLanguage]);
     }
+
   }else{
      game.player.stand();
    }
+}
+
+function SayEnd(){
+  game.textField.hide();
+  game.player.stand();
 }

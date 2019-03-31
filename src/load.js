@@ -10,6 +10,7 @@ import {Player} from './classes/player.js';
 import {Puzzle} from './classes/puzzle.js';
 import {Inventory} from './classes/inventory.js';
 import {TextField} from './classes/text.js'
+import localForage from 'localforage';
 
 //Called when a file is loaded
 function loadingProgress(loader,resources){
@@ -19,9 +20,10 @@ function loadingProgress(loader,resources){
 
 //Load JSON configuration files
 function loadConfigFiles(loader,resources){
-  let vidFiles;
-  let sndFiles;
-  let animFiles;
+  let vidFiles=null;
+  let sndFiles=null;
+  let animFiles=null;
+  let bgFiles=null;
 
   game.loadingText.visible=false;
   //Temporary store the config files
@@ -59,6 +61,8 @@ function loadConfigFiles(loader,resources){
       vidFiles=resources[game.files[i]].data.Vids;
     }else if(resources[game.files[i]].data.Animations){
       animFiles=resources[game.files[i]].data.Animations;
+    }else if(resources[game.files[i]].data.Backgrounds){
+      bgFiles=resources[game.files[i]].data.Backgrounds;
     }
   }
 
@@ -79,17 +83,30 @@ function loadConfigFiles(loader,resources){
   PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
 
   //Load Vids
-  let vidSrc=vidFiles;
-  for(let i=0;i<vidSrc.length;i++){
-    let tmpVid=vidSrc[i].Src;
-    if(tmpVid!="") PIXI.loader.add(vidSrc[i].Name,tmpVid);
+  if(vidFiles!=null)
+  {
+    for(let i=0;i<vidFiles.length;i++){
+      let tmpVid=vidFiles[i].Src;
+      if(tmpVid!="") PIXI.loader.add(vidFiles[i].Name,tmpVid);
+    }
   }
 
   //Load Animations
-  let animSrc=animFiles;
-  for(let i=0;i<animSrc.length;i++){
-    let tmpAnim=animSrc[i].Src;
-    if(tmpAnim!="") PIXI.loader.add(animSrc[i].Name,tmpAnim);
+  if(animFiles!=null)
+  {
+    if(animFiles)
+    for(let i=0;i<animFiles.length;i++){
+      let tmpAnim=animFiles[i].Src;
+      if(tmpAnim!="") PIXI.loader.add(animFiles[i].Name,tmpAnim);
+    }
+  }
+
+  //Load Backgrounds
+  if(bgFiles!=null){
+    for(let i=0;i<bgFiles.length;i++){
+      let tmpBg=bgFiles[i].Src;
+      if(tmpBg!="") PIXI.loader.add(bgFiles[i].Name,tmpBg);
+    }
   }
 
   //Load Player resources
@@ -125,25 +142,25 @@ function buildGame(loader,resources){
 
   //Build objects
   for(let i=0;i<game.objectsJSON.length;i++){
-    game.objects[i]=new Objeto(game.objectsJSON[i],i);
+    game.objects[i]=new Objeto(game.objectsJSON[i]);
   }
   delete game.objectsJSON;
 
   //Build puzzles
   for(let i=0;i<game.puzzlesJSON.length;i++){
-    game.puzzles[i]=new Puzzle(game.puzzlesJSON[i],i);
+    game.puzzles[i]=new Puzzle(game.puzzlesJSON[i]);
   }
   delete game.puzzlesJSON;
 
   //Build dialogues
   for(let i=0;i<game.dialoguesJSON.length;i++){
-    game.dialogues[i]=new Dialogue(game.dialoguesJSON[i],i);
+    game.dialogues[i]=new Dialogue(game.dialoguesJSON[i]);
   }
   delete game.dialoguesJSON;
 
   //Build characters
   for(let i=0;i<game.charactersJSON.length;i++){
-    game.characters[i]=new Character(game.charactersJSON[i],i);
+    game.characters[i]=new Character(game.charactersJSON[i]);
   }
   delete game.charactersJSON;
 
@@ -153,14 +170,14 @@ function buildGame(loader,resources){
 
   //Build Scenes
   for(let i=0;i<game.scenesJSON.length;i++){
-    game.scenes[i]=new Scene(game.scenesJSON[i],i);
+    game.scenes[i]=new Scene(game.scenesJSON[i]);
     game.app.stage.addChild(game.scenes[i].container);
   }
   delete game.scenesJSON;
 
   //Build CutScenes
   for(let i=0;i<game.cutscenesJSON.length;i++){
-    game.cutscenes[i]=new CutScene(game.cutscenesJSON[i],i);
+    game.cutscenes[i]=new CutScene(game.cutscenesJSON[i]);
     game.app.stage.addChild(game.cutscenes[i].container);
   }
   delete game.cutscenesJSON;
@@ -175,6 +192,22 @@ function buildGame(loader,resources){
   game.ticker=new PIXI.ticker.Ticker();
   game.ticker.add(deltaTime=>game.loop(deltaTime));
   game.ticker.start();
+
+  //Load game progress if it exists
+  localForage.getItem('JSGAM_Storage').then(function(value) {
+      // This code runs once the value has been loaded
+      // from the offline store.
+      if(value!=null){
+        game.progress=value;
+        game.titleScreen.menu.enableContinue();
+        //Language
+        game.mainLanguage=value.language;
+        game.titleScreen.options.setLanguage();
+      }
+  }).catch(function(err) {
+      // This code runs if there were any errors
+      console.log(err);
+  });
 
   //Launch the game
   game.start();

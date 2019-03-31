@@ -1,12 +1,11 @@
 import {game} from '../game.js';
 
 export class CutScene{
-  constructor(data,index){
+  constructor(data){
     this.container=new PIXI.Container();
     this.container.visible=false;
     this.sequenceIndex=0;
     this.data=data;
-    this.index=index;
     this.played=false;
 
     if(data.Video){

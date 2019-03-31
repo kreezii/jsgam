@@ -12,7 +12,6 @@ import './version.js';
 
 export * from './game.js';
 
-//Testing area (TEMPORAL)
 //////////////////////////////////
-import '../demo/index.js';
+//import '../demo/index.js';
 //////////////////////////////////

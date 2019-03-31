@@ -1,11 +1,14 @@
 import * as filters from 'pixi-filters';
-import localforage from 'localforage';
+import localForage from 'localforage';
 
 export class Core{
-  constructor(width,height,objectID){
+  constructor(config){
     this.files=[];
+    this.settings=[];
+
     this.logoScreen;
     this.titleScreen;
+
     this.scenes=[];
     this.cutscenes=[];
     this.objects=[];
@@ -13,9 +16,7 @@ export class Core{
     this.dialogues=[];
     this.puzzles=[];
     this.sounds=[];
-    this.settings=[];
-    this.mainLanguage=0;
-    this.timeout;
+
     this.playerJSON=[];
     this.scenesJSON=[];
     this.cutscenesJSON=[];
@@ -24,22 +25,35 @@ export class Core{
     this.dialoguesJSON=[];
     this.puzzlesJSON=[];
     this.creditsJSON=[];
+
     this.player={};
     this.playerTween;
+
+    this.mainLanguage=0;
     this.currentScene=null;
     this.currentCutscene=null;
     this.currentPuzzle=null;
     this.currentDialogue=null;
     this.selectedObject=null;
     this.selectedCharacter=null;
+
     this.inventory;
     this.inventoryBack;
     this.inventoryIcon;
 
+    this.timeout;
+    this.progress={
+      puzzles:[]
+    };
 
-    this.gameProgress={};
+    this.width=config.width;
+    this.height=config.height;
+    this.parent=null;
+    if(config.parent!=undefined) this.parent=config.parent;
+    this.autoResize=true;
+    if(config.autoResize!=undefined) this.autoResize=config.autoResize;
 
-    this.app=new PIXI.Application(width,height,{autoResize: true,resolution: devicePixelRatio});
+    this.app=new PIXI.Application(config.width,config.height,{autoResize: true,resolution: devicePixelRatio});
     this.OldFimFilter=new filters.OldFilmFilter();
     this.GodRayFilter=new filters.GodrayFilter();
     this.ReflectionFilter=new filters.ReflectionFilter({
@@ -65,19 +79,16 @@ export class Core{
     //this.layer.group.enableSort = true;
     this.app.stage.group.enableSort = true;
 
-    this.width=width;
-    this.height=height;
-
     this.loadingText=new PIXI.Text("0 %", {
           fontFamily: 'Arial',
-          fontSize: 35,
+          fontSize: 50,
           fill: 'white',
           align: 'left'
     });
     this.textField;
 
     document.body.appendChild(this.app.view);
-    //document.getElementById('frame').appendChild(this.app.view);
+    //document.getElementById(config.parent).appendChild(this.app.view);
 
     this.app.stage.addChild(this.layer);//Z-order
     this.app.stage.addChild(this.layeronTop);//Z-order
@@ -94,10 +105,6 @@ export class Core{
     }
     //return this.scenes[numberScene];
     return numberScene;
-  }
-
-  getCurrentScene(){
-    return this.scenes[this.currentScene];
   }
 
   searchCutScene(nameScene){
@@ -146,6 +153,17 @@ export class Core{
     return numberCharacter;
   }
 
+  searchPuzzle(namePuzzle){
+    let numberPuzzle;
+    for(let i=0;i<this.puzzles.length;i++){
+      if(namePuzzle==this.puzzles[i].data.Name){
+        numberPuzzle=i;
+        break;
+      }
+    }
+    return numberPuzzle;
+  }
+
   checkFilters(){
     let activeFilters=this.scenes[this.currentScene].data.Filters;
     let filtersList=[];
@@ -175,10 +193,7 @@ export class Core{
         this.objects[this.selectedObject].take();
         this.player.stand();
       }else if(currentPlayerAnimation==this.player.animations.Use && animationProgress.isCompleted){
-        if(this.objects[this.selectedObject].use) this.objects[this.selectedObject].use();
-        this.player.stand();
-      }else if(currentPlayerAnimation==this.player.animations.Say && animationProgress.isCompleted){
-        this.player.stand();
+        if(this.selectedObject) this.objects[this.selectedObject].use();
       }
     }
 
@@ -198,7 +213,6 @@ export class Core{
     {
       if(this.currentScene!=null) this.scenes[this.currentScene].hide();
       this.currentScene=nextScene;
-      this.saveGameProgress();
     }
 
     this.player.stand();
@@ -223,7 +237,7 @@ export class Core{
     }else{
       this.scenes[this.currentScene].show();
     }
-
+    this.saveAdventure();
   }
 
   //Check if an object is part of a puzzle
@@ -232,8 +246,6 @@ export class Core{
     for(let i=0;i<this.puzzles.length;i++){
       if(nameObject==this.puzzles[i].data.Source ||
          nameObject==this.puzzles[i].data.Target){
-           //found=this.puzzles[i];
-           //console.log(this.puzzles[i].checkCollision())
            if(this.puzzles[i].checkCollision()) found=this.puzzles[i];
            break;
       }
@@ -252,17 +264,56 @@ export class Core{
     this.logoScreen.show();
   }
 
-  saveGameProgress(){
-    this.gameProgress.currentScene=this.currentScene;
-    localforage.setItem('key', 'this.currentScene');
-  //  console.log(this.gameProgress)
-  //  console.log(localforage.getItem('key'))
+  //Save adventure progress
+  saveAdventure(){
+    let i;
+    let puzzlesSolved=[];
+
+    for(let i=0;i<this.puzzles.length;i++){
+      if(this.puzzles[i].solved)
+        puzzlesSolved.push(this.puzzles[i].data.Name)
+    }
+    //
+    this.progress={
+      language:this.mainLanguage,
+      latestScene:this.currentScene,
+      playerPos:[this.player.sprite.x,this.player.sprite.y],
+      inventory:this.inventory.objects,
+      puzzles:puzzlesSolved
+    }
+
+    //Save object to local storage
+    localForage.setItem('JSGAM_Storage', this.progress);
+  }
+
+  //Load adventure progress
+  loadAdventure(){
+    //Set latest scene
+    this.currentScene=this.progress.latestScene;
+    //Load objects in inventory
+    for(let i=0;i<this.progress.inventory.length;i++){
+        this.objects[this.searchObject(this.progress.inventory[i])].take();
+    }
+
+    //Resolve puzzles already done
+    for(let i=0;i<this.progress.puzzles.length;i++){
+      let puzzleIndex=this.searchPuzzle(this.progress.puzzles[i]);
+      this.puzzles[puzzleIndex].resolvePuzzle();
+    }
+  }
+
+  //Clear local storage
+  deleteAdventure(){
+    localForage.clear();
   }
 
   //Resizes the game view
   resize() {
-    var w = window.innerWidth * 0.95;
-    var h = window.innerHeight * 0.95;
+    //var w = window.innerWidth * 0.95;
+    //var h = window.innerHeight * 0.95;
+    //if(this.parent!=null)
+    var w = window.innerWidth * window.devicePixelRatio;
+    var h = window.innerHeight * window.devicePixelRatio;
 
     var ratio = Math.min( w/this.width,  h/this.height);
     this.app.renderer.resize(this.width*ratio,this.height*ratio);

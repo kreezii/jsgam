@@ -1,6 +1,6 @@
 {
   "name": "jsgam",
-  "version": "5.0.1pre-alpha",
+  "version": "5.0.0alpha",
   "description": "JavaScript Graphic Adventure Maker",
   "author": "",
   "main": "./dist/jsgam.js",

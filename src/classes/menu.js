@@ -13,7 +13,7 @@ export class Menu{
     this.credits=new TextButton(game.settings.Text.Credits[game.mainLanguage]);
     this.credits.on('pointerup', ShowCredits);
 
-    //Values by default until save progress is implemented
+    //By default disabled
     this.continue.alpha=0.5;
     this.continue.interactive=false;
 
@@ -36,6 +36,7 @@ export class Menu{
     this.options.y=this.continue.y+this.continue.height*1.5;
     this.help.y=this.options.y+this.options.height*1.5;
     this.credits.y=this.help.y+this.help.height*1.5;
+    this.resize();
   }
 
   update(){
@@ -45,6 +46,11 @@ export class Menu{
     this.credits.text=game.settings.Text.Credits[game.mainLanguage];
   }
 
+  resize(){
+    let ratio = Math.min( game.width/this.container.width,  game.height/this.container.height);
+    this.container.scale.set(ratio*0.95);
+  }
+
   hide(){
     this.container.visible=false;
   }
@@ -52,9 +58,16 @@ export class Menu{
   show(){
     this.container.visible=true;
   }
+
+  enableContinue(){
+    this.continue.alpha=1;
+    this.continue.interactive=true;
+    this.continue.on('pointerup',Continue);
+  }
 }
 
 function StartAdventure(){
+  game.deleteAdventure();
   game.titleScreen.container.visible=false;
   PIXI.sound.stopAll();
   game.inventory.icon.visible=true;
@@ -62,7 +75,11 @@ function StartAdventure(){
 }
 
 function Continue(){
-
+  game.loadAdventure();
+  game.titleScreen.container.visible=false;
+  PIXI.sound.stopAll();
+  game.inventory.icon.visible=true;
+  game.changeScene(game.scenes[game.currentScene].data.Name,game.progress.playerPos);
 }
 
 function ShowOptions(){

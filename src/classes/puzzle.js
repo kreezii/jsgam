@@ -2,9 +2,9 @@ import {game} from '../game.js';
 import {collision} from '../collisions.js';
 
 export class Puzzle{
-  constructor(data,index){
+  constructor(data){
     this.data=data;
-    this.index=index;
+    this.solved=false;
   }
 
   checkCollision(){
@@ -29,16 +29,19 @@ export class Puzzle{
     }
 
     if(this.data.Say){
-      game.player.animate("speak",3);
-      game.player.say(this.data.Say[game.mainLanguage]);
+      if(game.player.sprite.visible) game.player.say(this.data.Say[game.mainLanguage]);
+    }else{
+      if(game.player.sprite.visible) game.player.stand();
     }
 
     if(this.data.Destroy){
       game.inventory.remove(this.data.Source);
+      game.objects[game.searchObject(this.data.Source)].hide();
     }
 
     if(this.data.DestroyTarget){
       game.inventory.remove(this.data.Target);
+      game.objects[game.searchObject(this.data.Target)].hide();
     }
 
     if(this.data.Combine) this.createInventoryObject(this.data.Combine);
@@ -46,13 +49,10 @@ export class Puzzle{
 
     if(this.data.Create){
       let objectIndex=game.searchObject(this.data.Create);
-      //console.log(objectIndex)
       if(objectIndex){
         game.scenes[game.currentScene].container.addChild(game.objects[objectIndex]);}
-
-        //console.log(game.scenes[game.currentScene].data.Name)
     }
-
+    this.solved=true;
   }
 
   createDoor(target){
@@ -69,13 +69,13 @@ export class Puzzle{
   }
 }
 function onDoorTouch(event){
-  game.player.action="use";
   if(!game.player.lock)
   {
+    game.player.action="use";
     let moveTo={x:this.x,y:this.y};
     if(this.data.Area) moveTo=event.data.getLocalPosition(game.app.stage);
     game.player.lock=true;
-    game.selectedObject=this.index;
+    game.selectedObject=game.searchObject(this.data.Name);
     game.player.move(moveTo);
   }
 }

@@ -1,14 +1,29 @@
 import {game} from '../game.js';
 import {boxesIntersect,collision} from '../collisions.js';
 
+/**
+ * Game Objects.
+ * @constructor
+ * @param {object} data - Data from JSON file with the object's config.
+ */
+
+
 export class Objeto extends PIXI.extras.AnimatedSprite{
-  constructor(data,index){
+  constructor(data){
+
     if(data.Texture){
+      //Generate a static object from a texture
       super([PIXI.Texture.from(data.Texture)],false);
+
     }else if(data.Area){
+
+      //For invisible objects
       super([PIXI.Texture.EMPTY],false);
       this.hitArea=new PIXI.Polygon(data.Area);
+
     }else if(data.Animation){
+
+      //Animated objects
       let spritesheet=PIXI.loader.resources[data.Animation.Name].spritesheet;
 
       let frames = [];
@@ -22,12 +37,13 @@ export class Objeto extends PIXI.extras.AnimatedSprite{
     }
 
     this.data=data;
-    this.index=index;
 
+    //Position of the object in the screen
     if(data.Position){
       this.x=data.Position[0];
       this.y=data.Position[1];
     }
+
     if(data.Size){
       this.scale.set(data.Size)
     }
@@ -67,34 +83,42 @@ export class Objeto extends PIXI.extras.AnimatedSprite{
     }
   }
 
+  hide(){
+    this.visible=false;
+  }
+
+  show(){
+    this.visible=true;
+  }
   take(){
-    game.inventory.container.addChild(this);
-    game.inventory.objects.push(this);
-    this.parentLayer=game.layerUI;
-    this.x=0;
-    this.y=0;
+    this.show();
     this.removeAllListeners();
     this.on('pointerdown', onDragStart)
         .on('pointerup', onInventoryEnd).on('pointerup', onDragEnd)
         .on('pointerupoutside', onInventoryEnd).on('pointerupoutside', onDragEnd)
         .on('pointermove', onDragMove).on('pointermove', onInventoryMove)
         .on('pointertap',onInventoryTap);
-    game.inventory.update();
-    game.selectedObject=false;
-    game.player.action=null;
     this.use=InventoryUse;
     //If it's an animated object we stop its animation
     if(this.playing) this.stop();
+
+    this.parentLayer=game.layerUI;
+    game.inventory.add(this.data.Name);
+
+    game.selectedObject=false;
+    game.player.action=null;
   }
 };
 
 function onDoorTouch(event){
+  if(!game.player.lock){
   game.player.action="use";
   let moveTo={x:this.x,y:this.y};
   if(this.data.Area) moveTo=event.data.getLocalPosition(game.app.stage);
-  game.player.lock=true;
-  game.selectedObject=this.index;
+  //game.player.lock=true;
+  game.selectedObject=game.searchObject(this.data.Name);
   game.player.move(moveTo);
+}
 }
 
 function ChangeRoom(){
@@ -108,13 +132,13 @@ function onTap(event){
     game.player.action="look";
     let moveTo={x:this.x,y:this.y};
     if(this.data.Area) moveTo=event.data.getLocalPosition(game.app.stage);
-    game.player.lock=true;
-    game.selectedObject=this.index;
+    //game.player.lock=true;
+    game.selectedObject=game.searchObject(this.data.Name);;
     game.player.move(moveTo);
   }
 }
 
-//Drag the object while It is in the Inventory
+//Drag the object while It is in the inventory
 function onDragStart(event) {
   // we want to track the movement of this particular touch
   this.posX = this.x;
@@ -125,6 +149,7 @@ function onDragStart(event) {
   this.moved = false;
 }
 
+//Drag ends while the object is inside the inventory
 function onDragEnd() {
   this.alpha = 1;
   this.dragging = false;
@@ -135,13 +160,17 @@ function onDragEnd() {
 function onInventoryEnd(event){
   if(this.interaction && this.moved){
     game.checkPuzzle(this.data.Name);
-    game.player.lock=true;
+    //game.player.lock=true;
     game.player.action="use";
-    game.selectedObject=this.index;
-    game.player.move(event.data.getLocalPosition(game.app.stage));
+    game.selectedObject=game.searchObject(this.data.Name);
     this.x = this.posX;
     this.y = this.posY;
     this.setParent(game.inventory.container);
+    if(!game.inventory.container.visible){
+      game.player.move(event.data.getLocalPosition(game.app.stage));
+    }else{
+      InventoryUse();
+    }
   }
 
 }
@@ -157,9 +186,9 @@ function onUseEnd(event){
   if(this.interaction && this.moved){
     this.holding=0;
     game.checkPuzzle(this.data.Name);
-    game.player.lock=true;
+    //game.player.lock=true;
     game.player.action="use";
-    game.selectedObject=this.index;
+    game.selectedObject=game.searchObject(this.data.Name);;
     game.player.move({x:this.x,y:this.y});
   }
 
@@ -199,10 +228,10 @@ function onTakeStart(event) {
 
 function onTakeEnd() {
   if(this.interaction){
-    if(collision(this,game.inventory.icon)){
+    if(collision(this,game.inventory.icon) && !game.player.lock){
       game.player.action="take";
-      game.player.lock=true;
-      game.selectedObject=this.index;
+    //  game.player.lock=true;
+      game.selectedObject=game.searchObject(this.data.Name);
       game.player.move({x:this.posX,y:this.posY});
     }
     this.setParent(this.oldParent);

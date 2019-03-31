@@ -2,9 +2,8 @@ import {game} from '../game.js';
 import Walkable from 'walkable';
 
 export class Scene{
-  constructor(data,index){
+  constructor(data){
     this.data=data;
-    this.index=index;
     this.container=new PIXI.Container();
     this.container.visible=false;
     this.background=new PIXI.Sprite(PIXI.Texture.from(data.Background));
@@ -79,6 +78,8 @@ export class Scene{
 
 function movePlayer(event){
   if(!game.player.lock){
+    game.inventory.hide();
+    game.textField.hide();
     game.player.action=null;
     game.selectedObject=null;
     game.selectedCharacter=null;

@@ -95,16 +95,14 @@ export class TextField{
     hideAvatar(){
       this.CharacterPic.visible=false;
     }
+
 }
 
 export class TextButton extends PIXI.Text{
     constructor(text){
       super(text,game.settings.ButtonTextStyle);
-    //  this.index;
-    //  this.times=0;
       this.interactive=true;
       this.buttonMode=true;
-    //  this.anchor.set(0.5);
     }
 }
 

@@ -8,6 +8,7 @@ const dbfactory=dragonBones.PixiFactory.factory;
 //Initialize the game
 function init(width,height,objectID){
   game=new Core(width,height,objectID);
+  if(game.autoResize) window.addEventListener('resize', function(){game.resize();});
 };
 
 function loadDefaults(){

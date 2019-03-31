@@ -2,9 +2,8 @@ import {game} from '../game.js';
 
 //Branches dialogue system
 export class Dialogue{
-  constructor(data,index){
+  constructor(data){
     this.data=data;
-    this.index=index;
     this.timeout;
     this.firstTime=true;
     this.currentBranch=this.searchBranch(data.DefaultBranch);
@@ -70,6 +69,7 @@ export class Dialogue{
     }
     if(choiceSelected.Link) this.currentBranch=this.searchBranch(choiceSelected.Link);
     else if(choiceSelected.GiveObject){
+      choiceSelected.Repeat=false;
       game.objects[game.searchObject(choiceSelected.GiveObject)].take();
     }
     this.choice=null;

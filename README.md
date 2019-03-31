@@ -1,3 +1,5 @@
+
+
 # JSGAM
 JavaScript Adventure Game Maker is a game engine inspired on classic graphical point-and-click adventure games but adapted for new times.
 
@@ -13,20 +15,23 @@ What can do the engine at the current stage?
 * Use and combine objects
 * Change between rooms
 * Add filters to the scene
-* Dialogues with non-playable characters
+* Basic dialogues with non-playable characters
 * Music and Sounds
 * Credits screen
 * Cut-scenes
 * Animated objects
+* Save/Load the game progress
 
 ### TO-DO
 
 In order of priority.
-* Save/Load the game progress (on progress...)
 * Documentation
-* Voices (optional)
+* Player depth while walk
+* Improve dialogue system
+* 'Hunt' and fix bugs
+* ~~Voices~~
 
-Is it ready for a short adventure? **Yes, but...** needs to be documented, probably with unexpected (and funny) bugs and cannot save game progress yet.
+Is it ready for a short adventure? **Yes, but...** needs to be documented...
 
 ## Author
 * **R.Vañes**
@@ -35,6 +40,7 @@ Is it ready for a short adventure? **Yes, but...** needs to be documented, proba
 
 * [PixiJS](http://www.pixijs.com/)
 * [DragonBones](http://dragonbones.com/)
+* [LocalForage](https://github.com/localForage/localForage)
 * [Pixi-Tween](https://github.com/k8w/pixi-tween)
 * [Pixi-Layers](https://github.com/pixijs/pixi-display)
 * [Pixi-Sound](https://github.com/pixijs/pixi-sound)

@@ -22,11 +22,14 @@ export class Inventory{
     }
 
     show(){
+      this.update();
       this.container.visible=true;
+      game.player.lock=true;
     }
 
     hide(){
       this.container.visible=false;
+      game.player.lock=false;
     }
 
     showIcon(){
@@ -53,34 +56,37 @@ export class Inventory{
       }
     }
 
-    remove(nameObject)
+    add(nameObject)
     {
-      let objectToRemove=this.searchObject(nameObject);
-      //Remove it if it's inside inventory
-      if(objectToRemove) this.objects.splice(objectToRemove,1);
-      game.objects[game.searchObject(nameObject)].destroy();
-      this.update();
+      //Make sure object isn't inside the inventory already
+      if(!this.objects.includes(nameObject)){
+        this.objects.push(nameObject);
+        this.container.addChild(game.objects[game.searchObject(nameObject)]);
+        this.update();
+      }
     }
 
-    searchObject(nameObject){
-      let numberObject;
-      for(let i=0;i<this.objects.length;i++){
-        if(nameObject==this.objects[i].data.Name){
-
-          numberObject=i;
-          break;
-        }
+    remove(nameObject)
+    {
+      //Check if object is already in inventory
+      if(this.objects.includes(nameObject)){
+        this.objects.splice(this.objects.indexOf(nameObject),1);
+        this.update();
       }
-      return numberObject;
     }
 
     //Reorder inventory objects
     update(){
-      for(let i=0;i<this.objects.length;i++){
-        this.objects[i].width=this.container.width/5-this.container.width*0.05;
-        this.objects[i].height=this.container.height/5-this.container.height*0.05;
-        this.objects[i].x = ((i % 5) * this.container.width/5+this.border-i)+this.objects[i].width/2;
-        this.objects[i].y = (Math.floor(i / 5) * this.container.height/5+this.border-i)+this.objects[i].height;
+      let i;
+      let numObjs=this.objects.length;
+      for(i=0;i<numObjs;i++){
+        let tmpObj=game.objects[game.searchObject(this.objects[i])];
+        tmpObj.width=this.container.width/5-this.container.width*0.05;
+        tmpObj.height=this.container.height/5-this.container.height*0.05;
+        tmpObj.x = ((i % 5) * this.container.width/5+this.border-i)+tmpObj.width/2;
+        tmpObj.y = (Math.floor(i / 5) * this.container.height/5+this.border-i)+tmpObj.height;
+        this.container.width=this.background.width;
+        this.container.height=this.background.height;
       }
     }
 };

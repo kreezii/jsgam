@@ -25,6 +25,17 @@ export class Options{
     this.container.pivot.x = this.container.width / 2;
     this.container.pivot.y = this.container.height / 2;
   }
+
+  setLanguage(){
+    let i;
+    for(i=0;i<this.languages.length;i++)
+    {
+      this.languages[i].tint="0xFFFFFF";
+    }
+    game.titleScreen.options.languages[game.mainLanguage].tint="0xFF0000";
+    game.titleScreen.menu.update();
+    game.titleScreen.credits.update();
+  }
 }
 
 function SelectLanguage(){
