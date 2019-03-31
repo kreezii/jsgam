@@ -1,4 +1,4 @@
-
+![](https://raw.githubusercontent.com/kreezii/jsgam/master/logo/jsgamLogo.png)
 
 # JSGAM
 JavaScript Adventure Game Maker is a game engine inspired on classic graphical point-and-click adventure games but adapted for new times.
