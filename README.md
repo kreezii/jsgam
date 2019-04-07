@@ -21,14 +21,13 @@ What can do the engine at the current stage?
 * Cut-scenes
 * Animated objects
 * Save/Load the game progress
+* Player depth while walk
 
 ### TO-DO
 
 In order of priority.
-* Documentation
-* Player depth while walk
-* Improve dialogue system
-* 'Hunt' and fix bugs
+* Documentation (in progress...)
+* Testing
 * ~~Voices~~
 
 Is it ready for a short adventure? **Yes, but...** needs to be documented...

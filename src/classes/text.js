@@ -54,6 +54,7 @@ export class TextField{
     show(){
       this.Background.height=this.Field.height;
       if(this.CharacterPic.height>this.Field.height && this.CharacterPic.visible) this.Background.height=this.CharacterPic.height;
+      //if(this.container.width>game.width) this.resize();
       this.container.visible=true;
       this.Field.visible=true;
       this.choicesContainer.visible=false;

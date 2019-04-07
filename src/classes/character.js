@@ -7,7 +7,7 @@ export class Character{
       this.sprite = dbfactory.buildArmatureDisplay(data.Name);
       this.tween=PIXI.tweenManager.createTween(this.sprite);
       this.sprite.data=data;
-      this.sprite.animation.play(data.Animation);
+      this.sprite.animation.play(data.Animations.Stand);
       this.sprite.x=data.Position[0];
       this.sprite.y=data.Position[1];
       if(data.Size) this.sprite.scale.set(data.Size);
@@ -17,11 +17,25 @@ export class Character{
       this.sprite.on('pointertap',interactNPC);
     }
 
-/*    say(textToSay){
+    say(textToSay){
+      game.textField.CharacterPic.texture=PIXI.Texture.from(this.sprite.data.Avatar);
+      game.textField.showAvatar();
+      game.textField.Field.tint=game.settings.ColorNPC;
       game.textField.Field.text=textToSay;
+      this.animate(this.sprite.data.Animations.Say);
       game.textField.show();
-      this.animate("speak",3);
-    }*/
+    }
+
+    //Same as say function but shows some text and hide the text box
+    talk(textToSay){
+      this.say(textToSay);
+      if(game.timeout) game.timeout.clear();
+      game.timeout = PIXI.setTimeout(game.settings.Text.Timeout,SayTalk);
+    }
+
+    stand(){
+      this.animate(this.sprite.data.Animations.Stand);
+    }
 
     animate(animation,times){
       this.sprite.animation.fadeIn(animation,0.25,times);
@@ -43,4 +57,13 @@ function interactNPC(){
     else if(game.player.sprite.x>this.x) moveTo.x = this.x+bounds.width;
     game.player.move(moveTo);
   }
+}
+
+function SayTalk(){
+  if(game.selectedCharacter!=null) game.characters[game.selectedCharacter].stand();
+  if(game.player.lock) game.player.stand();
+  game.timeout.clear();
+  game.timeout=null;
+  game.textField.hide();
+  game.selectedCharacter=null;
 }

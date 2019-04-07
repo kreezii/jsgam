@@ -63,9 +63,13 @@ export class Player{
     say(textToSay){
       this.lock=true;
       game.textField.Field.text=textToSay;
-      game.textField.Field.tint=0xFFFFFF;
+      game.textField.Field.tint=game.settings.Text.ColorPlayer;
       game.textField.show();
       this.animate(this.animations.Say);
+    }
+
+    look(textToSay){
+      this.say(textToSay);
       if(game.timeout) game.timeout.clear();
       game.timeout = PIXI.setTimeout(game.settings.Text.Timeout,SayEnd);
     }
@@ -115,7 +119,7 @@ function tweenEnd(){
     }else if(game.player.action=="take"){
       game.player.take();
     }else if(game.player.action=="look"){
-      game.player.say(currentObject.data.Description[game.mainLanguage]);
+      game.player.look(currentObject.data.Description[game.mainLanguage]);
     }
 
   }else if(game.selectedCharacter!=null){
@@ -136,6 +140,8 @@ function tweenEnd(){
 }
 
 function SayEnd(){
+  game.timeout.clear();
+  game.timeout=null;
   game.textField.hide();
   game.player.stand();
 }

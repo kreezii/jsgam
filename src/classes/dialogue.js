@@ -4,7 +4,7 @@ import {game} from '../game.js';
 export class Dialogue{
   constructor(data){
     this.data=data;
-    this.timeout;
+    this.timeout=null;
     this.firstTime=true;
     this.currentBranch=this.searchBranch(data.DefaultBranch);
     this.choice=null;
@@ -15,6 +15,10 @@ export class Dialogue{
     this.firstTime=false;
     game.player.stand();
     game.player.lock=true;
+    if(game.timeout){
+      game.timeout.clear();
+      game.timeout=null;
+    }
     if(this.timeout) this.timeout.clear();
     this.timeout = PIXI.setTimeout(this.data.Speed,DialogueTimeout);
     game.textField.show();
@@ -27,7 +31,10 @@ export class Dialogue{
       let choiceSelected=this.data.Branches[this.currentBranch].Choices[this.choice];
       this.PlayerSay(choiceSelected.Text[game.mainLanguage]);
     }else{
-      if(game.timeout)  game.timeout.clear();
+      if(game.timeout){
+        game.timeout.clear();
+        game.timeout=null;
+      }
       if(this.timeout) this.timeout.clear();
       this.checkChoices();
       game.textField.showChoices();
@@ -62,7 +69,6 @@ export class Dialogue{
   answer(){
     let choiceSelected=this.data.Branches[this.currentBranch].Choices[this.choice];
     this.NPCSay(choiceSelected.Answer[game.mainLanguage]);
-    this.timeout = PIXI.setTimeout(this.data.Speed,DialogueTimeout);
     if(choiceSelected.EndDialogue){
       if(this.timeout) this.timeout.clear();
       this.timeout = PIXI.setTimeout(this.data.Speed,EndDialogue);
@@ -79,34 +85,31 @@ export class Dialogue{
   end(){
     game.textField.hideAvatar();
     game.textField.hide();
-    if(this.timeout) this.timeout.clear();
+    if(this.timeout){
+      this.timeout.clear();
+      this.timeout=null;
+    }
     this.choice=null;
-    game.currentDialogue=false;
+    game.currentDialogue=null;
     game.player.stand();
+    game.characters[game.selectedCharacter].stand();
+    game.selectedCharacter=null;
   }
 
   PlayerSay(textToSay){
-    game.textField.Field.tint=0xFFFFFF;
-    game.textField.Field.text=textToSay;
-    game.player.animate("speak",3);
-    game.textField.show();
-  //  game.player.say(textToSay);
+    game.player.say(textToSay);
     this.timeout = PIXI.setTimeout(this.data.Speed,Answer);
   }
 
   NPCSay(textToSay){
-    game.textField.CharacterPic.texture=PIXI.Texture.from(game.characters[game.selectedCharacter].sprite.data.Avatar);
-    game.textField.showAvatar();
-    game.textField.Field.tint=0xCCFFD9;
-    game.textField.Field.text=textToSay;
-    //game.characters[game.selectedCharacter].animate("speak",3);
-    game.textField.show();
-
+    game.characters[game.selectedCharacter].say(textToSay);
+    this.timeout = PIXI.setTimeout(this.data.Speed,DialogueTimeout);
   }
 }
 
 function DialogueTimeout(){
   game.textField.hideAvatar();
+  game.characters[game.selectedCharacter].stand();
   game.currentDialogue.next();
 }
 
@@ -115,5 +118,6 @@ function EndDialogue(){
 }
 
 function Answer(){
+  game.player.stand();
   game.currentDialogue.answer();
 }

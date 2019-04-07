@@ -13,5 +13,5 @@ import './version.js';
 export * from './game.js';
 
 //////////////////////////////////
-//import '../demo/index.js';
+import '../demo/index.js';
 //////////////////////////////////

@@ -1,6 +1,6 @@
 import {game} from '../game.js';
 import {TextButton} from './text.js';
-import {Menu} from './menu.js';
+import {Menu,Confirmation} from './menu.js';
 import {Options} from './options.js';
 import {CreditsScreen} from './credits.js';
 
@@ -9,6 +9,7 @@ export class TitleScreen{
     this.container=new PIXI.Container();
     this.container.visible=false;
     this.menu=new Menu();
+    this.warning=new Confirmation();
     this.options=new Options();
     this.credits=new CreditsScreen();
 
@@ -18,6 +19,7 @@ export class TitleScreen{
 
     this.container.addChild(this.background);
     this.container.addChild(this.menu.container);
+    this.container.addChild(this.warning.container);
     this.container.addChild(this.options.container);
     this.container.addChild(this.credits.container);
     game.app.stage.addChild(this.container);

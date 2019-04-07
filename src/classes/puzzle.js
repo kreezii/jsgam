@@ -10,17 +10,24 @@ export class Puzzle{
   checkCollision(){
     let result;
 
-    let source=game.objects[game.searchObject(this.data.Source)];
     let target=game.objects[game.searchObject(this.data.Target)];
 
-    if(!this.data.Source) result=true;
-    else result=collision(source,target) && target.parent.visible;
+    if(!this.data.Combine && !this.data.Give) result=true;
+    else{
+      let source;
+      if(this.data.Combine) source=game.objects[game.searchObject(this.data.Combine)];
+      else if(this.data.Give) source=game.characters[game.searchCharacter(this.data.Give)].sprite;
+      result=collision(source,target) && target.parent.visible;
+    }
 
     return result;
   }
 
   resolvePuzzle(){
-    let source=game.objects[game.searchObject(this.data.Source)];
+    let source;
+    if(this.data.Combine) source=game.objects[game.searchObject(this.data.Combine)];
+    else if(this.data.Give) source=game.characters[game.searchCharacter(this.data.Give)];
+
     let target=game.objects[game.searchObject(this.data.Target)];
 
     if(this.data.Modify){
@@ -28,30 +35,34 @@ export class Puzzle{
       if(this.data.Modify.Door) this.createDoor(target)
     }
 
-    if(this.data.Say){
-      if(game.player.sprite.visible) game.player.say(this.data.Say[game.mainLanguage]);
-    }else{
+    if(this.data.Say && !game.silentMode){
+      if(game.player.sprite.visible) game.player.look(this.data.Say[game.mainLanguage]);
+    }else if(this.data.NPCSay && !game.silentMode){
+      game.selectedCharacter=game.searchCharacter(this.data.Give);
+      game.characters[game.selectedCharacter].talk(this.data.NPCSay[game.mainLanguage]);
       if(game.player.sprite.visible) game.player.stand();
     }
 
     if(this.data.Destroy){
-      game.inventory.remove(this.data.Source);
-      game.objects[game.searchObject(this.data.Source)].hide();
-    }
-
-    if(this.data.DestroyTarget){
       game.inventory.remove(this.data.Target);
-      game.objects[game.searchObject(this.data.Target)].hide();
+      target.hide();
     }
 
-    if(this.data.Combine) this.createInventoryObject(this.data.Combine);
-    if(this.data.GiveItem) this.createInventoryObject(this.data.GiveItem);
+    if(this.data.DestroyAll){
+      game.inventory.remove(this.data.Target);
+      target.hide();
+      game.inventory.remove(this.data.Combine);
+      source.hide();
+    }
+
+    if(this.data.Get) this.createInventoryObject(this.data.Get);
 
     if(this.data.Create){
       let objectIndex=game.searchObject(this.data.Create);
       if(objectIndex){
         game.scenes[game.currentScene].container.addChild(game.objects[objectIndex]);}
     }
+
     this.solved=true;
   }
 

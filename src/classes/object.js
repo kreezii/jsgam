@@ -183,10 +183,9 @@ function onUseMove(event){
 }
 
 function onUseEnd(event){
-  if(this.interaction && this.moved){
+  if(this.interaction && this.moved && !game.player.lock){
     this.holding=0;
     game.checkPuzzle(this.data.Name);
-    //game.player.lock=true;
     game.player.action="use";
     game.selectedObject=game.searchObject(this.data.Name);;
     game.player.move({x:this.x,y:this.y});
@@ -244,8 +243,7 @@ function onTakeEnd() {
 function InventoryUse(){
   if(game.currentPuzzle){
     game.currentPuzzle.resolvePuzzle();
-    game.currentPuzzle=false;
   }else{
-    game.player.say(game.settings.NotUsable[game.mainLanguage]);
+    game.player.look(game.settings.NotUsable[game.mainLanguage]);
   }
 }

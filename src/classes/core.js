@@ -37,11 +37,13 @@ export class Core{
     this.selectedObject=null;
     this.selectedCharacter=null;
 
+    this.silentMode=false;
+
     this.inventory;
     this.inventoryBack;
     this.inventoryIcon;
 
-    this.timeout;
+    this.timeout=null;
     this.progress={
       puzzles:[]
     };
@@ -198,10 +200,12 @@ export class Core{
     }
 
     if(this.layer.filters != []) this.animateFilters();
-
     //Scale Player
-    //let scalePlayer=this.player.sprite.y/this.app.screen.height*this.scenes[this.currentScene].playerSize;
-    //this.player.sprite.scale.set(scalePlayer);
+    if(this.player.sprite.visible){
+
+    let scalePlayer=this.player.sprite.y/this.height*this.scenes[this.currentScene].data.Player.Size;
+    this.player.sprite.scale.set(scalePlayer);
+  }
 
   }
 
@@ -244,8 +248,9 @@ export class Core{
   checkPuzzle(nameObject){
     let found=false;
     for(let i=0;i<this.puzzles.length;i++){
-      if(nameObject==this.puzzles[i].data.Source ||
-         nameObject==this.puzzles[i].data.Target){
+      if(nameObject==this.puzzles[i].data.Combine ||
+         nameObject==this.puzzles[i].data.Target ||
+         nameObject==this.puzzles[i].data.Give){
            if(this.puzzles[i].checkCollision()) found=this.puzzles[i];
            break;
       }
@@ -296,10 +301,12 @@ export class Core{
     }
 
     //Resolve puzzles already done
+    this.silentMode=true; //Resolve all puzzles in silent mode (don't show text,play sounds,etc)
     for(let i=0;i<this.progress.puzzles.length;i++){
       let puzzleIndex=this.searchPuzzle(this.progress.puzzles[i]);
       this.puzzles[puzzleIndex].resolvePuzzle();
     }
+    this.silentMode=false;
   }
 
   //Clear local storage

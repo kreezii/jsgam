@@ -1,6 +1,6 @@
 {
   "name": "jsgam",
-  "version": "5.0.0alpha",
+  "version": "5.0.1alpha",
   "description": "JavaScript Graphic Adventure Maker",
   "author": "",
   "main": "./dist/jsgam.js",
@@ -21,7 +21,7 @@
     "HTML5",
     "pixi.js"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",

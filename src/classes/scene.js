@@ -77,12 +77,18 @@ export class Scene{
 };
 
 function movePlayer(event){
+  //If the player isn't busy doing another thing
   if(!game.player.lock){
     game.inventory.hide();
     game.textField.hide();
     game.player.action=null;
     game.selectedObject=null;
     game.selectedCharacter=null;
+    game.currentPuzzle=null;
     game.player.move(event.data.getLocalPosition(game.app.stage));
+  }else if(!game.player.tween.active){
+    //If user click (touches) on the screen we can skip the player or npc texts (for impatient people)
+    if(game.timeout!=null) game.timeout.finish();
+    if(game.currentDialogue!=null) game.currentDialogue.timeout.finish();
   }
 }

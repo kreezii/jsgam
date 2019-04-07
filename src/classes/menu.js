@@ -23,11 +23,6 @@ export class Menu{
     this.container.addChild(this.help);
     this.container.addChild(this.credits);
     this.sortMenu();
-
-    this.container.x = game.width / 2;
-    this.container.y = game.height / 2;
-    this.container.pivot.x = this.container.width / 2;
-    this.container.pivot.y = this.container.height / 2;
   }
 
   sortMenu(){
@@ -36,6 +31,14 @@ export class Menu{
     this.options.y=this.continue.y+this.continue.height*1.5;
     this.help.y=this.options.y+this.options.height*1.5;
     this.credits.y=this.help.y+this.help.height*1.5;
+
+    this.newGame.x=this.container.width/2-this.newGame.width/2;
+    this.continue.x=this.container.width/2-this.continue.width/2;
+    this.options.x=this.container.width/2-this.options.width/2;
+    this.help.x=this.container.width/2-this.help.width/2;
+    this.credits.x=this.container.width/2-this.credits.width/2;
+
+    this.center();
     this.resize();
   }
 
@@ -44,6 +47,7 @@ export class Menu{
     this.continue.text=game.settings.Text.Continue[game.mainLanguage];
     this.options.text=game.settings.Text.Options[game.mainLanguage];
     this.credits.text=game.settings.Text.Credits[game.mainLanguage];
+    this.sortMenu();
   }
 
   resize(){
@@ -63,6 +67,69 @@ export class Menu{
     this.continue.alpha=1;
     this.continue.interactive=true;
     this.continue.on('pointerup',Continue);
+    this.newGame.removeAllListeners();
+    this.newGame.on('pointerup', Popup);
+  }
+  center(){
+    this.container.x = game.width / 2;
+    this.container.y = game.height / 2;
+    this.container.pivot.x = this.container.width / 2;
+    this.container.pivot.y = this.container.height / 2;
+  }
+}
+
+export class Confirmation{
+  constructor(){
+    this.container=new PIXI.Container();
+    this.container.visible=false;
+    this.warning=new PIXI.Text(game.settings.Text.Warning[game.mainLanguage], game.settings.TextStyle);
+    this.yes=new TextButton(game.settings.Text.Yes[game.mainLanguage]);
+    this.yes.on('pointerup', StartAdventure);
+    this.no=new TextButton(game.settings.Text.No[game.mainLanguage]);
+    this.no.on('pointerup', BackMenu);
+    this.container.addChild(this.warning);
+    this.container.addChild(this.yes);
+    this.container.addChild(this.no);
+    this.sortMenu();
+
+  }
+
+  hide(){
+    this.container.visible=false;
+  }
+
+  show(){
+    this.container.visible=true;
+  }
+
+  update(){
+    this.warning.text=game.settings.Text.Warning[game.mainLanguage];
+    this.yes.text=game.settings.Text.Yes[game.mainLanguage];
+    this.no.text=game.settings.Text.No[game.mainLanguage];
+    this.sortMenu();
+  }
+
+  sortMenu(){
+    this.warning.y=0;
+    this.yes.y=this.warning.y+this.warning.height*1.5;
+    this.no.y=this.yes.y+this.yes.height*1.5;
+
+    this.warning.x=this.container.width/2-this.warning.width/2;
+    this.yes.x=this.container.width/2-this.yes.width/2;
+    this.no.x=this.container.width/2-this.no.width/2;
+    this.center();
+    this.resize();
+  }
+
+  resize(){
+    let ratio = Math.min( game.width/this.container.width,  game.height/this.container.height);
+    this.container.scale.set(ratio*0.95);
+  }
+  center(){
+    this.container.x = game.width / 2;
+    this.container.y = game.height / 2;
+    this.container.pivot.x = this.container.width / 2;
+    this.container.pivot.y = this.container.height / 2;
   }
 }
 
@@ -97,4 +164,14 @@ function ShowCredits(){
   game.titleScreen.menu.hide();
   game.titleScreen.credits.show();
 
+}
+
+function Popup(){
+  game.titleScreen.menu.hide();
+  game.titleScreen.warning.show();
+}
+
+function BackMenu(){
+  game.titleScreen.warning.hide();
+  game.titleScreen.menu.show();
 }

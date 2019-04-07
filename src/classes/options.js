@@ -11,19 +11,16 @@ export class Options{
       this.languages[i]=new TextButton(game.settings.Languages[i],i);
       this.languages[i].on('pointerup', SelectLanguage);
       this.container.addChild(this.languages[i]);
-      if(i>0)this.languages[i].y=this.languages[i-1].y+this.languages[i-1].height;
+      if(i>0)this.languages[i].y=this.languages[i-1].y+this.languages[i-1].height*1.5;
     }
     this.languages[game.mainLanguage].tint="0xFF0000";
     this.backButton=new TextButton(game.settings.Text.Back[game.mainLanguage],this.languages.length);
     this.backButton.on('pointerup', Back);
     this.container.addChild(this.backButton);
     let latestOption=game.settings.Languages.length-1;
-    this.backButton.y=this.languages[latestOption].y+this.languages[latestOption].height;
+    this.backButton.y=this.languages[latestOption].y+this.languages[latestOption].height*1.5;
 
-    this.container.x = game.width / 2;
-    this.container.y = game.height / 2;
-    this.container.pivot.x = this.container.width / 2;
-    this.container.pivot.y = this.container.height / 2;
+    this.center();
   }
 
   setLanguage(){
@@ -36,6 +33,21 @@ export class Options{
     game.titleScreen.menu.update();
     game.titleScreen.credits.update();
   }
+
+  hide(){
+    this.container.visible=false;
+  }
+
+  show(){
+    this.container.visible=true;
+  }
+
+  center(){
+    this.container.x = game.width / 2;
+    this.container.y = game.height / 2;
+    this.container.pivot.x = this.container.width / 2;
+    this.container.pivot.y = this.container.height / 2;
+  }
 }
 
 function SelectLanguage(){
@@ -46,11 +58,12 @@ function SelectLanguage(){
     game.mainLanguage=game.settings.Languages.indexOf(this.text);
     game.titleScreen.menu.update();
     game.titleScreen.credits.update();
+    game.titleScreen.warning.update();
   }
 
 }
 
 function Back(){
-  game.titleScreen.menu.container.visible=true;
-  game.titleScreen.options.container.visible=false;
+  game.titleScreen.menu.show();
+  game.titleScreen.options.hide();
 }
