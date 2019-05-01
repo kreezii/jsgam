@@ -7,21 +7,21 @@ The project is in **alpha** stage.
 
 ## Progress
 What can do the engine at the current stage?
-
+ (Code is being migrated to the new engine)
 * Display scenes with static objects
 * Move the player in a walkable area
 * Player avoiding obstacles in the walkable area
 * Take objects to the inventory
 * Use and combine objects
-* Change between rooms
-* Add filters to the scene
-* Basic dialogues with non-playable characters
-* Music and Sounds
+* ~~Change between rooms~~
+* ~~Add filters to the scene~~
+* ~~Basic dialogues with non-playable characters~~
+* ~~Music and Sounds~~
 * Credits screen
-* Cut-scenes
+* ~~Cut-scenes~~
 * Animated objects
-* Save/Load the game progress
-* Player depth while walk
+* ~~Save/Load the game progress~~
+* ~~Player depth while walk~~
 
 ### TO-DO
 
@@ -30,7 +30,7 @@ In order of priority.
 * Testing
 * ~~Voices~~
 
-Is it ready for a short adventure? **Yes, but...** needs to be documented...
+Is it ready for a short adventure? **, but...** needs to be documented...
 
 ## Author
 * **R.Vañes**
