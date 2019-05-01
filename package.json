@@ -1,16 +1,18 @@
 {
   "name": "jsgam",
-  "version": "5.0.1alpha",
+  "version": "5.0.0",
   "description": "JavaScript Graphic Adventure Maker",
-  "author": "",
-  "main": "./dist/jsgam.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/kreezii/jsgam.git"
   },
+  "source": "src/index.js",
+  "main": "dist/jsgam.js",
+  "module": "dist/jsgam.mjs",
+  "unpkg": "dist/jsgam.umd.js",
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "build": "microbundle",
+    "dev": "microbundle watch"
   },
   "keywords": [
     "game",
@@ -19,30 +21,22 @@
     "JSON",
     "javascript",
     "HTML5",
-    "pixi.js"
+    "pixi.js",
+    "dragonbones"
   ],
+  "author": "R.Vañes",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "babel-loader": "^8.0.5",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.2.1"
+    "microbundle": "^0.11.0"
   },
   "dependencies": {
+    "dragonbones-pixi": "^5.6.0",
     "k8w-pixi-tween": "^0.7.6",
-    "localforage": "^1.7.3",
-    "pixi-filters": "^2.7.0",
     "pixi-layers": "^0.1.10",
     "pixi-multistyle-text": "^0.7.0",
     "pixi-sound": "^2.1.0",
-    "pixi-timeout": "^1.0.4",
-    "pixi.js": "^4.8.6",
+    "pixi.js": "^4.8.7",
     "polyk": "^0.24.0",
     "walkable": "^1.0.3"
-  },
-  "module": "src/index.js"
+  }
 }

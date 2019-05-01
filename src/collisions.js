@@ -15,26 +15,30 @@ function collision(a, b)
     if(b.hitArea) result=PolyK.ContainsPoint(b.hitArea.points,a.x,a.y);
     else result=boxesIntersect(a,b);
   }
+
   return result;
 }
 
-function checkPath(newpos,obstaclesPolys,walkPoly){
+function checkPath(coords,obstaclesPolys,walkPoly){
+  let coordX=Math.round(coords.x);
+  let coordY=Math.round(coords.y);
   let changePosition;
   let newPos;
 
-  if(!PolyK.ContainsPoint(walkPoly,newpos.x,newpos.y))
+  if(!PolyK.ContainsPoint(walkPoly,coordX,coordY))
   {
-    changePosition=PolyK.ClosestEdge(walkPoly,newpos.x,newpos.y).point;
+    changePosition=PolyK.ClosestEdge(walkPoly,coordX,coordY).point;
     newPos={x:Math.round(changePosition.x)+1,y:Math.round(changePosition.y)+1}
-  }else if(obstaclesPolys!=undefined){
+  }else if(obstaclesPolys!==undefined){
     for(let i=0;i<obstaclesPolys.length ;i++){
-      if(PolyK.ContainsPoint(obstaclesPolys[i],newpos.x,newpos.y)){
-        changePosition=PolyK.ClosestEdge(walkPoly,newpos.x,newpos.y).point;
+      if(PolyK.ContainsPoint(obstaclesPolys[i],coordX,coordY)){
+        changePosition=PolyK.ClosestEdge(walkPoly,coordX,coordY).point;
         newPos={x:Math.round(changePosition.x)+1,y:Math.round(changePosition.y)+1}
         break;
       }
     }
   }
+
   return newPos;
 }
 
