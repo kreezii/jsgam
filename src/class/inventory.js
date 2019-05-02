@@ -56,17 +56,16 @@ class Inventory{
       if (this.container.visible) this.hide();
       else if(!this.game.player.lock) this.show();
     }
-
+//Revisar eventos cuando el objeto está dentro del inventario
     add(name){
       this.objects.push(name);
       this.game.objects[name].sprite.setParent(this.container);
-      this.game.objects[name].sprite.removeAllListeners();
+    //  this.game.objects[name].sprite.removeAllListeners();
       this.game.objects[name].sprite.parentLayer=this.game.layerUI;
-      this.game.objects[name].sprite.on('pointertap',this.look.bind(this.game.objects[name]))
-                                    .on('pointerdown', this.touch.bind(this.game.objects[name]))
+      this.game.objects[name].sprite//.on('pointerdown', this.touch.bind(this.game.objects[name]))
                                     .on('pointermove', this.move.bind(this.game.objects[name]))
-                                    .on('pointerup', this.release.bind(this.game.objects[name]))
-                                    .on('pointerupoutside', this.release.bind(this.game.objects[name]));
+                                    //.on('pointerup', this.release.bind(this.game.objects[name]))
+                                  //  .on('pointerupoutside', this.release.bind(this.game.objects[name]));
       this.update();
     }
 
@@ -94,26 +93,22 @@ class Inventory{
       }
     }
 
-    look(){
-      if(!this.moved){
-        let text=this.config.Description[this.game.activeLanguage];
-        this.game.player.say(text);
-      }
-    }
-
     touch(event){
+      this.game.activeObject=this;
       this.posX = this.sprite.x;
       this.posY = this.sprite.y;
       this.interaction = event.data;
       this.sprite.alpha = 0.5;
       this.dragging = true;
-      this.moved = false;
+      this.moved = 0;
 
     }
 
     move(){
-      if (this.dragging) {
-        this.moved=true;
+      if(!boxesIntersect(this.sprite,this.game.inventory.container))
+        this.game.inventory.container.visible=false;
+    /*  if (this.dragging) {
+        this.moved++;
         this.sprite.setParent(this.game.app.stage);
         var newPosition = this.interaction.getLocalPosition(this.sprite.parent);
         let bounds=this.sprite.getBounds();
@@ -124,25 +119,35 @@ class Inventory{
           this.game.inventory.container.visible=false;
         }
 
-      }
+      }*/
     }
 
     release(){
         if(this.interaction){
-
           // set the interaction data to null
+          if(this.moved<10){
+            let text=this.config.Description[this.game.activeLanguage];
+            this.game.player.say(text);
+          }
           this.interaction = null;
           this.dragging = false;
-          let isPuzzle=this.game.getPuzzle(this.config.Name);
-          if(isPuzzle>=0){
-            this.game.puzzles[isPuzzle].resolvePuzzle();
-          }
-
           this.sprite.setParent(this.game.inventory.container);
           this.sprite.x = this.posX;
           this.sprite.y = this.posY;
           this.sprite.alpha = 1;
+          this.moved=0;
 
+        }else if(this){
+          let puzzleIndex=this.game.getPuzzle(this.config.Name,this.game.activeObject.config.Name);
+          if(puzzleIndex>=0){
+            this.game.activePuzzle=this.game.puzzles[puzzleIndex];
+          }
+          let moveTo={x:this.sprite.x,y:this.sprite.y};
+          if(this.config.Area) moveTo=event.data.getLocalPosition(this.game.app.stage);
+          this.use(moveTo);
+        //No collision
+        }else{
+          this.cancel();
         }
     }
 }

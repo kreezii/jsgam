@@ -78,6 +78,7 @@ class Game {
     this.activeLanguage=0;
     this.activeScene=null;
     this.activeObject=null;
+    this.activePuzzle=null;
     this.activeState=null;
 
     //Setup title screen
@@ -166,14 +167,18 @@ class Game {
       //Set game so puzzle can access it
       puzzle.game = this;*/
   }
-
-  getPuzzle(nameObject){
+//Comprobar los dos nombres
+  getPuzzle(name1,name2){
     let found;
     for(let i=0;i<this.puzzles.length;i++){
-      if(nameObject==this.puzzles[i].config.Combine ||
-         nameObject==this.puzzles[i].config.Target ||
-         nameObject==this.puzzles[i].config.Give){
-           if(this.puzzles[i].checkCollision()) found=i;
+      if(name1===this.puzzles[i].config.Target
+        && name2===this.puzzles[i].config.Combine
+        ||
+        name2===this.puzzles[i].config.Target
+        && name1===this.puzzles[i].config.Combine)
+//         nameObject==this.puzzles[i].config.Give)
+      {
+          found=i;
            break;
       }
     }

@@ -85,7 +85,8 @@ class Character{
 
     //Animate the character
     this.animate(this.animations.Say);
-    setTimeout(this.game.textField.skip.bind(this.game.textField), this.game.textField.timeOut());
+    if(this.timeoutID) clearTimeout(this.timeoutID);
+    this.timeoutID=setTimeout(this.game.textField.skip.bind(this.game.textField), this.game.textField.timeOut());
   }
 
   animate(animation,times){

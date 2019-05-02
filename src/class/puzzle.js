@@ -5,23 +5,7 @@ class Puzzle{
     this.solved=false;
   }
 
-  checkCollision(){
-    let result=false;
-    let target=this.game.objects[this.config.Target].sprite;
-    let source;
-    //let target=this.game.objects
-
-    if(!this.config.Combine && !this.config.Give) result=true;
-    else{
-
-      if(this.config.Combine) source=this.game.objects[this.config.Combine].sprite;
-//      else if(this.config.Give) source=this.game.characters[game.searchCharacter(this.config.Give)].sprite;
-      result=collision(source,target);// && target.parent.visible;
-    }
-    return result;
-  }
-
-  resolvePuzzle(){
+  resolve(){
     let source;
     if(this.config.Combine) source=this.game.objects[this.config.Combine];
   //  else if(this.config.Give) source=game.characters[this.config.Give];
@@ -35,7 +19,13 @@ class Puzzle{
 
     if(this.config.Say && !this.game.silentMode){
       if(this.game.player.sprite.visible) this.game.player.say(this.config.Say[this.game.activeLanguage]);
-    }/*else if(this.config.NPCSay && !game.silentMode){
+    }
+
+    //If the Combine isn't in inventory and we don't destroy it, we add it to the inventory
+    if(this.config.Destroy===undefined && this.game.inventory.objects.includes(this.config.Combine)===false){
+      this.game.inventory.add(this.config.Combine);
+    }
+    /*else if(this.config.NPCSay && !game.silentMode){
       game.selectedCharacter=game.searchCharacter(this.config.Give);
       game.characters[game.selectedCharacter].talk(this.config.NPCSay[game.mainLanguage]);
       if(game.player.sprite.visible) game.player.stand();

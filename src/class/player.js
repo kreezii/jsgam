@@ -31,12 +31,23 @@ class Player extends Character{
   }
 
   takeEnd(){
+    this.game.inventory.add(this.game.activeObject.config.Name);
+    if(this.game.activeObject) this.game.activeObject.cancel();
     this.stop();
-    if(this.game.activeObject){
-      this.game.inventory.add(this.game.activeObject.config.Name,this);
-      this.game.activeObject.cancel();
-    }
-    this.lock=false;
+  }
+
+  use(){
+    this.lock=true;
+    this.animate(this.animations.Use,1);
+    this.sprite.once(dbEvents.COMPLETE, this.useEnd, this);
+  }
+
+  useEnd(){
+    this.stop();
+    if(this.game.activePuzzle!==null) this.game.activePuzzle.resolve();
+    else this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
+    if(this.game.activeObject) this.game.activeObject.cancel();
+    this.game.activePuzzle=null
   }
 
 }
