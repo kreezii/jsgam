@@ -11,9 +11,10 @@ class Character{
   }
 
   setup(config){
-    dbfactory.parseDragonBonesData(config.Skeleton);
-    dbfactory.parseTextureAtlasData(config.Json,config.Texture);
+    dbfactory.parseDragonBonesData(this.game.files.resources[config.Name+"Skeleton"].data);
+    dbfactory.parseTextureAtlasData(this.game.files.resources[config.Name+"Json"].data,this.game.files.resources[config.Name+"Tex"].texture);
     this.sprite = dbfactory.buildArmatureDisplay(config.Armature);
+    this.size=1;
     this.tween=PIXI.tweenManager.createTween(this.sprite);
     this.tween.on('end', this.stop.bind(this));
     if(config.Animations!=undefined)
@@ -28,10 +29,23 @@ class Character{
       };
     this.animate(this.animations.Stand);
     this.state="stand";
-    this.sprite.parentLayer = this.game.layer;//Z-order*/
     this.sprite.x=500;
-    this.sprite.y=600;
-    this.config=config.data;
+    this.sprite.y=500;
+    this.sprite.parentLayer = this.game.layer;//Z-order*/
+    this.config=config;
+  }
+
+  hide(){
+    this.sprite.visible=false;
+  }
+
+  show(){
+    this.sprite.visible=true;
+  }
+
+  position(coords){
+    this.sprite.x=coords[0];
+    this.sprite.y=coords[1];
   }
 
   move(coords){
@@ -67,17 +81,24 @@ class Character{
 
   update(){
     PIXI.tweenManager.update();
+    this.scale();
+  }
+
+  scale(){
+    let scaleChar=this.sprite.y/this.game.height*this.size;
+    this.sprite.scale.set(scaleChar);
   }
 
   stop(){
     this.animate(this.animations.Stand);
     this.game.activeState=null;
+    this.lock=false;
   }
 
   say(text){
-    //Lock the player
+    //Lock the character
     this.lock=true;
-
+    this.game.textField.talker=this;
     //Setup the text to show
     this.game.textField.setText(text);
     this.game.textField.setColor(this.config.Color);
@@ -86,7 +107,7 @@ class Character{
     //Animate the character
     this.animate(this.animations.Say);
     if(this.timeoutID) clearTimeout(this.timeoutID);
-    this.timeoutID=setTimeout(this.game.textField.skip.bind(this.game.textField), this.game.textField.timeOut());
+    this.timeoutID=setTimeout(this.game.textField.end.bind(this.game.textField), this.game.textField.timeOut());
   }
 
   animate(animation,times){

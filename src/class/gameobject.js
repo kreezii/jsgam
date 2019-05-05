@@ -1,4 +1,4 @@
-import {boxesIntersect,collision} from '../collisions.js';
+import {boxesIntersect,collision,closestPoint} from '../collisions.js';
 
 class GameObject{
   constructor(){
@@ -8,6 +8,7 @@ class GameObject{
   }
 
   build(){
+    //Configure the sprite's object
     if(this.config.Texture){
       //Generate a static object from a texture
       this.sprite=new PIXI.Sprite.from(PIXI.Texture.from(this.config.Texture));
@@ -39,21 +40,39 @@ class GameObject{
       this.sprite.y=this.config.Position[1];
     }
 
+    //Size of the object
     if(this.config.Size){
       this.sprite.scale.set(this.config.Size)
     }
 
+    //Configure the anchor (origin point of the object)
     if(!this.config.Area)this.sprite.anchor.set(0.5,1);
+
+    //Configure the layer for the z-order
     if(this.config.Layer=="Front") this.sprite.parentLayer=this.game.layeronTop;
     else this.sprite.parentLayer = this.game.layer;
 
+    //Is it a door?
+    if(this.config.Door){
+      this.door=true;
+      this.newScene=this.config.Door.To;
+      this.playerPos=this.config.Door.Player;
+    }
+
+    //Game object events
     this.sprite.interactive=true;
     this.sprite.buttonMode=true;
 
-    this.sprite.on('pointerdown', this.touch.bind(this))
-        .on('pointermove', this.move.bind(this))
-        .on('pointerup', this.release.bind(this))
-        .on('pointerupoutside', this.release.bind(this));
+    if(this.config.Area!==undefined){
+      this.sprite.on('pointerdown', this.touchArea.bind(this))
+          .on('pointerup', this.releaseArea.bind(this))
+          .on('pointerupoutside', this.releaseArea.bind(this));
+    }else{
+      this.sprite.on('pointerdown', this.touch.bind(this))
+          .on('pointermove', this.move.bind(this))
+          .on('pointerup', this.release.bind(this))
+          .on('pointerupoutside', this.release.bind(this));
+    }
   }
 
   hide(){
@@ -64,21 +83,58 @@ class GameObject{
     this.sprite.visible=true;
   }
 
-  touch(event){
-    this.game.activeObject=this;
-    this.posX = this.sprite.x;
-    this.posY = this.sprite.y;
-    this.interaction = event.data;
-    this.sprite.alpha = 0.5;
-    this.dragging = true;
-    this.moved = 0;
-    this.oldParent=this.sprite.parent;
-    this.sprite.parentLayer = this.game.layerUI;
+  //Invisible object touch begins
+  touchArea(event){
+    if(this.game.activeObject===null){
+      this.game.activeObject=this;
+      this.interaction = event.data;
+      this.action=null;
+      this.touchedPos=this.interaction.getLocalPosition(this.game.app.stage);
+    }
   }
 
+  //Invisible object touch ends
+  releaseArea(){
+    if(this.interaction){
+      let moveTo=this.interaction.getLocalPosition(this.game.app.stage);
+      if(collision(moveTo,this.sprite)){
+         this.look();
+      }else if(this.door===true){
+        let newPos=closestPoint(this.config.Area,moveTo);
+        moveTo=newPos;
+        this.use();
+      }
+      if(this.action!==null){
+        this.game.player.tween.once('end',this.action);
+        this.game.player.move(moveTo);
+      }else{
+        this.cancel();
+      }
+
+      this.interaction = null;
+      this.touchedPos=null;
+    }
+  }
+
+  //Object touch begins
+  touch(event){
+    if(this.game.activeObject===null){
+      this.game.activeObject=this;
+      this.action=null;
+      this.posX = this.sprite.x;
+      this.posY = this.sprite.y;
+      this.interaction = event.data;
+      this.sprite.alpha = 0.5;
+      this.dragging = true;
+      this.moved = 0;
+      this.oldParent=this.sprite.parent;
+      if(this.sprite.parentLayer !== this.game.layerUI) this.sprite.parentLayer = this.game.layerUI;
+    }
+  }
+
+  //Object is being dragged
   move(){
-    if (this.dragging && this.config.Area===undefined) {
-      this.game.player.lock=true;
+    if (this.dragging) {
       this.moved++;
       this.sprite.setParent(this.game.app.stage);
       var newPosition = this.interaction.getLocalPosition(this.sprite.parent);
@@ -89,66 +145,102 @@ class GameObject{
     }
   }
 
-  release(event){
+  //Object drag/touch ends
+  release(){
     if(this.interaction){
+      let moveTo={x:this.posX,y:this.posY};
       //Check if we take it
       if(collision(this.sprite,this.game.inventory.icon) && this.config.Take){
         this.take();
         //Check if we look it
-      }else if(this.moved<10){
-        this.action=this.game.player.look.bind(this.game.player);
+      }else if(this.moved<3){
+        this.look();
+      }else if(this.config.door===true){
+        this.use();
+      }else if(this.config.Use!==undefined){
+        this.game.activePuzzle=this.game.puzzles[this.config.Use];
+        this.use();
+      }
+
+      if(this.action!==null){
         this.game.player.tween.once('end',this.action);
-        let moveTo={x:this.sprite.x,y:this.sprite.y};
-        if(this.config.Area) moveTo=this.interaction.getLocalPosition(this.game.app.stage);
         this.game.player.move(moveTo);
       }else{
-      //  this.cancel();
-        this.game.player.lock=false;
+        this.cancel();
       }
-      if(!this.config.Area){
-        this.sprite.x = this.posX;
-        this.sprite.y = this.posY;
-        this.sprite.alpha = 1;
-        this.sprite.parentLayer = this.game.layer;
-        this.sprite.setParent(this.oldParent);
-      }
-      // set the interaction data to null
+
+      this.sprite.x = this.posX;
+      this.sprite.y = this.posY;
+      this.sprite.alpha = 1;
+      this.sprite.parentLayer = this.game.layer;
+      this.sprite.setParent(this.oldParent);
+
       this.interaction = null;
       this.dragging = false;
       this.moved=0;
-
-    //Collision with other object
-    }else if(this){
-      let puzzleIndex=this.game.getPuzzle(this.config.Name,this.game.activeObject.config.Name);
-      if(puzzleIndex>=0){
-        this.game.activePuzzle=this.game.puzzles[puzzleIndex];
-      }
-      let moveTo={x:this.sprite.x,y:this.sprite.y};
-      if(this.config.Area) moveTo=event.data.getLocalPosition(this.game.app.stage);
-      this.use(moveTo);
-    //No collision
-    }else{
-      this.cancel();
     }
   }
 
+  //Set player to look this object
+  look(){
+    this.action=this.game.player.look.bind(this.game.player);
+  }
+
+  //Set player to take this object
   take(){
     this.action=this.game.player.take.bind(this.game.player);
-    this.game.player.tween.once('end',this.action);
-    this.game.player.move({x:this.posX,y:this.posY});
   }
 
-  use(moveTo){
+  //Set player to use this object
+  use(){
     this.action=this.game.player.use.bind(this.game.player);
-    this.game.player.tween.once('end',this.action);
-    this.game.player.move(moveTo);
   }
 
+  //Check collision between objects
+  hit(){
+    let found=null;
+    let i;
+
+    //First check the collision between active scene's objects
+    let objectsArray=this.game.activeScene.config.Objects;
+
+    for(i=0;i<objectsArray.length;i++){
+      if(collision(this.sprite,this.game.objects[objectsArray[i]].sprite)
+                   && this.config.Name!==objectsArray[i]){
+        found=objectsArray[i];
+        break;
+      }
+    }
+
+    //Check if the collision is between inventory objects
+    objectsArray=this.game.inventory.objects;
+
+    for(i=0;i<objectsArray.length;i++){
+      if(collision(this.sprite,this.game.objects[objectsArray[i]].sprite)
+                   && this.config.Name!==objectsArray[i]){
+        found=objectsArray[i];
+        break;
+      }
+    }
+
+    return found;
+  }
+
+  //Object action is canceled or ended
   cancel(){
     this.game.activeObject.action=null;
     this.game.activeObject=null;
 
   }
+
+  //Remove objects from game
+  remove(){
+    this.sprite.parent.removeChild(this.sprite);
+    //POR HACER
+    //Quitar el objeto de la cadena de objetos de la escena
+    //Quitar del inventario en caso de que esté ahí
+  }
+
 }
 
 export default GameObject;

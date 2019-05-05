@@ -11,12 +11,19 @@ function collision(a, b)
 {
   let result;
   if(a!=undefined && b !=undefined){
-
-    if(b.hitArea) result=PolyK.ContainsPoint(b.hitArea.points,a.x,a.y);
+    if(a.hitArea) result=PolyK.ContainsPoint(a.hitArea.points,b.x,b.y);
+    else if(b.hitArea) result=PolyK.ContainsPoint(b.hitArea.points,a.x,a.y);
     else result=boxesIntersect(a,b);
   }
 
   return result;
+}
+
+function closestPoint(area,coords){
+  let coordX=Math.round(coords.x);
+  let coordY=Math.round(coords.y);
+  let changePosition=PolyK.ClosestEdge(area,coordX,coordY).point;
+  return {x:Math.round(changePosition.x)+1,y:Math.round(changePosition.y)+1}
 }
 
 function checkPath(coords,obstaclesPolys,walkPoly){
@@ -42,4 +49,4 @@ function checkPath(coords,obstaclesPolys,walkPoly){
   return newPos;
 }
 
-export {boxesIntersect,checkPath,collision};
+export {boxesIntersect,checkPath,collision,closestPoint};

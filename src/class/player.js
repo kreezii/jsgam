@@ -8,14 +8,8 @@ class Player extends Character{
     this.game.activeState=this;
   }
 
-  stop(){
-    super.stop();
-  //  if(this.game.activeObject) this.game.activeObject.cancel();
-    if(this.lock) this.lock=false;
-  }
-
   look(){
-    if(this.game.activeObject){
+    if(this.game.activeObject!==null){
       let text=this.game.activeObject.config.Description[this.game.activeLanguage];
       this.say(text);
       this.game.activeObject.cancel();
@@ -23,17 +17,17 @@ class Player extends Character{
   }
 
   take(){
-    if(this.game.activeObject){
-      this.lock=true;
-      this.animate(this.animations.Take,1);
-      this.sprite.once(dbEvents.COMPLETE, this.takeEnd, this);
-    }
+    this.lock=true;
+    this.animate(this.animations.Take,1);
+    this.sprite.once(dbEvents.COMPLETE, this.takeEnd, this);
   }
 
   takeEnd(){
-    this.game.inventory.add(this.game.activeObject.config.Name);
-    if(this.game.activeObject) this.game.activeObject.cancel();
-    this.stop();
+    if(this.game.activeObject!==null){
+      this.game.inventory.add(this.game.activeObject.config.Name);
+      this.game.activeObject.cancel();
+      this.stop();
+    }
   }
 
   use(){
@@ -43,11 +37,18 @@ class Player extends Character{
   }
 
   useEnd(){
-    this.stop();
-    if(this.game.activePuzzle!==null) this.game.activePuzzle.resolve();
-    else this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
-    if(this.game.activeObject) this.game.activeObject.cancel();
-    this.game.activePuzzle=null
+    if(this.game.activePuzzle!==null){
+      this.game.activePuzzle.resolve();
+    }else if(this.game.activeObject!==null) {
+      if(this.game.activeObject.door){
+        this.game.setScene(this.game.activeObject.newScene,this.game.activeObject.playerPos);
+        this.stop();
+      }else{
+        this.say(this.game.data.texts.NotUsable[this.game.activeLanguage])
+      }
+      this.game.activeObject.cancel();
+    }
+
   }
 
 }

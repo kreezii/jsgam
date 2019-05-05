@@ -11,6 +11,7 @@ class GameScene extends Scene{
 
     this.background.on('pointertap',this.getPosition.bind(this));
 
+    //Add obstacles to the scene
     this.walkable=new Walkable(this.game.width,this.game.height);
       if(this.config.WalkArea!==undefined){
         this.walkable.addPolygon(this.config.WalkArea);
@@ -24,6 +25,7 @@ class GameScene extends Scene{
         }
       }
 
+      //Add objects to the scene
       let sceneObjects=this.config.Objects;
       if(sceneObjects){
         for(let i=0;i<sceneObjects.length;i++){
@@ -34,12 +36,23 @@ class GameScene extends Scene{
           }
         }
       }
+
+      //Add NPCs (non-playable characters) to the scene
+      let sceneChars=this.config.Characters;
+      if(sceneChars){
+        for(let i=0;i<sceneChars.length;i++){
+          if(this.game.npcs[sceneChars[i]]!==undefined){
+            this.container.addChild(this.game.npcs[sceneChars[i]].sprite);
+          }else{
+            console.log("Error:Game character "+sceneChars[i]+" not found");
+          }
+        }
+      }
   }
 
   getPosition(event){
     let coord=event.data.getLocalPosition(this.game.app.stage);
-    if(!this.game.player.lock){
-      if(this.game.activeObject!==null) this.game.activeObject.cancel();
+    if(!this.game.player.lock && this.game.activeObject===null){
       this.game.player.move(coord);
     }
   }

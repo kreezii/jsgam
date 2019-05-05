@@ -15,6 +15,13 @@ class Scene{
   update(dt) {
 
   }
+  hide(){
+    this.container.visible=false;
+  }
+  
+  show(){
+    this.container.visible=true;
+  }
 }
 
 export default Scene;

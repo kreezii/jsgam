@@ -24,7 +24,6 @@ class Loader extends PIXI.loaders.Loader{
     let i;
     let length=files.length
     for(i=0;i<length;i++){
-
       //Add config files to setup the game
       if(files[i].data.Settings) this.game.settings=files[i].data.Settings;
       if(files[i].data.Scenes) this.game.data.scenes=files[i].data.Scenes;

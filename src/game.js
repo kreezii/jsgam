@@ -5,11 +5,13 @@ import 'pixi-layers';
 import Loader from './loader.js';
 import Title from './class/title.js';
 import GameScene from './class/gamescene.js';
+import CutScene from './class/cutscene.js';
 import GameObject from './class/gameobject.js';
 import Inventory from './class/inventory.js';
 import Puzzle from './class/puzzle.js';
 import {TextField} from './class/text.js';
 import Player from './class/player.js';
+import NPC from './class/npc.js';
 
 class Game {
   constructor(config){
@@ -73,8 +75,10 @@ class Game {
     this.resize();
 
     this.scenes={};
+    this.cutscenes={};
     this.objects={};
-    this.puzzles=[];
+    this.npcs={};
+    this.puzzles={};
     this.activeLanguage=0;
     this.activeScene=null;
     this.activeObject=null;
@@ -92,6 +96,13 @@ class Game {
       this.addObject(this.data.objects[i].Name,new GameObject(),this.data.objects[i]);
     }
 
+    //Non-playable characters
+    length=this.data.npc.length;
+    for(i=0;i<length;i++)
+    {
+      this.addNPC(this.data.npc[i].Name,new NPC(),this.data.npc[i]);
+    }
+
     //Add game scenes
     length=this.data.scenes.length;
     for(i=0;i<length;i++)
@@ -99,8 +110,12 @@ class Game {
       this.addScene(this.data.scenes[i].Name,new GameScene(),this.data.scenes[i]);
     }
 
-    //Set Title as the first scene to show
-    this.setScene("Title");
+    //Add cutscenes
+    length=this.data.cutscenes.length;
+    for(i=0;i<length;i++)
+    {
+      this.addCutscene(this.data.cutscenes[i].Name,new CutScene(),this.data.cutscenes[i]);
+    }
 
     //Puzzles
     length=this.data.puzzles.length;
@@ -112,17 +127,21 @@ class Game {
     //Add Inventory
     this.addInventory();
 
-    //Add Inventory
+    //Add text field
     this.addTextField();
 
     //Add player
     this.addPlayer();
+
+    //Set Title as the first scene to show
+    this.setScene("Title");
 
     //Game's loop
     this.app.ticker.add(this.loop.bind(this));
   }
 
   loop(dt){
+    //console.log(this.player.lock) //Test
     // update current state
     if (this.activeState != null) {
         this.activeState.update(dt);
@@ -155,40 +174,32 @@ class Game {
       scene.build();
   }
 
+  addCutscene(name, cutscene, config) {
+      this.cutscenes[name] = cutscene;
+
+      //Config the scene
+      cutscene.config=config;
+
+      //Set game so scene can access it
+      cutscene.game = this;
+
+      //Build scene
+      cutscene.build();
+  }
+
   addPuzzle(name, puzzle, config) {
-    this.puzzles.push(puzzle);
-    puzzle.config=config;
-    puzzle.game = this;
-    /*  this.puzzles[name] = puzzle;
+      this.puzzles[name] = puzzle;
 
       //Puzzle's config
       puzzle.config=config;
 
       //Set game so puzzle can access it
-      puzzle.game = this;*/
-  }
-//Comprobar los dos nombres
-  getPuzzle(name1,name2){
-    let found;
-    for(let i=0;i<this.puzzles.length;i++){
-      if(name1===this.puzzles[i].config.Target
-        && name2===this.puzzles[i].config.Combine
-        ||
-        name2===this.puzzles[i].config.Target
-        && name1===this.puzzles[i].config.Combine)
-//         nameObject==this.puzzles[i].config.Give)
-      {
-          found=i;
-           break;
-      }
-    }
-    return found;
-    //this.currentPuzzle=found;
+      puzzle.game = this;
   }
 
-  setScene(name) {
+  setScene(name,playerCoords) {
       //Remove current container
-      if (this.activeScene != null) {
+      if (this.activeScene !== null) {
           this.app.stage.removeChild(this.activeScene.container);
       }
 
@@ -198,6 +209,26 @@ class Game {
       //Add our new container
       this.app.stage.addChild(this.activeScene.container);
 
+      if(playerCoords!==undefined){
+        this.player.sprite.x=playerCoords[0];
+        this.player.sprite.y=playerCoords[1];
+      }
+
+      if(this.activeScene.config.Player!==undefined){
+        if(this.activeScene.config.Player.Position!==undefined){
+          this.player.position(this.activeScene.config.Player.Position);
+        }
+        if(this.activeScene.config.Player.Size!==undefined){
+          this.player.size=this.activeScene.config.Player.Size;
+          this.player.scale();
+        }
+      }
+
+      if(this.activeScene.config.CutScene!==undefined){
+        if(!this.cutscenes[this.activeScene.config.CutScene].played){
+          this.cutscenes[this.activeScene.config.CutScene].show();
+        }
+      }
       // Play sounds
     //  if(this.activeScreen.music!==null && this.playSounds) PIXI.sound.play(this.activeScreen.music,{loop:true});
   }
@@ -228,18 +259,20 @@ class Game {
   }
 
   addPlayer(){
-    let playerConfig={
-      Skeleton:this.files.resources["playerSkeleton"].data,
-      Json:this.files.resources["playerJson"].data,
-      Texture:this.files.resources["playerTex"].texture,
-      Armature:this.data.player.Armature,
-      Animations:this.data.player.Animations,
-      data:this.data.player
-    }
-
     this.player=new Player();
     this.player.game=this;
-    this.player.setup(playerConfig);
+    this.data.player.Name="player";
+    this.player.setup(this.data.player);
+  }
+
+  addNPC(name, char, config){
+    this.npcs[name] = char;
+
+    char.game = this;
+
+    char.setup(config);
+    
+    char.build();
   }
 
   addTextField(){
@@ -271,6 +304,8 @@ class Game {
     //Add Text Field
     this.app.stage.addChild(this.textField.container);
   }
+
+
 }
 
 export default Game;

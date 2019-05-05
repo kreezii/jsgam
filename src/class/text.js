@@ -48,10 +48,15 @@ class TextField{
     this.container.visible=false;
   }
 
-  skip(){
+  end(){
     this.setText("");
     this.hide();
     this.game.player.stop();
+  }
+
+  skip(){
+    this.end();
+    if(this.talker) clearTimeout(this.talker.timeoutID);
   }
 
   setPosition(position){
@@ -86,6 +91,10 @@ class TextField{
     let time;
     if(this.game.settings.Text.Speed!==undefined) time=this.game.settings.Text.Speed;
     else time=this.countWords(this.Text.text)/3;
+
+    //Time must be at least 1 second
+    if(time<1) time=1;
+
     return time*1000;
   }
 
