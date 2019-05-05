@@ -4,7 +4,7 @@ class Puzzle{
   }
 
   resolve(){
-    let source;
+    this.game.activeObject.cancel();
 
     if(this.config.Modify){
       let objectMod=this.game.objects[this.config.Modify.Name]
@@ -42,7 +42,6 @@ class Puzzle{
 */
     this.solved=true;
     this.game.activePuzzle=null;
-    this.game.activeObject=null;
   }
 
   createDoor(target){

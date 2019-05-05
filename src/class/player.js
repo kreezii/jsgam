@@ -7,7 +7,11 @@ class Player extends Character{
     super.move(coords);
     this.game.activeState=this;
   }
-
+  say(text){
+    super.say(text);
+    //Lock the player
+    this.lock=true;
+  }
   look(){
     if(this.game.activeObject!==null){
       let text=this.game.activeObject.config.Description[this.game.activeLanguage];
@@ -49,6 +53,11 @@ class Player extends Character{
       this.game.activeObject.cancel();
     }
 
+  }
+
+  talk(){
+    this.say(this.game.activeNPC.config.Name)
+    this.game.activeNPC.cancel();
   }
 
 }

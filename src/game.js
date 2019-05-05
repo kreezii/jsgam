@@ -82,6 +82,7 @@ class Game {
     this.activeLanguage=0;
     this.activeScene=null;
     this.activeObject=null;
+    this.activeNPC=null;
     this.activePuzzle=null;
     this.activeState=null;
 
@@ -271,7 +272,7 @@ class Game {
     char.game = this;
 
     char.setup(config);
-    
+
     char.build();
   }
 

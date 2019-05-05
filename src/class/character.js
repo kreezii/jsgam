@@ -96,8 +96,6 @@ class Character{
   }
 
   say(text){
-    //Lock the character
-    this.lock=true;
     this.game.textField.talker=this;
     //Setup the text to show
     this.game.textField.setText(text);

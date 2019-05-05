@@ -85,7 +85,7 @@ class GameObject{
 
   //Invisible object touch begins
   touchArea(event){
-    if(this.game.activeObject===null){
+    if(this.game.activeObject===null && !this.game.player.lock){
       this.game.activeObject=this;
       this.interaction = event.data;
       this.action=null;
@@ -118,7 +118,7 @@ class GameObject{
 
   //Object touch begins
   touch(event){
-    if(this.game.activeObject===null){
+    if(this.game.activeObject===null && !this.game.player.lock){
       this.game.activeObject=this;
       this.action=null;
       this.posX = this.sprite.x;
