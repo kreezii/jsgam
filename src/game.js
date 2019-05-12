@@ -12,6 +12,7 @@ import Puzzle from './class/puzzle.js';
 import {TextField} from './class/text.js';
 import Player from './class/player.js';
 import NPC from './class/npc.js';
+import Dialogue from './class/dialogue.js';
 
 class Game {
   constructor(config){
@@ -22,8 +23,8 @@ class Game {
     this.playSounds = true;
 
     //Setup the application
-    this.app = new PIXI.Application(config.width,config.height,{autoResize: true,resolution: devicePixelRatio});
-    this.app.renderer.autoResize=true;
+    this.app = new PIXI.Application(config.width,config.height,{antialias: true, autoResize: true, resolution: devicePixelRatio});
+  //  this.app.renderer.autoResize=true;
     this.app.stage = new PIXI.display.Stage();
 
     //Change game size when window size changes
@@ -45,11 +46,21 @@ class Game {
   //Read JSON configuration files
   preload(files){
     //Text to show progress
-    this.loadinProgress=new PIXI.Text("0 %", {fill: 'white',"fontSize": 50});
-    this.loadinProgress.anchor.set(0.5);
-    this.loadinProgress.x=this.width/2;
-    this.loadinProgress.y=this.height/2;
-    this.app.stage.addChild(this.loadinProgress);
+    this.progressBar=new PIXI.Graphics();
+    this.progressBar.beginFill(0xDE3249);
+    this.progressBar.drawRect(0, 0, this.width, this.height/50);
+    this.progressBar.endFill();
+    this.progressBar.width=0;
+
+    this.loadingTxt=new PIXI.Text("Loading...", {fill: 'white',"fontSize": 50});
+    this.loadingTxt.anchor.set(0.5);
+    this.loadingTxt.x=this.width/2;
+    this.loadingTxt.y=this.height/2;
+
+    this.progressBar.y=this.height/2+this.loadingTxt.height;
+
+    this.app.stage.addChild(this.loadingTxt);
+    this.app.stage.addChild(this.progressBar);
 
     this.jsons=new Loader();
     this.jsons.game=this;
@@ -66,7 +77,8 @@ class Game {
   }
 
   setup(){
-    this.app.stage.removeChild(this.loadinProgress);
+    this.app.stage.removeChild(this.loadingTxt);
+    this.app.stage.removeChild(this.progressBar);
 
     //Z-Order
     this.addZOrder();
@@ -78,12 +90,16 @@ class Game {
     this.cutscenes={};
     this.objects={};
     this.npcs={};
+    this.dialogues={};
     this.puzzles={};
+
     this.activeLanguage=0;
     this.activeScene=null;
     this.activeObject=null;
     this.activeNPC=null;
     this.activePuzzle=null;
+    this.activeDialogue=null;
+
     this.activeState=null;
 
     //Setup title screen
@@ -102,6 +118,13 @@ class Game {
     for(i=0;i<length;i++)
     {
       this.addNPC(this.data.npc[i].Name,new NPC(),this.data.npc[i]);
+    }
+
+    //Dialogues
+    length=this.data.dialogues.length;
+    for(i=0;i<length;i++)
+    {
+      this.addDialogue(this.data.dialogues[i].Name,new Dialogue(),this.data.dialogues[i]);
     }
 
     //Add game scenes
@@ -274,6 +297,14 @@ class Game {
     char.setup(config);
 
     char.build();
+  }
+
+  addDialogue(name, dialogue, config){
+    this.dialogues[name] = dialogue;
+
+    dialogue.game = this;
+
+    dialogue.setup(config);
   }
 
   addTextField(){

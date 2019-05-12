@@ -1,9 +1,81 @@
-class Button extends PIXI.Text{
+class Button extends PIXI.extras.BitmapText{
     constructor(text,style){
       super(text,style);
       this.interactive=true;
       this.buttonMode=true;
     }
+}
+
+class Phrases{
+  constructor(config){
+    this.container=new PIXI.Container();
+    this.hide();
+    this.game=config;
+    this.option=[];
+
+    for(let i=0;i<3;i++){
+      this.option[i]=new Button("Option",this.game.settings.Text.ButtonStyle);
+      this.option[i].game=this.game;
+      this.option[i].on('pointertap', this.onTap.bind(this.option[i]));
+      this.option[i].index=i;
+      this.container.addChild(this.option[i]);
+      if(i>0)this.option[i].y=this.option[i-1].y+this.option[i-1].height;
+    }
+  }
+
+  show(){
+    this.sort();
+    this.container.visible=true;
+  }
+
+  hide(){
+    this.container.visible=false;
+  }
+
+  onTap(){
+    let activeChoice=this.game.activeDialogue.currentBranch.Choices;
+
+    if(this.alpha==1){
+      this.game.activeDialogue.choice=this.index;
+      activeChoice[this.index].clicked=true;
+      this.game.activeDialogue.next();
+    }
+  }
+
+  get(){
+    this.clear();
+    let options=this.game.activeDialogue.currentBranch.Choices;
+    for(let i=0;i<options.length;i++){
+      if(options[i].clicked && options[i].Repeat==false){
+        this.option[i].alpha=0.5;
+      }else this.option[i].alpha=1;
+      this.option[i].visible=true;
+      this.option[i].text=options[i].Text[this.game.activeLanguage];
+    }
+    this.show();
+  }
+
+  clear(){
+    for(let i=0;i<this.option.length;i++){
+      this.option[i].visible=false;
+    }
+  }
+
+  sort(){
+    for(let i=0;i<this.option.length;i++){
+      this.option[i].anchor.set(0.5,0);
+      this.option[i].x=this.game.width/2;
+    }
+    if(this.container.width>this.container.parent.width || this.container.height>this.container.parent.height){
+      this.scale();
+    }
+  }
+
+  scale(){
+    let ratio = Math.min( this.container.parent.width/this.container.width,  this.container.parent.height/this.container.height);
+    this.container.scale.set(ratio*0.95);
+    this.container.x=this.container.width;
+  }
 }
 
 class TextField{
@@ -35,12 +107,17 @@ class TextField{
     this.Text.y=0;
     this.Text.on('pointertap',this.skip.bind(this));
 
+    this.Choices=new Phrases(this.game);
+
     this.container.addChild(this.Background);
     this.container.addChild(this.Text);
+    this.container.addChild(this.Choices.container);
+
     if(this.game.settings.Text.Position!==undefined) this.setPosition(this.game.settings.Text.Position);
   }
 
   show(){
+    this.Text.visible=true;
     this.container.visible=true;
   }
 
@@ -49,9 +126,20 @@ class TextField{
   }
 
   end(){
-    this.setText("");
-    this.hide();
-    this.game.player.stop();
+    if(this.game.activeDialogue!==null){
+      this.talker.shutup();
+      if(this.game.activeDialogue.choice!==null) this.game.activeDialogue.answer();
+      else{
+        this.Text.visible=false;
+        this.Choices.get();
+      }
+
+    }else{
+      this.setText("");
+      this.hide();
+      this.talker.shutup();
+      this.game.player.stop();
+    }
   }
 
   skip(){

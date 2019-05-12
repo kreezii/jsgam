@@ -1,6 +1,5 @@
 
 import tweenManager from 'k8w-pixi-tween';
-import MultiStyleText from "pixi-multistyle-text";
 
 class Credits{
   constructor(){
@@ -16,7 +15,8 @@ class Credits{
     if(config.Background!==undefined) this.background=new PIXI.Sprite(PIXI.Texture.from(config.Background));
 
     this.buildText();
-    this.structuredText = new MultiStyleText(this.text,config.Style);
+
+    this.structuredText = new PIXI.extras.BitmapText(this.text,config.Style);
 
     this.container.addChild(this.structuredText);
 
@@ -52,9 +52,7 @@ class Credits{
     this.text="";
     let i;
     for (i=0; i < credits.Lines.length; i++) {
-    this.text +="<title>";
     this.text += credits.Lines[i].Title[this.game.activeLanguage];
-    this.text +="</title>";
     this.text += "\n";
     let j;
 

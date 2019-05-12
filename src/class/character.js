@@ -99,13 +99,17 @@ class Character{
     this.game.textField.talker=this;
     //Setup the text to show
     this.game.textField.setText(text);
-    this.game.textField.setColor(this.config.Color);
+    this.game.textField.setColor(Number(this.config.Color));
     this.game.textField.show();
 
     //Animate the character
     this.animate(this.animations.Say);
     if(this.timeoutID) clearTimeout(this.timeoutID);
     this.timeoutID=setTimeout(this.game.textField.end.bind(this.game.textField), this.game.textField.timeOut());
+  }
+
+  shutup(){
+    this.animate(this.animations.Stand);
   }
 
   animate(animation,times){

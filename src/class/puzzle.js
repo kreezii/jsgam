@@ -4,7 +4,7 @@ class Puzzle{
   }
 
   resolve(){
-    this.game.activeObject.cancel();
+      if(this.game.activeObject!==null) this.game.activeObject.cancel();
 
     if(this.config.Modify){
       let objectMod=this.game.objects[this.config.Modify.Name]
@@ -31,9 +31,9 @@ class Puzzle{
         this.game.objects[array[i]].remove();
       }
     }
-/*
-    if(this.config.Get) this.createInventoryObject(this.config.Get);
 
+    if(this.config.GetObject!==undefined) this.game.inventory.add(this.config.GetObject);
+/*
     if(this.config.Create){
       let objectIndex=game.searchObject(this.config.Create);
       if(objectIndex){

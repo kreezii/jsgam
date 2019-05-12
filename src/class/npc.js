@@ -26,6 +26,7 @@ class NPC extends Character{
       let moveTo={x:this.sprite.x+distance,y:this.sprite.y};
       //Check if we take it
       if(this.config.Dialogue!==undefined){
+        this.game.activeDialogue=this.game.dialogues[this.config.Dialogue];
         this.action=this.game.player.talk.bind(this.game.player);
       }
 

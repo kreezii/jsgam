@@ -14,7 +14,7 @@ What can do the engine at the current stage?
 * Use and combine objects
 * Change between rooms
 * Non-playable characters
-* ~~Basic dialogues with non-playable characters~~ (in progress...)
+* Dialogues with non-playable characters
 * ~~Music and Sounds~~ (in progress...)
 * Credits screen
 * Cut-scenes
@@ -41,6 +41,5 @@ In order of priority.
 * [Pixi-Layers](https://github.com/pixijs/pixi-display)
 * [Pixi-Sound](https://github.com/pixijs/pixi-sound)
 * [Pixi-Filters](https://github.com/pixijs/pixi-filters)
-* [Pixi-Multistyle-Text](https://github.com/tleunen/pixi-multistyle-text)
 * [PolyK](http://polyk.ivank.net/)
 * [Walkable](https://github.com/implicit-invocation/walkable)

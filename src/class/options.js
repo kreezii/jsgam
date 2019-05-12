@@ -11,10 +11,10 @@ class Options extends Menu{
     }
 
     let langArray=Object.values(this.buttons);
-    langArray[this.game.activeLanguage].tint="0xFF0000";
+    langArray[this.game.activeLanguage].tint=0xFF0000;
 
     this.addButton("Back",this.game.data.texts.Back);
-    this.sortMenu();
+    this.sort();
   }
 
   addLanguage(name){
@@ -29,11 +29,11 @@ class Options extends Menu{
 
   change(text){
     let languages=this.game.settings.Languages
-    this.buttons[languages[this.game.activeLanguage]].tint="0xFFFFFF";
+    this.buttons[languages[this.game.activeLanguage]].tint=0xFFFFFF;
     this.game.activeLanguage=this.game.settings.Languages.indexOf(text);
-    this.buttons[languages[this.game.activeLanguage]].tint="0xFF0000";
+    this.buttons[languages[this.game.activeLanguage]].tint=0xFF0000;
     this.modify("Back",this.game.data.texts.Back);
-    this.sortMenu();
+    this.sort();
   }
 
 }

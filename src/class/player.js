@@ -56,8 +56,7 @@ class Player extends Character{
   }
 
   talk(){
-    this.say(this.game.activeNPC.config.Name)
-    this.game.activeNPC.cancel();
+    this.game.activeDialogue.start();
   }
 
 }

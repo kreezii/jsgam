@@ -26,7 +26,7 @@ class Menu{
     this.buttons[name].interactive=true;
   }
 
-  sortMenu(){
+  sort(){
     let i;
     let arrayButtons=Object.values(this.buttons);
     let length=arrayButtons.length;
@@ -43,7 +43,7 @@ class Menu{
 
   resize(){
     let ratio = Math.min( this.game.width/this.container.width,  this.game.height/this.container.height);
-    console.log(ratio)
+    //console.log(ratio)
     this.container.scale.set(ratio*0.95);
   }
 

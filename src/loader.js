@@ -105,8 +105,8 @@ class Loader extends PIXI.loaders.Loader{
   //Loading progress
   update(){
     let percent=Math.floor(this.progress);
-    //console.log(percent);
-    this.game.loadinProgress.text=percent+ "%";
+    this.game.progressBar.width=(this.game.width/100)*percent;
+    //this.game.loadingTxt.text="Loading... "+ percent+"%";
   }
 
   //File failed to load

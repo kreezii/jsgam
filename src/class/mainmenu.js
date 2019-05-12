@@ -11,16 +11,17 @@ class MainMenu extends Menu{
 
       this.disable("Continue");
 
-      this.sortMenu();
+      this.sort();
     }
 
   changeLanguage(){
     this.modify("New",this.game.data.texts.NewGame);
     this.modify("Continue",this.game.data.texts.Continue);
     this.modify("Options",this.game.data.texts.Options);
+    this.modify("Help",this.game.data.texts.Help);
     this.modify("Credits",this.game.data.texts.Credits);
 
-    this.sortMenu();
+    this.sort();
   }
 
 }

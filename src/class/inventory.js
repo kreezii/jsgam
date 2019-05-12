@@ -120,7 +120,7 @@ class Inventory{
         let moveTo={x:this.sprite.x,y:this.sprite.y};
         //Check if we take it
         if(this.moved<3){
-          this.game.player.say(this.config.Description)
+          this.game.player.say(this.config.Description[this.game.activeLanguage])
         }else if(this.config.Combine!==undefined && objectHit!==null){
           if(this.config.Combine.With===objectHit) {
             this.game.activePuzzle=this.game.puzzles[this.config.Combine.Puzzle];
