@@ -28,7 +28,14 @@ class Player extends Character{
 
   takeEnd(){
     if(this.game.activeObject!==null){
-      this.game.inventory.add(this.game.activeObject.config.Name);
+      let name=this.game.activeObject.config.Name;
+      if(this.game.activeScene!==null){
+        if(this.game.activeScene.config.Objects.includes(name)){
+          let tmpIndex=this.game.activeScene.config.Objects.indexOf(name);
+          this.game.activeScene.config.Objects.splice(tmpIndex,1);
+        }
+      }
+      this.game.inventory.add(name);
       this.game.activeObject.cancel();
       this.stop();
     }

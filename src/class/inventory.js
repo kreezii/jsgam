@@ -67,12 +67,6 @@ class Inventory{
     }
 
     add(name){
-      if(this.game.activeScene!==null){
-        if(this.game.activeScene.config.Objects.includes(name)){
-          let tmpIndex=this.game.activeScene.config.Objects.indexOf(name);
-          this.game.activeScene.config.Objects.splice(tmpIndex,1);
-        }
-      }
       this.objects.push(name);
       this.game.objects[name].sprite.setParent(this.container);
       this.game.objects[name].sprite.parentLayer=this.game.layerUI;

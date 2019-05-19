@@ -15,11 +15,11 @@ What can do the engine at the current stage?
 * Change between rooms
 * Non-playable characters
 * Dialogues with non-playable characters
-* ~~Music and Sounds~~ (in progress...)
+* Music and Sounds
 * Credits screen
 * Cut-scenes
 * Animated objects
-* ~~Save/Load the game progress~~(in progress...)
+* Save/Load the game progress
 * Player depth while walk
 
 ### TO-DO

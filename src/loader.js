@@ -10,6 +10,10 @@ class Loader extends PIXI.loaders.Loader{
 
   //Add config files to loader
   addJSON(files){
+  /*  let thisLoader=this;
+    files.map(function(file){
+      thisLoader.add(file.slice(file.lastIndexOf("/")+1,file.lastIndexOf(".")),file)
+    });*/
     let i;
     let arrayLength=files.length;
 

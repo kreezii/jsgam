@@ -3,6 +3,7 @@ import 'pixi-sound';
 import 'pixi-layers';
 
 import Loader from './loader.js';
+import Storage from './storage.js';
 import Title from './class/title.js';
 import GameScene from './class/gamescene.js';
 import CutScene from './class/cutscene.js';
@@ -24,7 +25,6 @@ class Game {
 
     //Setup the application
     this.app = new PIXI.Application(config.width,config.height,{antialias: true, autoResize: true, resolution: devicePixelRatio});
-  //  this.app.renderer.autoResize=true;
     this.app.stage = new PIXI.display.Stage();
 
     //Change game size when window size changes
@@ -102,6 +102,8 @@ class Game {
 
     this.activeState=null;
 
+    this.storage=new Storage(this);
+
     //Setup title screen
     this.addScene("Title",new Title(),this.settings.TitleScreen);
 
@@ -156,6 +158,9 @@ class Game {
 
     //Add player
     this.addPlayer();
+
+    //Check if there is a saved game
+    this.storage.check();
 
     //Set Title as the first scene to show
     this.setScene("Title");
@@ -222,6 +227,7 @@ class Game {
   }
 
   setScene(name,playerCoords) {
+
       //Remove current container
       if (this.activeScene !== null) {
           this.app.stage.removeChild(this.activeScene.container);
@@ -229,14 +235,8 @@ class Game {
 
       //Set current container
       this.activeScene = this.scenes[name];
-
       //Add our new container
       this.app.stage.addChild(this.activeScene.container);
-
-      if(playerCoords!==undefined){
-        this.player.sprite.x=playerCoords[0];
-        this.player.sprite.y=playerCoords[1];
-      }
 
       if(this.activeScene.config.Player!==undefined){
         if(this.activeScene.config.Player.Position!==undefined){
@@ -248,13 +248,26 @@ class Game {
         }
       }
 
+      if(playerCoords!==undefined){
+        this.player.sprite.x=playerCoords[0];
+        this.player.sprite.y=playerCoords[1];
+      }
+
       if(this.activeScene.config.CutScene!==undefined){
         if(!this.cutscenes[this.activeScene.config.CutScene].played){
           this.cutscenes[this.activeScene.config.CutScene].show();
         }
       }
+
+      //Save game progress
+      if(this.activeScene!==this.scenes["Title"])
+        this.storage.save();
       // Play sounds
-    //  if(this.activeScreen.music!==null && this.playSounds) PIXI.sound.play(this.activeScreen.music,{loop:true});
+      if(this.activeScene.music!==undefined && this.playSounds){
+        PIXI.sound.stopAll();
+        if(PIXI.sound.exists(this.activeScene.music))
+          PIXI.sound.play(this.activeScene.music,{loop:true});
+      }
   }
 
   addZOrder(){
@@ -324,8 +337,6 @@ class Game {
 
   //The magic begins
   start(){
-    this.setScene(this.settings.FirstScene);
-
     //Show Inventory
     this.app.stage.addChild(this.inventory.container);
     this.app.stage.addChild(this.inventory.icon);

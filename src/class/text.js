@@ -6,6 +6,13 @@ class Button extends PIXI.extras.BitmapText{
     }
 }
 
+class Infotxt extends PIXI.extras.BitmapText{
+    constructor(text,style){
+      super(text,style);
+    }
+}
+
+
 class Phrases{
   constructor(config){
     this.container=new PIXI.Container();
@@ -37,7 +44,7 @@ class Phrases{
 
     if(this.alpha==1){
       this.game.activeDialogue.choice=this.index;
-      activeChoice[this.index].clicked=true;
+      if(activeChoice[this.index].Repeat==false) activeChoice[this.index].disabled=true;
       this.game.activeDialogue.next();
     }
   }
@@ -46,7 +53,7 @@ class Phrases{
     this.clear();
     let options=this.game.activeDialogue.currentBranch.Choices;
     for(let i=0;i<options.length;i++){
-      if(options[i].clicked && options[i].Repeat==false){
+      if(options[i].disabled){
         this.option[i].alpha=0.5;
       }else this.option[i].alpha=1;
       this.option[i].visible=true;
@@ -191,4 +198,4 @@ class TextField{
   }
 }
 
-export {Button,TextField};
+export {Button,TextField,Infotxt};

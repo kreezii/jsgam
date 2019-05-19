@@ -1,6 +1,3 @@
-
-import tweenManager from 'k8w-pixi-tween';
-
 class Help{
   constructor(){
     this.container=new PIXI.Container();
@@ -30,7 +27,7 @@ class Help{
     this.background.texture=PIXI.Texture.from(this.game.settings.Help[this.game.activeLanguage]);
     this.center();
   }
-  
+
   center(){
     this.container.x = this.game.width / 2;
     this.container.y = this.game.height / 2;
