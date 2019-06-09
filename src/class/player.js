@@ -59,10 +59,14 @@ class Player extends Character{
       }
       this.game.activeObject.cancel();
     }
-
   }
 
   talk(){
+    //Player must look in the right direction
+    if(this.sprite.x<this.game.activeNPC.sprite.x) this.sprite.armature.flipX=false;
+    else this.sprite.armature.flipX=true;
+
+    //Let's talk
     this.game.activeDialogue.start();
   }
 

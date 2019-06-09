@@ -101,6 +101,10 @@ export default class Storage{
     });
     this.game.silentMode=false
 
+    //Add player to latest Position
+    this.game.player.sprite.x=this.progress.playerPos[0];
+    this.game.player.sprite.y=this.progress.playerPos[1];
+
   }
 
   //Clear local storage

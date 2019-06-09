@@ -4,50 +4,51 @@ class Puzzle{
   }
 
   resolve(){
-      if(this.game.activeObject!==null) this.game.activeObject.cancel();
+    if(this.game.activeObject!==null) this.game.activeObject.cancel();
 
-    if(this.config.Modify){
-      let objectMod=this.game.objects[this.config.Modify.Name]
-      if(this.config.Modify.Description) objectMod.config.Description=this.config.Modify.Description;
-      if(this.config.Modify.Door) this.createDoor(objectMod)
-    }
+    if(!this.solved){
+      if(this.config.ModifyObject){
+        let objectMod=this.game.objects[this.config.ModifyObject.Name];
+        if(this.config.ModifyObject.Description!==undefined) objectMod.config.Description=this.config.ModifyObject.Description;
+        if(this.config.ModifyObject.Door!==undefined) this.createDoor(objectMod)
+        if(this.config.ModifyObject.Position!==undefined) objectMod.setpos(this.config.ModifyObject.Position[0],this.config.ModifyObject.Position[1]);
+        if(this.config.ModifyObject.Mirror) objectMod.flip();
+        if(this.config.ModifyObject.Interactive!==undefined) this.setInteraction(this.config.ModifyObject.Interactive);
+        if(this.config.ModifyObject.Texture!==undefined) this.changeTexture(this.config.ModifyObject.Texture);
+      }
 
-    if(this.config.Say && !this.game.silentMode){
-      this.game.player.say(this.config.Say[this.game.activeLanguage]);
+      if(this.config.GetObject!==undefined) this.game.inventory.add(this.config.GetObject);
+
+      if(this.config.AddObject!==undefined){
+        let objectAdd=this.game.objects[this.config.AddObject.Name];
+        objectAdd.add(this.config.AddObject.Scene);
+      }
+
+      if(this.config.RemoveObject!==undefined){
+
+      }
+
+      if(this.config.Resolve!==undefined)this.game.puzzles[this.config.Resolve].resolve();
+
+      if(this.config.Say && !this.game.silentMode){
+        this.game.player.say(this.config.Say[this.game.activeLanguage]);
+      }else{
+        this.game.player.stop();
+      }
+
+      this.solved=true;
+
     }else{
       this.game.player.stop();
     }
 
-    /*else if(this.config.NPCSay && !game.silentMode){
-      game.selectedCharacter=game.searchCharacter(this.config.Give);
-      game.characters[game.selectedCharacter].talk(this.config.NPCSay[game.mainLanguage]);
-      if(game.player.sprite.visible) game.player.stand();
-    }
-*/
-    if(this.config.Remove!==undefined){
-      let i;
-      let array=this.config.Remove;
-      for(i=0;i<array.length;i++){
-        this.game.objects[array[i]].remove();
-      }
-    }
-
-    if(this.config.GetObject!==undefined) this.game.inventory.add(this.config.GetObject);
-/*
-    if(this.config.Create){
-      let objectIndex=game.searchObject(this.config.Create);
-      if(objectIndex){
-        game.scenes[game.currentScene].container.addChild(game.objects[objectIndex]);}
-    }
-*/
-    this.solved=true;
     this.game.activePuzzle=null;
   }
 
   createDoor(target){
     target.door=true;
-    target.newScene=this.config.Modify.Door.To;
-    target.playerPos=this.config.Modify.Door.Player;
+    target.newScene=this.config.ModifyObject.Door.To;
+    target.playerPos=this.config.ModifyObject.Door.Player;
   }
 
   createInventoryObject(objectName){

@@ -8,6 +8,9 @@ class GameObject{
   }
 
   build(){
+    if(this.config.Description===undefined){
+      this.config.Description=this.game.data.texts.NoDescription;
+    }
     //Configure the sprite's object
     if(this.config.Texture){
       //Generate a static object from a texture
@@ -45,11 +48,16 @@ class GameObject{
       this.sprite.scale.set(this.config.Size)
     }
 
+    if(this.config.Mirror){
+      this.flip();
+    }
+
     //Configure the anchor (origin point of the object)
     if(!this.config.Area)this.sprite.anchor.set(0.5,1);
 
     //Configure the layer for the z-order
-    if(this.config.Layer=="Front") this.sprite.parentLayer=this.game.layeronTop;
+    if(this.config.Layer==="Top") this.sprite.parentLayer=this.game.layerTop;
+    else if(this.config.Layer==="Bottom") this.sprite.parentLayer=this.game.layerBottom;
     else this.sprite.parentLayer = this.game.layer;
 
     //Is it a door?
@@ -73,6 +81,8 @@ class GameObject{
           .on('pointerup', this.release.bind(this))
           .on('pointerupoutside', this.release.bind(this));
     }
+
+    if(this.config.Interactive!==undefined) this.setInteraction(this.config.Interactive);
   }
 
   hide(){
@@ -83,6 +93,18 @@ class GameObject{
     this.sprite.visible=true;
   }
 
+  setpos(x,y){
+    this.sprite.x=x;
+    this.sprite.y=y;
+  }
+
+  flip(){
+    this.sprite.scale.x*=-1;
+  }
+
+  changeTexture(texture){
+    this.sprite.texture=new PIXI.Texture.from(texture)
+  }
   //Invisible object touch begins
   touchArea(event){
     if(this.game.activeObject===null && !this.game.player.lock){
@@ -128,6 +150,7 @@ class GameObject{
       this.dragging = true;
       this.moved = 0;
       this.oldParent=this.sprite.parent;
+      this.depthGroup=this.sprite.parentLayer;
       if(this.sprite.parentLayer !== this.game.layerUI) this.sprite.parentLayer = this.game.layerUI;
     }
   }
@@ -172,7 +195,7 @@ class GameObject{
       this.sprite.x = this.posX;
       this.sprite.y = this.posY;
       this.sprite.alpha = 1;
-      this.sprite.parentLayer = this.game.layer;
+      this.sprite.parentLayer = this.depthGroup;
       this.sprite.setParent(this.oldParent);
 
       this.interaction = null;
@@ -233,6 +256,16 @@ class GameObject{
 
   }
 
+  setInteraction(value){
+    this.sprite.interactive=value;
+  }
+
+  //Add the object to a given scene
+  add(scene){
+    this.game.scenes[scene].container.addChild(this.sprite);
+    this.game.scenes[scene].config.Objects.push(this.config.Name);
+    this.game.scenes[scene].config.Objects;
+  }
   //Remove objects from game
   remove(){
     this.sprite.parent.removeChild(this.sprite);

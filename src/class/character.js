@@ -60,7 +60,6 @@ class Character{
 
     let path = new PIXI.tween.TweenPath();
     let findPath=this.game.activeScene.walkable.findPath(this.sprite.x,this.sprite.y,newPosition.x,newPosition.y,0);
-
     if(findPath.length>0){
       this.tween.stop().clear();
       this.animate(this.animations.Walk);
@@ -86,6 +85,7 @@ class Character{
 
   scale(){
     let scaleChar=this.sprite.y/this.game.height*this.size;
+    if(scaleChar<this.game.activeScene.config.Depth) scaleChar=this.game.activeScene.config.Depth;
     this.sprite.scale.set(scaleChar);
   }
 

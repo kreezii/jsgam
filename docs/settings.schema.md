@@ -1,4 +1,41 @@
 ## Settings
+Example
+```
+{
+  "Settings": {
+    "Languages": [
+      "English",
+      "Español"
+    ],
+    "Text": {
+      "Style": {
+        "font":"55px Desyrel",
+        "align": "center"
+      },
+      "ButtonStyle": {
+        "font":"80px Desyrel",
+        "align": "center"
+      },
+      "Position":"bottom",
+      "Size":"fourth"
+    },
+    "TitleScreen": {
+      "Background": "titlebg.png",
+      "Music": "Title"
+    },
+    "Help":[
+      "help-language1.png",
+      "help-language2.png"
+    ],
+    "FirstScene":"MainScene",
+    "Inventory": {
+      "Position": "top-right",
+      "Background": "inventory-bg.png",
+      "Icon": "inventory-icon.png"
+    }
+  }
+}
+```
 ### The Settings Schema
 
 `Settings`
@@ -15,12 +52,12 @@
 
 | Property | Type | Required | Default |
 |----------|------|----------|---------|
-| `FirstScene`| string | **Required** | `""` |
-| `Help`| array | **Required** |  |
-| `Inventory`| object | **Required** |  |
-| `Languages`| array | **Required** |  |
-| `Text`| object | **Required** |  |
-| `TitleScreen`| object | **Required** |  |
+| `FirstScene`| string | **Required** | `undefined` |
+| `Help`| array | **Required** | `undefined` |
+| `Inventory`| object | **Required** | `undefined` |
+| `Languages`| array | **Required** | `undefined` |
+| `Text`| object | **Required** | `undefined` |
+| `TitleScreen`| object | **Required** | `undefined` |
 
 
 
@@ -158,10 +195,13 @@ inventory-icon.png
 
 `string`
 
-##### Position Example
+##### Position Values
 
 ```json
 top-right
+top-left
+bottom-right
+bottom-left
 ```
 
 
@@ -284,7 +324,7 @@ center
 ##### font Example
 
 ```json
-80px Desyrel
+80px Fontname
 ```
 
 
@@ -313,9 +353,10 @@ center
 
 
 
-##### Position Example
+##### Position Values
 
 ```json
+top
 bottom
 ```
 
@@ -341,9 +382,10 @@ bottom
 
 
 
-##### Size Example
+##### Size Values
 
 ```json
+half
 fourth
 ```
 

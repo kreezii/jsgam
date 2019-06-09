@@ -5,7 +5,8 @@ import Walkable from 'walkable';
 
 class GameScene extends Scene{
   build(){
-    this.background.parentLayer = this.game.layer; //Z-order
+    if(this.foreground!==undefined) this.foreground.parentLayer = this.game.layerTop; //Z-order
+    this.background.parentLayer = this.game.layerBottom; //Z-order
     this.background.interactive=true;
     this.background.buttonMode=true;
 

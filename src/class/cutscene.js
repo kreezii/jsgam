@@ -21,15 +21,13 @@ class CutScene{
 
       this.container.addChild(this.image);
 
-      this.field=new PIXI.Text(this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage],this.game.settings.Text.Style);
+      this.field=new PIXI.extras.BitmapText(this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage],this.game.settings.Text.Style);
       this.field.anchor.set(0.5,0);
       this.field.x=this.image.width/2;
       this.field.y=this.image.height+this.field.height/2;
 
       this.container.addChild(this.field);
-
-      this.container.x = (this.game.width - this.image.width) / 2;
-      this.container.y = (this.game.height - this.image.height) / 2;
+      this.adjust();
     }
   }
 
@@ -44,6 +42,7 @@ class CutScene{
         this.videoSprite.on('pointertap',this.end.bind(this));
         this.container.addChild(this.videoSprite);
       }else if(this.config.Sequence) {
+        this.sound();
         this.timeoutID = setTimeout(this.next.bind(this),
                          this.config.Sequence[this.sequenceIndex].Time*1000);
       }
@@ -63,6 +62,7 @@ class CutScene{
       this.sequenceIndex+=1;
       this.field.text=this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
       this.image.texture=(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image));
+      this.adjust();
       this.timeoutID = setTimeout(this.next.bind(this), this.config.Sequence[this.sequenceIndex].Time*1000);
     }else{
       this.end();
@@ -75,13 +75,45 @@ class CutScene{
       this.videoData.pause();
       this.videoData.removeEventListener('ended',this.videoEnds);
     }
-
+    PIXI.sound.stopAll();
     this.hide();
     this.played=true;
     this.game.activeScene.show();
     this.game.inventory.showIcon();
     this.game.player.show();
   }
+
+  adjust(){
+    let containerDimension=this.container.y+this.container.height;
+    if(containerDimension>this.game.height) this.container.y-=containerDimension-this.game.height;
+    else this.container.y = (this.game.height - this.container.height) / 2;
+
+    if(this.container.height>this.game.height || this.container.width>this.game.width) this.scale();
+    else{
+      this.container.scale.set(1);
+      this.center();
+    }
+  }
+
+  center(){
+    this.container.x = (this.game.width - this.container.width) / 2;
+    this.container.y = (this.game.height - this.container.height) / 2;
+  }
+
+  scale(){
+    let ratio = Math.min( this.game.width/this.container.width, this.game.height/this.container.height);
+    this.container.scale.set(ratio*0.95);
+    this.center();
+  }
+
+  sound(){
+    if(this.config.Sequence[this.sequenceIndex].Music!==undefined && this.game.playSounds){
+      PIXI.sound.stopAll();
+      if(PIXI.sound.exists(this.config.Sequence[this.sequenceIndex].Music))
+        PIXI.sound.play(this.config.Sequence[this.sequenceIndex].Music,{loop:true});
+    }
+  }
+
 }
 
 export default CutScene;

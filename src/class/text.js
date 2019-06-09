@@ -23,6 +23,7 @@ class Phrases{
     for(let i=0;i<3;i++){
       this.option[i]=new Button("Option",this.game.settings.Text.ButtonStyle);
       this.option[i].game=this.game;
+      this.option[i].anchor.set(0.5,0);
       this.option[i].on('pointertap', this.onTap.bind(this.option[i]));
       this.option[i].index=i;
       this.container.addChild(this.option[i]);
@@ -70,18 +71,24 @@ class Phrases{
 
   sort(){
     for(let i=0;i<this.option.length;i++){
-      this.option[i].anchor.set(0.5,0);
-      this.option[i].x=this.game.width/2;
+      this.option[i].x=this.container.width/2;
     }
     if(this.container.width>this.container.parent.width || this.container.height>this.container.parent.height){
       this.scale();
     }
+    this.center();
   }
 
   scale(){
-    let ratio = Math.min( this.container.parent.width/this.container.width,  this.container.parent.height/this.container.height);
-    this.container.scale.set(ratio*0.95);
-    this.container.x=this.container.width;
+    let ratio = Math.min( this.game.width/this.container.width,  this.container.parent.height/this.container.height);
+    this.container.scale.set(ratio*0.95)
+  }
+
+  center(){
+    this.container.x = this.game.width / 2;
+  //  this.container.y = this.game.height / 2;
+    this.container.pivot.x = this.container.width / 2;
+  //  this.container.pivot.y = this.container.height / 2;
   }
 }
 
@@ -110,7 +117,7 @@ class TextField{
 
     this.Text=new Button("", this.game.settings.Text.Style);
     this.Text.anchor.set(0.5,0);
-    this.Text.x=this.game.width/2;
+
     this.Text.y=0;
     this.Text.on('pointertap',this.skip.bind(this));
 
@@ -119,6 +126,8 @@ class TextField{
     this.container.addChild(this.Background);
     this.container.addChild(this.Text);
     this.container.addChild(this.Choices.container);
+
+    this.Text.x=this.container.width/2;
 
     if(this.game.settings.Text.Position!==undefined) this.setPosition(this.game.settings.Text.Position);
   }
@@ -146,6 +155,7 @@ class TextField{
       this.hide();
       this.talker.shutup();
       this.game.player.stop();
+      if(this.game.activeObject!==null) this.game.activeObject.cancel();
     }
   }
 

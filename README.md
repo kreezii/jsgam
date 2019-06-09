@@ -1,35 +1,26 @@
-![](https://raw.githubusercontent.com/kreezii/jsgam/master/logo/jsgamLogo.png)
+![](logo/jsgamLogo.png)
 
-# JSGAM
-JavaScript Adventure Game Maker is a game engine inspired on classic graphical point-and-click adventure games but adapted for new times.
+JavaScript Adventure Game Maker is a game engine inspired on classic graphical point-and-click adventure games but adapted to XXI century.
 
-The project enters into **beta** stage.
+## Why JSGAM?
 
-## Progress
-What can do the engine at the current stage?
-* Display scenes with static objects
-* Move the player in a walkable area
-* Player avoiding obstacles in the walkable area
-* Take objects to the inventory
-* Use and combine objects
-* Change between rooms
-* Non-playable characters
-* Dialogues with non-playable characters
-* Music and Sounds
-* Credits screen
-* Cut-scenes
-* Animated objects
-* Save/Load the game progress
-* Player depth while walk
+Imagine you have graphics, music and an awesome story for an adventure game.
+
+Now imagine you write the schemes of your adventure; the objects, the scenes, the non-playable characters, the dialogues, the puzzles...
+
+And finally imagine you don't need to write a single line of code (well... maybe a few lines) because an engine get those schemes and generate the game for you.
 
 ### TO-DO
 
-In order of priority.
 * Documentation (in progress...)
-* ~~Add filters to the scene~~ (temporary removed)
-* ~~Voices~~
+* Demo (in progress...)
+* Game template
+
+## Getting started
+
 
 ## Author
+
 * **R.Vañes**
 
 ## Built With
@@ -40,6 +31,6 @@ In order of priority.
 * [Pixi-Tween](https://github.com/k8w/pixi-tween)
 * [Pixi-Layers](https://github.com/pixijs/pixi-display)
 * [Pixi-Sound](https://github.com/pixijs/pixi-sound)
-* [Pixi-Filters](https://github.com/pixijs/pixi-filters)
 * [PolyK](http://polyk.ivank.net/)
 * [Walkable](https://github.com/implicit-invocation/walkable)
+* [Docsify](https://github.com/docsifyjs/docsify/)

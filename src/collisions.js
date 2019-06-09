@@ -22,25 +22,33 @@ function collision(a, b)
 function closestPoint(area,coords){
   let coordX=Math.round(coords.x);
   let coordY=Math.round(coords.y);
-  let changePosition=PolyK.ClosestEdge(area,coordX,coordY).point;
-  return {x:Math.round(changePosition.x)+1,y:Math.round(changePosition.y)+1}
+  let changePosition={};
+  let closestedge=PolyK.ClosestEdge(area,coordX,coordY);
+  changePosition.x=closestedge.point.x-closestedge.norm.x;
+  changePosition.y=closestedge.point.y-closestedge.norm.y;
+  return {x:Math.round(changePosition.x),y:Math.round(changePosition.y)}
 }
 
 function checkPath(coords,obstaclesPolys,walkPoly){
   let coordX=Math.round(coords.x);
   let coordY=Math.round(coords.y);
-  let changePosition;
+  let changePosition={};
   let newPos;
 
   if(!PolyK.ContainsPoint(walkPoly,coordX,coordY))
   {
-    changePosition=PolyK.ClosestEdge(walkPoly,coordX,coordY).point;
-    newPos={x:Math.round(changePosition.x)+1,y:Math.round(changePosition.y)+1}
+    let closestedge=PolyK.ClosestEdge(walkPoly,coordX,coordY);
+    changePosition.x=closestedge.point.x-closestedge.norm.x;
+    changePosition.y=closestedge.point.y-closestedge.norm.y;
+    newPos={x:Math.round(changePosition.x),y:Math.round(changePosition.y)}
   }else if(obstaclesPolys!==undefined){
+
     for(let i=0;i<obstaclesPolys.length ;i++){
       if(PolyK.ContainsPoint(obstaclesPolys[i],coordX,coordY)){
-        changePosition=PolyK.ClosestEdge(walkPoly,coordX,coordY).point;
-        newPos={x:Math.round(changePosition.x)+1,y:Math.round(changePosition.y)+1}
+        let closestedge=PolyK.ClosestEdge(walkPoly,coordX,coordY);
+        changePosition.x=closestedge.point.x-closestedge.norm.x;
+        changePosition.y=closestedge.point.y-closestedge.norm.y;
+        newPos={x:Math.round(changePosition.x)+1,y:Math.round(changePosition.y)+1};
         break;
       }
     }

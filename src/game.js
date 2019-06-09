@@ -170,7 +170,8 @@ class Game {
   }
 
   loop(dt){
-    //console.log(this.player.lock) //Test
+  //  console.log(this.player.lock) //Test
+    //console.log(this.activeObject); //Test
     // update current state
     if (this.activeState != null) {
         this.activeState.update(dt);
@@ -271,21 +272,23 @@ class Game {
   }
 
   addZOrder(){
-    this.sortGroup= new PIXI.display.Group(0, true);
+    this.BottomGroup= new PIXI.display.Group(0,false);
+    this.sortGroup= new PIXI.display.Group(1, true);
     this.sortGroup.on('sort', function (sprite) {
       sprite.zOrder = -sprite.y;
     });
-    this.onTopGroup = new PIXI.display.Group(1,false);
-    this.UIGroup = new PIXI.display.Group(2,false);
+    this.TopGroup = new PIXI.display.Group(2,false);
+    this.UIGroup = new PIXI.display.Group(3,false);
 
+    this.layerBottom=new PIXI.display.Layer(this.BottomGroup);
     this.layer=new PIXI.display.Layer(this.sortGroup);
-    this.layeronTop=new PIXI.display.Layer(this.onTopGroup);
+    this.layerTop=new PIXI.display.Layer(this.TopGroup);
     this.layerUI=new PIXI.display.Layer(this.UIGroup);
-    //this.layerUI.group.enableSort = true;
-    //this.layer.group.enableSort = true;
+
     this.app.stage.group.enableSort = true;
+    this.app.stage.addChild(this.layerBottom);//Z-order
     this.app.stage.addChild(this.layer);//Z-order
-    this.app.stage.addChild(this.layeronTop);//Z-order
+    this.app.stage.addChild(this.layerTop);//Z-order
     this.app.stage.addChild(this.layerUI);//Z-order
   }
 
