@@ -28,6 +28,10 @@ class Puzzle{
 
       }
 
+      if(this.config.SetDialogue!==undefined){
+        this.game.npcs[this.config.SetDialogue.Character].config.Dialogue=this.config.SetDialogue.Dialogue;
+      }
+
       if(this.config.Resolve!==undefined)this.game.puzzles[this.config.Resolve].resolve();
 
       if(this.config.Say && !this.game.silentMode){

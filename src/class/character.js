@@ -14,7 +14,12 @@ class Character{
     dbfactory.parseDragonBonesData(this.game.files.resources[config.Name+"Skeleton"].data);
     dbfactory.parseTextureAtlasData(this.game.files.resources[config.Name+"Json"].data,this.game.files.resources[config.Name+"Tex"].texture);
     this.sprite = dbfactory.buildArmatureDisplay(config.Armature);
-    this.size=1;
+    if(config.Size){
+      this.size=config.Size;
+      this.sprite.scale.set(this.size);
+    }else{
+      this.size=1;
+    }
     this.tween=PIXI.tweenManager.createTween(this.sprite);
     this.tween.on('end', this.stop.bind(this));
     if(config.Animations!=undefined)

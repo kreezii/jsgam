@@ -27,12 +27,12 @@ class Phrases{
       this.option[i].on('pointertap', this.onTap.bind(this.option[i]));
       this.option[i].index=i;
       this.container.addChild(this.option[i]);
+      this.option[i].x=this.container.width/2;
       if(i>0)this.option[i].y=this.option[i-1].y+this.option[i-1].height;
     }
   }
 
   show(){
-    this.sort();
     this.container.visible=true;
   }
 
@@ -60,6 +60,7 @@ class Phrases{
       this.option[i].visible=true;
       this.option[i].text=options[i].Text[this.game.activeLanguage];
     }
+    this.sort();
     this.show();
   }
 
@@ -128,7 +129,7 @@ class TextField{
     this.container.addChild(this.Choices.container);
 
     this.Text.x=this.container.width/2;
-
+    this.Choices.sort();
     if(this.game.settings.Text.Position!==undefined) this.setPosition(this.game.settings.Text.Position);
   }
 

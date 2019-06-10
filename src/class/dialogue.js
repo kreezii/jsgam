@@ -59,14 +59,15 @@ class Dialogue{
   answer(){
     let choiceSelected=this.currentBranch.Choices[this.choice];
     this.game.activeNPC.say(choiceSelected.Answer[this.game.activeLanguage]);
-    if(choiceSelected.EndDialogue){
-      this.end();
-    }else if(choiceSelected.Link){
+
+    if(choiceSelected.Link){
       this.currentBranch=this.branches[choiceSelected.Link];
     }else if(choiceSelected.Puzzle){
       choiceSelected.Repeat=false;
       this.end();
       this.game.puzzles[choiceSelected.Puzzle].resolve();
+    }else if(choiceSelected.EndDialogue){
+      this.end();
     }
 
 
