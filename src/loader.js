@@ -30,14 +30,13 @@ class Loader extends PIXI.loaders.Loader{
     for(i=0;i<length;i++){
       //Add config files to setup the game
       if(files[i].data.Settings) this.game.settings=files[i].data.Settings;
-      if(files[i].data.Scenes) this.game.data.scenes=files[i].data.Scenes;
-      if(files[i].data.Cutscenes) this.game.data.cutscenes=files[i].data.Cutscenes;
-      if(files[i].data.Objects) this.game.data.objects=files[i].data.Objects;
-      if(files[i].data.Dialogues) this.game.data.dialogues=files[i].data.Dialogues;
-      if(files[i].data.Puzzles) this.game.data.puzzles=files[i].data.Puzzles;
+      if(files[i].data.Scenes) this.game.data.scenes=this.game.data.scenes.concat(files[i].data.Scenes);
+      if(files[i].data.Cutscenes) this.game.data.cutscenes=this.game.data.cutscenes.concat(files[i].data.Cutscenes);
+      if(files[i].data.Objects) this.game.data.objects=this.game.data.objects.concat(files[i].data.Objects);
+      if(files[i].data.Dialogues) this.game.data.dialogues=this.game.data.dialogues.concat(files[i].data.Dialogues);
+      if(files[i].data.Puzzles) this.game.data.puzzles=this.game.data.puzzles.concat(files[i].data.Puzzles);
       if(files[i].data.Credits) this.game.data.credits=files[i].data.Credits;
       if(files[i].data.Texts) this.game.data.texts=files[i].data.Texts;
-
       //Look for sound files
       if(files[i].data.Sounds){
         let soundSrc=files[i].data.Sounds;

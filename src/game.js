@@ -18,19 +18,38 @@ import Dialogue from './class/dialogue.js';
 class Game {
   constructor(config){
     this.settings={};
-    this.data={};
+    this.data={
+      scenes:[],
+      cutscenes:[],
+      objects:[],
+      dialogues:[],
+      puzzles:[],
+      credits:[],
+      texts:[]
+    };
     this.width=config.width;
     this.height=config.height;
+    this.holdTime=500;
     this.playSounds = true;
 
     //Setup the application
-    this.app = new PIXI.Application(config.width,config.height,{antialias: true, autoResize: true, resolution: devicePixelRatio});
+    this.app = new PIXI.Application(
+      config.width,config.height,{
+      antialias: true,
+      autoResize: true,
+      resolution: devicePixelRatio
+    });
+
     this.app.stage = new PIXI.display.Stage();
 
     //Change game size when window size changes
     if(config.autoResize!==undefined) this.app.renderer.autoResize=config.autoResize;
     else window.addEventListener('resize', this.resize.bind(this));
 
+    //Disable contextmenu for mouse interaction
+    document.addEventListener('contextmenu', e => {
+       e.preventDefault();
+    });
 
     //We append it to a HTML element or Document body
     if(config.parent){
@@ -61,7 +80,7 @@ class Game {
 
     this.app.stage.addChild(this.loadingTxt);
     this.app.stage.addChild(this.progressBar);
-
+this.resize();
     this.jsons=new Loader();
     this.jsons.game=this;
     this.jsons.addJSON(files);
@@ -104,6 +123,8 @@ class Game {
 
     this.storage=new Storage(this);
 
+
+    if(this.settings.HoldTime!==undefined) this.holdTime=this.settings.HoldTime*1000;
     //Setup title screen
     this.addScene("Title",new Title(),this.settings.TitleScreen);
 
@@ -239,6 +260,11 @@ class Game {
       //Add our new container
       this.app.stage.addChild(this.activeScene.container);
 
+      if(playerCoords!==undefined){
+        this.player.sprite.x=playerCoords[0];
+        this.player.sprite.y=playerCoords[1];
+      }
+
       if(this.activeScene.config.Player!==undefined){
         if(this.activeScene.config.Player.Position!==undefined){
           this.player.position(this.activeScene.config.Player.Position);
@@ -249,26 +275,23 @@ class Game {
         }
       }
 
-      if(playerCoords!==undefined){
-        this.player.sprite.x=playerCoords[0];
-        this.player.sprite.y=playerCoords[1];
-      }
-
       if(this.activeScene.config.CutScene!==undefined){
         if(!this.cutscenes[this.activeScene.config.CutScene].played){
           this.cutscenes[this.activeScene.config.CutScene].show();
+        }
+      }else{
+        // Play sounds
+        if(this.activeScene.music!==undefined && this.playSounds){
+          PIXI.sound.stopAll();
+          if(PIXI.sound.exists(this.activeScene.music))
+            PIXI.sound.play(this.activeScene.music,{loop:true});
         }
       }
 
       //Save game progress
       if(this.activeScene!==this.scenes["Title"])
         this.storage.save();
-      // Play sounds
-      if(this.activeScene.music!==undefined && this.playSounds){
-        PIXI.sound.stopAll();
-        if(PIXI.sound.exists(this.activeScene.music))
-          PIXI.sound.play(this.activeScene.music,{loop:true});
-      }
+
   }
 
   addZOrder(){
@@ -303,6 +326,7 @@ class Game {
     this.player.game=this;
     this.data.player.Name="player";
     this.player.setup(this.data.player);
+    this.player.build();
   }
 
   addNPC(name, char, config){
@@ -331,11 +355,12 @@ class Game {
 
   //Adjust game screen to the window
   resize() {
-    var w = window.innerWidth * window.devicePixelRatio;
-    var h = window.innerHeight * window.devicePixelRatio;
+    var w = window.innerWidth;// * window.devicePixelRatio;
+    var h = window.innerHeight;// * window.devicePixelRatio;
     var ratio = Math.min( w/this.width,  h/this.height);
     this.app.renderer.resize(this.width*ratio,this.height*ratio);
     this.app.stage.scale.set(ratio);
+
   }
 
   //The magic begins

@@ -3,20 +3,31 @@ import dragonBones from 'dragonbones-pixi';
 const dbEvents=dragonBones.dragonBones.EventObject;
 
 class Player extends Character{
+  build(){
+    this.sprite.x=this.game.data.player.Position[0];
+    this.sprite.y=this.game.data.player.Position[1];
+  }
+
   move(coords){
     super.move(coords);
     this.game.activeState=this;
   }
+
   say(text){
     super.say(text);
     //Lock the player
     this.lock=true;
   }
+
   look(){
     if(this.game.activeObject!==null){
       let text=this.game.activeObject.config.Description[this.game.activeLanguage];
       this.say(text);
       this.game.activeObject.cancel();
+    }else if(this.game.activeNPC!==null){
+          let text=this.game.activeNPC.config.Description[this.game.activeLanguage];
+          this.say(text);
+          this.game.activeNPC.cancel();
     }
   }
 
@@ -63,8 +74,13 @@ class Player extends Character{
 
   talk(){
     //Player must look in the right direction
-    if(this.sprite.x<this.game.activeNPC.sprite.x) this.sprite.armature.flipX=false;
-    else this.sprite.armature.flipX=true;
+    if(this.sprite.x<this.game.activeNPC.sprite.x){
+      this.sprite.armature.flipX=false;
+      this.game.activeNPC.sprite.armature.flipX=true;
+    }else{
+      this.sprite.armature.flipX=true;
+      this.game.activeNPC.sprite.armature.flipX=false;
+    }
 
     //Let's talk
     this.game.activeDialogue.start();

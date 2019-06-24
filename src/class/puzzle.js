@@ -15,6 +15,8 @@ class Puzzle{
         if(this.config.ModifyObject.Mirror) objectMod.flip();
         if(this.config.ModifyObject.Interactive!==undefined) this.setInteraction(this.config.ModifyObject.Interactive);
         if(this.config.ModifyObject.Texture!==undefined) this.changeTexture(this.config.ModifyObject.Texture);
+        if(this.config.ModifyObject.Combine!==undefined) objectMod.config.Combine=this.config.ModifyObject.Combine;
+        if(this.config.ModifyObject.Lock!==undefined) objectMod.lock=this.config.ModifyObject.Lock;
       }
 
       if(this.config.GetObject!==undefined) this.game.inventory.add(this.config.GetObject);
@@ -25,6 +27,8 @@ class Puzzle{
       }
 
       if(this.config.RemoveObject!==undefined){
+        let objectRemove=this.game.objects[this.config.RemoveObject];
+        objectRemove.remove();
 
       }
 
@@ -53,10 +57,6 @@ class Puzzle{
     target.door=true;
     target.newScene=this.config.ModifyObject.Door.To;
     target.playerPos=this.config.ModifyObject.Door.Player;
-  }
-
-  createInventoryObject(objectName){
-    //this.game.objects[objectName].take();
   }
 }
 

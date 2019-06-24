@@ -66,6 +66,22 @@ export default class Storage{
   load(){
     let game=this.game;
 
+    //Disable dialogues finished
+    this.progress.dialogues.forEach(function(disable){
+      game.dialogues[disable.Dialogue].branches[disable.Branch].Choices[disable.Index].disabled=true;
+    });
+
+    //Disable cutscenes played
+    this.progress.cutscenes.forEach(function(name){
+      game.cutscenes[name].played=true;
+    });
+
+    this.game.silentMode=true;
+    //Resolve puzzles already done
+    this.progress.puzzles.forEach(function(name){
+      game.puzzles[name].resolve();
+    });
+    
     //Load objects in inventory
     this.progress.inventory.forEach(function(item){
 
@@ -82,22 +98,6 @@ export default class Storage{
         }
       })
 
-    });
-
-    //Disable dialogues finished
-    this.progress.dialogues.forEach(function(disable){
-      game.dialogues[disable.Dialogue].branches[disable.Branch].Choices[disable.Index].disabled=true;
-    });
-
-    //Disable cutscenes played
-    this.progress.cutscenes.forEach(function(name){
-      game.cutscenes[name].played=true;
-    });
-
-    this.game.silentMode=true;
-    //Resolve puzzles already done
-    this.progress.puzzles.forEach(function(name){
-      game.puzzles[name].resolve();
     });
     this.game.silentMode=false
 

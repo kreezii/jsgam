@@ -1,6 +1,7 @@
 ![](logo/jsgamLogo.png)
+# JavaScript Adventure Game Maker
 
-JavaScript Adventure Game Maker is a game engine inspired on classic graphical point-and-click adventure games but adapted to XXI century.
+A game engine inspired on classic graphical point-and-click adventure games made for XXI century.
 
 ## Why JSGAM?
 

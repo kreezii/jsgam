@@ -207,6 +207,10 @@ class TextField{
   setColor(colour){
     this.Text.tint=colour;
   }
+
+  setFont(newFont){
+    this.Text.font=newFont;
+  }
 }
 
 export {Button,TextField,Infotxt};

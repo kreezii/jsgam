@@ -66,7 +66,11 @@ class GameObject{
       this.newScene=this.config.Door.To;
       this.playerPos=this.config.Door.Player;
     }
-
+this.holding=false;
+this.timeoutID;
+    if(this.config.Lock){
+      this.locked=true;
+    }
     //Game object events
     this.sprite.interactive=true;
     this.sprite.buttonMode=true;
@@ -105,27 +109,42 @@ class GameObject{
   changeTexture(texture){
     this.sprite.texture=new PIXI.Texture.from(texture)
   }
+
+  hold(){
+    this.holding=true;
+  }
   //Invisible object touch begins
   touchArea(event){
     if(this.game.activeObject===null && !this.game.player.lock){
       this.game.activeObject=this;
       this.interaction = event.data;
       this.action=null;
+      if(this.timeoutID) clearTimeout(this.timeoutID);
+      this.timeoutID=setTimeout(this.hold.bind(this), this.game.holdTime);
       this.touchedPos=this.interaction.getLocalPosition(this.game.app.stage);
     }
   }
 
   //Invisible object touch ends
   releaseArea(){
+    if(this.timeoutID) clearTimeout(this.timeoutID);
+
     if(this.interaction){
       let moveTo=this.interaction.getLocalPosition(this.game.app.stage);
       if(collision(moveTo,this.sprite)){
+        if(this.interaction.button===2 || this.holding){
+          if(this.door===true ){
+            let newPos=closestPoint(this.config.Area,moveTo);
+            moveTo=newPos;
+          }else if(this.config.Use!==undefined){
+            this.game.activePuzzle=this.game.puzzles[this.config.Use];
+          }
+          this.use();
+        }else{
          this.look();
-      }else if(this.door===true){
-        let newPos=closestPoint(this.config.Area,moveTo);
-        moveTo=newPos;
-        this.use();
+       }
       }
+
       if(this.action!==null){
         this.game.player.tween.once('end',this.action);
         this.game.player.move(moveTo);
@@ -133,6 +152,8 @@ class GameObject{
         this.cancel();
       }
 
+      if(this.game.player.touched) this.game.player.touched=false;
+      this.holding=false;
       this.interaction = null;
       this.touchedPos=null;
     }
@@ -148,7 +169,8 @@ class GameObject{
       this.interaction = event.data;
       this.sprite.alpha = 0.5;
       this.dragging = true;
-      this.moved = 0;
+      if(this.timeoutID) clearTimeout(this.timeoutID);
+      this.timeoutID=setTimeout(this.hold.bind(this), 1000);
       this.oldParent=this.sprite.parent;
       this.depthGroup=this.sprite.parentLayer;
       if(this.sprite.parentLayer !== this.game.layerUI) this.sprite.parentLayer = this.game.layerUI;
@@ -157,8 +179,7 @@ class GameObject{
 
   //Object is being dragged
   move(){
-    if (this.dragging) {
-      this.moved++;
+    if (this.dragging && !this.locked) {
       this.sprite.setParent(this.game.app.stage);
       var newPosition = this.interaction.getLocalPosition(this.sprite.parent);
       let bounds=this.sprite.getBounds();
@@ -170,19 +191,19 @@ class GameObject{
 
   //Object drag/touch ends
   release(){
+    if(this.timeoutID) clearTimeout(this.timeoutID);
+
     if(this.interaction){
       let moveTo={x:this.posX,y:this.posY};
       //Check if we take it
       if(collision(this.sprite,this.game.inventory.icon) && this.config.Take){
         this.take();
         //Check if we look it
-      }else if(this.moved<3){
+      }else if(this.interaction.button===2  || this.holding){
+        if(this.config.Use!==undefined) this.game.activePuzzle=this.game.puzzles[this.config.Use];
+        this.use();
+      }else{
         this.look();
-      }else if(this.config.door===true){
-        this.use();
-      }else if(this.config.Use!==undefined){
-        this.game.activePuzzle=this.game.puzzles[this.config.Use];
-        this.use();
       }
 
       if(this.action!==null){
@@ -192,15 +213,17 @@ class GameObject{
         this.cancel();
       }
 
+      if(this.game.player.touched) this.game.player.touched=false;
+
       this.sprite.x = this.posX;
       this.sprite.y = this.posY;
       this.sprite.alpha = 1;
       this.sprite.parentLayer = this.depthGroup;
       this.sprite.setParent(this.oldParent);
 
+      this.holding=false;
       this.interaction = null;
       this.dragging = false;
-      this.moved=0;
     }
   }
 
@@ -246,6 +269,17 @@ class GameObject{
       }
     }
 
+    //Check the collision a character
+    let charsArray=this.game.activeScene.config.Characters;
+
+    for(i=0;i<charsArray.length;i++){
+      if(collision(this.sprite,this.game.npcs[charsArray[i]].sprite)
+                   && this.config.Name!==charsArray[i]){
+        found=charsArray[i];
+        break;
+      }
+    }
+
     return found;
   }
 
@@ -264,14 +298,26 @@ class GameObject{
   add(scene){
     this.game.scenes[scene].container.addChild(this.sprite);
     this.game.scenes[scene].config.Objects.push(this.config.Name);
-    this.game.scenes[scene].config.Objects;
   }
   //Remove objects from game
   remove(){
     this.sprite.parent.removeChild(this.sprite);
-    //POR HACER
-    //Quitar el objeto de la cadena de objetos de la escena
-    //Quitar del inventario en caso de que esté ahí
+
+    //Check if we remove an object which is in an scene
+    let scenesArray=Object.values(this.game.scenes)
+    let i;
+    let scenesLength=scenesArray.length;
+    for(i=0;i<scenesLength;i++){
+      if(scenesArray[i].config.Objects!==undefined && scenesArray[i].config.Objects.includes(this.config.Name)){
+        let tmpIndex=scenesArray[i].config.Objects.indexOf(this.config.Name);
+        scenesArray[i].config.Objects.splice(tmpIndex,1);
+      }
+    }
+
+    //Check if the object to remove is inside the inventory
+    if(this.game.inventory.objects.includes(this.config.Name)){
+      this.game.inventory.remove(this.config.Name)
+    }
   }
 
 }

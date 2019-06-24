@@ -104,7 +104,10 @@ class Character{
     this.game.textField.talker=this;
     //Setup the text to show
     this.game.textField.setText(text);
-    this.game.textField.setColor(Number(this.config.Color));
+    if(this.config.Color!==undefined) this.game.textField.setColor(Number(this.config.Color));
+    if(this.config.Font!==undefined) this.game.textField.setFont(this.config.Font);
+    else this.game.textField.setFont(this.game.settings.Text.Style.font)
+
     this.game.textField.show();
 
     //Animate the character

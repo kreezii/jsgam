@@ -34,8 +34,8 @@
     "k8w-pixi-tween": "^0.7.6",
     "localforage": "^1.7.3",
     "pixi-layers": "^0.1.10",
-    "pixi-sound": "^2.1.0",
-    "pixi.js": "^4.8.7",
+    "pixi-sound": "^2.1.4",
+    "pixi.js": "^4.8.8",
     "polyk": "^0.24.0",
     "walkable": "^1.0.3"
   }

@@ -88,13 +88,18 @@ class Inventory{
     }
 
     update(){
+      //Inventory is limited to 25 objects
       let i;
       let numObjs=this.objects.length;
       for(i=0;i<numObjs;i++){
         let tmpObj=this.game.objects[this.objects[i]].sprite;
 
-        tmpObj.width=this.container.width/5-this.container.width*0.05;
-        tmpObj.height=this.container.height/5-this.container.height*0.05;
+        let desiredWidth=this.container.width/5-this.container.width*0.05;
+        let desiredHeight=this.container.height/5-this.container.height*0.05;
+        let ratio = Math.min( desiredWidth/tmpObj.width, desiredHeight/tmpObj.height);
+        tmpObj.width*=ratio;
+        tmpObj.height*=ratio;
+
         tmpObj.x = ((i % 5) * this.container.width/5+this.border-i)+tmpObj.width/2;
         tmpObj.y = (Math.floor(i / 5) * this.container.height/5+this.border-i)+tmpObj.height;
         this.container.width=this.background.width;
@@ -108,12 +113,14 @@ class Inventory{
     }
 
     release(event){
+      if(this.timeoutID) clearTimeout(this.timeoutID);
+      
       if(this.interaction){
         let objectHit=this.hit();
 
         let moveTo={x:this.sprite.x,y:this.sprite.y};
         //Check if we take it
-        if(this.moved<3){
+        if(!this.holding){
           this.game.player.say(this.config.Description[this.game.activeLanguage])
         }else if(this.config.Combine!==undefined && objectHit!==null){
           if(this.config.Combine.With===objectHit) {
@@ -136,7 +143,7 @@ class Inventory{
 
         this.interaction = null;
         this.dragging = false;
-        this.moved=0;
+        this.holding=false;
       }
     }
 }

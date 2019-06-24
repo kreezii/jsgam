@@ -50,6 +50,7 @@ class CutScene{
       this.game.activeScene.hide();
       this.game.inventory.hideIcon();
       this.game.player.hide();
+      if(PIXI.sound.exists(this.game.activeScene.music)) PIXI.sound.pause(this.game.activeScene.music)
   }
 
   hide(){
@@ -81,6 +82,7 @@ class CutScene{
     this.game.activeScene.show();
     this.game.inventory.showIcon();
     this.game.player.show();
+    if(PIXI.sound.exists(this.game.activeScene.music)) PIXI.sound.play(this.game.activeScene.music)
   }
 
   adjust(){
