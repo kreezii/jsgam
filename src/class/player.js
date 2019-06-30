@@ -3,11 +3,6 @@ import dragonBones from 'dragonbones-pixi';
 const dbEvents=dragonBones.dragonBones.EventObject;
 
 class Player extends Character{
-  build(){
-    this.sprite.x=this.game.data.player.Position[0];
-    this.sprite.y=this.game.data.player.Position[1];
-  }
-
   move(coords){
     super.move(coords);
     this.game.activeState=this;

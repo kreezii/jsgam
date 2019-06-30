@@ -20,7 +20,7 @@ class Phrases{
     this.game=config;
     this.option=[];
 
-    for(let i=0;i<3;i++){
+    for(let i=0;i<this.game.dialogueChoices;i++){
       this.option[i]=new Button("Option",this.game.settings.Text.ButtonStyle);
       this.option[i].game=this.game;
       this.option[i].anchor.set(0.5,0);

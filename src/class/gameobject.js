@@ -249,12 +249,13 @@ this.timeoutID;
 
     //First check the collision between active scene's objects
     let objectsArray=this.game.activeScene.config.Objects;
-
-    for(i=0;i<objectsArray.length;i++){
-      if(collision(this.sprite,this.game.objects[objectsArray[i]].sprite)
-                   && this.config.Name!==objectsArray[i]){
-        found=objectsArray[i];
-        break;
+    if(objectsArray!==undefined){
+      for(i=0;i<objectsArray.length;i++){
+        if(collision(this.sprite,this.game.objects[objectsArray[i]].sprite)
+                     && this.config.Name!==objectsArray[i]){
+          found=objectsArray[i];
+          break;
+        }
       }
     }
 
@@ -271,12 +272,13 @@ this.timeoutID;
 
     //Check the collision a character
     let charsArray=this.game.activeScene.config.Characters;
-
-    for(i=0;i<charsArray.length;i++){
-      if(collision(this.sprite,this.game.npcs[charsArray[i]].sprite)
-                   && this.config.Name!==charsArray[i]){
-        found=charsArray[i];
-        break;
+    if(charsArray!==undefined){
+      for(i=0;i<charsArray.length;i++){
+        if(collision(this.sprite,this.game.npcs[charsArray[i]].sprite)
+                     && this.config.Name!==charsArray[i]){
+          found=charsArray[i];
+          break;
+        }
       }
     }
 

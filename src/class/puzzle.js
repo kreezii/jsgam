@@ -16,6 +16,7 @@ class Puzzle{
         if(this.config.ModifyObject.Interactive!==undefined) this.setInteraction(this.config.ModifyObject.Interactive);
         if(this.config.ModifyObject.Texture!==undefined) this.changeTexture(this.config.ModifyObject.Texture);
         if(this.config.ModifyObject.Combine!==undefined) objectMod.config.Combine=this.config.ModifyObject.Combine;
+        if(this.config.ModifyObject.Use!==undefined) objectMod.config.Use=this.config.ModifyObject.Use;
         if(this.config.ModifyObject.Lock!==undefined) objectMod.lock=this.config.ModifyObject.Lock;
       }
 
@@ -32,6 +33,11 @@ class Puzzle{
 
       }
 
+      if(this.config.RemoveDoor!==undefined){
+        let objectDoor=this.game.objects[this.config.RemoveDoor];
+        objectDoor.door=false;
+      }
+
       if(this.config.SetDialogue!==undefined){
         this.game.npcs[this.config.SetDialogue.Character].config.Dialogue=this.config.SetDialogue.Dialogue;
       }
@@ -40,8 +46,20 @@ class Puzzle{
 
       if(this.config.Say && !this.game.silentMode){
         this.game.player.say(this.config.Say[this.game.activeLanguage]);
+      }else if(this.config.NPCSay && !this.game.silentMode){
+        this.game.npcs[this.config.NPCSay.Name].say(this.config.NPCSay.Text[this.game.activeLanguage]);
       }else{
         this.game.player.stop();
+      }
+
+      if(this.config.CutScene!==undefined && !this.game.silentMode){
+        this.game.cutscenes[this.config.CutScene].show();
+      }
+
+      if(this.config.EndGame!==undefined && !this.game.silentMode){
+        this.game.end();
+        if(this.config.EndGame.CutScene!==undefined) this.game.cutscenes[this.config.EndGame.CutScene].show();
+        else this.game.home();
       }
 
       this.solved=true;

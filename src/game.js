@@ -121,12 +121,18 @@ this.resize();
 
     this.activeState=null;
 
+    this.finished=false;
+
     this.storage=new Storage(this);
+
+    this.titleLabel="Title";
 
 
     if(this.settings.HoldTime!==undefined) this.holdTime=this.settings.HoldTime*1000;
+    if(this.settings.dialogueChoices!==undefined) this.dialogueChoices=this.settings.dialogueChoices;
+    else this.dialogueChoices=3;
     //Setup title screen
-    this.addScene("Title",new Title(),this.settings.TitleScreen);
+    this.addScene(this.titleLabel,new Title(),this.settings.TitleScreen);
 
     //Add game objects
     let i;
@@ -184,7 +190,7 @@ this.resize();
     this.storage.check();
 
     //Set Title as the first scene to show
-    this.setScene("Title");
+    this.setScene(this.titleLabel);
 
     //Game's loop
     this.app.ticker.add(this.loop.bind(this));
@@ -289,7 +295,7 @@ this.resize();
       }
 
       //Save game progress
-      if(this.activeScene!==this.scenes["Title"])
+      if(this.activeScene!==this.scenes[this.titleLabel])
         this.storage.save();
 
   }
@@ -326,7 +332,6 @@ this.resize();
     this.player.game=this;
     this.data.player.Name="player";
     this.player.setup(this.data.player);
-    this.player.build();
   }
 
   addNPC(name, char, config){
@@ -376,7 +381,13 @@ this.resize();
     this.app.stage.addChild(this.textField.container);
   }
 
+  end(){
+    this.finished=true;
+  }
 
+  home(){
+    this.setScene(this.titleLabel);
+  }
 }
 
 export default Game;

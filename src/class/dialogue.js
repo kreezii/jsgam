@@ -48,7 +48,7 @@ class Dialogue{
     let i;
     let length=this.config.Branches.length
     for(i=0;i<length;i++)
-         if(this.config.Branches[i].Name==name)
+         if(this.config.Branches[i].Name===name)
          {
              branchFound=i;
              break;

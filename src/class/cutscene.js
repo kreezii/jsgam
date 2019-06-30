@@ -76,13 +76,19 @@ class CutScene{
       this.videoData.pause();
       this.videoData.removeEventListener('ended',this.videoEnds);
     }
+    this.played=true;
     PIXI.sound.stopAll();
     this.hide();
-    this.played=true;
-    this.game.activeScene.show();
-    this.game.inventory.showIcon();
-    this.game.player.show();
-    if(PIXI.sound.exists(this.game.activeScene.music)) PIXI.sound.play(this.game.activeScene.music)
+
+    if(!this.game.finished)
+    {
+      this.game.inventory.showIcon();
+      this.game.player.show();
+      this.game.activeScene.show();
+      if(PIXI.sound.exists(this.game.activeScene.music)) PIXI.sound.play(this.game.activeScene.music,{loop:true})
+    }else{
+      this.game.home();
+    }
   }
 
   adjust(){

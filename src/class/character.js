@@ -34,8 +34,10 @@ class Character{
       };
     this.animate(this.animations.Stand);
     this.state="stand";
-    this.sprite.x=500;
-    this.sprite.y=500;
+    if(config.Position){
+      this.sprite.x=config.Position[0];
+      this.sprite.y=config.Position[1];
+    }
     this.sprite.parentLayer = this.game.layer;//Z-order*/
     this.config=config;
   }
