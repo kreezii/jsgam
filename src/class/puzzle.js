@@ -52,13 +52,23 @@ class Puzzle{
         this.game.player.stop();
       }
 
-      if(this.config.CutScene!==undefined && !this.game.silentMode){
-        this.game.cutscenes[this.config.CutScene].show();
+      if(this.config.Sound!==undefined && !this.game.silentMode){
+          this.game.sounds.play(this.config.Sound);
+      }
+
+      if(this.config.CutScene!==undefined && !this.game.silentMode && this.game.playSounds){
+        this.game.activeCutscene=this.game.cutscenes[this.config.CutScene];
+        this.game.pause();
+        this.game.activeCutscene.show();
       }
 
       if(this.config.EndGame!==undefined && !this.game.silentMode){
         this.game.end();
-        if(this.config.EndGame.CutScene!==undefined) this.game.cutscenes[this.config.EndGame.CutScene].show();
+        if(this.config.EndGame.CutScene!==undefined){
+           this.game.activeCutscene=this.game.cutscenes[this.config.EndGame.CutScene];
+           this.game.pause();
+           this.game.activeCutscene.show();
+        }
         else this.game.home();
       }
 

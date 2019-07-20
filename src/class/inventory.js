@@ -24,6 +24,10 @@ class Inventory{
       this.setIcon(this.game.settings.Inventory.Position);
       this.container.addChild(this.background);
       this.icon.parentLayer = this.game.layerUI;
+
+      //Hidden by default
+      this.hide();
+      this.hideIcon();
     }
 
     show(){
@@ -114,7 +118,7 @@ class Inventory{
 
     release(event){
       if(this.timeoutID) clearTimeout(this.timeoutID);
-      
+
       if(this.interaction){
         let objectHit=this.hit();
 
@@ -126,11 +130,11 @@ class Inventory{
           if(this.config.Combine.With===objectHit) {
             this.game.activePuzzle=this.game.puzzles[this.config.Combine.Puzzle];
           }
-          this.use();
+          this.action="Use";
         }
 
         if(this.action!==null){
-          this.game.player.tween.once('end',this.action);
+          this.game.player.endAction=this.action;
           this.game.player.move(moveTo);
         }else{
           this.cancel();

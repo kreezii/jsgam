@@ -96,6 +96,7 @@ class Phrases{
 class TextField{
   constructor(){
     this.container=new PIXI.Container();
+    this.Avatar=null;
     this.Background=null;
     this.Text=null;
     this.container.visible=false;
@@ -116,8 +117,15 @@ class TextField{
     this.Background.tint='black';
     this.Background.alpha=0.5;
 
+    this.Avatar=new PIXI.Sprite(PIXI.Texture.from(this.game.data.player.Avatar));
+    let ratio=this.Avatar.width / this.Avatar.height;
+    this.Avatar.height=this.Background.height;
+    this.Avatar.width=this.Avatar.height*ratio*0.95;
+
     this.Text=new Button("", this.game.settings.Text.Style);
-    this.Text.anchor.set(0.5,0);
+    this.Text.x=this.Avatar.width*1.05;
+  //  this.Text.anchor.set(0.5,0);
+    this.Text.maxWidth=this.game.width-this.Avatar.width;
 
     this.Text.y=0;
     this.Text.on('pointertap',this.skip.bind(this));
@@ -125,10 +133,11 @@ class TextField{
     this.Choices=new Phrases(this.game);
 
     this.container.addChild(this.Background);
+    this.container.addChild(this.Avatar);
     this.container.addChild(this.Text);
     this.container.addChild(this.Choices.container);
 
-    this.Text.x=this.container.width/2;
+    //this.Text.x=this.container.width/2;
     this.Choices.sort();
     if(this.game.settings.Text.Position!==undefined) this.setPosition(this.game.settings.Text.Position);
   }
@@ -148,6 +157,7 @@ class TextField{
       if(this.game.activeDialogue.choice!==null) this.game.activeDialogue.answer();
       else{
         this.Text.visible=false;
+        this.Avatar.visible=false;
         this.Choices.get();
       }
 
@@ -211,6 +221,16 @@ class TextField{
   setFont(newFont){
     this.Text.font=newFont;
   }
+
+  setAvatar(newAvi){
+    this.Avatar.visible=true;
+    this.Avatar.texture=(PIXI.Texture.from(newAvi));
+  }
+
+  hideAvatar(){
+    this.Avatar.visible=false;
+  }
+
 }
 
 export {Button,TextField,Infotxt};

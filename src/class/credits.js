@@ -1,5 +1,5 @@
-
-import tweenManager from 'k8w-pixi-tween';
+import { TweenMax } from "gsap";
+import PixiPlugin from "gsap/PixiPlugin";
 
 class Credits{
   constructor(){
@@ -12,36 +12,41 @@ class Credits{
   create(){
     let config=this.game.data.credits;
 
-    if(config.Background!==undefined) this.background=new PIXI.Sprite(PIXI.Texture.from(config.Background));
+    if(config.Background!==undefined){
+      this.background=new PIXI.Sprite(PIXI.Texture.from(config.Background));
+      this.container.addChild(this.background);
+    }
 
     this.buildText();
+    this.speed=null;
+
+    if(this.game.data.credits.Time!==undefined){
+      this.speed=this.game.data.credits.Time;
+    }else{
+      this.speed=20;
+    }
 
     this.structuredText = new PIXI.extras.BitmapText(this.text,config.Style);
-
+    this.tween=null;
     this.container.addChild(this.structuredText);
 
     this.container.x = this.game.width / 2;
     this.container.pivot.x = this.container.width / 2;
     this.container.y=this.game.height;
-    this.tween = PIXI.tweenManager.createTween(this.container);
-    this.tween
-      .from({ y: this.game.height})
-      .to({ y: 0 - this.container.height});
-    this.tween.time = 20000;
-    this.tween.expire=true;
-    this.tween.delay=500;
-    this.tween.on("end", this.mainMenu.bind(this));
-
     this.container.on('pointerup', this.mainMenu.bind(this));
   }
 
   show(){
     this.container.visible=true;
-    this.tween.start();
+    this.animate();
+  }
+
+  animate(){
+    TweenMax.set(this.container,{y: this.game.height});
+    this.tween=TweenMax.to(this.container, 20, {y: 0 - this.container.height,onComplete:this.mainMenu.bind(this)});
   }
 
   hide(){
-    this.tween.stop().reset();
     this.container.visible=false;
   }
 
@@ -65,7 +70,7 @@ class Credits{
   }
 
   update(){
-    PIXI.tweenManager.update();
+    //PIXI.tweenManager.update();
   }
 
   changeLanguage(){
@@ -74,6 +79,7 @@ class Credits{
   }
 
   mainMenu(){
+    this.tween.kill();
     this.game.scenes["Title"].mainMenu();
   }
 }

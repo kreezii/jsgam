@@ -1,4 +1,4 @@
-
+import {Howl, Howler} from 'howler';
 
 class Loader extends PIXI.loaders.Loader{
   constructor(){
@@ -6,14 +6,20 @@ class Loader extends PIXI.loaders.Loader{
     this.game=null;
     this.onLoad.add(this.update.bind(this));
     this.onError.add(this.error.bind(this));
+    this.use(this.howlerMiddleware.bind(this));
+  }
+
+  howlerMiddleware(resource,next){
+    if (resource && ["wav", "ogg", "mp3"].includes(resource.extension)) {
+      const options = JSON.parse(JSON.stringify(resource.metadata));
+      options.src = [resource.url];
+      resource.sound = new Howl(options);
+      next();
+    }else next();
   }
 
   //Add config files to loader
   addJSON(files){
-  /*  let thisLoader=this;
-    files.map(function(file){
-      thisLoader.add(file.slice(file.lastIndexOf("/")+1,file.lastIndexOf(".")),file)
-    });*/
     let i;
     let arrayLength=files.length;
 
@@ -49,8 +55,6 @@ class Loader extends PIXI.loaders.Loader{
        //Look for video files
        if(files[i].data.Vids)
        {
-         //Fix for load correctly vids with pixi-sound
-         this.fixVidLoad();
          let vidSrc=files[i].data.Vids;
          for(let i=0;i<vidSrc.length;i++){
            let tmpVid=vidSrc[i].Src;
@@ -96,13 +100,6 @@ class Loader extends PIXI.loaders.Loader{
           this.game.data.npc=files[i].data.Characters;
         }
     }
-  }
-
-  //Fix for load mp4 as videos instead as audio because of pixi-sound
-  fixVidLoad(){
-    PIXI.sound.utils.extensions.splice(PIXI.sound.utils.extensions.indexOf('mp4'), 1);
-    PIXI.loaders.Resource.setExtensionXhrType('mp4', undefined);
-    PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
   }
 
   //Loading progress

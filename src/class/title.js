@@ -5,8 +5,6 @@ import Help from './help.js'
 import Credits from './credits.js'
 import Confirmation from './confirmation.js'
 
-import 'pixi-sound';
-
 class Title extends Scene{
   build(){
     this.states={};
@@ -62,11 +60,9 @@ class Title extends Scene{
   showCredits(){
     this.states["MainMenu"].hide();
     this.states["Credits"].show();
-    this.game.activeState=this.states["Credits"];
   }
 
   mainMenu(){
-    this.game.activeState=null;
     this.states["Credits"].hide();
     this.states["Options"].hide();
     this.states["Help"].hide();
@@ -101,15 +97,16 @@ class Title extends Scene{
     this.game.storage.delete();
 
     //Set the first scene
-    this.game.setScene(this.game.settings.FirstScene);
+    this.game.changeScene(this.game.settings.FirstScene);
 
     //Here we go
     this.game.start();
+
   }
 
   loadAdventure(){
     this.game.storage.load();
-    this.game.setScene(this.game.storage.progress.latestScene);
+    this.game.changeScene(this.game.storage.progress.latestScene);
     this.game.start();
   }
 }

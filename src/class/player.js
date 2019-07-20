@@ -1,11 +1,25 @@
 import Character from './character.js';
 import dragonBones from 'dragonbones-pixi';
 const dbEvents=dragonBones.dragonBones.EventObject;
+import {closestPoint} from '../collisions.js';
 
 class Player extends Character{
-  move(coords){
-    super.move(coords);
-    this.game.activeState=this;
+  setup(config){
+    super.setup(config);
+
+    //Hidden by default
+    this.hide();
+  }
+
+  checkDirection(target){
+    //Player must look in the right direction
+    if(target.config.Area===undefined){
+      if(this.sprite.x<target.sprite.x){
+        this.sprite.armature.flipX=false;
+      }else{
+        this.sprite.armature.flipX=true;
+      }
+    }
   }
 
   say(text){
@@ -16,10 +30,12 @@ class Player extends Character{
 
   look(){
     if(this.game.activeObject!==null){
+      this.checkDirection(this.game.activeObject);
       let text=this.game.activeObject.config.Description[this.game.activeLanguage];
       this.say(text);
       this.game.activeObject.cancel();
     }else if(this.game.activeNPC!==null){
+      this.checkDirection(this.game.activeNPC);
           let text=this.game.activeNPC.config.Description[this.game.activeLanguage];
           this.say(text);
           this.game.activeNPC.cancel();
@@ -58,7 +74,8 @@ class Player extends Character{
       this.game.activePuzzle.resolve();
     }else if(this.game.activeObject!==null) {
       if(this.game.activeObject.door){
-        this.game.setScene(this.game.activeObject.newScene,this.game.activeObject.playerPos);
+        this.game.changeScene(this.game.activeObject.newScene,
+          this.game.activeObject.playerPos);
         this.stop();
       }else{
         this.say(this.game.data.texts.NotUsable[this.game.activeLanguage])
@@ -71,10 +88,12 @@ class Player extends Character{
     //Player must look in the right direction
     if(this.sprite.x<this.game.activeNPC.sprite.x){
       this.sprite.armature.flipX=false;
-      this.game.activeNPC.sprite.armature.flipX=true;
+      if(this.game.activeNPC.config.Mirror!==undefined) this.game.activeNPC.sprite.armature.flipX=false;
+      else this.game.activeNPC.sprite.armature.flipX=true;
     }else{
       this.sprite.armature.flipX=true;
-      this.game.activeNPC.sprite.armature.flipX=false;
+      if(this.game.activeNPC.config.Mirror!==undefined) this.game.activeNPC.sprite.armature.flipX=true;
+      else this.game.activeNPC.sprite.armature.flipX=false;
     }
 
     //Let's talk

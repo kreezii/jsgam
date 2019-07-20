@@ -1,9 +1,11 @@
 import * as PIXI from 'pixi.js';
-import 'pixi-sound';
 import 'pixi-layers';
+import { TweenMax } from "gsap";
+import PixiPlugin from "gsap/PixiPlugin";
 
 import Loader from './loader.js';
 import Storage from './storage.js';
+import SoundManager from './soundmanager.js';
 import Title from './class/title.js';
 import GameScene from './class/gamescene.js';
 import CutScene from './class/cutscene.js';
@@ -14,6 +16,7 @@ import {TextField} from './class/text.js';
 import Player from './class/player.js';
 import NPC from './class/npc.js';
 import Dialogue from './class/dialogue.js';
+import Logo from './class/logo.js';
 
 class Game {
   constructor(config){
@@ -76,11 +79,11 @@ class Game {
     this.loadingTxt.x=this.width/2;
     this.loadingTxt.y=this.height/2;
 
-    this.progressBar.y=this.height/2+this.loadingTxt.height;
+    this.progressBar.y=this.height-this.loadingTxt.height;
 
     this.app.stage.addChild(this.loadingTxt);
     this.app.stage.addChild(this.progressBar);
-this.resize();
+    this.resize();
     this.jsons=new Loader();
     this.jsons.game=this;
     this.jsons.addJSON(files);
@@ -105,6 +108,10 @@ this.resize();
     //Adjust to window size
     this.resize();
 
+    this.tween=null;
+    this.logo=null;
+    this.sounds=null;
+
     this.scenes={};
     this.cutscenes={};
     this.objects={};
@@ -112,18 +119,22 @@ this.resize();
     this.dialogues={};
     this.puzzles={};
 
+
     this.activeLanguage=0;
     this.activeScene=null;
     this.activeObject=null;
     this.activeNPC=null;
     this.activePuzzle=null;
     this.activeDialogue=null;
+    this.activeCutscene=null;
 
     this.activeState=null;
 
     this.finished=false;
 
     this.storage=new Storage(this);
+    this.logo=new Logo(this);
+    this.sound=new SoundManager(this);
 
     this.titleLabel="Title";
 
@@ -189,16 +200,16 @@ this.resize();
     //Check if there is a saved game
     this.storage.check();
 
-    //Set Title as the first scene to show
-    this.setScene(this.titleLabel);
+    this.addBlackScreen();
 
     //Game's loop
     this.app.ticker.add(this.loop.bind(this));
+
+    this.logo.show();
+
   }
 
   loop(dt){
-  //  console.log(this.player.lock) //Test
-    //console.log(this.activeObject); //Test
     // update current state
     if (this.activeState != null) {
         this.activeState.update(dt);
@@ -252,52 +263,6 @@ this.resize();
 
       //Set game so puzzle can access it
       puzzle.game = this;
-  }
-
-  setScene(name,playerCoords) {
-
-      //Remove current container
-      if (this.activeScene !== null) {
-          this.app.stage.removeChild(this.activeScene.container);
-      }
-
-      //Set current container
-      this.activeScene = this.scenes[name];
-      //Add our new container
-      this.app.stage.addChild(this.activeScene.container);
-
-      if(playerCoords!==undefined){
-        this.player.sprite.x=playerCoords[0];
-        this.player.sprite.y=playerCoords[1];
-      }
-
-      if(this.activeScene.config.Player!==undefined){
-        if(this.activeScene.config.Player.Position!==undefined){
-          this.player.position(this.activeScene.config.Player.Position);
-        }
-        if(this.activeScene.config.Player.Size!==undefined){
-          this.player.size=this.activeScene.config.Player.Size;
-          this.player.scale();
-        }
-      }
-
-      if(this.activeScene.config.CutScene!==undefined){
-        if(!this.cutscenes[this.activeScene.config.CutScene].played){
-          this.cutscenes[this.activeScene.config.CutScene].show();
-        }
-      }else{
-        // Play sounds
-        if(this.activeScene.music!==undefined && this.playSounds){
-          PIXI.sound.stopAll();
-          if(PIXI.sound.exists(this.activeScene.music))
-            PIXI.sound.play(this.activeScene.music,{loop:true});
-        }
-      }
-
-      //Save game progress
-      if(this.activeScene!==this.scenes[this.titleLabel])
-        this.storage.save();
-
   }
 
   addZOrder(){
@@ -358,6 +323,15 @@ this.resize();
     this.textField.build();
   }
 
+  //Used for fade between screens
+  addBlackScreen(){
+    this.blackScreen=new PIXI.Sprite(PIXI.Texture.WHITE);
+    this.blackScreen.width=this.width;
+    this.blackScreen.height=this.height;
+    this.blackScreen.tint=0x000000;
+    this.blackScreen.parentLayer = this.layerUI;
+  }
+
   //Adjust game screen to the window
   resize() {
     var w = window.innerWidth;// * window.devicePixelRatio;
@@ -381,12 +355,109 @@ this.resize();
     this.app.stage.addChild(this.textField.container);
   }
 
+  pause(){
+    this.activeScene.hide();
+    this.inventory.hide();
+    this.inventory.hideIcon();
+    this.player.hide();
+    if(this.activeScene.music!==undefined){
+      this.sound.stop(this.activeScene.music);
+    }
+  }
+
+  resume(){
+    this.inventory.showIcon();
+    this.player.show();
+    this.activeScene.show();
+    this.fadeIn();
+  }
+
   end(){
     this.finished=true;
   }
 
   home(){
-    this.setScene(this.titleLabel);
+    location.reload();
+  }
+
+  setScene(name,playerCoords) {
+    //Remove current container
+    if (this.activeScene !== null) {
+        this.app.stage.removeChild(this.activeScene.container);
+    }
+
+    //Set current container
+    this.activeScene = this.scenes[name];
+
+    //Player parameters
+    if(playerCoords!==undefined){
+      this.player.sprite.x=playerCoords[0];
+      this.player.sprite.y=playerCoords[1];
+    }
+
+    if(this.activeScene.config.Player!==undefined){
+      if(this.activeScene.config.Player.Position!==undefined){
+        this.player.position(this.activeScene.config.Player.Position);
+      }
+      if(this.activeScene.config.Player.Size!==undefined){
+        this.player.size=this.activeScene.config.Player.Size;
+        this.player.scale();
+      }
+    }
+    //Save game progress
+    if(this.activeScene!==this.scenes[this.titleLabel])
+      this.storage.save();
+  }
+
+  changeScene(name,playerCoords){
+    //Music
+    if(this.activeScene.music!==undefined){
+      this.sound.stop(this.activeScene.music);
+    }
+    this.app.stage.addChild(this.blackScreen);
+    if(this.tween) this.tween.kill();
+    this.tween=TweenMax.set(this.blackScreen, {alpha:0});
+    this.tween=TweenMax.fromTo(this.blackScreen, 1,
+      {alpha:0},
+      {alpha:1, onComplete:this.fadeOutEnd.bind(this),
+        onCompleteParams:[name,playerCoords]});
+  }
+
+  fadeIn(){
+    //Add our new container
+    this.app.stage.addChild(this.activeScene.container);
+
+    this.app.stage.addChild(this.blackScreen);
+
+    if(this.tween) this.tween.kill();
+    this.tween=TweenMax.set(this.blackScreen, {alpha:1});
+    this.tween=TweenMax.fromTo(this.blackScreen, 1,
+      {alpha:1},
+      {alpha:0, onComplete:this.fadeInEnd.bind(this)}
+    );
+  }
+
+  fadeInEnd(){
+    this.app.stage.removeChild(this.blackScreen);
+    //Music
+    if(this.activeScene.music!==undefined && this.playSounds){
+      this.sound.play(this.activeScene.music);
+    }
+  }
+
+  fadeOutEnd(name,playerCoords){
+    this.setScene(name,playerCoords);
+    //Check Cutscenes
+    if(this.activeScene.config.CutScene!==undefined &&
+      !this.cutscenes[this.activeScene.config.CutScene].played){
+        this.activeCutscene=this.cutscenes[this.activeScene.config.CutScene];
+      //  this.pause();
+        this.activeCutscene.show();
+    }else{
+      this.resume();
+    }
+
+    this.app.stage.removeChild(this.blackScreen);
   }
 }
 

@@ -139,14 +139,14 @@ this.timeoutID;
           }else if(this.config.Use!==undefined){
             this.game.activePuzzle=this.game.puzzles[this.config.Use];
           }
-          this.use();
+          this.action="Use";
         }else{
-         this.look();
+          this.action="Look";
        }
       }
 
       if(this.action!==null){
-        this.game.player.tween.once('end',this.action);
+        this.game.player.endAction=this.action;
         this.game.player.move(moveTo);
       }else{
         this.cancel();
@@ -197,17 +197,17 @@ this.timeoutID;
       let moveTo={x:this.posX,y:this.posY};
       //Check if we take it
       if(collision(this.sprite,this.game.inventory.icon) && this.config.Take){
-        this.take();
+        this.action="Take";
         //Check if we look it
       }else if(this.interaction.button===2  || this.holding){
         if(this.config.Use!==undefined) this.game.activePuzzle=this.game.puzzles[this.config.Use];
-        this.use();
+        this.action="Use";
       }else{
-        this.look();
+        this.action="Look";
       }
 
       if(this.action!==null){
-        this.game.player.tween.once('end',this.action);
+        this.game.player.endAction=this.action;
         this.game.player.move(moveTo);
       }else{
         this.cancel();
@@ -225,21 +225,6 @@ this.timeoutID;
       this.interaction = null;
       this.dragging = false;
     }
-  }
-
-  //Set player to look this object
-  look(){
-    this.action=this.game.player.look.bind(this.game.player);
-  }
-
-  //Set player to take this object
-  take(){
-    this.action=this.game.player.take.bind(this.game.player);
-  }
-
-  //Set player to use this object
-  use(){
-    this.action=this.game.player.use.bind(this.game.player);
   }
 
   //Check collision between objects

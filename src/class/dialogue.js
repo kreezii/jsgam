@@ -28,6 +28,7 @@ class Dialogue{
     this.firstTime=false;
     this.game.player.lock=true;
     this.game.textField.show();
+    this.game.textField.hideAvatar();
     this.game.textField.Choices.get();
   }
 
@@ -38,6 +39,7 @@ class Dialogue{
       this.game.textField.Choices.hide();
       this.game.player.say(choiceSelected.Text[this.game.activeLanguage]);
     }else{
+      this.game.textField.hideAvatar();
       this.game.textField.Choices.get();
     }
   }
