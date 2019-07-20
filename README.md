@@ -27,11 +27,11 @@ And finally imagine you don't need to write a single line of code (well... maybe
 ## Built With
 
 * [PixiJS](http://www.pixijs.com/)
+* [Pixi-Layers](https://github.com/pixijs/pixi-display)
+* [GSAP](https://greensock.com/gsap)
+* [Howler](https://howlerjs.com/)
 * [DragonBones](http://dragonbones.com/)
 * [LocalForage](https://github.com/localForage/localForage)
-* [Pixi-Tween](https://github.com/k8w/pixi-tween)
-* [Pixi-Layers](https://github.com/pixijs/pixi-display)
-* [Pixi-Sound](https://github.com/pixijs/pixi-sound)
 * [PolyK](http://polyk.ivank.net/)
 * [Walkable](https://github.com/implicit-invocation/walkable)
 * [Docsify](https://github.com/docsifyjs/docsify/)
