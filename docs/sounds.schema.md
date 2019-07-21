@@ -1,112 +1,77 @@
-## Sounds
-Example
-```
-{
-  "Sounds":[
-    {
-      "Name":"Title",
-      "Src":"sources/sounds/menu-music.mp3"
-    },
-    {
-      "Name":"Moon",
-      "Src":"sources/sounds/Cold-Moon.mp3"
-    }
-  ]
-}
+# The Root Schema Schema
 
 ```
+
+```
+
+| Abstract            | Extensible | Status       | Identifiable | Custom Properties | Additional Properties | Defined In                               |
+| ------------------- | ---------- | ------------ | ------------ | ----------------- | --------------------- | ---------------------------------------- |
+| Can be instantiated | Yes        | Experimental | No           | Forbidden         | Permitted             | [sounds.schema.json](sounds.schema.json) |
+
+# The Root Schema Properties
+
+| Property          | Type       | Required     | Nullable | Defined by                                 |
+| ----------------- | ---------- | ------------ | -------- | ------------------------------------------ |
+| [Sounds](#sounds) | `object[]` | **Required** | No       | The Root Schema (this schema)              |
+| `*`               | any        | Additional   | Yes      | this schema _allows_ additional properties |
+
+## Sounds
 
 ### The Sounds Schema
 
 `Sounds`
 
-* is **optional**
-* type: `object[]`
-* defined in this schema
+- is **required**
+- type: `object[]`
+- defined in this schema
 
 ### Sounds Type
 
-
 Array type: `object[]`
 
-All items must be of the type:
-`object` with following properties:
+All items must be of the type: `object` with following properties:
 
-
-| Property | Type | Required | Default |
-|----------|------|----------|---------|
-| `Name`| string | **Required** | `""` |
-| `Src`| string | **Required** | `""` |
-
-
+| Property | Type   | Required     | Default |
+| -------- | ------ | ------------ | ------- |
+| `Name`   | string | **Required** | `""`    |
+| `Src`    | string | **Required** | `""`    |
 
 #### Name
-##### The Name Schema
 
+##### The Name Schema
 
 `Name`
 
-* is **required**
-* type: `string`
-* default: `""`
-
+- is **required**
+- type: `string`
+- default: `""`
 
 ##### Name Type
 
-
 `string`
-
-
-
-All instances must conform to this regular expression
-```regex
-^(.*)$
-```
-
-* test example: [IntroVid](https://regexr.com/?expression=%5E(.*)%24&text=IntroVid)
-
-
-
 
 ##### Name Example
 
 ```json
-IntroVid
+IntroSnd
 ```
 
-
-
-
 #### Src
-##### The Src Schema
 
+##### The Src Schema
 
 `Src`
 
-* is **required**
-* type: `string`
-* default: `""`
-
+- is **required**
+- type: `string`
+- default: `""`
 
 ##### Src Type
 
-
 `string`
-
-
-
-All instances must conform to this regular expression
-```regex
-^(.*)$
-```
-
-* test example: [sources/vids/intro-vid.mp4](https://regexr.com/?expression=%5E(.*)%24&text=sources%2Fvids%2Fintro-vid.mp4)
-
-
-
 
 ##### Src Example
 
 ```json
-sources/vids/intro-vid.mp4
+sources / sounds / Space - Game - Intro.mp3
 ```

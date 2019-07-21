@@ -18,7 +18,12 @@ And finally imagine you don't need to write a single line of code (well... maybe
 * Game template
 
 ## Getting started
+The easiest way is to follow the next steps:
 
+- Install [node.js](https://nodejs.org)
+- Clone or download [jsgam-template](https://github.com/kreezii/jsgam-template)
+- Run ```npm install```
+- Read the [docs](https://kreezii.github.io/jsgam/)
 
 ## Author
 

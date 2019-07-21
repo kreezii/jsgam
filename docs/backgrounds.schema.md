@@ -1,7 +1,10 @@
 # Backgrounds
 
+It's recommended to use atlas images for your game but It's possible to add backgorunds as separated images with a given name.
+
 ## Example
-```
+
+```json
 {
   "Backgrounds":[
     {
@@ -15,7 +18,7 @@
   ]
 }
 
-```
+````
 
 ### The Backgrounds Schema
 
