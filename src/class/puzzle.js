@@ -53,7 +53,8 @@ class Puzzle{
       }
 
       if(this.config.Sound!==undefined && !this.game.silentMode){
-          this.game.sounds.play(this.config.Sound);
+          if(this.config.Sound.Source!==undefined) this.game.sounds[this.config.Sound.Name].play(null,this.config.Sound.Source);
+          else this.game.sounds[this.config.Sound.Name].play();
       }
 
       if(this.config.CutScene!==undefined && !this.game.silentMode && this.game.playSounds){

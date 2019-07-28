@@ -5,7 +5,7 @@ import PixiPlugin from "gsap/PixiPlugin";
 
 import Loader from './loader.js';
 import Storage from './storage.js';
-import SoundManager from './soundmanager.js';
+import Sound from './soundmanager.js';
 import Title from './class/title.js';
 import GameScene from './class/gamescene.js';
 import CutScene from './class/cutscene.js';
@@ -28,7 +28,10 @@ class Game {
       dialogues:[],
       puzzles:[],
       credits:[],
-      texts:[]
+      texts:[],
+      music:[],
+      voices:[],
+      sounds:[]
     };
     this.width=config.width;
     this.height=config.height;
@@ -118,6 +121,9 @@ class Game {
     this.npcs={};
     this.dialogues={};
     this.puzzles={};
+    this.music={};
+    this.sounds={};
+    this.voices={};
 
 
     this.activeLanguage=0;
@@ -127,6 +133,7 @@ class Game {
     this.activePuzzle=null;
     this.activeDialogue=null;
     this.activeCutscene=null;
+    this.activeVoice=null;
 
     this.activeState=null;
 
@@ -134,7 +141,7 @@ class Game {
 
     this.storage=new Storage(this);
     this.logo=new Logo(this);
-    this.sound=new SoundManager(this);
+  //  this.sound=new SoundManager(this);
 
     this.titleLabel="Title";
 
@@ -142,12 +149,33 @@ class Game {
     if(this.settings.HoldTime!==undefined) this.holdTime=this.settings.HoldTime*1000;
     if(this.settings.dialogueChoices!==undefined) this.dialogueChoices=this.settings.dialogueChoices;
     else this.dialogueChoices=3;
+
     //Setup title screen
     this.addScene(this.titleLabel,new Title(),this.settings.TitleScreen);
 
-    //Add game objects
+    //Add sounds,music and voices
     let i;
-    let length=this.data.objects.length;
+    let length=this.data.music.length;
+    for(i=0;i<length;i++)
+    {
+      this.addMusic(this.data.music[i].Name,new Sound(),this.data.music[i]);
+    }
+
+    length=this.data.sounds.length;
+    for(i=0;i<length;i++)
+    {
+      this.addSound(this.data.sounds[i].Name,new Sound(),this.data.sounds[i]);
+    }
+
+    length=this.data.voices.length;
+    for(i=0;i<length;i++)
+    {
+      this.addVoice(this.data.voices[i].Name,new Sound(),this.data.voices[i]);
+    }
+
+
+    //Add game objects
+    length=this.data.objects.length;
     for(i=0;i<length;i++)
     {
       this.addObject(this.data.objects[i].Name,new GameObject(),this.data.objects[i]);
@@ -214,6 +242,44 @@ class Game {
     if (this.activeState != null) {
         this.activeState.update(dt);
     }
+  }
+
+  addMusic(name, music, config) {
+      this.music[name] = music;
+
+      //Music parameters
+      music.config=config;
+
+      //Set game so music can access it
+      music.game = this;
+
+      music.source=this.files.resources[name].sound;
+  }
+
+  addSound(name, sound, config) {
+      this.sounds[name] = sound;
+
+      //Music parameters
+      sound.config=config;
+
+      //Set game so music can access it
+      sound.game = this;
+
+      sound.source=this.files.resources[name].sound;
+  }
+
+  addVoice(name, voice, config) {
+      this.voices[name] = voice;
+
+      //Music parameters
+      voice.config=config;
+
+      //Set game so music can access it
+      voice.game = this;
+
+      voice.source=this.files.resources[name].sound;
+
+      voice.source._sprite=config.Sprites;
   }
 
   addObject(name, object, config) {
@@ -361,7 +427,7 @@ class Game {
     this.inventory.hideIcon();
     this.player.hide();
     if(this.activeScene.music!==undefined){
-      this.sound.stop(this.activeScene.music);
+      this.music[this.activeScene.music].stop();
     }
   }
 
@@ -412,7 +478,8 @@ class Game {
   changeScene(name,playerCoords){
     //Music
     if(this.activeScene.music!==undefined){
-      this.sound.stop(this.activeScene.music);
+      //this.sound.stop(this.activeScene.music);
+      this.music[this.activeScene.music].stop();
     }
     this.app.stage.addChild(this.blackScreen);
     if(this.tween) this.tween.kill();
@@ -441,7 +508,8 @@ class Game {
     this.app.stage.removeChild(this.blackScreen);
     //Music
     if(this.activeScene.music!==undefined && this.playSounds){
-      this.sound.play(this.activeScene.music);
+      //this.sound.play(this.activeScene.music);
+      this.music[this.activeScene.music].play(true);
     }
   }
 

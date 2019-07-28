@@ -205,7 +205,8 @@ class TextField{
   //Calculate how many seconds we show the text
   timeOut(){
     let time;
-    if(this.game.settings.Text.Speed!==undefined) time=this.game.settings.Text.Speed;
+    if(this.game.activeVoice!==null) time=this.game.voices[this.game.activeVoice].duration();
+    else if(this.game.settings.Text.Speed!==undefined) time=this.game.settings.Text.Speed;
     else time=this.countWords(this.Text.text)/3;
 
     //Time must be at least 1 second

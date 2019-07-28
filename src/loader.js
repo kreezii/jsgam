@@ -1,4 +1,4 @@
-import {Howl, Howler} from 'howler';
+import {Howl} from 'howler';
 
 class Loader extends PIXI.loaders.Loader{
   constructor(){
@@ -43,6 +43,10 @@ class Loader extends PIXI.loaders.Loader{
       if(files[i].data.Puzzles) this.game.data.puzzles=this.game.data.puzzles.concat(files[i].data.Puzzles);
       if(files[i].data.Credits) this.game.data.credits=files[i].data.Credits;
       if(files[i].data.Texts) this.game.data.texts=files[i].data.Texts;
+      if(files[i].data.Voices) this.game.data.voices=this.game.data.voices.concat(files[i].data.Voices);
+      if(files[i].data.Music) this.game.data.music=this.game.data.music.concat(files[i].data.Music);
+      if(files[i].data.Sounds) this.game.data.sounds=this.game.data.sounds.concat(files[i].data.Sounds);
+
       //Look for sound files
       if(files[i].data.Sounds){
         let soundSrc=files[i].data.Sounds;
@@ -51,6 +55,24 @@ class Loader extends PIXI.loaders.Loader{
            if(tmpSound!==null) this.add(soundSrc[j].Name,tmpSound);
         }
        }
+
+       //Look for music files
+       if(files[i].data.Music){
+         let musicSrc=files[i].data.Music;
+         for(let j=0;j<musicSrc.length;j++){
+            let tmpMusic=musicSrc[j].Src;
+            if(tmpMusic!==null) this.add(musicSrc[j].Name,tmpMusic);
+         }
+        }
+
+       //Look for voice files
+       if(files[i].data.Voices){
+         let voiceSrc=files[i].data.Voices;
+         for(let j=0;j<voiceSrc.length;j++){
+            let tmpVoice=voiceSrc[j].Src;
+            if(tmpVoice!==null) this.add(voiceSrc[j].Name,tmpVoice);
+         }
+        }
 
        //Look for video files
        if(files[i].data.Vids)

@@ -115,7 +115,7 @@ class Character{
     }
   }
 
-  say(text){
+  say(text,voice){
     this.game.textField.talker=this;
     //Setup the text to show
     this.game.textField.setText(text);
@@ -124,8 +124,13 @@ class Character{
     if(this.config.Font!==undefined) this.game.textField.setFont(this.config.Font);
     else this.game.textField.setFont(this.game.settings.Text.Style.font)
 
-    this.game.textField.show();
+    //Play voice if it's defined
+    if(voice!==undefined && this.config.Voice!=undefined){
+      this.game.activeVoice=this.config.Voice;
+      this.game.voices[this.config.Voice].play(null,voice);
+    }
 
+    this.game.textField.show();
     //Animate the character
     this.animate(this.animations.Say);
     if(this.timeoutID) clearTimeout(this.timeoutID);
@@ -133,6 +138,10 @@ class Character{
   }
 
   shutup(){
+    if(this.game.activeVoice!=null){
+      this.game.voices[this.config.Voice].stop();
+      this.game.activeVoice=null
+    }
     this.animate(this.animations.Stand);
   }
 

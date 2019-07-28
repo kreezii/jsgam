@@ -37,7 +37,11 @@ class Dialogue{
     if(this.choice!==null){
       let choiceSelected=this.currentBranch.Choices[this.choice];
       this.game.textField.Choices.hide();
-      this.game.player.say(choiceSelected.Text[this.game.activeLanguage]);
+      let voice=undefined;
+      if(choiceSelected.Voice!==undefined){
+        voice=choiceSelected.Voice[this.game.activeLanguage];
+      }
+      this.game.player.say(choiceSelected.Text[this.game.activeLanguage],voice);
     }else{
       this.game.textField.hideAvatar();
       this.game.textField.Choices.get();
@@ -60,7 +64,11 @@ class Dialogue{
 
   answer(){
     let choiceSelected=this.currentBranch.Choices[this.choice];
-    this.game.activeNPC.say(choiceSelected.Answer[this.game.activeLanguage]);
+    let voice=undefined;
+    if(choiceSelected.AnswerVoice!==undefined){
+      voice=choiceSelected.AnswerVoice[this.game.activeLanguage];
+    }
+    this.game.activeNPC.say(choiceSelected.Answer[this.game.activeLanguage],voice);
 
     if(choiceSelected.Link){
       this.currentBranch=this.branches[choiceSelected.Link];

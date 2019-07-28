@@ -1,6 +1,5 @@
 import { TweenMax } from "gsap";
 import PixiPlugin from "gsap/PixiPlugin";
-//import Music from './music.js';
 
 class CutScene{
   constructor(){
@@ -41,8 +40,8 @@ class CutScene{
       this.videoSprite.on('pointertap',this.end.bind(this));
       this.container.addChild(this.videoSprite);
     }else if(this.config.Sequence) {
-      this.adjust();
-      this.sound();
+      this.adjust();z
+      this.setMusic();
     }
     this.game.app.stage.addChild(this.container);
     this.fadeIn();
@@ -61,7 +60,7 @@ class CutScene{
       this.image.texture=(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image));
       this.adjust();
       this.fadeIn();
-      this.sound();
+      this.setMusic();
     }else{
       this.end();
     }
@@ -92,7 +91,8 @@ class CutScene{
     if(this.timeoutID) clearTimeout(this.timeoutID);
 
     if(this.music!==null){
-      this.game.sound.stop(this.music);
+      //this.game.sound.stop(this.music);
+      this.game.music[this.music].stop();
     }
 
     this.played=true;
@@ -133,14 +133,14 @@ class CutScene{
     this.container.scale.set(ratio);
   }
 
-  sound(){
+  setMusic(){
     if(this.config.Sequence[this.sequenceIndex].Music!==undefined && this.game.playSounds){
       if(this.music!==null){
-        this.game.sound.stop(this.music);
+        this.game.music[this.music].stop();
       }
-      
+
       this.music=this.config.Sequence[this.sequenceIndex].Music;
-      this.game.sound.play(this.music);
+      this.game.music[this.music].play(true);
     }
   }
 

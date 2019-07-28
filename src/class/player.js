@@ -22,8 +22,8 @@ class Player extends Character{
     }
   }
 
-  say(text){
-    super.say(text);
+  say(text,voice){
+    super.say(text,voice);
     //Lock the player
     this.lock=true;
   }
@@ -32,7 +32,11 @@ class Player extends Character{
     if(this.game.activeObject!==null){
       this.checkDirection(this.game.activeObject);
       let text=this.game.activeObject.config.Description[this.game.activeLanguage];
-      this.say(text);
+      let voice=undefined;
+      if(this.game.activeObject.config.VoiceDescription!==undefined){
+        voice=this.game.activeObject.config.VoiceDescription[this.game.activeLanguage];
+      }
+      this.say(text,voice);
       this.game.activeObject.cancel();
     }else if(this.game.activeNPC!==null){
       this.checkDirection(this.game.activeNPC);
