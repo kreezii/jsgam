@@ -52,6 +52,10 @@ class Character{
     this.sprite.visible=true;
   }
 
+  width(){
+    return this.sprite.getBounds().width;
+  }
+
   position(coords){
     this.sprite.x=coords[0];
     this.sprite.y=coords[1];
@@ -125,9 +129,9 @@ class Character{
     else this.game.textField.setFont(this.game.settings.Text.Style.font)
 
     //Play voice if it's defined
-    if(voice!==undefined && this.config.Voice!=undefined){
-      this.game.activeVoice=this.config.Voice;
-      this.game.voices[this.config.Voice].play(null,voice);
+    if(voice!==undefined && this.config.VoiceSet!=undefined){
+      this.game.activeVoice=this.config.VoiceSet;
+      this.game.voices[this.config.VoiceSet].play(null,voice);
     }
 
     this.game.textField.show();
@@ -139,7 +143,7 @@ class Character{
 
   shutup(){
     if(this.game.activeVoice!=null){
-      this.game.voices[this.config.Voice].stop();
+      this.game.voices[this.config.VoiceSet].stop();
       this.game.activeVoice=null
     }
     this.animate(this.animations.Stand);

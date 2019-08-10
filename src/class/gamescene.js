@@ -53,7 +53,7 @@ class GameScene extends Scene{
 
   getPosition(event){
     let coord=event.data.getLocalPosition(this.game.app.stage);
-    if(!this.game.player.lock && this.game.activeObject===null){
+    if(!this.game.player.lock && this.game.activeObject===null && this.game.activeNPC===null){
       this.game.player.move(coord);
     }
   }

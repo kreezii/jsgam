@@ -29,9 +29,10 @@ class NPC extends Character{
   release(){
     if(this.pressTimeoutID) clearTimeout(this.pressTimeoutID);
     if(this.interaction){
-      let distance=0;
-      if(this.game.player.sprite.x<this.sprite.x) distance=this.sprite.getBounds().width*-1;
-      else distance=this.sprite.getBounds().width;
+      let distance=this.width();
+      if(this.game.player.sprite.x<this.sprite.x) distance*=-1;
+    /*  if(this.game.player.sprite.x<this.sprite.x) distance=this.sprite.getBounds().width*-1;
+      else distance=this.sprite.getBounds().width+this.game.player.sprite;*/
       let moveTo={x:this.sprite.x+distance,y:this.sprite.y};
 
       if(this.interaction.button===2  || this.holding){

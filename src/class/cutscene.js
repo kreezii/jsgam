@@ -5,6 +5,7 @@ class CutScene{
   constructor(){
     this.container=new PIXI.Container();
     this.music=null;
+    this.voice=null;
     this.sequenceIndex=0;
     this.played=false;
   }
@@ -40,8 +41,9 @@ class CutScene{
       this.videoSprite.on('pointertap',this.end.bind(this));
       this.container.addChild(this.videoSprite);
     }else if(this.config.Sequence) {
-      this.adjust();z
+      this.adjust();
       this.setMusic();
+      this.setVoice();
     }
     this.game.app.stage.addChild(this.container);
     this.fadeIn();
@@ -59,8 +61,9 @@ class CutScene{
       this.field.text=this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
       this.image.texture=(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image));
       this.adjust();
-      this.fadeIn();
       this.setMusic();
+      this.setVoice();
+      this.fadeIn();
     }else{
       this.end();
     }
@@ -141,6 +144,18 @@ class CutScene{
 
       this.music=this.config.Sequence[this.sequenceIndex].Music;
       this.game.music[this.music].play(true);
+    }
+  }
+
+  setVoice(){
+    if(this.voice!==null){
+      this.game.voices[this.config.VoiceSet].stop();
+      this.voice=null;
+    }
+
+    if(this.config.Sequence[this.sequenceIndex].Voice!==undefined && this.game.playSounds){
+      this.voice=this.config.Sequence[this.sequenceIndex].Voice[this.game.activeLanguage];
+      this.game.voices[this.config.VoiceSet].play(null,this.voice);
     }
   }
 

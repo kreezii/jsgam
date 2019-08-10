@@ -5,7 +5,7 @@ import PixiPlugin from "gsap/PixiPlugin";
 
 import Loader from './loader.js';
 import Storage from './storage.js';
-import Sound from './soundmanager.js';
+import Sound from './sound.js';
 import Title from './class/title.js';
 import GameScene from './class/gamescene.js';
 import CutScene from './class/cutscene.js';
@@ -113,7 +113,6 @@ class Game {
 
     this.tween=null;
     this.logo=null;
-    this.sounds=null;
 
     this.scenes={};
     this.cutscenes={};
@@ -266,6 +265,8 @@ class Game {
       sound.game = this;
 
       sound.source=this.files.resources[name].sound;
+
+      if(config.Sprites) sound.source._sprite=config.Sprites;
   }
 
   addVoice(name, voice, config) {

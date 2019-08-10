@@ -6,6 +6,7 @@ export default class Sound{
   }
 
   play(loop,src){
+    this.source.volume(1);
     if(loop!==undefined && loop!==null) this.source.loop(true);
     if(src!==undefined && src!==null) this.sprite=this.source.play(src);
     else this.source.play();
@@ -17,7 +18,7 @@ export default class Sound{
       this.source.fade(1,0,1000,this.sprite);
     }
     else{
-      this.source.on('fade', this.onFade.bind(this));
+      this.source.once('fade', this.onFade.bind(this));
       this.source.fade(1,0,1000);
     }
   }
