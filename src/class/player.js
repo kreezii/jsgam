@@ -1,6 +1,8 @@
+import * as PIXI from 'pixi.js';
+window.PIXI=PIXI;  //Solution to use Dragonbones with PIXI v5
+const dragonBones=require('pixi5-dragonbones');
 import Character from './character.js';
-import dragonBones from 'dragonbones-pixi';
-const dbEvents=dragonBones.dragonBones.EventObject;
+const dbEvents=dragonBones.EventObject;
 import {closestPoint} from '../collisions.js';
 
 class Player extends Character{
@@ -74,9 +76,9 @@ class Player extends Character{
   }
 
   useEnd(){
-    if(this.game.activePuzzle!==null){
+    if(this.game.activePuzzle!==undefined && this.game.activePuzzle!==null && !this.game.activePuzzle.solved){
       this.game.activePuzzle.resolve();
-    }else if(this.game.activeObject!==null) {
+    }else if(this.game.activeObject!==undefined && this.game.activeObject!==null) {
       if(this.game.activeObject.door){
         this.game.changeScene(this.game.activeObject.newScene,
           this.game.activeObject.playerPos);
@@ -92,11 +94,13 @@ class Player extends Character{
     //Player must look in the right direction
     if(this.sprite.x<this.game.activeNPC.sprite.x){
       this.sprite.armature.flipX=false;
-      if(this.game.activeNPC.config.Mirror!==undefined) this.game.activeNPC.sprite.armature.flipX=true;
+      //if(this.game.activeNPC.config.Mirror!==undefined) this.game.activeNPC.sprite.armature.flipX=true;
+      if(this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX=true;
       else this.game.activeNPC.sprite.armature.flipX=false;
     }else{
       this.sprite.armature.flipX=true;
-      if(this.game.activeNPC.config.Mirror!==undefined) this.game.activeNPC.sprite.armature.flipX=false;
+      //if(this.game.activeNPC.config.Mirror!==undefined) this.game.activeNPC.sprite.armature.flipX=false;
+      if(this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX=false;
       else this.game.activeNPC.sprite.armature.flipX=true;
     }
 

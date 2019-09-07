@@ -1,6 +1,7 @@
 import {Howl} from 'howler';
+import {Loader} from 'pixi.js';
 
-class Loader extends PIXI.loaders.Loader{
+class GameLoader extends Loader{
   constructor(){
     super();
     this.game=null;
@@ -8,7 +9,8 @@ class Loader extends PIXI.loaders.Loader{
     this.onError.add(this.error.bind(this));
     this.use(this.howlerMiddleware.bind(this));
   }
-
+  
+  //Add loaded sounds from PIXI loader to Howler
   howlerMiddleware(resource,next){
     if (resource && ["wav", "ogg", "mp3"].includes(resource.extension)) {
       const options = JSON.parse(JSON.stringify(resource.metadata));
@@ -138,4 +140,4 @@ class Loader extends PIXI.loaders.Loader{
 
 }
 
-export default Loader;
+export default GameLoader;

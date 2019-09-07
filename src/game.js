@@ -1,9 +1,10 @@
 import * as PIXI from 'pixi.js';
-import 'pixi-layers';
+window.PIXI = PIXI;
+require("pixi-layers");
 import { TweenMax } from "gsap";
 import PixiPlugin from "gsap/PixiPlugin";
 
-import Loader from './loader.js';
+import GameLoader from './loader.js';
 import Storage from './storage.js';
 import Sound from './sound.js';
 import Title from './class/title.js';
@@ -87,7 +88,7 @@ class Game {
     this.app.stage.addChild(this.loadingTxt);
     this.app.stage.addChild(this.progressBar);
     this.resize();
-    this.jsons=new Loader();
+    this.jsons=new GameLoader();
     this.jsons.game=this;
     this.jsons.addJSON(files);
     this.jsons.load(this.load.bind(this)); //When all config files are loaded, load the game resources.
@@ -95,7 +96,7 @@ class Game {
 
   //Load game resources (images,sounds,vids...)
   load(){
-    this.files=new Loader();
+    this.files=new GameLoader();
     this.files.game=this;
     this.files.addFiles(Object.values(this.jsons.resources));
     this.files.load(this.setup.bind(this));
@@ -336,7 +337,7 @@ class Game {
     this.BottomGroup= new PIXI.display.Group(0,false);
     this.sortGroup= new PIXI.display.Group(1, true);
     this.sortGroup.on('sort', function (sprite) {
-      sprite.zOrder = -sprite.y;
+      sprite.zOrder =  sprite.y;
     });
     this.TopGroup = new PIXI.display.Group(2,false);
     this.UIGroup = new PIXI.display.Group(3,false);

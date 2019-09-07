@@ -1,6 +1,6 @@
-import Game from './game';
+import Adventure from './game';
 
-console.log("JSGAM 5.0.0 https://github.com/kreezii/jsgam");
+console.log("JSGAM 5.0.1 https://github.com/kreezii/jsgam");
 
 //export default Game;
-export default Game;
+export default Adventure;

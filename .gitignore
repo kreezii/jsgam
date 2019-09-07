@@ -1,3 +1,5 @@
+.cache/
 demo/
+.gitignore
 node_modules/
 package-lock.json

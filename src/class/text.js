@@ -1,4 +1,6 @@
-class Button extends PIXI.extras.BitmapText{
+import {BitmapText} from 'pixi.js';
+
+class Button extends BitmapText{
     constructor(text,style){
       super(text,style);
       this.interactive=true;
@@ -6,7 +8,7 @@ class Button extends PIXI.extras.BitmapText{
     }
 }
 
-class Infotxt extends PIXI.extras.BitmapText{
+class Infotxt extends BitmapText{
     constructor(text,style){
       super(text,style);
     }

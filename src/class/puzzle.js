@@ -10,7 +10,7 @@ class Puzzle{
       if(this.config.ModifyObject){
         let objectMod=this.game.objects[this.config.ModifyObject.Name];
         if(this.config.ModifyObject.Description!==undefined) objectMod.config.Description=this.config.ModifyObject.Description;
-        if(this.config.ModifyObject.Door!==undefined) this.createDoor(objectMod)
+        if(this.config.ModifyObject.Door!==undefined) this.setDoor(objectMod)
         if(this.config.ModifyObject.Position!==undefined) objectMod.setpos(this.config.ModifyObject.Position[0],this.config.ModifyObject.Position[1]);
         if(this.config.ModifyObject.Mirror) objectMod.flip();
         if(this.config.ModifyObject.Interactive!==undefined) this.setInteraction(this.config.ModifyObject.Interactive);
@@ -82,10 +82,14 @@ class Puzzle{
     this.game.activePuzzle=null;
   }
 
-  createDoor(target){
-    target.door=true;
-    target.newScene=this.config.ModifyObject.Door.To;
-    target.playerPos=this.config.ModifyObject.Door.Player;
+  setDoor(target){
+    if(this.config.ModifyObject.Door===false){
+      target.door=false;
+    }else{
+      target.door=true;
+      target.newScene=this.config.ModifyObject.Door.To;
+      target.playerPos=this.config.ModifyObject.Door.Player;
+    }
   }
 }
 

@@ -1,3 +1,5 @@
+//JSGAM sound library
+
 export default class Sound{
   constructor(){
     this.game=null;
