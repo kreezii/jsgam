@@ -11,7 +11,6 @@
   "module": "dist/jsgam.mjs",
   "scripts": {
     "build": "microbundle -f cjs,es",
-    "buildUMD": "parcel src/index.js --out-file dist/jsgam.umd.js --global jsgam",
     "dev": "microbundle watch -f cjs,es"
   },
   "keywords": [

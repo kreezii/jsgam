@@ -6,17 +6,9 @@ A game engine inspired on classic graphical point-and-click adventure games made
 ## Getting started
 (Full documentation in progress...)
 
-You can use **JSGAM** in two different ways:
-
-#### NPM Install
-
 - Install [node.js](https://nodejs.org)
-- Clone or download [jsgam-node-template](https://github.com/kreezii/jsgam-node-template)
-- Run ```npm install```
-
-#### Browser
-
 - Clone or download [jsgam-template](https://github.com/kreezii/jsgam-template)
+- Run ```npm install```
 
 ## Author
 
