@@ -1,11 +1,9 @@
 import * as PIXI from 'pixi.js';
-window.PIXI=PIXI; //Solution to use Dragonbones with PIXI v5
+window.PIXI=PIXI; //Solution to use dragonbones with PIXI v5
 const dragonBones=require('pixi5-dragonbones');
 const dbfactory=dragonBones.PixiFactory.factory;
-import {checkPath} from '../collisions.js'
 
-import { TweenMax } from "gsap";
-import PixiPlugin from "gsap/PixiPlugin";
+import {checkPath} from '../collisions.js'
 
 class Character{
   constructor(){
@@ -13,6 +11,7 @@ class Character{
     this.state=null;
     this.lock=false;
     this.endAction=null;
+    this.event=dragonBones.EventObject;
   }
 
   setup(config){

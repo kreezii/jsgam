@@ -1,4 +1,3 @@
-//import * as PIXI from 'pixi.js';
 import Scene from './scene.js';
 
 import Walkable from 'walkable';

@@ -1,10 +1,6 @@
-import { TweenMax } from "gsap";
-import PixiPlugin from "gsap/PixiPlugin";
-import {BitmapText,Container} from 'pixi.js';
-
 class Credits{
   constructor(){
-    this.container=new Container();
+    this.container=new PIXI.Container();
     this.container.visible=false;
     this.container.interactive=true;
     this.container.buttonMode=true;
@@ -27,7 +23,7 @@ class Credits{
       this.speed=20;
     }
 
-    this.structuredText = new BitmapText(this.text,config.Style);
+    this.structuredText = new PIXI.BitmapText(this.text,config.Style);
     this.tween=null;
     this.container.addChild(this.structuredText);
 

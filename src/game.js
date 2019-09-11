@@ -1,8 +1,10 @@
 import * as PIXI from 'pixi.js';
-window.PIXI = PIXI;
+window.PIXI=PIXI; //Solution to use pixi-layers with PIXI v5
 require("pixi-layers");
+
 import { TweenMax } from "gsap";
 import PixiPlugin from "gsap/PixiPlugin";
+PixiPlugin.registerPIXI(PIXI);
 
 import GameLoader from './loader.js';
 import Storage from './storage.js';

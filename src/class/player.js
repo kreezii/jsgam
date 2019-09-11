@@ -1,8 +1,4 @@
-import * as PIXI from 'pixi.js';
-window.PIXI=PIXI;  //Solution to use Dragonbones with PIXI v5
-const dragonBones=require('pixi5-dragonbones');
 import Character from './character.js';
-const dbEvents=dragonBones.EventObject;
 import {closestPoint} from '../collisions.js';
 
 class Player extends Character{
@@ -51,7 +47,7 @@ class Player extends Character{
   take(){
     this.lock=true;
     this.animate(this.animations.Take,1);
-    this.sprite.once(dbEvents.COMPLETE, this.takeEnd, this);
+    this.sprite.once(this.event.COMPLETE, this.takeEnd, this);
   }
 
   takeEnd(){
@@ -72,7 +68,7 @@ class Player extends Character{
   use(){
     this.lock=true;
     this.animate(this.animations.Use,1);
-    this.sprite.once(dbEvents.COMPLETE, this.useEnd, this);
+    this.sprite.once(this.event.COMPLETE, this.useEnd, this);
   }
 
   useEnd(){

@@ -9,7 +9,7 @@ class GameLoader extends Loader{
     this.onError.add(this.error.bind(this));
     this.use(this.howlerMiddleware.bind(this));
   }
-  
+
   //Add loaded sounds from PIXI loader to Howler
   howlerMiddleware(resource,next){
     if (resource && ["wav", "ogg", "mp3"].includes(resource.extension)) {

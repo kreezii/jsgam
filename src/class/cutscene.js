@@ -1,10 +1,6 @@
-import { TweenMax } from "gsap";
-import PixiPlugin from "gsap/PixiPlugin";
-import {Sprite,Texture,Container,BitmapText} from 'pixi.js';
-
 class CutScene{
   constructor(){
-    this.container=new Container();
+    this.container=new PIXI.Container();
     this.music=null;
     this.voice=null;
     this.sequenceIndex=0;
@@ -18,13 +14,13 @@ class CutScene{
       this.videoData.addEventListener('ended',this.videoEnds);
     }else if(this.config.Sequence){
       this.tween=null;
-      this.image=new Sprite(Texture.from(this.config.Sequence[this.sequenceIndex].Image));
+      this.image=new PIXI.Sprite(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image));
       this.image.anchor.set(0.5,0);
       this.container.interactive=true;
       this.container.buttonMode=true;
       this.container.on('pointertap',this.next.bind(this));
       this.container.addChild(this.image);
-      this.field=new BitmapText(this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage],this.game.settings.Text.Style);
+      this.field=new PIXI.BitmapText(this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage],this.game.settings.Text.Style);
       this.field.anchor.set(0.5,1);
       this.field.maxWidth=this.game.width;
       this.container.addChild(this.field);
@@ -33,8 +29,8 @@ class CutScene{
 
   show(){
     if(this.config.Video) {
-      let videoTexture = Texture.from(this.videoData);
-    	this.videoSprite = new Sprite(videoTexture);
+      let videoTexture = PIXI.Texture.from(this.videoData);
+    	this.videoSprite = new PIXI.Sprite(videoTexture);
       this.videoSprite.width = this.game.width;
       this.videoSprite.height = this.game.height;
       this.videoSprite.interactive=true;
@@ -60,7 +56,7 @@ class CutScene{
     if(this.sequenceIndex<this.config.Sequence.length-1){
       this.sequenceIndex+=1;
       this.field.text=this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
-      this.image.texture=(Texture.from(this.config.Sequence[this.sequenceIndex].Image));
+      this.image.texture=(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image));
       this.adjust();
       this.setMusic();
       this.setVoice();

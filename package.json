@@ -1,17 +1,17 @@
 {
   "name": "jsgam",
-  "version": "5.0.1",
+  "version": "5.0.1-4",
   "description": "JavaScript Graphic Adventure Maker",
   "repository": {
     "type": "git",
     "url": "https://github.com/kreezii/jsgam.git"
   },
-  "source": "src/index.js",
   "main": "dist/jsgam.js",
-  "module": "dist/jsgam.mjs",
   "scripts": {
-    "build": "microbundle -f cjs,es",
-    "dev": "microbundle watch -f cjs,es"
+    "build": "npm run buildDev && npm run buildProd",
+    "buildDev": "parcel build ./src/index.js --global jsgam --no-minify --out-file jsgam.js ",
+    "buildProd": "parcel build ./src/index.js --global jsgam --out-file jsgam.min.js ",
+    "dev": "parcel ./src/index.js --no-source-maps --no-minify --out-file jsgam.js"
   },
   "keywords": [
     "game",
@@ -25,15 +25,12 @@
   ],
   "author": "R.Vañes",
   "license": "MIT",
-  "devDependencies": {
-    "microbundle": "^0.11.0"
-  },
   "dependencies": {
     "gsap": "^2.1.3",
     "howler": "^2.1.2",
     "localforage": "^1.7.3",
     "pixi-layers": "^0.2.1",
-    "pixi.js": "^5.1.2",
+    "pixi.js": "^5.1.3",
     "pixi5-dragonbones": "^5.7.0-2",
     "polyk": "^0.24.0",
     "walkable": "^1.0.3"

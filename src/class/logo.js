@@ -1,6 +1,3 @@
-import { TweenMax } from "gsap";
-import PixiPlugin from "gsap/PixiPlugin";
-
 class Logo{
   constructor(game){
     this.game=game;
