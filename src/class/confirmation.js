@@ -34,7 +34,7 @@ class Confirmation extends Menu{
   }
 
   addText(name,text){
-    this.text=new Infotxt(text[this.game.activeLanguage],this.game.settings.Text.ButtonStyle);
+    this.text=new Infotxt(text[this.game.activeLanguage],this.game.settings.Text.Button);
     this.container.addChild(this.text);
   }
 }

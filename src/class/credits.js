@@ -23,7 +23,7 @@ class Credits{
       this.speed=20;
     }
 
-    this.structuredText = new PIXI.BitmapText(this.text,config.Style);
+    this.structuredText = new PIXI.BitmapText(this.text,this.game.settings.Text.Credits);
     this.tween=null;
     this.container.addChild(this.structuredText);
 

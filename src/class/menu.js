@@ -8,7 +8,7 @@ class Menu{
     }
 
   addButton(name,text){
-    this.buttons[name]=new Button(text[this.game.activeLanguage],this.game.settings.Text.ButtonStyle);
+    this.buttons[name]=new Button(text[this.game.activeLanguage],this.game.settings.Text.Button);
     this.container.addChild(this.buttons[name]);
   }
 

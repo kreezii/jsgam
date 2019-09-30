@@ -8,26 +8,31 @@ import Confirmation from './confirmation.js'
 class Title extends Scene{
   build(){
     this.states={};
-
+    let languages=Object.values(this.game.settings.Languages).length;
     //Add Menus
     this.addState("MainMenu", new MainMenu());
-    this.addState("Options", new Options());
-    this.addState("Credits", new Credits());
-    this.addState("Help", new Help());
     this.addState("Warning", new Confirmation());
-
     //Add actions to the menu buttons
-    this.addAction("MainMenu","Options",this.showOptions.bind(this));
-    this.addAction("MainMenu","Help",this.showHelp.bind(this));
-    this.addAction("MainMenu","Credits",this.showCredits.bind(this));
-
     this.addAction("MainMenu","New",this.checkAdventure.bind(this));
     this.addAction("MainMenu","Continue",this.loadAdventure.bind(this));
 
     this.addAction("Warning","Yes",this.newAdventure.bind(this));
     this.addAction("Warning","No",this.mainMenu.bind(this));
 
-    this.addAction("Options", "Back",this.mainMenu.bind(this));
+    if(languages>1){
+        this.addState("Options", new Options());
+        this.addAction("MainMenu","Options",this.showOptions.bind(this));
+        this.addAction("Options", "Back",this.mainMenu.bind(this));
+    }
+    if(this.game.data.help!==undefined){
+      this.addState("Help", new Help());
+      this.addAction("MainMenu","Help",this.showHelp.bind(this));
+    }
+
+    if(this.game.data.credits!==undefined){
+      this.addState("Credits", new Credits());
+      this.addAction("MainMenu","Credits",this.showCredits.bind(this));
+    }
 
   }
 
@@ -63,19 +68,18 @@ class Title extends Scene{
   }
 
   mainMenu(){
-    this.states["Credits"].hide();
-    this.states["Options"].hide();
-    this.states["Help"].hide();
-    this.states["Warning"].hide();
+    let menuOptions=Object.getOwnPropertyNames(this.states);
+
+    menuOptions.forEach(function(val, idx, array) {
+      if(this.states[val]!==undefined && val!=="MainMenu") this.states[val].hide();
+    },this);
+
     this.changeLanguage();
     this.states["MainMenu"].show();
-
   }
 
   changeLanguage(){
     this.states["MainMenu"].changeLanguage();
-    this.states["Credits"].changeLanguage();
-    this.states["Help"].changeLanguage();
     this.states["Warning"].changeLanguage();
   }
 

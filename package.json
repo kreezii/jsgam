@@ -11,7 +11,7 @@
     "build": "npm run buildDev && npm run buildProd",
     "buildDev": "parcel build ./src/index.js --global jsgam --no-minify --out-file jsgam.js ",
     "buildProd": "parcel build ./src/index.js --global jsgam --out-file jsgam.min.js ",
-    "dev": "parcel ./src/index.js --no-source-maps --no-minify --out-file jsgam.js"
+    "dev": "parcel watch ./src/index.js --no-source-maps --out-file jsgam.js"
   },
   "keywords": [
     "game",

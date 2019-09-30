@@ -23,7 +23,7 @@ class Phrases{
     this.option=[];
 
     for(let i=0;i<this.game.dialogueChoices;i++){
-      this.option[i]=new Button("Option",this.game.settings.Text.ButtonStyle);
+      this.option[i]=new Button("Option",this.game.settings.Text.Button);
       this.option[i].game=this.game;
       this.option[i].anchor.set(0.5,0);
       this.option[i].on('pointertap', this.onTap.bind(this.option[i]));

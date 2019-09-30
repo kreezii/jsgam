@@ -4,12 +4,18 @@
 A game engine inspired on classic graphical point-and-click adventure games made for XXI century.
 
 ## Getting started
-(Full documentation in progress...)
+(Full documentation coming soon...)
 
+### NPM
 - Install [node.js](https://nodejs.org)
 - Clone or download [jsgam-template](https://github.com/kreezii/jsgam-template)
 - Run ```npm install```
 
+### CDN
+JSGAM is on jsDelivr. Include the following in your html:
+```html
+<script src="https://cdn.jsdelivr.net/npm/jsgam@5.0.1-4/dist/jsgam.min.js"></script>
+```
 ## Author
 
 * **R.Vañes**

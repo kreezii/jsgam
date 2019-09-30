@@ -56,10 +56,10 @@ class Inventory{
       }else if(position=="top-right"){
         this.icon.x=this.game.width - this.icon.width;
         this.icon.y=0;
-      }else if(position=="top-left"){
+      }else if(position=="bottom-left"){
         this.icon.x=0;
         this.icon.y=this.game.height - this.icon.height;
-      }else if(position=="bottom-top"){
+      }else if(position=="top-left"){
         this.icon.x=this.game.width - this.icon.width;
         this.icon.y=0;
       }

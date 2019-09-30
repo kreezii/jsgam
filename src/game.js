@@ -30,9 +30,9 @@ class Game {
       objects:[],
       dialogues:[],
       puzzles:[],
-      credits:[],
       texts:[],
       music:[],
+      npc:[],
       voices:[],
       sounds:[]
     };
@@ -142,7 +142,7 @@ class Game {
     this.finished=false;
 
     this.storage=new Storage(this);
-    this.logo=new Logo(this);
+    if(this.settings.Logos!==undefined) this.logo=new Logo(this);
   //  this.sound=new SoundManager(this);
 
     this.titleLabel="Title";
@@ -235,7 +235,12 @@ class Game {
     //Game's loop
     this.app.ticker.add(this.loop.bind(this));
 
-    this.logo.show();
+    if(this.settings.Logos!==undefined) this.logo.show();
+    else{
+      //Set Title as the first scene to show
+      this.setScene(this.titleLabel);
+      this.fadeIn();
+    }
 
   }
 
@@ -481,9 +486,9 @@ class Game {
 
   changeScene(name,playerCoords){
     //Music
-    if(this.activeScene.music!==undefined){
+    if(this.activeScene!==undefined){
       //this.sound.stop(this.activeScene.music);
-      this.music[this.activeScene.music].stop();
+      if(this.activeScene.music!==undefined) this.music[this.activeScene.music].stop();
     }
     this.app.stage.addChild(this.blackScreen);
     if(this.tween) this.tween.kill();

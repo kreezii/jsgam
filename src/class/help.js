@@ -4,12 +4,11 @@ class Help{
     this.container.visible=false;
     this.container.interactive=true;
     this.container.buttonMode=true;
-    }
+  }
 
   create(){
-    let config=this.game.settings;
-
-    this.background=new PIXI.Sprite(PIXI.Texture.from(config.Help[this.game.activeLanguage]));
+    let config=this.game.data.help;
+    this.background=new PIXI.Sprite(PIXI.Texture.from(config[this.game.activeLanguage]));
     this.container.addChild(this.background);
     this.center();
     this.container.on('pointerup', this.mainMenu.bind(this));
@@ -24,7 +23,7 @@ class Help{
   }
 
   changeLanguage(){
-    this.background.texture=PIXI.Texture.from(this.game.settings.Help[this.game.activeLanguage]);
+    this.background.texture=PIXI.Texture.from(this.game.data.help[this.game.activeLanguage]);
     this.center();
   }
 

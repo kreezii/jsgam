@@ -44,6 +44,7 @@ class GameLoader extends Loader{
       if(files[i].data.Dialogues) this.game.data.dialogues=this.game.data.dialogues.concat(files[i].data.Dialogues);
       if(files[i].data.Puzzles) this.game.data.puzzles=this.game.data.puzzles.concat(files[i].data.Puzzles);
       if(files[i].data.Credits) this.game.data.credits=files[i].data.Credits;
+      if(files[i].data.Help) this.game.data.help=files[i].data.Help;
       if(files[i].data.Texts) this.game.data.texts=files[i].data.Texts;
       if(files[i].data.Voices) this.game.data.voices=this.game.data.voices.concat(files[i].data.Voices);
       if(files[i].data.Music) this.game.data.music=this.game.data.music.concat(files[i].data.Music);
