@@ -130,8 +130,8 @@ class GameLoader extends Loader{
   //Loading progress
   update(){
     let percent=Math.floor(this.progress);
-    this.game.progressBar.width=(this.game.width/100)*percent;
-    //this.game.loadingTxt.text="Loading... "+ percent+"%";
+    this.game.progressBar.update(percent);
+
   }
 
   //File failed to load

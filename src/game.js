@@ -20,6 +20,7 @@ import Player from './class/player.js';
 import NPC from './class/npc.js';
 import Dialogue from './class/dialogue.js';
 import Logo from './class/logo.js';
+import ProgressBar from './class/progressbar.js';
 
 class Game {
   constructor(config){
@@ -74,21 +75,24 @@ class Game {
   //Read JSON configuration files
   preload(files){
     //Text to show progress
-    this.progressBar=new PIXI.Graphics();
+  /*  this.progressBar=new PIXI.Graphics();
     this.progressBar.beginFill(0xDE3249);
     this.progressBar.drawRect(0, 0, this.width, this.height/50);
     this.progressBar.endFill();
     this.progressBar.width=0;
+*/
+    this.progressBar=new ProgressBar(this);
 
     this.loadingTxt=new PIXI.Text("Loading...", {fill: 'white',"fontSize": 50});
     this.loadingTxt.anchor.set(0.5);
     this.loadingTxt.x=this.width/2;
     this.loadingTxt.y=this.height/2;
 
-    this.progressBar.y=this.height-this.loadingTxt.height;
+    this.progressBar.container.y=this.loadingTxt.y+this.loadingTxt.height;
+    this.progressBar.container.x=this.width/2-this.progressBar.container.width/2;
 
     this.app.stage.addChild(this.loadingTxt);
-    this.app.stage.addChild(this.progressBar);
+    this.app.stage.addChild(this.progressBar.container);
     this.resize();
     this.jsons=new GameLoader();
     this.jsons.game=this;
@@ -106,7 +110,7 @@ class Game {
 
   setup(){
     this.app.stage.removeChild(this.loadingTxt);
-    this.app.stage.removeChild(this.progressBar);
+    this.app.stage.removeChild(this.progressBar.container);
 
     //Z-Order
     this.addZOrder();
