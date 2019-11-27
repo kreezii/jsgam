@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-
 @font-face{
   font-family: "Elley";
   src: url("../fonts/elley.otf") format("opentype");
@@ -17,14 +14,17 @@
 body{
   font-family: 'Roboto', sans-serif;
   background: black;
+  color: white;
 }
 
 :root{
-  --main-bg-color: #29292e;
-  --header-color: white;
+  --main-bg-color: #2a1a3e;
   --main-text-color: white;
+  --light-bg: #3e2854;
   --btn-color: white;
   --btn-bg-color: black;
+  --btn-blue-color: #3299BB;
+  --btn-blue-hover: #251832;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -42,12 +42,44 @@ a{
   vertical-align: middle;
   user-select: none;
   border: 1px solid;
-  border-radius: 5%;
+  border-radius: 5px;
   color: white;
   padding: .375rem .75rem;
   font-size: 1.5rem;
   line-height: 1.5;
   margin: .5rem;
+  transition: all 500ms;
+  text-shadow: 1px 1px 3px rgba(0,0,0,.4);
+}
+
+.btn:hover{
+  transform: scale(1.1,1.1);
+  background: var(--btn-bg-color);
+  border-color: var(--btn-bg-color);
+}
+
+.btn:active{
+  transform: scale(.9,.9);
+  background: var(--btn-bg-color);
+  border-color: var(--btn-bg-color);
+}
+
+.btn:active,.btn:focus{
+  outline: none;
+}
+
+.btn-blue{
+  background: var(--btn-blue-color);
+  border-color: var(--btn-blue-color);
+}
+
+.btn-blue:hover{
+  background: var(--btn-blue-hover);
+  border-color: var(--btn-blue-hover);
+}
+
+.btn i{
+  padding-right: .3rem;
 }
 
 p{
@@ -57,6 +89,27 @@ p{
   line-height: 1.5rem;
 }
 
+.navbar{
+  position: absolute;
+  display: block;
+  right: 1.25rem;
+  top: 1.25rem;
+}
+
+.navbar-nav{
+  display: none;
+}
+
+.navbar-icon{
+  font-size: 2rem;
+
+}
+
+.logo{
+  width: 50vw;
+  margin: 1.25rem 1.25rem;
+}
+
 .main-section{
   width: 100%;
   height: 100vh;
@@ -64,6 +117,7 @@ p{
   background-size: cover;
   text-align: center;
   padding: .5rem;
+  user-select: none;
 }
 
 .main-section h1{
@@ -77,9 +131,31 @@ p{
 
 .main-section p{
   margin-bottom: .5rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,.4);
 }
 
-.logo{
-  width: 50vw;
-  margin: 1rem 1rem;
+.features-section{
+  background: var(--main-bg-color);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+/*  grid-gap: 1.6rem;*/
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0,0,0,.4);
+}
+
+.features-section p{
+  text-shadow: 1px 1px 3px rgba(0,0,0,.4);
+}
+
+.features-section section{
+  padding: 1.6rem;
+}
+
+.features-altbg{
+  background: var(--light-bg);
+}
+
+.features-section i{
+  display: inline-block;
+  padding: 0 .5rem;
 }
