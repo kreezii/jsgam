@@ -99,7 +99,7 @@ class GameLoader extends Loader{
 
        //Load Backgrounds if don't use texture atlas for backgrounds
        if(files[i].data.Backgrounds){
-         let bgSrc=files[i].data.Animations;
+         let bgSrc=files[i].data.Backgrounds;
          for(let i=0;i<bgSrc.length;i++){
            let tmpBg=bgSrc[i].Src;
            if(tmpBg!==null) this.add(bgSrc[i].Name,tmpBg);
