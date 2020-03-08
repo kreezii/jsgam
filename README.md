@@ -4,7 +4,7 @@
 A game engine inspired on classic graphical point-and-click adventure games made for XXI century.
 
 ## Getting started
-(Full documentation coming soon...)
+Use the JSGAM editor to make your adventures (need to be documented).
 
 ### NPM
 - Install [node.js](https://nodejs.org)
