@@ -1,71 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="dark">
 <head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="css/style.css">
+  <title>JavaScript Adventure Maker</title>
+  <meta name="description" content="JSGAM Website">
+  <meta name="author" content="Kreezii">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/barebones.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="imgs/jsgam-logo.svg">
+
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <a class="navbar-icon"><i class="fas fa-bars"></i></a>
-      <ul class="navbar-nav">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#getstart">Getting Started</a></li>
-        <li><a href="#demos">Demos</a></li>
-        <li><a href="#games">Games</a></li>
-        <li><a href="#footer">Contact</a></li>
-    </nav>
+    <section class="header-section">
+      <img class="logo" src="imgs/jsgam-logo.svg" alt="jsgam-logo"/>
+      <h1>A Point & Click Adventure Game Engine</h1>
+      <p class>Inspired on classic point-and-click adventure games. Made for 21st century.</p>
+      <a class="button" href="https://github.com/kreezii/jsgam" target="_blank"><i class="fab fa-github fa-fw"></i></i>Download</a>
+      <a class="button button-primary" href="tutorial.html"><i class="fas fa-file-alt"></i>Documentation</a>
+    </section>
   </header>
   <main>
-    <section class="main-section">
-        <img class="logo" src="imgs/jsgam-logo.svg" alt="jsgam-logo"/>
-        <h1>A Point & Click Adventure Game Engine</h1>
-        <p class>Inspired on classic point-and-click adventure games. Made for 21st century.</p>
-        <a class="btn btn-blue" href="#"><i class="fab fa-github"></i></i>Download</a>
-        <a class="btn" href="#"><i class="fas fa-file-alt"></i>Docs</a>
+    <section id="features" class="grid-container quarters">
+      <section class="card">
+        <h3><i class="fas fa-desktop"></i>Desktop & Mobile</h3>
+        <p>Gameplay adapted to make easy to play on desktop and touch devices.
+        Play directly on your web browser</p>
+      </section>
+      <section class="card">
+          <h3><i class="fas fa-code"></i>No programming</h3>
+          <p>You make your game with JSON.</p>
+      </section>
+      <section class="card">
+          <h3><i class="fas fa-bone"></i>Skeletal Animations</h3>
+          <p>Gameplay adapted to make easy to play on desktop and touch devices.</p>
+      </section>
+      <section class="card">
+          <h3><i class="fas fa-tools"></i>Tools</h3>
+          <p>Edit your scenes thanks to the GIMP plugin.</p>
+      </section>
+    </section>
+
+    <section id="examples">
+      <h2>Examples</h2>
+      <section class="grid-container halves">
+        <div class="card">
+          <h4>Space Adventure</h4>
+          <img class="card" src="imgs/space-adventure.jpg" alt="Game Image"/>
+          <p>Somewhere in the space a ship is having problems while the crew is sleeping.
+            The emergency robot is activated to solve the problem.
+          </p>
+          <a href="#" class="button button-play" target="_blank"></i>Play Now</a>
+          <a href="#" class="button" target="_blank">Source</a>
+        </div>
+        <div class="card">
+          <h4>Space Adventure</h4>
+          <img src="imgs/space-adventure.jpg" alt="Game Image"/>
+          <p>Somewhere in the space a ship is having problems while the crew is sleeping.
+            The emergency robot is activated to solve the problem.
+          </p>
+          <a href="#" class="button button-play" target="_blank">Play Now</a>
+          <a href="#" class="button" target="_blank">Source</a>
+        </div>
+      </section>
+    </section>
+    <section id="examples">
+      <h2>Examples</h2>
     </section>
   </main>
-  <section id="features" class="features-section">
-    <section>
-        <h1><i class="fas fa-desktop"></i>Desktop & Mobile</h1>
-        <p>Gameplay adapted to make easy to play on desktop and touch devices.</p>
-    </section>
-    <section class="features-altbg">
-        <h1><i class="fas fa-code"></i>No programming</h1>
-        <p></p>
-    </section>
-    <section class="features-altbg">
-        <h1><i class="fas fa-bone"></i>Skeletal Animations</h1>
-        <p>Gameplay adapted to make easy to play on desktop and touch devices.</p>
-    </section>
-    <section>
-        <h1><i class="fas fa-tools"></i>Tools</h1>
-        <p></p>
-    </section>
-  </section>
-  <section id="getstart" class="getstart-section">
-    <article>
-        <h1>Game title #1</h1>
-        <img src="" alt="game-thumb"/>
-    </article>
-  </section>
-  <section id="demos" class="demos-section">
-    <article>
-        <h1>Open the door</h1>
-        <img src="" alt="demo-thumb"/>
-    </article>
-  </section>
-  <section id="games" class="games-section">
-    <article>
-        <h1>Game title #1</h1>
-        <img src="" alt="game-thumb"/>
-    </article>
-  </section>
   <footer>
-
+    © JavaScript Graphic Adventure Maker 2020.
+    <a title="JSGAM" href="https://www.codeandweb.com/tp-online/" target="_blank"><i class="fab fa-github fa-lg"></i></a>
   </footer>
 </body>
 </html>

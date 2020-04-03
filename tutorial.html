@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>JavaScript Adventure Maker</title>
+  <meta name="description" content="JSGAM Website">
+  <meta name="author" content="Kreezii">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/barebones.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="imgs/jsgam-logo.svg">
+
+</head>
+<body>
+  <main>
+    <section class="grid-container full">
+      <h2>Introduction</h2>
+      <p>JavaScript Graphic Adventure Maker (JSGAM) is a set of tools to make adventure games inspired by the
+      90s point and click games running directly in <strong>the web browser</strong>.<br/>The project started to make personal games but I decided to share it so
+      anyone with the same interest for classic adventure games can make them quickly without spend time in
+      the engine.<br/>
+      To make games with JSGAM you don't need any knowledges about programming nor design, but It'll be
+      easier if you know at least the basics of GIMP, Blender, HTML, CSS and JavaScript.
+      </p>
+      <h3 class="section-header">Tools</h3>
+      <section class="grid-container quarters">
+        <div class="card">
+          <a href="#jsgam-tools"><img  src="imgs/wilber-big.png"/></a>
+          GIMP + JSGAM Tools
+          <p>To design the scenes</p>
+        </div>
+        <div class="card">
+          <a href="#coatools">
+            <img  src="imgs/coa_tools_logo.png"/>
+          </a>
+          <h6>Blender + Coatools</h6>
+          <p>To make the game characters</p>
+        </div>
+        <div class="card">
+          <a href="https://www.codeandweb.com/free-sprite-sheet-packer" target="_blank"><img  src="imgs/texturepacker512.png"/></a>
+          Texture Packer
+          <p>To package all image files</p>
+        </div>
+        <div class="card">
+          <a href="#editor"><img  src="imgs/jsgam-logo.svg"/></a>
+          JSGAM Editor
+          <p>To make the game</p>
+        </div>
+      </section>
+    </section>
+    <section>
+      <h3 class="section-header">Setting up the tools</h3>
+      <article id="jsgam-tools">
+        <h4>JSGAM-Tools GIMP plug-in</h4>
+        <a class="button button-primary" href="https://github.com/kreezii/jsgam-tools"><i class="fas fa-download"></i>Download</a>
+        <p>
+          Copy the jsgam-tools.py should the GIMP plug-ins folder which is located in:
+          <ul>
+            <li><strong>Linux</strong>: ~/.config/GIMP/2.10/plug-ins</li>
+            <li><strong>Windows</strong>: C:\Users\yourname\AppData\Roaming\GIMP\2.10\plug-ins</li>
+          </ul>
+          You should find it under<strong> File>Export to JSGAM... </strong>after restarting GIMP.
+        </p>
+        <h5>Usage</h5>
+        <p>
+          <ul>
+            <li>The bottom layer isn't exported because the script takes it as the background.</li>
+            <li>The bottom path is exported as <strong>WalkArea</strong> and the other paths are considered <strong>Obstacles</strong>.</li>
+            <li>Add <code>'obj'</code> to the name path to create an invisible object instead of an obstacle.</li>
+          </ul>
+          <div class="grid-container halves">
+            <p><img  src="imgs/layers.gif"/></p>
+            <p><img  src="imgs/export.gif"/></p>
+          </div>
+      </article>
+      <article id="coatools">
+        <h4>Coatools</h4>
+          <a class="button button-primary" href="https://www.blender.org/download/" target="_blank"><i class="fas fa-download"></i>Blender</a>
+          <a class="button button-primary" href="https://github.com/ndee85/coa_tools" target="_blank"><i class="fas fa-download"></i>Coa-Tool</a>
+        <p>
+          GIMP Exporter:<br/>
+          The coatools_exporter.py should be copied to your GIMP plug-ins folder which is located in:
+        </p>
+        <ul>
+          <li><strong>Linux</strong>: ~/.config/GIMP/2.10/plug-ins</li>
+          <li><strong>Windows</strong>: C:\Users\yourname\AppData\Roaming\GIMP\2.10\plug-ins</li>
+        </ul>
+        <p>
+          Zip the <strong>coa_folder</strong>. Go to <strong>File -> User Preferences -> Add-ons</strong> and click the <code>Install from file...</code> button. This will install and enable the Addon for Blender. Don’t forget to save the user preferences, otherwise the addon will not be activated after restart.
+        </p>
+        <div class="grid-container full">
+          <p>If you have never used Coa-Tools, there are a few useful CoaTools tutorials on youtube, like this one:
+            <iframe src="https://www.youtube.com/embed/b5xsjRwsVw8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </p>
+        </div>
+      </article>
+    </section>
+    <section>
+      <h3 class="section-header">The editor</h3>
+      <article id="editor">
+        <h4>Understanding the editor</h4>
+        <a class="button button-primary" href="https://kreezii.github.io/jsgam-editor/" target="_blank"><i class="fas fa-rocket"></i>Launch</a>
+        <p>JSGAM engine uses JSON format to make the game. If you don't know what JSON is you should read <a href="https://www.json.org" target="_blank">this</a>.</p>
+          <h5>Workflow</h5>
+          <ol>
+            <li>The first step is adding the sources <code>images, fonts and music</code> we are going to use in our adventure</li>
+            <li>Add the characters, player and NPC's</li>
+          </ol>
+          <a href="imgs\editor-import-sources.png"><img class="thumb" src="imgs\editor-import-sources.png"/></a>
+
+      </article>
+    </section>
+    <section>
+      <h3 class="section-header">My first adventure</h3>
+      <a class="button button-primary" href="https://github.com/kreezii/jsgam-template" target="_blank"><i class="fas fa-download"></i>JSGAM-template</a>
+    </section>
+  </main>
+  <footer class="grid-container full">
+    <div>
+    © JavaScript Graphic Adventure Maker 2020.
+    <a title="JSGAM" href="https://www.codeandweb.com/tp-online/" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+  </div>
+  </footer>
+</body>
+</html>
