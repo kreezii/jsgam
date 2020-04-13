@@ -31,8 +31,14 @@
 
 </head>
 <body>
+  <header>
+    <section class="header-section">
+      <img class="logo" src="imgs/jsgam-logo.svg" alt="jsgam-logo"/>
+      <h1>A Point & Click Adventure Game Engine</h1>
+    </section>
+  </header>
   <main>
-    <section class="grid-container full">
+    <section class="container">
       <h2>Introduction</h2>
       <p>JavaScript Graphic Adventure Maker (JSGAM) is a set of tools to make adventure games inspired by the
       90s point and click games running directly in <strong>the web browser</strong>.<br/>The project started to make personal games but I decided to share it so
@@ -69,7 +75,7 @@
     </section>
     <section>
       <h3 class="section-header">Setting up the tools</h3>
-      <article id="jsgam-tools">
+      <article id="jsgam-tools" class="container">
         <h4>JSGAM-Tools GIMP plug-in</h4>
         <a class="button button-primary" href="https://github.com/kreezii/jsgam-tools"><i class="fas fa-download"></i>Download</a>
         <p>
@@ -92,7 +98,7 @@
             <p><img  src="imgs/export.gif"/></p>
           </div>
       </article>
-      <article id="coatools">
+      <article id="coatools" class="container">
         <h4>Coatools</h4>
           <a class="button button-primary" href="https://www.blender.org/download/" target="_blank"><i class="fas fa-download"></i>Blender</a>
           <a class="button button-primary" href="https://github.com/ndee85/coa_tools" target="_blank"><i class="fas fa-download"></i>Coa-Tool</a>
@@ -105,16 +111,12 @@
           <li><strong>Windows</strong>: C:\Users\yourname\AppData\Roaming\GIMP\2.10\plug-ins</li>
         </ul>
         <p>
+          Blender plug-in:<br/>
           Zip the <strong>coa_folder</strong>. Go to <strong>File -> User Preferences -> Add-ons</strong> and click the <code>Install from file...</code> button. This will install and enable the Addon for Blender. Don’t forget to save the user preferences, otherwise the addon will not be activated after restart.
         </p>
-        <div class="grid-container full">
-          <p>If you have never used Coa-Tools, there are a few useful CoaTools tutorials on youtube, like this one:
-            <iframe src="https://www.youtube.com/embed/b5xsjRwsVw8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </p>
-        </div>
       </article>
     </section>
-    <section>
+    <section class="container">
       <h3 class="section-header">The editor</h3>
       <article id="editor">
         <h4>Understanding the editor</h4>
@@ -129,9 +131,29 @@
 
       </article>
     </section>
-    <section>
+    <section class="container">
       <h3 class="section-header">My first adventure</h3>
-      <a class="button button-primary" href="https://github.com/kreezii/jsgam-template" target="_blank"><i class="fas fa-download"></i>JSGAM-template</a>
+      <article id="firstadventure">
+        <a class="button button-primary" href="https://github.com/kreezii/jsgam-template" target="_blank"><i class="fas fa-download"></i>JSGAM-template</a>
+        <div class="grid-container quarters">
+          <video width="100%" controls>
+            <source src="vids/0-Coatools.webm" type="video/webm">
+            Your browser does not support HTML5 video.
+          </video>
+          <video width="100%" controls>
+            <source src="vids/0-Coatools.webm" type="video/webm">
+            Your browser does not support HTML5 video.
+          </video>
+          <video width="100%" controls>
+            <source src="vids/0-Coatools.webm" type="video/webm">
+            Your browser does not support HTML5 video.
+          </video>
+          <video width="100%" controls>
+            <source src="vids/0-Coatools.webm" type="video/webm">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+      </article>
     </section>
   </main>
   <footer class="grid-container full">

@@ -51,6 +51,7 @@ main{
 main > section{
   margin: 2rem 0;
 }
+
 .section-header{
   margin: 2rem 0;
   text-align: center;
@@ -82,7 +83,12 @@ main > section{
   transform: scale(1.05);
   transition: 0.3s;
 }
+
 .thumb{
   max-height: 20rem;
   object-fit:contain;
+}
+
+.container{
+  text-align: justify;
 }
