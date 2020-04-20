@@ -41,6 +41,7 @@ class Game {
     this.height=config.height;
     this.holdTime=500;
     this.playSounds = true;
+    this.musicPlaying=null;
 
     //Setup the application
     this.app = new PIXI.Application(
@@ -492,7 +493,10 @@ class Game {
     //Music
     if(this.activeScene!==undefined){
       //this.sound.stop(this.activeScene.music);
-      if(this.activeScene.music!==undefined) this.music[this.activeScene.music].stop();
+      if(this.musicPlaying!==null && this.scenes[name].music){
+        this.music[this.musicPlaying].stop();
+        this.musicPlaying=null;
+      }
     }
     this.app.stage.addChild(this.blackScreen);
     if(this.tween) this.tween.kill();
@@ -523,6 +527,7 @@ class Game {
     if(this.activeScene.music!==undefined && this.playSounds){
       //this.sound.play(this.activeScene.music);
       this.music[this.activeScene.music].play(true);
+      this.musicPlaying=this.activeScene.music;
     }
   }
 
@@ -537,7 +542,7 @@ class Game {
     }else{
       this.resume();
     }
-
+    this.player.scale();
     this.app.stage.removeChild(this.blackScreen);
   }
 }

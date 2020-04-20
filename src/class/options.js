@@ -19,6 +19,7 @@ class Options extends Menu{
 
   addLanguage(name){
     this.buttons[name]=new Button(name,this.game.settings.Text.Button);
+    this.buttons[name].anchor.set(0.5,0);
     this.buttons[name].father=this;
     this.container.addChild(this.buttons[name]);
   }

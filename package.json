@@ -1,6 +1,6 @@
 {
   "name": "jsgam",
-  "version": "5.0.1-4",
+  "version": "5.0.1-5",
   "description": "JavaScript Graphic Adventure Maker",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
     "build": "npm run buildDev && npm run buildProd",
     "buildDev": "parcel build ./src/index.js --global jsgam --no-minify --out-file jsgam.js ",
     "buildProd": "parcel build ./src/index.js --global jsgam --out-file jsgam.min.js ",
-    "dev": "parcel watch ./src/index.js --no-source-maps --out-file jsgam.js"
+    "dev": "parcel watch ./src/index.js --no-source-maps --global jsgam --out-file jsgam.js"
   },
   "keywords": [
     "game",
