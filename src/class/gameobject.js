@@ -37,6 +37,11 @@ class GameObject{
       this.play();
     }
 
+    //Texture to shwo when the object is inside the inventory
+    if(this.config.Icon){
+      this.icon=PIXI.Texture.from(this.config.Icon);
+    }
+
     //Position of the object in the screen
     if(this.config.Position){
       this.sprite.x=this.config.Position[0];
@@ -183,9 +188,11 @@ this.timeoutID;
       this.sprite.setParent(this.game.app.stage);
       var newPosition = this.interaction.getLocalPosition(this.sprite.parent);
       let bounds=this.sprite.getBounds();
+      this.sprite.x = newPosition.x;
+      this.sprite.y = newPosition.y;
       //We can only move the object inside the stage
-      if(newPosition.x>bounds.width/2 && newPosition.x<this.game.width-bounds.width/2) this.sprite.x = newPosition.x;
-      if(newPosition.y>bounds.height && newPosition.y<this.game.height) this.sprite.y = newPosition.y;
+    //if(newPosition.x>bounds.width/2 && newPosition.x<this.game.width-bounds.width/2) this.sprite.x = newPosition.x;
+    //if(newPosition.y>bounds.height && newPosition.y<this.game.height) this.sprite.y = newPosition.y;
     }
   }
 

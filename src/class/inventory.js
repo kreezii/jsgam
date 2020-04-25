@@ -17,6 +17,7 @@ class Inventory{
       this.container.x = (this.game.width - this.background.width) / 2;
       this.container.y = (this.game.height - this.background.height) / 2;
       this.border=10;
+      if(this.game.settings.Inventory.Border) this.border=this.game.settings.Inventory.Border;
       this.icon=new PIXI.Sprite(PIXI.Texture.from(this.game.settings.Inventory.Icon));
       this.icon.on('pointertap',this.click.bind(this));
       this.icon.interactive=true;
@@ -79,6 +80,7 @@ class Inventory{
                                     .off('pointerupoutside')
                                     .on('pointerup',this.release.bind(this.game.objects[name]))
                                     .on('pointerupoutside',this.release.bind(this.game.objects[name]));
+      if(this.game.objects[name].icon!==undefined) this.game.objects[name].sprite.texture=this.game.objects[name].icon;
       this.update();
     }
 

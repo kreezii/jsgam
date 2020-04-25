@@ -41,7 +41,6 @@ class Game {
     this.height=config.height;
     this.holdTime=500;
     this.playSounds = true;
-    this.musicPlaying=null;
 
     //Setup the application
     this.app = new PIXI.Application(
@@ -490,14 +489,11 @@ class Game {
   }
 
   changeScene(name,playerCoords){
-    //Music
-    if(this.activeScene!==undefined){
-      //this.sound.stop(this.activeScene.music);
-      if(this.musicPlaying!==null && this.scenes[name].music){
-        this.music[this.musicPlaying].stop();
-        this.musicPlaying=null;
-      }
+    //Stop the current music playing
+    if(this.activeScene.music!==undefined && this.playSounds){
+      this.music[this.activeScene.music].stop();
     }
+
     this.app.stage.addChild(this.blackScreen);
     if(this.tween) this.tween.kill();
     this.tween=TweenMax.set(this.blackScreen, {alpha:0});
@@ -523,11 +519,10 @@ class Game {
 
   fadeInEnd(){
     this.app.stage.removeChild(this.blackScreen);
-    //Music
+
+    //Play music if there is one to play
     if(this.activeScene.music!==undefined && this.playSounds){
-      //this.sound.play(this.activeScene.music);
       this.music[this.activeScene.music].play(true);
-      this.musicPlaying=this.activeScene.music;
     }
   }
 

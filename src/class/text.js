@@ -30,7 +30,7 @@ class Phrases{
       this.option[i].index=i;
       this.container.addChild(this.option[i]);
       this.option[i].x=this.container.width/2;
-      if(i>0)this.option[i].y=this.option[i-1].y+this.option[i-1].height;
+      if(i>0)this.option[i].y=this.option[i-1].y+this.option[i-1].height*1.5;
     }
   }
 
@@ -55,7 +55,9 @@ class Phrases{
   get(){
     this.clear();
     let options=this.game.activeDialogue.currentBranch.Choices;
-    for(let i=0;i<options.length;i++){
+    let length=options.length;
+    if(length>this.game.dialogueChoices) length=this.game.dialogueChoices;
+    for(let i=0;i<length;i++){
       if(options[i].disabled){
         this.option[i].alpha=0.5;
       }else this.option[i].alpha=1;

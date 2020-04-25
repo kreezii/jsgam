@@ -9,7 +9,7 @@ class Puzzle{
     if(!this.solved){
       if(this.config.Modify){
         if(this.config.Modify.Object){
-          let objectMod=this.game.objects[this.config.ModifyObject.Name];
+          let objectMod=this.game.objects[this.config.Modify.Object.Name];
           let objectProperty=this.config.Modify.Object;
 
           if(objectProperty.Description!==undefined) objectMod.config.Description=objectProperty.Description;
@@ -38,15 +38,16 @@ class Puzzle{
       if(this.config.Add){
         if(this.config.Add.Object){
           let objectAdd=this.game.objects[this.config.Add.Object.Name];
-          objectAdd.add(this.config.AddObject.Scene);
+          objectAdd.add(this.config.Add.Object.Scene);
         }
 
-        if(this.config.Remove.Door!==undefined){
-          let objectDoor=this.game.objects[this.config.Remove.Door];
-          objectDoor.door=false;
+        if(this.config.Add.Inventory!==undefined){
+          this.game.inventory.add(this.config.Add.Inventory);
         }
-        if(this.config.Remove.NPC){
 
+        if(this.config.Add.NPC!==undefined){
+          let npcAdd=this.game.npcs[this.config.Add.NPC.Name];
+          npcAdd.add(this.config.Add.NPC.Scene);
         }
       }
 
@@ -61,48 +62,11 @@ class Puzzle{
           objectDoor.door=false;
         }
         if(this.config.Remove.NPC){
-
+          let npcRemove=this.game.npc[this.config.Remove.NPC];
+          npcRemove.remove();
         }
       }
 
-      if(this.config.GetObject!==undefined) this.game.inventory.add(this.config.GetObject);
-
-      /*
-      if(this.config.ModifyObject){
-        let objectMod=this.game.objects[this.config.ModifyObject.Name];
-        if(this.config.ModifyObject.Description!==undefined) objectMod.config.Description=this.config.ModifyObject.Description;
-        if(this.config.ModifyObject.Door!==undefined) this.setDoor(objectMod)
-        if(this.config.ModifyObject.Position!==undefined) objectMod.setpos(this.config.ModifyObject.Position[0],this.config.ModifyObject.Position[1]);
-        if(this.config.ModifyObject.Mirror) objectMod.flip();
-        if(this.config.ModifyObject.Interactive!==undefined) this.setInteraction(this.config.ModifyObject.Interactive);
-        if(this.config.ModifyObject.Texture!==undefined) this.changeTexture(this.config.ModifyObject.Texture);
-        if(this.config.ModifyObject.Combine!==undefined) objectMod.config.Combine=this.config.ModifyObject.Combine;
-        if(this.config.ModifyObject.Use!==undefined) objectMod.config.Use=this.config.ModifyObject.Use;
-        if(this.config.ModifyObject.Lock!==undefined) objectMod.lock=this.config.ModifyObject.Lock;
-      }
-
-      if(this.config.GetObject!==undefined) this.game.inventory.add(this.config.GetObject);
-
-      if(this.config.AddObject!==undefined){
-        let objectAdd=this.game.objects[this.config.AddObject.Name];
-        objectAdd.add(this.config.AddObject.Scene);
-      }
-
-      if(this.config.RemoveObject!==undefined){
-        let objectRemove=this.game.objects[this.config.RemoveObject];
-        objectRemove.remove();
-
-      }
-
-      if(this.config.RemoveDoor!==undefined){
-        let objectDoor=this.game.objects[this.config.RemoveDoor];
-        objectDoor.door=false;
-      }
-
-      if(this.config.SetDialogue!==undefined){
-        this.game.npcs[this.config.SetDialogue.Character].config.Dialogue=this.config.SetDialogue.Dialogue;
-      }
-*/
       if(this.config.Resolve!==undefined)this.game.puzzles[this.config.Resolve].resolve();
 
       if(this.config.Say && !this.game.silentMode){

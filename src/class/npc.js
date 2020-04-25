@@ -70,7 +70,27 @@ class NPC extends Character{
   cancel(){
     this.game.activeNPC.action=null;
     this.game.activeNPC=null;
+  }
 
+  add(scene){
+    this.game.scenes[scene].container.addChild(this.sprite);
+    if(this.game.scenes[scene].config.Characters!==undefined) this.game.scenes[scene].config.Characters.push(this.config.Name);
+    else this.game.scenes[scene].config.Characters=[this.config.Name];
+
+  }
+
+  remove(){
+    this.sprite.parent.removeChild(this.sprite);
+    //Check if we remove an object which is in an scene
+    let scenesArray=Object.values(this.game.scenes)
+    let i;
+    let scenesLength=scenesArray.length;
+    for(i=0;i<scenesLength;i++){
+      if(scenesArray[i].config.Characters!==undefined && scenesArray[i].config.Characters.includes(this.config.Name)){
+        let tmpIndex=scenesArray[i].config.Characters.indexOf(this.config.Name);
+        scenesArray[i].config.Characters.splice(tmpIndex,1);
+      }
+    }
   }
 }
 
