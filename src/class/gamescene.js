@@ -14,7 +14,7 @@ class GameScene extends Scene{
     //Add obstacles to the scene
     this.walkable=new Walkable(this.game.width,this.game.height);
       if(this.config.WalkArea!==undefined){
-        this.walkable.addPolygon(this.config.WalkArea);
+        this.polyWalk=this.walkable.addPolygon(this.config.WalkArea);
       }
 
       if(this.config.Obstacles!==undefined){

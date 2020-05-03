@@ -29,8 +29,8 @@ class Phrases{
       this.option[i].on('pointertap', this.onTap.bind(this.option[i]));
       this.option[i].index=i;
       this.container.addChild(this.option[i]);
-      this.option[i].x=this.container.width/2;
-      if(i>0)this.option[i].y=this.option[i-1].y+this.option[i-1].height*1.5;
+      this.option[i].x=this.game.width/2;
+      if(i>0)this.option[i].y=this.option[i-1].y+this.option[i-1].height*1.05;
     }
   }
 
@@ -62,9 +62,11 @@ class Phrases{
         this.option[i].alpha=0.5;
       }else this.option[i].alpha=1;
       this.option[i].visible=true;
-      this.option[i].text=options[i].Text[this.game.activeLanguage];
+      let text=options[i].Text[this.game.activeLanguage];
+      if(text===undefined) text=options[i].Text[0];
+      this.option[i].text=text;
     }
-    this.sort();
+    this.update();
     this.show();
   }
 
@@ -74,27 +76,15 @@ class Phrases{
     }
   }
 
-  sort(){
-    for(let i=0;i<this.option.length;i++){
-      this.option[i].x=this.container.width/2;
+  update(){
+    let choices=this.game.activeDialogue.currentBranch.Choices;
+
+    for(let i=0;i<choices.length;i++){
+      if(choices[i].Size!==undefined) this.option[i].font.size=choices[i].Size;
+      if(i>0) this.option[i].y=this.option[i-1].y+this.option[i-1].height*1.05;
     }
-    if(this.container.width>this.container.parent.width || this.container.height>this.container.parent.height){
-      this.scale();
-    }
-    this.center();
   }
 
-  scale(){
-    let ratio = Math.min( this.game.width/this.container.width,  this.container.parent.height/this.container.height);
-    this.container.scale.set(ratio*0.95)
-  }
-
-  center(){
-    this.container.x = this.game.width / 2;
-  //  this.container.y = this.game.height / 2;
-    this.container.pivot.x = this.container.width / 2;
-  //  this.container.pivot.y = this.container.height / 2;
-  }
 }
 
 class TextField{
@@ -128,7 +118,6 @@ class TextField{
 
     this.Text=new Button("", this.game.settings.Text.Style);
     this.Text.x=this.Avatar.width*1.05;
-  //  this.Text.anchor.set(0.5,0);
     this.Text.maxWidth=this.game.width-this.Avatar.width;
 
     this.Text.y=0;
@@ -142,7 +131,7 @@ class TextField{
     this.container.addChild(this.Choices.container);
 
     //this.Text.x=this.container.width/2;
-    this.Choices.sort();
+    //this.Choices.update();
     if(this.game.settings.Text.Position!==undefined) this.setPosition(this.game.settings.Text.Position);
   }
 
@@ -185,20 +174,26 @@ class TextField{
       this.container.y=0;
     }else if(position==="bottom"){
       this.container.x=0;
-      this.container.y=this.game.height-this.container.height;
+      this.container.y=this.game.height-this.Background.height;
     }
   }
 
   setText(newText){
     this.Text.text=newText;
-    if(this.Text.width>this.container.width || this.Text.height>this.container.height){
+    let extraWidth=0;
+    if(this.Avatar.visible) extraWidth=this.Avatar.width;
+    if(this.Text.width+extraWidth>=this.Background.width || this.Text.height>=this.Background.height){
       this.adjustText();
+    }else{
+      this.Text.scale.set(.95);
     }
   }
 
   adjustText(){
-    let ratio = Math.min( this.container.width/this.Text.width,  this.container.height/this.Text.height);
-    this.container.scale.set(ratio*0.95);
+    let ratio = Math.min( this.Background.width/this.Text.width,  this.Background.height/this.Text.height);
+
+    this.Text.width=this.Text.width*ratio*0.95;
+    this.Text.height=this.Background.height;
   }
 
   //Get words number of the text

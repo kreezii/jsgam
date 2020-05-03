@@ -574,8 +574,8 @@ var _objectAssign = _interopRequireDefault(require("object-assign"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*!
- * @pixi/polyfill - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/polyfill - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/polyfill is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -710,28 +710,57 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = isMobile;
-const appleIphone = /iPhone/i;
-const appleIpod = /iPod/i;
-const appleTablet = /iPad/i;
-const androidPhone = /\bAndroid(?:.+)Mobile\b/i;
-const androidTablet = /Android/i;
-const amazonPhone = /(?:SD4930UR|\bSilk(?:.+)Mobile\b)/i;
-const amazonTablet = /Silk/i;
-const windowsPhone = /Windows Phone/i;
-const windowsTablet = /\bWindows(?:.+)ARM\b/i;
-const otherBlackBerry = /BlackBerry/i;
-const otherBlackBerry10 = /BB10/i;
-const otherOpera = /Opera Mini/i;
-const otherChrome = /\b(CriOS|Chrome)(?:.+)Mobile/i;
-const otherFirefox = /Mobile(?:.+)Firefox\b/i;
+var appleIphone = /iPhone/i;
+var appleIpod = /iPod/i;
+var appleTablet = /iPad/i;
+var appleUniversal = /\biOS-universal(?:.+)Mac\b/i;
+var androidPhone = /\bAndroid(?:.+)Mobile\b/i;
+var androidTablet = /Android/i;
+var amazonPhone = /(?:SD4930UR|\bSilk(?:.+)Mobile\b)/i;
+var amazonTablet = /Silk/i;
+var windowsPhone = /Windows Phone/i;
+var windowsTablet = /\bWindows(?:.+)ARM\b/i;
+var otherBlackBerry = /BlackBerry/i;
+var otherBlackBerry10 = /BB10/i;
+var otherOpera = /Opera Mini/i;
+var otherChrome = /\b(CriOS|Chrome)(?:.+)Mobile/i;
+var otherFirefox = /Mobile(?:.+)Firefox\b/i;
 
-function match(regex, userAgent) {
-  return regex.test(userAgent);
+var isAppleTabletOnIos13 = function (navigator) {
+  return typeof navigator !== 'undefined' && navigator.platform === 'MacIntel' && typeof navigator.maxTouchPoints === 'number' && navigator.maxTouchPoints > 1 && typeof MSStream === 'undefined';
+};
+
+function createMatch(userAgent) {
+  return function (regex) {
+    return regex.test(userAgent);
+  };
 }
 
-function isMobile(userAgent) {
-  userAgent = userAgent || (typeof navigator !== 'undefined' ? navigator.userAgent : '');
-  let tmp = userAgent.split('[FBAN');
+function isMobile(param) {
+  var nav = {
+    userAgent: '',
+    platform: '',
+    maxTouchPoints: 0
+  };
+
+  if (!param && typeof navigator !== 'undefined') {
+    nav = {
+      userAgent: navigator.userAgent,
+      platform: navigator.platform,
+      maxTouchPoints: navigator.maxTouchPoints || 0
+    };
+  } else if (typeof param === 'string') {
+    nav.userAgent = param;
+  } else if (param && param.userAgent) {
+    nav = {
+      userAgent: param.userAgent,
+      platform: param.platform,
+      maxTouchPoints: param.maxTouchPoints || 0
+    };
+  }
+
+  var userAgent = nav.userAgent;
+  var tmp = userAgent.split('[FBAN');
 
   if (typeof tmp[1] !== 'undefined') {
     userAgent = tmp[0];
@@ -743,35 +772,37 @@ function isMobile(userAgent) {
     userAgent = tmp[0];
   }
 
-  const result = {
+  var match = createMatch(userAgent);
+  var result = {
     apple: {
-      phone: match(appleIphone, userAgent) && !match(windowsPhone, userAgent),
-      ipod: match(appleIpod, userAgent),
-      tablet: !match(appleIphone, userAgent) && match(appleTablet, userAgent) && !match(windowsPhone, userAgent),
-      device: (match(appleIphone, userAgent) || match(appleIpod, userAgent) || match(appleTablet, userAgent)) && !match(windowsPhone, userAgent)
+      phone: match(appleIphone) && !match(windowsPhone),
+      ipod: match(appleIpod),
+      tablet: !match(appleIphone) && (match(appleTablet) || isAppleTabletOnIos13(nav)) && !match(windowsPhone),
+      universal: match(appleUniversal),
+      device: (match(appleIphone) || match(appleIpod) || match(appleTablet) || match(appleUniversal) || isAppleTabletOnIos13(nav)) && !match(windowsPhone)
     },
     amazon: {
-      phone: match(amazonPhone, userAgent),
-      tablet: !match(amazonPhone, userAgent) && match(amazonTablet, userAgent),
-      device: match(amazonPhone, userAgent) || match(amazonTablet, userAgent)
+      phone: match(amazonPhone),
+      tablet: !match(amazonPhone) && match(amazonTablet),
+      device: match(amazonPhone) || match(amazonTablet)
     },
     android: {
-      phone: !match(windowsPhone, userAgent) && match(amazonPhone, userAgent) || !match(windowsPhone, userAgent) && match(androidPhone, userAgent),
-      tablet: !match(windowsPhone, userAgent) && !match(amazonPhone, userAgent) && !match(androidPhone, userAgent) && (match(amazonTablet, userAgent) || match(androidTablet, userAgent)),
-      device: !match(windowsPhone, userAgent) && (match(amazonPhone, userAgent) || match(amazonTablet, userAgent) || match(androidPhone, userAgent) || match(androidTablet, userAgent)) || match(/\bokhttp\b/i, userAgent)
+      phone: !match(windowsPhone) && match(amazonPhone) || !match(windowsPhone) && match(androidPhone),
+      tablet: !match(windowsPhone) && !match(amazonPhone) && !match(androidPhone) && (match(amazonTablet) || match(androidTablet)),
+      device: !match(windowsPhone) && (match(amazonPhone) || match(amazonTablet) || match(androidPhone) || match(androidTablet)) || match(/\bokhttp\b/i)
     },
     windows: {
-      phone: match(windowsPhone, userAgent),
-      tablet: match(windowsTablet, userAgent),
-      device: match(windowsPhone, userAgent) || match(windowsTablet, userAgent)
+      phone: match(windowsPhone),
+      tablet: match(windowsTablet),
+      device: match(windowsPhone) || match(windowsTablet)
     },
     other: {
-      blackberry: match(otherBlackBerry, userAgent),
-      blackberry10: match(otherBlackBerry10, userAgent),
-      opera: match(otherOpera, userAgent),
-      firefox: match(otherFirefox, userAgent),
-      chrome: match(otherChrome, userAgent),
-      device: match(otherBlackBerry, userAgent) || match(otherBlackBerry10, userAgent) || match(otherOpera, userAgent) || match(otherFirefox, userAgent) || match(otherChrome, userAgent)
+      blackberry: match(otherBlackBerry),
+      blackberry10: match(otherBlackBerry10),
+      opera: match(otherOpera),
+      firefox: match(otherFirefox),
+      chrome: match(otherChrome),
+      device: match(otherBlackBerry) || match(otherBlackBerry10) || match(otherOpera) || match(otherFirefox) || match(otherChrome)
     },
     any: false,
     phone: false,
@@ -825,14 +856,14 @@ var _ismobilejs = _interopRequireDefault(require("ismobilejs"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*!
- * @pixi/settings - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/settings - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/settings is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
  */
 // The ESM/CJS versions of ismobilejs only
-var isMobile = (0, _ismobilejs.default)();
+var isMobile = (0, _ismobilejs.default)(window.navigator);
 /**
  * The maximum recommended texture units to use.
  * In theory the bigger the better, and for desktop we'll use as many as we can.
@@ -3627,8 +3658,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.WRAP_MODES = exports.TYPES = exports.TARGETS = exports.SCALE_MODES = exports.RENDERER_TYPE = exports.PRECISION = exports.MIPMAP_MODES = exports.MASK_TYPES = exports.GC_MODES = exports.FORMATS = exports.ENV = exports.DRAW_MODES = exports.BLEND_MODES = exports.ALPHA_MODES = void 0;
 
 /*!
- * @pixi/constants - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/constants - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/constants is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -4135,8 +4166,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*!
- * @pixi/utils - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/utils - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/utils is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -4167,7 +4198,7 @@ _settings.settings.RETINA_PREFIX = /@([0-9\.]+)x/;
 
 _settings.settings.FAIL_IF_MAJOR_PERFORMANCE_CAVEAT = true;
 var saidHello = false;
-var VERSION = '5.2.1';
+var VERSION = '5.2.3';
 /**
  * Skips the hello message of renderers that are created after this is run.
  *
@@ -5146,8 +5177,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.groupD8 = exports.Transform = exports.SHAPES = exports.RoundedRectangle = exports.Rectangle = exports.RAD_TO_DEG = exports.Polygon = exports.Point = exports.PI_2 = exports.ObservablePoint = exports.Matrix = exports.Ellipse = exports.DEG_TO_RAD = exports.Circle = void 0;
 
 /*!
- * @pixi/math - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/math - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/math is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -7486,8 +7517,8 @@ var _math = require("@pixi/math");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/display - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/display - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/display is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -9284,8 +9315,8 @@ var _utils = require("@pixi/utils");
 var _display = require("@pixi/display");
 
 /*!
- * @pixi/accessibility - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/accessibility - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/accessibility is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -9507,7 +9538,21 @@ var AccessibilityManager = function AccessibilityManager(renderer) {
    * @readonly
    */
 
-  this.isMobileAccessibility = false; // let listen for tab.. once pressed we can fire up and show the accessibility layer
+  this.isMobileAccessibility = false;
+  /**
+   * count to throttle div updates on android devices
+   * @type number
+   * @private
+   */
+
+  this.androidUpdateCount = 0;
+  /**
+   * the frequency to update the div elements ()
+   * @private
+   */
+
+  this.androidUpdateFrequency = 500; // 2fps
+  // let listen for tab.. once pressed we can fire up and show the accessibility layer
 
   window.addEventListener('keydown', this._onKeyDown, false);
 };
@@ -9530,7 +9575,7 @@ AccessibilityManager.prototype.createTouchHook = function createTouchHook() {
   hookDiv.style.left = DIV_HOOK_POS_Y + "px";
   hookDiv.style.zIndex = DIV_HOOK_ZINDEX;
   hookDiv.style.backgroundColor = '#FF0000';
-  hookDiv.title = 'HOOK DIV';
+  hookDiv.title = 'select to enable accessability for this content';
   hookDiv.addEventListener('focus', function () {
     this$1.isMobileAccessibility = true;
     this$1.activate();
@@ -9633,6 +9678,18 @@ AccessibilityManager.prototype.updateAccessibleObjects = function updateAccessib
 
 
 AccessibilityManager.prototype.update = function update() {
+  /* On Android default web browser, tab order seems to be calculated by position rather than tabIndex,
+  *  moving buttons can cause focus to flicker between two buttons making it hard/impossible to navigate,
+  *  so I am just running update every half a second, seems to fix it.
+  */
+  var now = performance.now();
+
+  if (_utils.isMobile.android.device && now < this.androidUpdateCount) {
+    return;
+  }
+
+  this.androidUpdateCount = now + this.androidUpdateFrequency;
+
   if (!this.renderer.renderingToScreen) {
     return;
   } // update children...
@@ -9640,8 +9697,9 @@ AccessibilityManager.prototype.update = function update() {
 
   this.updateAccessibleObjects(this.renderer._lastObjectRendered);
   var rect = this.renderer.view.getBoundingClientRect();
-  var sx = rect.width / this.renderer.width;
-  var sy = rect.height / this.renderer.height;
+  var resolution = this.renderer.resolution;
+  var sx = rect.width / this.renderer.width * resolution;
+  var sy = rect.height / this.renderer.height * resolution;
   var div = this.div;
   div.style.left = rect.left + "px";
   div.style.top = rect.top + "px";
@@ -9658,10 +9716,6 @@ AccessibilityManager.prototype.update = function update() {
       this.pool.push(child._accessibleDiv);
       child._accessibleDiv = null;
       i--;
-
-      if (this.children.length === 0) {
-        this.deactivate();
-      }
     } else {
       // map div to display..
       div = child._accessibleDiv;
@@ -9923,8 +9977,8 @@ exports.UPDATE_PRIORITY = exports.TickerPlugin = exports.Ticker = void 0;
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/ticker - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/ticker - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/ticker is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -10915,8 +10969,8 @@ var _display = require("@pixi/display");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/interaction - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/interaction - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/interaction is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -13419,8 +13473,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.Runner = void 0;
 
 /*!
- * @pixi/runner - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/runner - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/runner is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -13673,8 +13727,8 @@ var _math = require("@pixi/math");
 var _display = require("@pixi/display");
 
 /*!
- * @pixi/core - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/core - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/core is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -14124,15 +14178,15 @@ var ImageResource = /*@__PURE__*/function (BaseImageResource) {
   ImageResource.prototype.load = function load(createBitmap) {
     var this$1 = this;
 
-    if (createBitmap !== undefined) {
-      this.createBitmap = createBitmap;
-    }
-
     if (this._load) {
       return this._load;
     }
 
-    this._load = new Promise(function (resolve) {
+    if (createBitmap !== undefined) {
+      this.createBitmap = createBitmap;
+    }
+
+    this._load = new Promise(function (resolve, reject) {
       this$1.url = this$1.source.src;
       var ref = this$1;
       var source = ref.source;
@@ -14160,7 +14214,9 @@ var ImageResource = /*@__PURE__*/function (BaseImageResource) {
         source.onload = completed;
 
         source.onerror = function (event) {
-          return this$1.onError.run(event);
+          // Avoids Promise freezing when resource broken
+          reject(event);
+          this$1.onError.emit(event);
         };
       }
     });
@@ -15566,11 +15622,19 @@ var SVGResource = /*@__PURE__*/function (BaseImageResource) {
     tempImage.src = this.svg;
 
     tempImage.onerror = function (event) {
+      if (!this$1._resolve) {
+        return;
+      }
+
       tempImage.onerror = null;
       this$1.onError.run(event);
     };
 
     tempImage.onload = function () {
+      if (!this$1._resolve) {
+        return;
+      }
+
       var svgWidth = tempImage.width;
       var svgHeight = tempImage.height;
 
@@ -15714,8 +15778,24 @@ var VideoResource = /*@__PURE__*/function (BaseImageResource) {
 
     BaseImageResource.call(this, source);
     this.noSubImage = true;
+    /**
+     * `true` to use PIXI.Ticker.shared to auto update the base texture.
+     *
+     * @type {boolean}
+     * @default true
+     * @private
+     */
+
     this._autoUpdate = true;
-    this._isAutoUpdating = false;
+    /**
+     * `true` if the instance is currently connected to PIXI.Ticker.shared to auto update the base texture.
+     *
+     * @type {boolean}
+     * @default false
+     * @private
+     */
+
+    this._isConnectedToTicker = false;
     this._updateFPS = options.updateFPS || 0;
     this._msToNextUpdate = 0;
     /**
@@ -15871,10 +15951,10 @@ var VideoResource = /*@__PURE__*/function (BaseImageResource) {
       this._onCanPlay();
     }
 
-    if (!this._isAutoUpdating && this.autoUpdate) {
+    if (this.autoUpdate && !this._isConnectedToTicker) {
       _ticker.Ticker.shared.add(this.update, this);
 
-      this._isAutoUpdating = true;
+      this._isConnectedToTicker = true;
     }
   };
   /**
@@ -15885,10 +15965,10 @@ var VideoResource = /*@__PURE__*/function (BaseImageResource) {
 
 
   VideoResource.prototype._onPlayStop = function _onPlayStop() {
-    if (this._isAutoUpdating) {
+    if (this._isConnectedToTicker) {
       _ticker.Ticker.shared.remove(this.update, this);
 
-      this._isAutoUpdating = false;
+      this._isConnectedToTicker = false;
     }
   };
   /**
@@ -15925,7 +16005,7 @@ var VideoResource = /*@__PURE__*/function (BaseImageResource) {
 
 
   VideoResource.prototype.dispose = function dispose() {
-    if (this._isAutoUpdating) {
+    if (this._isConnectedToTicker) {
       _ticker.Ticker.shared.remove(this.update, this);
     }
 
@@ -15954,14 +16034,14 @@ var VideoResource = /*@__PURE__*/function (BaseImageResource) {
     if (value !== this._autoUpdate) {
       this._autoUpdate = value;
 
-      if (!this._autoUpdate && this._isAutoUpdating) {
+      if (!this._autoUpdate && this._isConnectedToTicker) {
         _ticker.Ticker.shared.remove(this.update, this);
 
-        this._isAutoUpdating = false;
-      } else if (this._autoUpdate && !this._isAutoUpdating) {
+        this._isConnectedToTicker = false;
+      } else if (this._autoUpdate && !this._isConnectedToTicker && this._isSourcePlaying()) {
         _ticker.Ticker.shared.add(this.update, this);
 
-        this._isAutoUpdating = true;
+        this._isConnectedToTicker = true;
       }
     }
   };
@@ -16103,8 +16183,8 @@ var DepthResource = /*@__PURE__*/function (BufferResource) {
     } else {
       glTexture.width = baseTexture.width;
       glTexture.height = baseTexture.height;
-      gl.texImage2D(baseTexture.target, 0, gl.DEPTH_COMPONENT16, // Needed for depth to render properly in webgl2.0
-      baseTexture.width, baseTexture.height, 0, baseTexture.format, baseTexture.type, this.data);
+      gl.texImage2D(baseTexture.target, 0, //  gl.DEPTH_COMPONENT16 Needed for depth to render properly in webgl2.0
+      renderer.context.webGLVersion === 1 ? gl.DEPTH_COMPONENT : gl.DEPTH_COMPONENT16, baseTexture.width, baseTexture.height, 0, baseTexture.format, baseTexture.type, this.data);
     }
 
     return true;
@@ -16162,7 +16242,7 @@ Framebuffer.prototype.addColorTexture = function addColorTexture(index, texture)
   if (index === void 0) index = 0; // TODO add some validation to the texture - same width / height etc?
 
   this.colorTextures[index] = texture || new BaseTexture(null, {
-    scaleMode: 0,
+    scaleMode: _constants.SCALE_MODES.NEAREST,
     resolution: 1,
     mipmap: false,
     width: this.width,
@@ -16185,7 +16265,7 @@ Framebuffer.prototype.addDepthTexture = function addDepthTexture(texture) {
     width: this.width,
     height: this.height
   }), {
-    scaleMode: 0,
+    scaleMode: _constants.SCALE_MODES.NEAREST,
     resolution: 1,
     width: this.width,
     height: this.height,
@@ -16193,8 +16273,6 @@ Framebuffer.prototype.addDepthTexture = function addDepthTexture(texture) {
     format: _constants.FORMATS.DEPTH_COMPONENT,
     type: _constants.TYPES.UNSIGNED_SHORT
   });
-  /* eslint-disable max-len */
-
   this.dirtyId++;
   this.dirtyFormat++;
   return this;
@@ -16795,6 +16873,7 @@ var Texture = /*@__PURE__*/function (EventEmitter) {
         this.baseTexture.destroy();
       }
 
+      this.baseTexture.off('loaded', this.onBaseTextureUpdated, this);
       this.baseTexture.off('update', this.onBaseTextureUpdated, this);
       this.baseTexture = null;
     }
@@ -16815,7 +16894,7 @@ var Texture = /*@__PURE__*/function (EventEmitter) {
 
 
   Texture.prototype.clone = function clone() {
-    return new Texture(this.baseTexture, this.frame, this.orig, this.trim, this.rotate, this.defaultAnchor);
+    return new Texture(this.baseTexture, this.frame.clone(), this.orig.clone(), this.trim && this.trim.clone(), this.rotate, this.defaultAnchor);
   };
   /**
    * Updates the internal WebGL UV cache. Use it after you change `frame` or `trim` of the texture.
@@ -17159,7 +17238,7 @@ removeAllHandlers(Texture.WHITE.baseTexture);
  *
  * ```js
  * let renderer = PIXI.autoDetectRenderer();
- * let renderTexture = PIXI.RenderTexture.create(800, 600);
+ * let renderTexture = PIXI.RenderTexture.create({ width: 800, height: 600 });
  * let sprite = PIXI.Sprite.from("spinObj_01.png");
  *
  * sprite.position.x = 800/2;
@@ -18393,8 +18472,20 @@ var FilterSystem = /*@__PURE__*/function (System) {
       filterArea: new Float32Array(4),
       filterClamp: new Float32Array(4)
     }, true);
-    this._pixelsWidth = renderer.view.width;
-    this._pixelsHeight = renderer.view.height;
+    /**
+     * Whether to clear output renderTexture in AUTO/BLIT mode. See {@link PIXI.CLEAR_MODES}
+     * @member {boolean}
+     */
+
+    this.forceClear = false;
+    /**
+     * Old padding behavior is to use the max amount instead of sum padding.
+     * Use this flag if you need the old behavior.
+     * @member {boolean}
+     * @default false
+     */
+
+    this.useMaxPadding = false;
   }
 
   if (System) FilterSystem.__proto__ = System;
@@ -18419,9 +18510,11 @@ var FilterSystem = /*@__PURE__*/function (System) {
     for (var i = 1; i < filters.length; i++) {
       var filter = filters[i]; // lets use the lowest resolution..
 
-      resolution = Math.min(resolution, filter.resolution); // and the largest amount of padding!
+      resolution = Math.min(resolution, filter.resolution); // figure out the padding required for filters
 
-      padding = Math.max(padding, filter.padding); // only auto fit if all filters are autofit
+      padding = this.useMaxPadding // old behavior: use largest amount of padding!
+      ? Math.max(padding, filter.padding) // new behavior: sum the padding
+      : padding + filter.padding; // only auto fit if all filters are autofit
 
       autoFit = autoFit || filter.autoFit;
       legacy = legacy || filter.legacy;
@@ -19036,7 +19129,7 @@ var ContextSystem = /*@__PURE__*/function (System) {
     if (this.webGLVersion === 1) {
       Object.assign(this.extensions, {
         drawBuffers: gl.getExtension('WEBGL_draw_buffers'),
-        depthTexture: gl.getExtension('WEBKIT_WEBGL_depth_texture'),
+        depthTexture: gl.getExtension('WEBGL_depth_texture'),
         loseContext: gl.getExtension('WEBGL_lose_context'),
         vertexArrayObject: gl.getExtension('OES_vertex_array_object') || gl.getExtension('MOZ_OES_vertex_array_object') || gl.getExtension('WEBKIT_OES_vertex_array_object'),
         anisotropicFiltering: gl.getExtension('EXT_texture_filter_anisotropic'),
@@ -23626,7 +23719,7 @@ var TextureSystem = /*@__PURE__*/function (System) {
 
     if (glTexture.mipmap) {
       /* eslint-disable max-len */
-      gl.texParameteri(texture.target, gl.TEXTURE_MIN_FILTER, texture.scaleMode ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST);
+      gl.texParameteri(texture.target, gl.TEXTURE_MIN_FILTER, texture.scaleMode === _constants.SCALE_MODES.LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST);
       /* eslint-disable max-len */
 
       var anisotropicExt = this.renderer.context.extensions.anisotropicFiltering;
@@ -23636,10 +23729,10 @@ var TextureSystem = /*@__PURE__*/function (System) {
         gl.texParameterf(texture.target, anisotropicExt.TEXTURE_MAX_ANISOTROPY_EXT, level);
       }
     } else {
-      gl.texParameteri(texture.target, gl.TEXTURE_MIN_FILTER, texture.scaleMode ? gl.LINEAR : gl.NEAREST);
+      gl.texParameteri(texture.target, gl.TEXTURE_MIN_FILTER, texture.scaleMode === _constants.SCALE_MODES.LINEAR ? gl.LINEAR : gl.NEAREST);
     }
 
-    gl.texParameteri(texture.target, gl.TEXTURE_MAG_FILTER, texture.scaleMode ? gl.LINEAR : gl.NEAREST);
+    gl.texParameteri(texture.target, gl.TEXTURE_MAG_FILTER, texture.scaleMode === _constants.SCALE_MODES.LINEAR ? gl.LINEAR : gl.NEAREST);
   };
 
   return TextureSystem;
@@ -23891,7 +23984,7 @@ var AbstractRenderer = /*@__PURE__*/function (EventEmitter) {
    * This can be quite useful if your displayObject is complicated and needs to be reused multiple times.
    *
    * @param {PIXI.DisplayObject} displayObject - The displayObject the object will be generated from.
-   * @param {number} scaleMode - Should be one of the scaleMode consts.
+   * @param {PIXI.SCALE_MODES} scaleMode - The scale mode of the texture.
    * @param {number} resolution - The resolution / device pixel ratio of the texture being generated.
    * @param {PIXI.Rectangle} [region] - The region of the displayObject, that shall be rendered,
    *        if no region is specified, defaults to the local bounds of the displayObject.
@@ -23910,7 +24003,12 @@ var AbstractRenderer = /*@__PURE__*/function (EventEmitter) {
       region.height = 1;
     }
 
-    var renderTexture = RenderTexture.create(region.width | 0, region.height | 0, scaleMode, resolution);
+    var renderTexture = RenderTexture.create({
+      width: region.width | 0,
+      height: region.height | 0,
+      scaleMode: scaleMode,
+      resolution: resolution
+    });
     tempMatrix.tx = -region.x;
     tempMatrix.ty = -region.y;
     this.render(displayObject, renderTexture, false, tempMatrix, !!displayObject.parent);
@@ -25565,8 +25663,8 @@ var _display = require("@pixi/display");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/app - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/app - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/app is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -25789,8 +25887,8 @@ var _utils = require("@pixi/utils");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/extract - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/extract - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/extract is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -25917,8 +26015,12 @@ Extract.prototype.canvas = function canvas(target) {
   canvasBuffer.context.putImageData(canvasData, 0, 0); // pulling pixels
 
   if (flipY) {
-    canvasBuffer.context.scale(1, -1);
-    canvasBuffer.context.drawImage(canvasBuffer.canvas, 0, -height);
+    var target$1 = new _utils.CanvasRenderTarget(canvasBuffer.width, canvasBuffer.height, 1);
+    target$1.context.scale(1, -1); // we can't render to itself because we should be empty before render.
+
+    target$1.context.drawImage(canvasBuffer.canvas, 0, -height);
+    canvasBuffer.destroy();
+    canvasBuffer = target$1;
   }
 
   if (generated) {
@@ -28575,8 +28677,8 @@ var _utils = require("@pixi/utils");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/loaders - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/loaders - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/loaders is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -28899,8 +29001,8 @@ var _core = require("@pixi/core");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/particles - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/particles - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/particles is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -29763,8 +29865,8 @@ var _constants = require("@pixi/constants");
 var _display = require("@pixi/display");
 
 /*!
- * @pixi/graphics - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/graphics - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/graphics is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -29793,7 +29895,7 @@ var GRAPHICS_CURVES = {
   _segmentsCount: function _segmentsCount(length, defaultSegments) {
     if (defaultSegments === void 0) defaultSegments = 20;
 
-    if (!this.adaptive || !length || Number.isNaN(length)) {
+    if (!this.adaptive || !length || isNaN(length)) {
       return defaultSegments;
     }
 
@@ -29997,7 +30099,12 @@ var buildCircle = {
     var indices = graphicsGeometry.indices;
     var vertPos = verts.length / 2;
     var center = vertPos;
-    verts.push(graphicsData.shape.x, graphicsData.shape.y);
+    var circle = graphicsData.shape;
+    var matrix = graphicsData.matrix;
+    var x = circle.x;
+    var y = circle.y; // Push center (special point)
+
+    verts.push(graphicsData.matrix ? matrix.a * x + matrix.c * y + matrix.tx : x, graphicsData.matrix ? matrix.b * x + matrix.d * y + matrix.ty : y);
 
     for (var i = 0; i < points.length; i += 2) {
       verts.push(points[i], points[i + 1]); // add some uvs
@@ -30059,14 +30166,21 @@ var buildRoundedRectangle = {
     var x = rrectData.x;
     var y = rrectData.y;
     var width = rrectData.width;
-    var height = rrectData.height;
-    var radius = rrectData.radius;
-    points.length = 0;
-    quadraticBezierCurve(x, y + radius, x, y, x + radius, y, points);
-    quadraticBezierCurve(x + width - radius, y, x + width, y, x + width, y + radius, points);
-    quadraticBezierCurve(x + width, y + height - radius, x + width, y + height, x + width - radius, y + height, points);
-    quadraticBezierCurve(x + radius, y + height, x, y + height, x, y + height - radius, points); // this tiny number deals with the issue that occurs when points overlap and earcut fails to triangulate the item.
+    var height = rrectData.height; // Don't allow negative radius or greater than half the smallest width
+
+    var radius = Math.max(0, Math.min(rrectData.radius, Math.min(width, height) / 2));
+    points.length = 0; // No radius, do a simple rectangle
+
+    if (!radius) {
+      points.push(x, y, x + width, y, x + width, y + height, x, y + height);
+    } else {
+      quadraticBezierCurve(x, y + radius, x, y, x + radius, y, points);
+      quadraticBezierCurve(x + width - radius, y, x + width, y, x + width, y + radius, points);
+      quadraticBezierCurve(x + width, y + height - radius, x + width, y + height, x + width - radius, y + height, points);
+      quadraticBezierCurve(x + radius, y + height, x, y + height, x, y + height - radius, points);
+    } // this tiny number deals with the issue that occurs when points overlap and earcut fails to triangulate the item.
     // TODO - fix this properly, this is not very elegant.. but it works for now.
+
   },
   triangulate: function triangulate(graphicsData, graphicsGeometry) {
     var points = graphicsData.points;
@@ -31901,10 +32015,10 @@ var LineStyle = /*@__PURE__*/function (FillStyle) {
 
     this.width = 0;
     /**
-     * The alignment of any lines drawn (0.5 = middle, 1 = outter, 0 = inner).
+     * The alignment of any lines drawn (0.5 = middle, 1 = outer, 0 = inner).
      *
      * @member {number}
-     * @default 0
+     * @default 0.5
      */
 
     this.alignment = 0.5;
@@ -33146,8 +33260,8 @@ var _display = require("@pixi/display");
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/sprite - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/sprite - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/sprite is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -33299,8 +33413,6 @@ var Sprite = /*@__PURE__*/function (Container) {
     // TODO could make this a mixin?
 
     this.indices = indices;
-    this.size = 4;
-    this.start = 0;
     /**
      * Plugin that is responsible for rendering this element.
      * Allows to customize the rendering process without overriding '_render' & '_renderCanvas' methods.
@@ -33793,8 +33905,8 @@ var _math = require("@pixi/math");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/text - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/text - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/text is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -35407,7 +35519,13 @@ var defaultDestroyOptions = {
 
 var Text = /*@__PURE__*/function (Sprite) {
   function Text(text, style, canvas) {
-    canvas = canvas || document.createElement('canvas');
+    var ownCanvas = false;
+
+    if (!canvas) {
+      canvas = document.createElement('canvas');
+      ownCanvas = true;
+    }
+
     canvas.width = 3;
     canvas.height = 3;
 
@@ -35416,6 +35534,17 @@ var Text = /*@__PURE__*/function (Sprite) {
     texture.orig = new _math.Rectangle();
     texture.trim = new _math.Rectangle();
     Sprite.call(this, texture);
+    /**
+     * Keep track if this Text object created it's own canvas
+     * element (`true`) or uses the constructor argument (`false`).
+     * Used to workaround a GC issues with Safari < 13 when
+     * destroying Text. See `destroy` for more info.
+     *
+     * @member {boolean}
+     * @private
+     */
+
+    this._ownCanvas = ownCanvas;
     /**
      * The canvas element that everything is drawn to
      *
@@ -35568,7 +35697,10 @@ var Text = /*@__PURE__*/function (Sprite) {
         context.shadowOffsetY = Math.sin(style.dropShadowAngle) * style.dropShadowDistance + dsOffsetShadow;
       } else {
         // set canvas text styles
-        context.fillStyle = this._generateFillStyle(style, lines);
+        context.fillStyle = this._generateFillStyle(style, lines, measured); // TODO: Can't have different types for getter and setter. The getter shouldn't have the number type as
+        //       the setter converts to string. See this thread for more details:
+        //       https://github.com/microsoft/TypeScript/issues/2521
+
         context.strokeStyle = style.stroke;
         context.shadowColor = 0;
         context.shadowBlur = 0;
@@ -35748,7 +35880,7 @@ var Text = /*@__PURE__*/function (Sprite) {
    */
 
 
-  Text.prototype._generateFillStyle = function _generateFillStyle(style, lines) {
+  Text.prototype._generateFillStyle = function _generateFillStyle(style, lines, metrics) {
     if (!Array.isArray(style.fill)) {
       return style.fill;
     } else if (style.fill.length === 1) {
@@ -35757,15 +35889,14 @@ var Text = /*@__PURE__*/function (Sprite) {
     // ['#FF0000', '#00FF00', '#0000FF'] would created stops at 0.25, 0.5 and 0.75
 
 
-    var gradient;
-    var totalIterations;
-    var currentIteration;
-    var stop; // a dropshadow will enlarge the canvas and result in the gradient being
+    var gradient; // a dropshadow will enlarge the canvas and result in the gradient being
     // generated with the incorrect dimensions
 
-    var dropShadowCorrection = style.dropShadow ? style.dropShadowDistance : 0;
-    var width = Math.ceil(this.canvas.width / this._resolution) - dropShadowCorrection;
-    var height = Math.ceil(this.canvas.height / this._resolution) - dropShadowCorrection; // make a copy of the style settings, so we can manipulate them later
+    var dropShadowCorrection = style.dropShadow ? style.dropShadowDistance : 0; // should also take padding into account, padding can offset the gradient
+
+    var padding = style.padding || 0;
+    var width = Math.ceil(this.canvas.width / this._resolution) - dropShadowCorrection - padding * 2;
+    var height = Math.ceil(this.canvas.height / this._resolution) - dropShadowCorrection - padding * 2; // make a copy of the style settings, so we can manipulate them later
 
     var fill = style.fill.slice();
     var fillGradientStops = style.fillGradientStops.slice(); // wanting to evenly distribute the fills. So an array of 4 colours should give fills of 0.25, 0.5 and 0.75
@@ -35787,35 +35918,52 @@ var Text = /*@__PURE__*/function (Sprite) {
 
     if (style.fillGradientType === TEXT_GRADIENT.LINEAR_VERTICAL) {
       // start the gradient at the top center of the canvas, and end at the bottom middle of the canvas
-      gradient = this.context.createLinearGradient(width / 2, 0, width / 2, height); // we need to repeat the gradient so that each individual line of text has the same vertical gradient effect
+      gradient = this.context.createLinearGradient(width / 2, padding, width / 2, height + padding); // we need to repeat the gradient so that each individual line of text has the same vertical gradient effect
       // ['#FF0000', '#00FF00', '#0000FF'] over 2 lines would create stops at 0.125, 0.25, 0.375, 0.625, 0.75, 0.875
+      // There's potential for floating point precision issues at the seams between gradient repeats.
+      // The loop below generates the stops in order, so track the last generated one to prevent
+      // floating point precision from making us go the teeniest bit backwards, resulting in
+      // the first and last colors getting swapped.
 
-      totalIterations = (fill.length + 1) * lines.length;
-      currentIteration = 0;
+      var lastIterationStop = 0; // Actual height of the text itself, not counting spacing for lineHeight/leading/dropShadow etc
+
+      var textHeight = metrics.fontProperties.fontSize + style.strokeThickness; // textHeight, but as a 0-1 size in global gradient stop space
+
+      var gradStopLineHeight = textHeight / height;
 
       for (var i$1 = 0; i$1 < lines.length; i$1++) {
-        currentIteration += 1;
+        var thisLineTop = metrics.lineHeight * i$1;
 
         for (var j = 0; j < fill.length; j++) {
+          // 0-1 stop point for the current line, multiplied to global space afterwards
+          var lineStop = 0;
+
           if (typeof fillGradientStops[j] === 'number') {
-            stop = fillGradientStops[j] / lines.length + i$1 / lines.length;
+            lineStop = fillGradientStops[j];
           } else {
-            stop = currentIteration / totalIterations;
+            lineStop = j / fill.length;
           }
 
-          gradient.addColorStop(stop, fill[j]);
-          currentIteration++;
+          var globalStop = thisLineTop / height + lineStop * gradStopLineHeight; // Prevent color stop generation going backwards from floating point imprecision
+
+          var clampedStop = Math.max(lastIterationStop, globalStop);
+          clampedStop = Math.min(clampedStop, 1); // Cap at 1 as well for safety's sake to avoid a possible throw.
+
+          gradient.addColorStop(clampedStop, fill[j]);
+          lastIterationStop = clampedStop;
         }
       }
     } else {
       // start the gradient at the center left of the canvas, and end at the center right of the canvas
-      gradient = this.context.createLinearGradient(0, height / 2, width, height / 2); // can just evenly space out the gradients in this case, as multiple lines makes no difference
+      gradient = this.context.createLinearGradient(padding, height / 2, width + padding, height / 2); // can just evenly space out the gradients in this case, as multiple lines makes no difference
       // to an even left to right gradient
 
-      totalIterations = fill.length + 1;
-      currentIteration = 1;
+      var totalIterations = fill.length + 1;
+      var currentIteration = 1;
 
       for (var i$2 = 0; i$2 < fill.length; i$2++) {
+        var stop = void 0;
+
         if (typeof fillGradientStops[i$2] === 'number') {
           stop = fillGradientStops[i$2];
         } else {
@@ -35851,7 +35999,13 @@ var Text = /*@__PURE__*/function (Sprite) {
     }
 
     options = Object.assign({}, defaultDestroyOptions, options);
-    Sprite.prototype.destroy.call(this, options); // make sure to reset the the context and canvas.. dont want this hanging around in memory!
+    Sprite.prototype.destroy.call(this, options); // set canvas width and height to 0 to workaround memory leak in Safari < 13
+    // https://stackoverflow.com/questions/52532614/total-canvas-memory-use-exceeds-the-maximum-limit-safari-12
+
+    if (this._ownCanvas) {
+      this.canvas.height = this.canvas.width = 0;
+    } // make sure to reset the the context and canvas.. dont want this hanging around in memory!
+
 
     this.context = null;
     this.canvas = null;
@@ -35992,8 +36146,8 @@ var _display = require("@pixi/display");
 var _text = require("@pixi/text");
 
 /*!
- * @pixi/prepare - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/prepare - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/prepare is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -36606,7 +36760,7 @@ function uploadGraphics(renderer, item) {
 
 
   if (!geometry.batchable) {
-    renderer.geometry.bind(geometry, item._resolveDirectShader());
+    renderer.geometry.bind(geometry, item._resolveDirectShader(renderer));
   }
 
   return true;
@@ -36689,8 +36843,8 @@ var _utils = require("@pixi/utils");
 var _loaders = require("@pixi/loaders");
 
 /*!
- * @pixi/spritesheet - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/spritesheet - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/spritesheet is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -36720,14 +36874,22 @@ var _loaders = require("@pixi/loaders");
  * @class
  * @memberof PIXI
  */
-var Spritesheet = function Spritesheet(baseTexture, data, resolutionFilename) {
+var Spritesheet = function Spritesheet(texture, data, resolutionFilename) {
   if (resolutionFilename === void 0) resolutionFilename = null;
   /**
-   * Reference to ths source texture
+   * Reference to original source image from the Loader. This reference is retained so we
+   * can destroy the Texture later on. It is never used internally.
+   * @type {PIXI.Texture}
+   * @private
+   */
+
+  this._texture = texture instanceof _core.Texture ? texture : null;
+  /**
+   * Reference to ths source texture.
    * @type {PIXI.BaseTexture}
    */
 
-  this.baseTexture = baseTexture;
+  this.baseTexture = texture instanceof _core.BaseTexture ? texture : this._texture.baseTexture;
   /**
    * A map containing all textures of the sprite sheet.
    * Can be used to create a {@link PIXI.Sprite|Sprite}:
@@ -36967,9 +37129,14 @@ Spritesheet.prototype.destroy = function destroy(destroyBase) {
   this.textures = null;
 
   if (destroyBase) {
+    if (this._texture) {
+      this._texture.destroy();
+    }
+
     this.baseTexture.destroy();
   }
 
+  this._texture = null;
   this.baseTexture = null;
 };
 
@@ -37010,7 +37177,7 @@ SpritesheetLoader.use = function use(resource, next) {
       return;
     }
 
-    var spritesheet = new Spritesheet(res.texture.baseTexture, resource.data, resource.url);
+    var spritesheet = new Spritesheet(res.texture, resource.data, resource.url);
     spritesheet.parse(function () {
       resource.spritesheet = spritesheet;
       resource.textures = spritesheet.textures;
@@ -37052,8 +37219,8 @@ var _sprite = require("@pixi/sprite");
 var _constants = require("@pixi/constants");
 
 /*!
- * @pixi/sprite-tiling - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/sprite-tiling - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/sprite-tiling is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -37546,8 +37713,8 @@ var _utils = require("@pixi/utils");
 var _loaders = require("@pixi/loaders");
 
 /*!
- * @pixi/text-bitmap - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/text-bitmap - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/text-bitmap is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -38114,7 +38281,7 @@ var BitmapText = /*@__PURE__*/function (Container) {
     var info = xml.getElementsByTagName('info')[0];
     var common = xml.getElementsByTagName('common')[0];
     var pages = xml.getElementsByTagName('page');
-    var res = (0, _utils.getResolutionOfUrl)(pages[0].getAttribute('file'), _settings.settings.RESOLUTION);
+    var res = (0, _utils.getResolutionOfUrl)(pages[0].getAttribute('file'));
     var pagesTextures = {};
     data.font = info.getAttribute('face');
     data.size = parseInt(info.getAttribute('size'), 10);
@@ -38330,8 +38497,8 @@ exports.AlphaFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-alpha - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/filter-alpha - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/filter-alpha is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -38406,8 +38573,8 @@ var _core = require("@pixi/core");
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/filter-blur - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/filter-blur - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/filter-blur is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -38792,8 +38959,8 @@ exports.ColorMatrixFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-color-matrix - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/filter-color-matrix - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/filter-color-matrix is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39292,8 +39459,8 @@ var _core = require("@pixi/core");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/filter-displacement - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/filter-displacement - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/filter-displacement is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39416,8 +39583,8 @@ exports.FXAAFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-fxaa - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/filter-fxaa - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/filter-fxaa is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39460,8 +39627,8 @@ exports.NoiseFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-noise - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/filter-noise - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/filter-noise is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39555,8 +39722,8 @@ var _utils = require("@pixi/utils");
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/mixin-cache-as-bitmap - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/mixin-cache-as-bitmap - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/mixin-cache-as-bitmap is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39707,7 +39874,7 @@ _display.DisplayObject.prototype._initCachedDisplayObject = function _initCached
   // this could be more elegant..
 
   var cachedRenderTexture = renderer.renderTexture.current;
-  var cachedSourceFrame = renderer.renderTexture.sourceFrame;
+  var cachedSourceFrame = renderer.renderTexture.sourceFrame.clone();
   var cachedProjectionTransform = renderer.projection.transform; // We also store the filter stack - I will definitely look to change how this works a little later down the line.
   // const stack = renderer.filterManager.filterStack;
   // this renderTexture will be used to store the cached DisplayObject
@@ -39804,6 +39971,7 @@ _display.DisplayObject.prototype._initCachedDisplayObjectCanvas = function _init
   var cacheAlpha = this.alpha;
   this.alpha = 1;
   var cachedRenderTarget = renderer.context;
+  var cachedProjectionTransform = renderer._projTransform;
   bounds.ceil(_settings.settings.RESOLUTION);
 
   var renderTexture = _core.RenderTexture.create(bounds.width, bounds.height);
@@ -39823,11 +39991,11 @@ _display.DisplayObject.prototype._initCachedDisplayObjectCanvas = function _init
   m.ty -= bounds.y; // m.append(this.transform.worldTransform.)
   // set all properties to there original so we can render to a texture
 
-  this.renderCanvas = this._cacheData.originalRenderCanvas; // renderTexture.render(this, m, true);
-
+  this.renderCanvas = this._cacheData.originalRenderCanvas;
   renderer.render(this, renderTexture, true, m, false); // now restore the state be setting the new properties
 
   renderer.context = cachedRenderTarget;
+  renderer._projTransform = cachedProjectionTransform;
   this.renderCanvas = this._renderCachedCanvas; // the rest is the same as for WebGL
 
   this.updateTransform = this.displayObjectUpdateTransform;
@@ -39921,8 +40089,8 @@ _display.DisplayObject.prototype._cacheAsBitmapDestroy = function _cacheAsBitmap
 var _display = require("@pixi/display");
 
 /*!
- * @pixi/mixin-get-child-by-name - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/mixin-get-child-by-name - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/mixin-get-child-by-name is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39961,8 +40129,8 @@ var _display = require("@pixi/display");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/mixin-get-global-position - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/mixin-get-global-position - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/mixin-get-global-position is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -40014,8 +40182,8 @@ var _settings = require("@pixi/settings");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/mesh - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/mesh - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/mesh is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -40786,8 +40954,8 @@ var _constants = require("@pixi/constants");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/mesh-extras - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/mesh-extras - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/mesh-extras is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -41562,8 +41730,8 @@ var _sprite = require("@pixi/sprite");
 var _ticker = require("@pixi/ticker");
 
 /*!
- * @pixi/sprite-animated - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * @pixi/sprite-animated - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * @pixi/sprite-animated is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -41617,15 +41785,24 @@ var AnimatedSprite = /*@__PURE__*/function (Sprite) {
      */
 
     this._durations = null;
-    this.textures = textures;
     /**
      * `true` uses PIXI.Ticker.shared to auto update animation time.
+     *
      * @type {boolean}
      * @default true
      * @private
      */
 
     this._autoUpdate = autoUpdate !== false;
+    /**
+     * `true` if the instance is currently connected to PIXI.Ticker.shared to auto update animation time.
+     *
+     * @type {boolean}
+     * @default false
+     * @private
+     */
+
+    this._isConnectedToTicker = false;
     /**
      * The speed that the AnimatedSprite will play at. Higher is faster, lower is slower.
      *
@@ -41685,14 +41862,16 @@ var AnimatedSprite = /*@__PURE__*/function (Sprite) {
      */
 
     this._currentTime = 0;
+    this._playing = false;
     /**
-     * Indicates if the AnimatedSprite is currently playing.
+     * The texture index that was displayed last time
      *
-     * @member {boolean}
-     * @readonly
+     * @member {number}
+     * @private
      */
 
-    this.playing = false;
+    this._previousFrame = null;
+    this.textures = textures;
   }
 
   if (Sprite) AnimatedSprite.__proto__ = Sprite;
@@ -41707,6 +41886,12 @@ var AnimatedSprite = /*@__PURE__*/function (Sprite) {
     },
     currentFrame: {
       configurable: true
+    },
+    playing: {
+      configurable: true
+    },
+    autoUpdate: {
+      configurable: true
     }
   };
   /**
@@ -41719,10 +41904,12 @@ var AnimatedSprite = /*@__PURE__*/function (Sprite) {
       return;
     }
 
-    this.playing = false;
+    this._playing = false;
 
-    if (this._autoUpdate) {
+    if (this._autoUpdate && this._isConnectedToTicker) {
       _ticker.Ticker.shared.remove(this.update, this);
+
+      this._isConnectedToTicker = false;
     }
   };
   /**
@@ -41736,10 +41923,12 @@ var AnimatedSprite = /*@__PURE__*/function (Sprite) {
       return;
     }
 
-    this.playing = true;
+    this._playing = true;
 
-    if (this._autoUpdate) {
+    if (this._autoUpdate && !this._isConnectedToTicker) {
       _ticker.Ticker.shared.add(this.update, this, _ticker.UPDATE_PRIORITY.HIGH);
+
+      this._isConnectedToTicker = true;
     }
   };
   /**
@@ -41778,7 +41967,6 @@ var AnimatedSprite = /*@__PURE__*/function (Sprite) {
   /**
    * Updates the object transform for rendering.
    *
-   * @private
    * @param {number} deltaTime - Time since last tick.
    */
 
@@ -41810,15 +41998,13 @@ var AnimatedSprite = /*@__PURE__*/function (Sprite) {
     }
 
     if (this._currentTime < 0 && !this.loop) {
-      this._currentTime = 0;
-      this.stop();
+      this.gotoAndStop(0);
 
       if (this.onComplete) {
         this.onComplete();
       }
     } else if (this._currentTime >= this._textures.length && !this.loop) {
-      this._currentTime = this._textures.length - 1;
-      this.stop();
+      this.gotoAndStop(this._textures.length - 1);
 
       if (this.onComplete) {
         this.onComplete();
@@ -41843,7 +42029,14 @@ var AnimatedSprite = /*@__PURE__*/function (Sprite) {
 
 
   AnimatedSprite.prototype.updateTexture = function updateTexture() {
-    this._texture = this._textures[this.currentFrame];
+    var currentFrame = this.currentFrame;
+
+    if (this._previousFrame === currentFrame) {
+      return;
+    }
+
+    this._previousFrame = currentFrame;
+    this._texture = this._textures[currentFrame];
     this._textureID = -1;
     this._textureTrimmedID = -1;
     this._cachedTint = 0xFFFFFF;
@@ -41952,6 +42145,7 @@ var AnimatedSprite = /*@__PURE__*/function (Sprite) {
       }
     }
 
+    this._previousFrame = null;
     this.gotoAndStop(0);
     this.updateTexture();
   };
@@ -41971,6 +42165,44 @@ var AnimatedSprite = /*@__PURE__*/function (Sprite) {
     }
 
     return currentFrame;
+  };
+  /**
+   * Indicates if the AnimatedSprite is currently playing.
+   *
+   * @member {boolean}
+   * @readonly
+   */
+
+
+  prototypeAccessors.playing.get = function () {
+    return this._playing;
+  };
+  /**
+   * Whether to use PIXI.Ticker.shared to auto update animation time
+   *
+   * @member {boolean}
+   */
+
+
+  prototypeAccessors.autoUpdate.get = function () {
+    return this._autoUpdate;
+  };
+
+  prototypeAccessors.autoUpdate.set = function (value) // eslint-disable-line require-jsdoc
+  {
+    if (value !== this._autoUpdate) {
+      this._autoUpdate = value;
+
+      if (!this._autoUpdate && this._isConnectedToTicker) {
+        _ticker.Ticker.shared.remove(this.update, this);
+
+        this._isConnectedToTicker = false;
+      } else if (this._autoUpdate && !this._isConnectedToTicker && this._playing) {
+        _ticker.Ticker.shared.add(this.update, this);
+
+        this._isConnectedToTicker = true;
+      }
+    }
   };
 
   Object.defineProperties(AnimatedSprite.prototype, prototypeAccessors);
@@ -42313,8 +42545,8 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 /*!
- * pixi.js - v5.2.1
- * Compiled Tue, 28 Jan 2020 23:33:11 UTC
+ * pixi.js - v5.2.3
+ * Compiled Fri, 24 Apr 2020 00:55:22 UTC
  *
  * pixi.js is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -43566,7 +43798,7 @@ _app.Application.registerPlugin(_loaders.AppLoaderPlugin);
  */
 
 
-var VERSION = '5.2.1';
+var VERSION = '5.2.3';
 /**
  * @namespace PIXI
  */
@@ -59113,7 +59345,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -59122,10 +59358,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var GameLoader = /*#__PURE__*/function (_Loader) {
   _inherits(GameLoader, _Loader);
@@ -62375,7 +62607,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -62384,10 +62620,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var Button = /*#__PURE__*/function (_BitmapText) {
   _inherits(Button, _BitmapText);
@@ -62442,8 +62674,8 @@ var Phrases = /*#__PURE__*/function () {
       this.option[i].on('pointertap', this.onTap.bind(this.option[i]));
       this.option[i].index = i;
       this.container.addChild(this.option[i]);
-      this.option[i].x = this.container.width / 2;
-      if (i > 0) this.option[i].y = this.option[i - 1].y + this.option[i - 1].height * 1.5;
+      this.option[i].x = this.game.width / 2;
+      if (i > 0) this.option[i].y = this.option[i - 1].y + this.option[i - 1].height * 1.05;
     }
   }
 
@@ -62482,10 +62714,12 @@ var Phrases = /*#__PURE__*/function () {
         } else this.option[i].alpha = 1;
 
         this.option[i].visible = true;
-        this.option[i].text = options[i].Text[this.game.activeLanguage];
+        var text = options[i].Text[this.game.activeLanguage];
+        if (text === undefined) text = options[i].Text[0];
+        this.option[i].text = text;
       }
 
-      this.sort();
+      this.update();
       this.show();
     }
   }, {
@@ -62496,30 +62730,14 @@ var Phrases = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "sort",
-    value: function sort() {
-      for (var i = 0; i < this.option.length; i++) {
-        this.option[i].x = this.container.width / 2;
+    key: "update",
+    value: function update() {
+      var choices = this.game.activeDialogue.currentBranch.Choices;
+
+      for (var i = 0; i < choices.length; i++) {
+        if (choices[i].Size !== undefined) this.option[i].font.size = choices[i].Size;
+        if (i > 0) this.option[i].y = this.option[i - 1].y + this.option[i - 1].height * 1.05;
       }
-
-      if (this.container.width > this.container.parent.width || this.container.height > this.container.parent.height) {
-        this.scale();
-      }
-
-      this.center();
-    }
-  }, {
-    key: "scale",
-    value: function scale() {
-      var ratio = Math.min(this.game.width / this.container.width, this.container.parent.height / this.container.height);
-      this.container.scale.set(ratio * 0.95);
-    }
-  }, {
-    key: "center",
-    value: function center() {
-      this.container.x = this.game.width / 2; //  this.container.y = this.game.height / 2;
-
-      this.container.pivot.x = this.container.width / 2; //  this.container.pivot.y = this.container.height / 2;
     }
   }]);
 
@@ -62557,8 +62775,7 @@ var TextField = /*#__PURE__*/function () {
       this.Avatar.height = this.Background.height;
       this.Avatar.width = this.Avatar.height * ratio * 0.95;
       this.Text = new Button("", this.game.settings.Text.Style);
-      this.Text.x = this.Avatar.width * 1.05; //  this.Text.anchor.set(0.5,0);
-
+      this.Text.x = this.Avatar.width * 1.05;
       this.Text.maxWidth = this.game.width - this.Avatar.width;
       this.Text.y = 0;
       this.Text.on('pointertap', this.skip.bind(this));
@@ -62567,8 +62784,8 @@ var TextField = /*#__PURE__*/function () {
       this.container.addChild(this.Avatar);
       this.container.addChild(this.Text);
       this.container.addChild(this.Choices.container); //this.Text.x=this.container.width/2;
+      //this.Choices.update();
 
-      this.Choices.sort();
       if (this.game.settings.Text.Position !== undefined) this.setPosition(this.game.settings.Text.Position);
     }
   }, {
@@ -62614,23 +62831,28 @@ var TextField = /*#__PURE__*/function () {
         this.container.y = 0;
       } else if (position === "bottom") {
         this.container.x = 0;
-        this.container.y = this.game.height - this.container.height;
+        this.container.y = this.game.height - this.Background.height;
       }
     }
   }, {
     key: "setText",
     value: function setText(newText) {
       this.Text.text = newText;
+      var extraWidth = 0;
+      if (this.Avatar.visible) extraWidth = this.Avatar.width;
 
-      if (this.Text.width > this.container.width || this.Text.height > this.container.height) {
+      if (this.Text.width + extraWidth >= this.Background.width || this.Text.height >= this.Background.height) {
         this.adjustText();
+      } else {
+        this.Text.scale.set(.95);
       }
     }
   }, {
     key: "adjustText",
     value: function adjustText() {
-      var ratio = Math.min(this.container.width / this.Text.width, this.container.height / this.Text.height);
-      this.container.scale.set(ratio * 0.95);
+      var ratio = Math.min(this.Background.width / this.Text.width, this.Background.height / this.Text.height);
+      this.Text.width = this.Text.width * ratio * 0.95;
+      this.Text.height = this.Background.height;
     } //Get words number of the text
 
   }, {
@@ -62719,7 +62941,7 @@ var Menu = /*#__PURE__*/function () {
   }, {
     key: "modify",
     value: function modify(name, text) {
-      this.buttons[name].text = text[this.game.activeLanguage];
+      if (text[this.game.activeLanguage]) this.buttons[name].text = text[this.game.activeLanguage];
     }
   }, {
     key: "disable",
@@ -62732,24 +62954,6 @@ var Menu = /*#__PURE__*/function () {
     value: function enable(name) {
       this.buttons[name].alpha = 1.0;
       this.buttons[name].interactive = true;
-    }
-  }, {
-    key: "sort",
-    value: function sort() {
-      var i;
-      var arrayButtons = Object.values(this.buttons);
-      var length = arrayButtons.length;
-      arrayButtons[0].x = this.game.width / 2;
-      arrayButtons[0].y = 0;
-
-      for (i = 1; i < length; i++) {
-        arrayButtons[i].x = this.game.width / 2;
-        arrayButtons[i].y = arrayButtons[i - 1].y + arrayButtons[i - 1].height * 1.5;
-      } //Center Vertically
-
-
-      this.container.y = this.game.height / 2;
-      this.container.pivot.y = this.container.height / 2;
     }
   }, {
     key: "hide",
@@ -62788,7 +62992,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -62797,10 +63005,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var MainMenu = /*#__PURE__*/function (_Menu) {
   _inherits(MainMenu, _Menu);
@@ -62821,11 +63025,11 @@ var MainMenu = /*#__PURE__*/function (_Menu) {
       if (gameTexts.Title !== undefined) this.addText("Title", gameTexts.Title, this.game.settings.Text.Title);
       this.addButton("New", gameTexts.NewGame);
       this.addButton("Continue", gameTexts.Continue);
-      if (languages > 1) this.addButton("Options", gameTexts.Options);
+      if (languages > 1) this.addButton("Language", gameTexts.Language);
       if (this.game.data.help !== undefined) this.addButton("Help", gameTexts.Help);
       if (this.game.data.credits !== undefined) this.addButton("Credits", gameTexts.Credits);
-      this.disable("Continue");
       this.sort();
+      this.disable("Continue");
     }
   }, {
     key: "changeLanguage",
@@ -62835,10 +63039,44 @@ var MainMenu = /*#__PURE__*/function (_Menu) {
       this.modify("New", this.game.data.texts.NewGame);
       this.modify("Continue", this.game.data.texts.Continue);
       if (gameTexts.Title !== undefined) this.modify("Title", gameTexts.Title);
-      if (languages > 1) this.modify("Options", gameTexts.Options);
+      if (languages > 1) this.modify("Language", gameTexts.Language);
       if (this.game.data.help !== undefined) this.modify("Help", gameTexts.Help);
       if (this.game.data.credits !== undefined) this.modify("Credits", gameTexts.Credits);
       this.sort();
+    }
+  }, {
+    key: "sort",
+    value: function sort() {
+      this.buttons["Title"].x = this.game.width / 2;
+      this.buttons["Title"].y = this.game.height * 0.05;
+      var moveHeight = 0;
+      if (this.buttons["Help"] || this.buttons["Language"]) moveHeight = this.buttons["New"].height;
+      ;
+      this.buttons["New"].x = this.game.width / 4;
+      this.buttons["New"].y = this.game.height / 2 - moveHeight;
+      this.buttons["Continue"].x = this.game.width - this.game.width / 4;
+      this.buttons["Continue"].y = this.buttons["New"].y;
+
+      if (this.buttons["Language"]) {
+        var moveWidth = 2;
+        if (this.buttons["Help"]) moveWidth = 4;
+        this.buttons["Language"].x = this.game.width / moveWidth;
+        this.buttons["Language"].y = this.game.height - this.game.height / 4 * 1.5;
+      }
+
+      if (this.buttons["Help"]) {
+        var _moveWidth = this.game.width / 2;
+
+        if (this.buttons["Language"]) _moveWidth = this.game.width - this.game.width / 4;
+        this.buttons["Help"].x = _moveWidth;
+        this.buttons["Help"].y = this.game.height - this.game.height / 4 * 1.5;
+      }
+
+      if (this.buttons["Credits"]) {
+        this.buttons["Credits"].x = this.game.width / 2;
+        this.buttons["Credits"].anchor.set(0.5, 1);
+        this.buttons["Credits"].y = this.game.height * 0.95; //this.buttons["Credits"].y=this.game.height-(this.buttons["Credits"].height*1.5);
+      }
     }
   }]);
 
@@ -62847,7 +63085,7 @@ var MainMenu = /*#__PURE__*/function (_Menu) {
 
 var _default = MainMenu;
 exports.default = _default;
-},{"./menu.js":"PMik"}],"DwQs":[function(require,module,exports) {
+},{"./menu.js":"PMik"}],"pIlA":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -62869,7 +63107,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -62879,22 +63121,18 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+var Language = /*#__PURE__*/function (_Menu) {
+  _inherits(Language, _Menu);
 
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+  var _super = _createSuper(Language);
 
-var Options = /*#__PURE__*/function (_Menu) {
-  _inherits(Options, _Menu);
-
-  var _super = _createSuper(Options);
-
-  function Options() {
-    _classCallCheck(this, Options);
+  function Language() {
+    _classCallCheck(this, Language);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(Options, [{
+  _createClass(Language, [{
     key: "create",
     value: function create() {
       this.container.visible = false;
@@ -62933,12 +63171,30 @@ var Options = /*#__PURE__*/function (_Menu) {
       this.modify("Back", this.game.data.texts.Back);
       this.sort();
     }
+  }, {
+    key: "sort",
+    value: function sort() {
+      var i;
+      var arrayButtons = Object.values(this.buttons);
+      var length = arrayButtons.length;
+      arrayButtons[0].x = this.game.width / 2;
+      arrayButtons[0].y = 0;
+
+      for (i = 1; i < length; i++) {
+        arrayButtons[i].x = this.game.width / 2;
+        arrayButtons[i].y = arrayButtons[i - 1].y + arrayButtons[i - 1].height * 1.5;
+      } //Center Vertically
+
+
+      this.container.y = this.game.height / 2;
+      this.container.pivot.y = this.container.height / 2;
+    }
   }]);
 
-  return Options;
+  return Language;
 }(_menu.default);
 
-var _default = Options;
+var _default = Language;
 exports.default = _default;
 },{"./menu.js":"PMik","./text.js":"EwzB"}],"yKjB":[function(require,module,exports) {
 "use strict";
@@ -63147,7 +63403,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -63156,10 +63416,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var Confirmation = /*#__PURE__*/function (_Menu) {
   _inherits(Confirmation, _Menu);
@@ -63224,7 +63480,7 @@ var _scene = _interopRequireDefault(require("./scene.js"));
 
 var _mainmenu = _interopRequireDefault(require("./mainmenu.js"));
 
-var _options = _interopRequireDefault(require("./options.js"));
+var _language = _interopRequireDefault(require("./language.js"));
 
 var _help = _interopRequireDefault(require("./help.js"));
 
@@ -63242,7 +63498,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -63251,10 +63511,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var Title = /*#__PURE__*/function (_Scene) {
   _inherits(Title, _Scene);
@@ -63282,9 +63538,9 @@ var Title = /*#__PURE__*/function (_Scene) {
       this.addAction("Warning", "No", this.mainMenu.bind(this));
 
       if (languages > 1) {
-        this.addState("Options", new _options.default());
-        this.addAction("MainMenu", "Options", this.showOptions.bind(this));
-        this.addAction("Options", "Back", this.mainMenu.bind(this));
+        this.addState("Language", new _language.default());
+        this.addAction("MainMenu", "Language", this.showLanguage.bind(this));
+        this.addAction("Language", "Back", this.mainMenu.bind(this));
       }
 
       if (this.game.data.help !== undefined) {
@@ -63313,10 +63569,10 @@ var Title = /*#__PURE__*/function (_Scene) {
       this.container.addChild(this.states[name].container);
     }
   }, {
-    key: "showOptions",
-    value: function showOptions() {
+    key: "showLanguage",
+    value: function showLanguage() {
       this.states["MainMenu"].hide();
-      this.states["Options"].show();
+      this.states["Language"].show();
     }
   }, {
     key: "showHelp",
@@ -63385,7 +63641,7 @@ var Title = /*#__PURE__*/function (_Scene) {
 
 var _default = Title;
 exports.default = _default;
-},{"./scene.js":"fZQ1","./mainmenu.js":"eUeR","./options.js":"DwQs","./help.js":"yKjB","./credits.js":"ZTS9","./confirmation.js":"khqL"}],"NhMM":[function(require,module,exports) {
+},{"./scene.js":"fZQ1","./mainmenu.js":"eUeR","./language.js":"pIlA","./help.js":"yKjB","./credits.js":"ZTS9","./confirmation.js":"khqL"}],"NhMM":[function(require,module,exports) {
 var global = arguments[3];
 // Generated by Haxe 3.4.0 (git build development @ d3955c6)
 // with "haxe -js bin\hxDaedalus.js --macro include('hxDaedalus') --macro include('hxPixels') --macro include('wings.jsCanvas')"
@@ -69561,7 +69817,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -69570,10 +69830,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var GameScene = /*#__PURE__*/function (_Scene) {
   _inherits(GameScene, _Scene);
@@ -69600,7 +69856,7 @@ var GameScene = /*#__PURE__*/function (_Scene) {
       this.walkable = new _walkable.default(this.game.width, this.game.height);
 
       if (this.config.WalkArea !== undefined) {
-        this.walkable.addPolygon(this.config.WalkArea);
+        this.polyWalk = this.walkable.addPolygon(this.config.WalkArea);
       }
 
       if (this.config.Obstacles !== undefined) {
@@ -69693,15 +69949,15 @@ var CutScene = /*#__PURE__*/function () {
         this.videoData.addEventListener('ended', this.videoEnds);
       } else if (this.config.Sequence) {
         this.tween = null;
-        this.image = new PIXI.Sprite(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image));
-        this.image.anchor.set(0.5, 0);
+        this.image = new PIXI.Sprite(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image)); //this.image.anchor.set(0.5,0);
+
         this.container.interactive = true;
         this.container.buttonMode = true;
         this.container.on('pointertap', this.next.bind(this));
         this.container.addChild(this.image);
         this.field = new PIXI.BitmapText(this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage], this.game.settings.Text.Style);
         this.field.anchor.set(0.5, 1);
-        this.field.maxWidth = this.game.width;
+        this.field.maxWidth = this.game.width * .95;
         this.container.addChild(this.field);
       }
     }
@@ -69805,32 +70061,8 @@ var CutScene = /*#__PURE__*/function () {
   }, {
     key: "adjust",
     value: function adjust() {
-      var ratio = this.image.width / this.image.height;
-      this.image.height = this.game.height - this.field.height;
-      this.image.width = this.image.height * ratio;
-      this.image.x = this.game.width / 2;
       this.field.x = this.game.width / 2;
       this.field.y = this.game.height;
-
-      if (this.container.width > this.game.width || this.container.height > this.game.height) {
-        this.scale();
-      }
-
-      this.center();
-    }
-  }, {
-    key: "center",
-    value: function center() {
-      this.container.x = this.game.width / 2;
-      this.container.y = this.game.height / 2;
-      this.container.pivot.x = this.container.width / 2;
-      this.container.pivot.y = this.container.height / 2;
-    }
-  }, {
-    key: "scale",
-    value: function scale() {
-      var ratio = Math.min(this.game.width / this.container.width, this.game.height / this.container.height);
-      this.container.scale.set(ratio);
     }
   }, {
     key: "setMusic",
@@ -71138,12 +71370,14 @@ var Inventory = /*#__PURE__*/function () {
   }, {
     key: "add",
     value: function add(name) {
-      this.objects.push(name);
-      this.game.objects[name].sprite.setParent(this.container);
-      this.game.objects[name].sprite.parentLayer = this.game.layerUI;
-      this.game.objects[name].sprite.on('pointermove', this.move.bind(this.game.objects[name])).off('pointerup').off('pointerupoutside').on('pointerup', this.release.bind(this.game.objects[name])).on('pointerupoutside', this.release.bind(this.game.objects[name]));
-      if (this.game.objects[name].icon !== undefined) this.game.objects[name].sprite.texture = this.game.objects[name].icon;
-      this.update();
+      if (!this.objects.includes(name)) {
+        this.objects.push(name);
+        this.game.objects[name].sprite.setParent(this.container);
+        this.game.objects[name].sprite.parentLayer = this.game.layerUI;
+        this.game.objects[name].sprite.on('pointermove', this.move.bind(this.game.objects[name])).off('pointerup').off('pointerupoutside').on('pointerup', this.release.bind(this.game.objects[name])).on('pointerupoutside', this.release.bind(this.game.objects[name]));
+        if (this.game.objects[name].icon !== undefined) this.game.objects[name].sprite.texture = this.game.objects[name].icon;
+        this.update();
+      }
     }
   }, {
     key: "remove",
@@ -71263,6 +71497,7 @@ var Puzzle = /*#__PURE__*/function () {
             var objectProperty = this.config.Modify.Object;
             if (objectProperty.Description !== undefined) objectMod.config.Description = objectProperty.Description;
             if (objectProperty.Door !== undefined) this.setDoor(objectMod);
+            if (objectProperty.Take !== undefined) objectMod.config.Take = objectProperty.Take;
             if (objectProperty.Position !== undefined) objectMod.setpos(objectProperty.Position[0], objectProperty.Position[1]);
             if (objectProperty.Mirror) objectMod.flip();
             if (objectProperty.Interactive !== undefined) this.setInteraction(objectProperty.Interactive);
@@ -71271,13 +71506,28 @@ var Puzzle = /*#__PURE__*/function () {
             if (objectProperty.Use !== undefined) objectMod.config.Use = objectProperty.Use;
             if (objectProperty.Lock !== undefined) objectMod.lock = objectProperty.Lock;
           }
+          /*
+                  if(this.config.Modify.Player){
+          
+                  }
+          */
 
-          if (this.config.Modify.Player) {}
+
+          if (this.config.Modify.Scene) {
+            var sceneMod = this.config.Modify.Scene;
+
+            if (this.config.Modify.Scene.WalkArea) {
+              this.game.scenes[sceneMod.Name].walkable.deleteObstacle(this.game.scenes[sceneMod.Name].polyWalk);
+              this.game.scenes[sceneMod.Name].config.WalkArea = sceneMod.WalkArea;
+              this.game.scenes[sceneMod.Name].walkable.addPolygon(sceneMod.WalkArea);
+            }
+          }
 
           if (this.config.Modify.NPC) {
+            var npcMod = this.config.Modify.NPC;
+
             if (this.config.Modify.NPC.Dialogue !== undefined) {
-              var NPCProperty = this.config.Modify.NPC.Dialogue;
-              this.game.npcs[NPCProperty.Character].config.Dialogue = NPCProperty.Name;
+              this.game.npcs[npcMod.Name].config.Dialogue = npcMod.Dialogue;
             }
           }
         }
@@ -71304,11 +71554,6 @@ var Puzzle = /*#__PURE__*/function () {
             objectRemove.remove();
           }
 
-          if (this.config.Remove.Door !== undefined) {
-            var objectDoor = this.game.objects[this.config.Remove.Door];
-            objectDoor.door = false;
-          }
-
           if (this.config.Remove.NPC) {
             var npcRemove = this.game.npc[this.config.Remove.NPC];
             npcRemove.remove();
@@ -71318,15 +71563,19 @@ var Puzzle = /*#__PURE__*/function () {
         if (this.config.Resolve !== undefined) this.game.puzzles[this.config.Resolve].resolve();
 
         if (this.config.Say && !this.game.silentMode) {
-          this.game.player.say(this.config.Say[this.game.activeLanguage]);
+          var text = this.config.Say[this.game.activeLanguage];
+          if (text === undefined) text = this.config.Say[0];
+          this.game.player.say(text);
         } else if (this.config.NPCSay && !this.game.silentMode) {
-          this.game.npcs[this.config.NPCSay.Name].say(this.config.NPCSay.Text[this.game.activeLanguage]);
+          var _text = this.config.NPCSay.Text[this.game.activeLanguage];
+          if (_text === undefined) _text = this.config.NPCSay.Text[0];
+          this.game.npcs[this.config.NPCSay.Name].say(_text);
         } else {
           this.game.player.stop();
         }
 
         if (this.config.Sound !== undefined && !this.game.silentMode) {
-          if (this.config.Sound.Source !== undefined) this.game.sounds[this.config.Sound.Name].play(null, this.config.Sound.Source);else this.game.sounds[this.config.Sound.Name].play();
+          if (this.config.Sound.Sprite !== undefined) this.game.sounds[this.config.Sound.Name].play(null, this.config.Sound.Sprite);else this.game.sounds[this.config.Sound.Name].play();
         }
 
         if (this.config.CutScene !== undefined && !this.game.silentMode && this.game.playSounds) {
@@ -87574,10 +87823,10 @@ var Character = /*#__PURE__*/function () {
     value: function say(text, voice) {
       this.game.textField.talker = this; //Setup the text to show
 
-      this.game.textField.setText(text);
-      this.game.textField.setAvatar(this.config.Avatar);
       if (this.config.Color !== undefined) this.game.textField.setColor(Number(this.config.Color));
-      if (this.config.Font !== undefined) this.game.textField.setFont(this.config.Font);else this.game.textField.setFont(this.game.settings.Text.Style.font); //Play voice if it's defined
+      if (this.config.Font !== undefined) this.game.textField.setFont(this.config.Font.font);else this.game.textField.setFont(this.game.settings.Text.Style.font);
+      this.game.textField.setText(text);
+      this.game.textField.setAvatar(this.config.Avatar); //Play voice if it's defined
 
       if (voice !== undefined && this.config.VoiceSet != undefined) {
         this.game.activeVoice = this.config.VoiceSet;
@@ -87638,7 +87887,11 @@ function _get(target, property, receiver) { if (typeof Reflect !== "undefined" &
 
 function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -87647,10 +87900,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var Player = /*#__PURE__*/function (_Character) {
   _inherits(Player, _Character);
@@ -87697,10 +87946,12 @@ var Player = /*#__PURE__*/function (_Character) {
       if (this.game.activeObject !== null) {
         this.checkDirection(this.game.activeObject);
         var text = this.game.activeObject.config.Description[this.game.activeLanguage];
+        if (text === undefined) text = this.game.activeObject.config.Description[0];
         var voice = undefined;
 
         if (this.game.activeObject.config.VoiceDescription !== undefined) {
           voice = this.game.activeObject.config.VoiceDescription[this.game.activeLanguage];
+          if (voice === undefined) voice = this.game.activeObject.config.VoiceDescription[0];
         }
 
         this.say(text, voice);
@@ -87708,6 +87959,7 @@ var Player = /*#__PURE__*/function (_Character) {
       } else if (this.game.activeNPC !== null) {
         this.checkDirection(this.game.activeNPC);
         var _text = this.game.activeNPC.config.Description[this.game.activeLanguage];
+        if (_text === undefined) _text = this.game.activeObject.config.Description[0];
         this.say(_text);
         this.game.activeNPC.cancel();
       }
@@ -87804,7 +88056,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -87813,10 +88069,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var NPC = /*#__PURE__*/function (_Character) {
   _inherits(NPC, _Character);
@@ -88002,7 +88254,9 @@ var Dialogue = /*#__PURE__*/function () {
           voice = choiceSelected.Voice[this.game.activeLanguage];
         }
 
-        this.game.player.say(choiceSelected.Text[this.game.activeLanguage], voice);
+        var text = choiceSelected.Text[this.game.activeLanguage];
+        if (text === undefined) text = choiceSelected.Text[0];
+        this.game.player.say(text, voice);
       } else {
         this.game.textField.hideAvatar();
         this.game.textField.Choices.get();
@@ -88035,15 +88289,19 @@ var Dialogue = /*#__PURE__*/function () {
         voice = choiceSelected.AnswerVoice[this.game.activeLanguage];
       }
 
-      this.game.activeNPC.say(choiceSelected.Answer[this.game.activeLanguage], voice);
+      var text = choiceSelected.Answer[this.game.activeLanguage];
+      if (text === undefined) text = choiceSelected.Answer[0];
+      this.game.activeNPC.say(text, voice);
 
       if (choiceSelected.Link) {
         this.currentBranch = this.branches[choiceSelected.Link];
-      } else if (choiceSelected.Puzzle) {
-        choiceSelected.Repeat = false;
-        this.end();
+      }
+
+      if (choiceSelected.Puzzle) {
         this.game.puzzles[choiceSelected.Puzzle].resolve();
-      } else if (choiceSelected.EndDialogue) {
+      }
+
+      if (choiceSelected.EndDialogue) {
         this.end();
       }
 
@@ -88259,6 +88517,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -88500,7 +88772,13 @@ var Game = /*#__PURE__*/function () {
 
       sound.game = this;
       sound.source = this.files.resources[name].sound;
-      if (config.Sprites) sound.source._sprite = config.Sprites;
+
+      if (config.Sprites) {
+        var audioSprite = Object.assign.apply(Object, [{}].concat(_toConsumableArray(config.Sprites.map(function (object) {
+          return _defineProperty({}, object.key, object.value);
+        }))));
+        sound.source._sprite = audioSprite;
+      }
     }
   }, {
     key: "addVoice",

@@ -22,7 +22,7 @@ class Menu{
   }
 
   modify(name,text){
-    this.buttons[name].text=text[this.game.activeLanguage];
+    if(text[this.game.activeLanguage]) this.buttons[name].text=text[this.game.activeLanguage];
   }
 
   disable(name){
@@ -33,24 +33,6 @@ class Menu{
   enable(name){
     this.buttons[name].alpha=1.0;
     this.buttons[name].interactive=true;
-  }
-
-  sort(){
-    let i;
-    let arrayButtons=Object.values(this.buttons);
-    let length=arrayButtons.length;
-    arrayButtons[0].x=this.game.width/2;
-    arrayButtons[0].y=0;
-
-    for(i=1;i<length;i++)
-    {
-      arrayButtons[i].x=this.game.width/2;
-      arrayButtons[i].y=arrayButtons[i-1].y+arrayButtons[i-1].height*1.5;
-    }
-
-    //Center Vertically
-    this.container.y=this.game.height/2;
-    this.container.pivot.y = this.container.height / 2;
   }
 
   hide(){

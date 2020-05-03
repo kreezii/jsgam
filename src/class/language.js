@@ -1,7 +1,7 @@
 import Menu from './menu.js';
 import {Button} from './text.js';
 
-class Options extends Menu{
+class Language extends Menu{
   create(){
     this.container.visible=false;
     let languages=this.game.settings.Languages;
@@ -29,13 +29,33 @@ class Options extends Menu{
   }
 
   change(text){
-    let languages=this.game.settings.Languages
+    let languages=this.game.settings.Languages;
     this.buttons[languages[this.game.activeLanguage]].tint=0xFFFFFF;
+
     this.game.activeLanguage=this.game.settings.Languages.indexOf(text);
     this.buttons[languages[this.game.activeLanguage]].tint=0xFF0000;
     this.modify("Back",this.game.data.texts.Back);
+
     this.sort();
   }
 
+  sort(){
+    let i;
+    let arrayButtons=Object.values(this.buttons);
+    let length=arrayButtons.length;
+
+    arrayButtons[0].x=this.game.width/2;
+    arrayButtons[0].y=0;
+
+    for(i=1;i<length;i++)
+    {
+      arrayButtons[i].x=this.game.width/2;
+      arrayButtons[i].y=arrayButtons[i-1].y+arrayButtons[i-1].height*1.5;
+    }
+
+    //Center Vertically
+    this.container.y=this.game.height/2;
+    this.container.pivot.y = this.container.height / 2;
+  }
 }
-export default Options;
+export default Language;

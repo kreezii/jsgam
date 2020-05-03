@@ -72,16 +72,18 @@ class Inventory{
     }
 
     add(name){
-      this.objects.push(name);
-      this.game.objects[name].sprite.setParent(this.container);
-      this.game.objects[name].sprite.parentLayer=this.game.layerUI;
-      this.game.objects[name].sprite.on('pointermove', this.move.bind(this.game.objects[name]))
-                                    .off('pointerup')
-                                    .off('pointerupoutside')
-                                    .on('pointerup',this.release.bind(this.game.objects[name]))
-                                    .on('pointerupoutside',this.release.bind(this.game.objects[name]));
-      if(this.game.objects[name].icon!==undefined) this.game.objects[name].sprite.texture=this.game.objects[name].icon;
-      this.update();
+      if(!this.objects.includes(name)){
+        this.objects.push(name);
+        this.game.objects[name].sprite.setParent(this.container);
+        this.game.objects[name].sprite.parentLayer=this.game.layerUI;
+        this.game.objects[name].sprite.on('pointermove', this.move.bind(this.game.objects[name]))
+                                      .off('pointerup')
+                                      .off('pointerupoutside')
+                                      .on('pointerup',this.release.bind(this.game.objects[name]))
+                                      .on('pointerupoutside',this.release.bind(this.game.objects[name]));
+        if(this.game.objects[name].icon!==undefined) this.game.objects[name].sprite.texture=this.game.objects[name].icon;
+        this.update();
+      }
     }
 
     remove(name)

@@ -15,14 +15,14 @@ class CutScene{
     }else if(this.config.Sequence){
       this.tween=null;
       this.image=new PIXI.Sprite(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image));
-      this.image.anchor.set(0.5,0);
+      //this.image.anchor.set(0.5,0);
       this.container.interactive=true;
       this.container.buttonMode=true;
       this.container.on('pointertap',this.next.bind(this));
       this.container.addChild(this.image);
       this.field=new PIXI.BitmapText(this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage],this.game.settings.Text.Style);
       this.field.anchor.set(0.5,1);
-      this.field.maxWidth=this.game.width;
+      this.field.maxWidth=this.game.width*.95;
       this.container.addChild(this.field);
     }
   }
@@ -107,30 +107,8 @@ class CutScene{
   }
 
   adjust(){
-    let ratio=this.image.width / this.image.height;
-    this.image.height=this.game.height-this.field.height;
-    this.image.width=this.image.height*ratio;
-
-    this.image.x=this.game.width/2;
     this.field.x=this.game.width/2;
     this.field.y=this.game.height;
-
-    if(this.container.width>this.game.width || this.container.height>this.game.height){
-      this.scale();
-    }
-    this.center();
-  }
-
-  center(){
-    this.container.x = this.game.width / 2;
-    this.container.y = this.game.height  / 2;
-    this.container.pivot.x = this.container.width / 2;
-    this.container.pivot.y = this.container.height / 2;
-  }
-
-  scale(){
-    let ratio = Math.min( this.game.width/this.container.width, this.game.height/this.container.height);
-    this.container.scale.set(ratio);
   }
 
   setMusic(){

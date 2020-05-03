@@ -14,6 +14,7 @@ class Puzzle{
 
           if(objectProperty.Description!==undefined) objectMod.config.Description=objectProperty.Description;
           if(objectProperty.Door!==undefined) this.setDoor(objectMod);
+          if(objectProperty.Take!==undefined) objectMod.config.Take=objectProperty.Take;
           if(objectProperty.Position!==undefined) objectMod.setpos(objectProperty.Position[0],objectProperty.Position[1]);
           if(objectProperty.Mirror) objectMod.flip();
           if(objectProperty.Interactive!==undefined) this.setInteraction(objectProperty.Interactive);
@@ -22,15 +23,24 @@ class Puzzle{
           if(objectProperty.Use!==undefined) objectMod.config.Use=objectProperty.Use;
           if(objectProperty.Lock!==undefined) objectMod.lock=objectProperty.Lock;
         }
-
+/*
         if(this.config.Modify.Player){
 
         }
+*/
+        if(this.config.Modify.Scene){
+          let sceneMod=this.config.Modify.Scene;
+          if(this.config.Modify.Scene.WalkArea){
+            this.game.scenes[sceneMod.Name].walkable.deleteObstacle(this.game.scenes[sceneMod.Name].polyWalk);
+            this.game.scenes[sceneMod.Name].config.WalkArea=sceneMod.WalkArea;
+            this.game.scenes[sceneMod.Name].walkable.addPolygon(sceneMod.WalkArea);
+          }
+        }
 
         if(this.config.Modify.NPC){
+          let npcMod=this.config.Modify.NPC;
           if(this.config.Modify.NPC.Dialogue!==undefined){
-            let NPCProperty=this.config.Modify.NPC.Dialogue;
-            this.game.npcs[NPCProperty.Character].config.Dialogue=NPCProperty.Name;
+            this.game.npcs[npcMod.Name].config.Dialogue=npcMod.Dialogue;
           }
         }
       }
@@ -57,10 +67,6 @@ class Puzzle{
           objectRemove.remove();
         }
 
-        if(this.config.Remove.Door!==undefined){
-          let objectDoor=this.game.objects[this.config.Remove.Door];
-          objectDoor.door=false;
-        }
         if(this.config.Remove.NPC){
           let npcRemove=this.game.npc[this.config.Remove.NPC];
           npcRemove.remove();
@@ -70,15 +76,19 @@ class Puzzle{
       if(this.config.Resolve!==undefined)this.game.puzzles[this.config.Resolve].resolve();
 
       if(this.config.Say && !this.game.silentMode){
-        this.game.player.say(this.config.Say[this.game.activeLanguage]);
+        let text=this.config.Say[this.game.activeLanguage];
+        if(text===undefined) text=this.config.Say[0];
+        this.game.player.say(text);
       }else if(this.config.NPCSay && !this.game.silentMode){
-        this.game.npcs[this.config.NPCSay.Name].say(this.config.NPCSay.Text[this.game.activeLanguage]);
+        let text=this.config.NPCSay.Text[this.game.activeLanguage];
+        if(text===undefined) text=this.config.NPCSay.Text[0];
+        this.game.npcs[this.config.NPCSay.Name].say(text);
       }else{
         this.game.player.stop();
       }
 
       if(this.config.Sound!==undefined && !this.game.silentMode){
-          if(this.config.Sound.Source!==undefined) this.game.sounds[this.config.Sound.Name].play(null,this.config.Sound.Source);
+          if(this.config.Sound.Sprite!==undefined) this.game.sounds[this.config.Sound.Name].play(null,this.config.Sound.Sprite);
           else this.game.sounds[this.config.Sound.Name].play();
       }
 

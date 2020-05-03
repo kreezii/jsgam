@@ -4,7 +4,13 @@
 A game engine inspired on classic graphical point-and-click adventure games made for XXI century.
 
 ## Getting started
-Use the [JSGAM editor](https://kreezii.github.io/jsgam-editor/) to make your adventures (need to be documented).
+Read [this tutorial](https://kreezii.github.io/jsgam/tutorial.html) to get started.
+
+JSGAM is available via GitHub, NPM and CDNs:
+
+### GitHub
+- Clone the git repository via [https](https://github.com/kreezii/jsgam.git)
+- Download the build files: [jsgam.js](https://github.com/kreezii/jsgam/blob/master/dist/jsgam.js) and [jsgam.min.js](https://github.com/kreezii/jsgam/blob/master/dist/jsgam.min.js)
 
 ### NPM
 - Install [node.js](https://nodejs.org)
@@ -14,8 +20,9 @@ Use the [JSGAM editor](https://kreezii.github.io/jsgam-editor/) to make your adv
 ### CDN
 JSGAM is on jsDelivr. Include the following in your html:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jsgam@5.0.1-4/dist/jsgam.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsgam@latest/dist/jsgam.min.js"></script>
 ```
+
 ## Author
 
 * **R.Vañes**

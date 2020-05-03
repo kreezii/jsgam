@@ -81,7 +81,7 @@ export default class Storage{
     this.progress.puzzles.forEach(function(name){
       game.puzzles[name].resolve();
     });
-    
+
     //Load objects in inventory
     this.progress.inventory.forEach(function(item){
 

@@ -123,11 +123,11 @@ class Character{
   say(text,voice){
     this.game.textField.talker=this;
     //Setup the text to show
+    if(this.config.Color!==undefined) this.game.textField.setColor(Number(this.config.Color));
+    if(this.config.Font!==undefined) this.game.textField.setFont(this.config.Font.font);
+    else this.game.textField.setFont(this.game.settings.Text.Style.font)
     this.game.textField.setText(text);
     this.game.textField.setAvatar(this.config.Avatar);
-    if(this.config.Color!==undefined) this.game.textField.setColor(Number(this.config.Color));
-    if(this.config.Font!==undefined) this.game.textField.setFont(this.config.Font);
-    else this.game.textField.setFont(this.game.settings.Text.Style.font)
 
     //Play voice if it's defined
     if(voice!==undefined && this.config.VoiceSet!=undefined){

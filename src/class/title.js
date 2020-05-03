@@ -1,6 +1,6 @@
 import Scene from './scene.js';
 import MainMenu from './mainmenu.js'
-import Options from './options.js'
+import Language from './language.js'
 import Help from './help.js'
 import Credits from './credits.js'
 import Confirmation from './confirmation.js'
@@ -20,9 +20,9 @@ class Title extends Scene{
     this.addAction("Warning","No",this.mainMenu.bind(this));
 
     if(languages>1){
-        this.addState("Options", new Options());
-        this.addAction("MainMenu","Options",this.showOptions.bind(this));
-        this.addAction("Options", "Back",this.mainMenu.bind(this));
+        this.addState("Language", new Language());
+        this.addAction("MainMenu","Language",this.showLanguage.bind(this));
+        this.addAction("Language", "Back",this.mainMenu.bind(this));
     }
     if(this.game.data.help!==undefined){
       this.addState("Help", new Help());
@@ -52,9 +52,9 @@ class Title extends Scene{
       this.container.addChild(this.states[name].container);
   }
 
-  showOptions(){
+  showLanguage(){
     this.states["MainMenu"].hide();
-    this.states["Options"].show();
+    this.states["Language"].show();
   }
 
   showHelp(){

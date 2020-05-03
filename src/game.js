@@ -278,7 +278,10 @@ class Game {
 
       sound.source=this.files.resources[name].sound;
 
-      if(config.Sprites) sound.source._sprite=config.Sprites;
+      if(config.Sprites){
+        let audioSprite = Object.assign({}, ...config.Sprites.map(object => ({[object.key]: object.value})));
+        sound.source._sprite=audioSprite;
+      }
   }
 
   addVoice(name, voice, config) {

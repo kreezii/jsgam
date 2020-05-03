@@ -30,15 +30,18 @@ class Player extends Character{
     if(this.game.activeObject!==null){
       this.checkDirection(this.game.activeObject);
       let text=this.game.activeObject.config.Description[this.game.activeLanguage];
+      if(text===undefined) text=this.game.activeObject.config.Description[0];
       let voice=undefined;
       if(this.game.activeObject.config.VoiceDescription!==undefined){
         voice=this.game.activeObject.config.VoiceDescription[this.game.activeLanguage];
+        if(voice===undefined) voice=this.game.activeObject.config.VoiceDescription[0];
       }
       this.say(text,voice);
       this.game.activeObject.cancel();
     }else if(this.game.activeNPC!==null){
       this.checkDirection(this.game.activeNPC);
           let text=this.game.activeNPC.config.Description[this.game.activeLanguage];
+          if(text===undefined) text=this.game.activeObject.config.Description[0];
           this.say(text);
           this.game.activeNPC.cancel();
     }

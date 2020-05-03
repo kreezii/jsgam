@@ -41,7 +41,9 @@ class Dialogue{
       if(choiceSelected.Voice!==undefined){
         voice=choiceSelected.Voice[this.game.activeLanguage];
       }
-      this.game.player.say(choiceSelected.Text[this.game.activeLanguage],voice);
+      let text=choiceSelected.Text[this.game.activeLanguage];
+      if(text===undefined) text=choiceSelected.Text[0];
+      this.game.player.say(text,voice);
     }else{
       this.game.textField.hideAvatar();
       this.game.textField.Choices.get();
@@ -68,15 +70,19 @@ class Dialogue{
     if(choiceSelected.AnswerVoice!==undefined){
       voice=choiceSelected.AnswerVoice[this.game.activeLanguage];
     }
-    this.game.activeNPC.say(choiceSelected.Answer[this.game.activeLanguage],voice);
+    let text=choiceSelected.Answer[this.game.activeLanguage];
+    if(text===undefined) text=choiceSelected.Answer[0];
+    this.game.activeNPC.say(text,voice);
 
     if(choiceSelected.Link){
       this.currentBranch=this.branches[choiceSelected.Link];
-    }else if(choiceSelected.Puzzle){
-      choiceSelected.Repeat=false;
-      this.end();
+    }
+    
+    if(choiceSelected.Puzzle){
       this.game.puzzles[choiceSelected.Puzzle].resolve();
-    }else if(choiceSelected.EndDialogue){
+    }
+
+    if(choiceSelected.EndDialogue){
       this.end();
     }
 
