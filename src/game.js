@@ -2,6 +2,9 @@ import * as PIXI from 'pixi.js';
 window.PIXI=PIXI; //Solution to use pixi-layers with PIXI v5
 require("pixi-layers");
 
+import { OutlineFilter } from 'pixi-filters';
+PIXI.filters.OutlineFilter = OutlineFilter;
+
 import { TweenMax } from "gsap";
 import PixiPlugin from "gsap/PixiPlugin";
 PixiPlugin.registerPIXI(PIXI);
@@ -41,7 +44,8 @@ class Game {
     this.height=config.height;
     this.holdTime=500;
     this.playSounds = true;
-
+    this.hoverFilter = new PIXI.filters.OutlineFilter(2, 0xffff00);
+    
     //Setup the application
     this.app = new PIXI.Application(
       config.width,config.height,{

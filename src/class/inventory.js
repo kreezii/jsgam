@@ -20,6 +20,8 @@ class Inventory{
       if(this.game.settings.Inventory.Border) this.border=this.game.settings.Inventory.Border;
       this.icon=new PIXI.Sprite(PIXI.Texture.from(this.game.settings.Inventory.Icon));
       this.icon.on('pointertap',this.click.bind(this));
+      this.icon.on('pointerover',this.pointerover.bind(this));
+      this.icon.on('pointerout',this.pointerout.bind(this));
       this.icon.interactive=true;
       this.icon.buttonMode=true;
       this.setIcon(this.game.settings.Inventory.Position);
@@ -71,6 +73,15 @@ class Inventory{
       else if(!this.game.player.lock) this.show();
     }
 
+    pointerover() {
+      if (this.game.activeObject === null)
+        this.icon.filters = [this.game.hoverFilter];
+    }
+    
+    pointerout() {
+      this.icon.filters = [];
+    }
+    
     add(name){
       this.objects.push(name);
       this.game.objects[name].sprite.setParent(this.container);

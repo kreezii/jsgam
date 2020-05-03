@@ -88,7 +88,9 @@ this.timeoutID;
       this.sprite.on('pointerdown', this.touch.bind(this))
           .on('pointermove', this.move.bind(this))
           .on('pointerup', this.release.bind(this))
-          .on('pointerupoutside', this.release.bind(this));
+          .on('pointerupoutside', this.release.bind(this))
+          .on('pointerover', this.pointerover.bind(this))
+          .on('pointerout', this.pointerout.bind(this));
     }
 
     if(this.config.Interactive!==undefined) this.setInteraction(this.config.Interactive);
@@ -179,9 +181,19 @@ this.timeoutID;
       this.oldParent=this.sprite.parent;
       this.depthGroup=this.sprite.parentLayer;
       if(this.sprite.parentLayer !== this.game.layerUI) this.sprite.parentLayer = this.game.layerUI;
+      this.sprite.filters = [];
     }
   }
 
+  pointerover() {
+    if (!this.dragging)
+      this.sprite.filters = [this.game.hoverFilter];
+  }
+  
+  pointerout() {
+    this.sprite.filters = [];
+  }
+  
   //Object is being dragged
   move(){
     if (this.dragging && !this.locked) {
