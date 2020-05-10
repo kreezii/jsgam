@@ -71,8 +71,10 @@ class GameObject{
       this.newScene=this.config.Door.To;
       this.playerPos=this.config.Door.Player;
     }
-this.holding=false;
-this.timeoutID;
+
+    this.holding=false;
+    this.timeoutID;
+    
     if(this.config.Lock){
       this.locked=true;
     }

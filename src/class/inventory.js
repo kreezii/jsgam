@@ -102,21 +102,19 @@ class Inventory{
       for(i=0;i<numObjs;i++){
         let tmpObj=this.game.objects[this.objects[i]].sprite;
 
-        let desiredWidth=this.container.width/5-this.container.width*0.05;
-        let desiredHeight=this.container.height/5-this.container.height*0.05;
+        let desiredWidth=this.background.width/5-this.background.width*0.05;
+        let desiredHeight=this.background.height/5-this.background.height*0.05;
         let ratio = Math.min( desiredWidth/tmpObj.width, desiredHeight/tmpObj.height);
         tmpObj.width*=ratio;
         tmpObj.height*=ratio;
 
-        tmpObj.x = ((i % 5) * this.container.width/5+this.border-i)+tmpObj.width/2;
-        tmpObj.y = (Math.floor(i / 5) * this.container.height/5+this.border-i)+tmpObj.height;
-        this.container.width=this.background.width;
-        this.container.height=this.background.height;
+        tmpObj.x = ((i % 5) * this.background.width/5+this.border-i)+tmpObj.width/2;
+        tmpObj.y = (Math.floor(i / 5) * this.background.height/5+this.border-i)+tmpObj.height;
       }
     }
 
     move(){
-      if(!boxesIntersect(this.sprite,this.game.inventory.container))
+      if(!boxesIntersect(this.sprite,this.game.inventory.background))
         this.game.inventory.hide();
     }
 

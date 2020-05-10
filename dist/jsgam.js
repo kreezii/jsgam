@@ -63164,12 +63164,22 @@ var Language = /*#__PURE__*/function (_Menu) {
   }, {
     key: "change",
     value: function change(text) {
-      var languages = this.game.settings.Languages;
-      this.buttons[languages[this.game.activeLanguage]].tint = 0xFFFFFF;
-      this.game.activeLanguage = this.game.settings.Languages.indexOf(text);
-      this.buttons[languages[this.game.activeLanguage]].tint = 0xFF0000;
+      var languages = this.game.settings.Languages; //  this.buttons[languages[this.game.activeLanguage]].tint=0xFFFFFF;
+
+      this.game.activeLanguage = this.game.settings.Languages.indexOf(text); //  this.buttons[languages[this.game.activeLanguage]].tint=0xFF0000;
+
       this.modify("Back", this.game.data.texts.Back);
+      this.update();
       this.sort();
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      var languages = this.game.settings.Languages;
+      Object.values(this.buttons).forEach(function (item, i) {
+        item.tint = 0xFFFFFF;
+      });
+      this.buttons[languages[this.game.activeLanguage]].tint = 0xFF0000;
     }
   }, {
     key: "sort",
@@ -63601,6 +63611,7 @@ var Title = /*#__PURE__*/function (_Scene) {
     value: function changeLanguage() {
       this.states["MainMenu"].changeLanguage();
       this.states["Warning"].changeLanguage();
+      this.states["Language"].update();
     }
   }, {
     key: "warning",
@@ -71397,21 +71408,19 @@ var Inventory = /*#__PURE__*/function () {
 
       for (i = 0; i < numObjs; i++) {
         var tmpObj = this.game.objects[this.objects[i]].sprite;
-        var desiredWidth = this.container.width / 5 - this.container.width * 0.05;
-        var desiredHeight = this.container.height / 5 - this.container.height * 0.05;
+        var desiredWidth = this.background.width / 5 - this.background.width * 0.05;
+        var desiredHeight = this.background.height / 5 - this.background.height * 0.05;
         var ratio = Math.min(desiredWidth / tmpObj.width, desiredHeight / tmpObj.height);
         tmpObj.width *= ratio;
         tmpObj.height *= ratio;
-        tmpObj.x = i % 5 * this.container.width / 5 + this.border - i + tmpObj.width / 2;
-        tmpObj.y = Math.floor(i / 5) * this.container.height / 5 + this.border - i + tmpObj.height;
-        this.container.width = this.background.width;
-        this.container.height = this.background.height;
+        tmpObj.x = i % 5 * this.background.width / 5 + this.border - i + tmpObj.width / 2;
+        tmpObj.y = Math.floor(i / 5) * this.background.height / 5 + this.border - i + tmpObj.height;
       }
     }
   }, {
     key: "move",
     value: function move() {
-      if (!(0, _collisions.boxesIntersect)(this.sprite, this.game.inventory.container)) this.game.inventory.hide();
+      if (!(0, _collisions.boxesIntersect)(this.sprite, this.game.inventory.background)) this.game.inventory.hide();
     }
   }, {
     key: "release",

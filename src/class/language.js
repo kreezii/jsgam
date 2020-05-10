@@ -30,13 +30,20 @@ class Language extends Menu{
 
   change(text){
     let languages=this.game.settings.Languages;
-    this.buttons[languages[this.game.activeLanguage]].tint=0xFFFFFF;
-
+  //  this.buttons[languages[this.game.activeLanguage]].tint=0xFFFFFF;
     this.game.activeLanguage=this.game.settings.Languages.indexOf(text);
-    this.buttons[languages[this.game.activeLanguage]].tint=0xFF0000;
+  //  this.buttons[languages[this.game.activeLanguage]].tint=0xFF0000;
     this.modify("Back",this.game.data.texts.Back);
-
+    this.update();
     this.sort();
+  }
+
+  update(){
+    let languages=this.game.settings.Languages;
+    Object.values(this.buttons).forEach((item, i) => {
+      item.tint=0xFFFFFF;
+    });
+    this.buttons[languages[this.game.activeLanguage]].tint=0xFF0000;
   }
 
   sort(){
