@@ -27,7 +27,7 @@
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="imgs/jsgam-logo.svg">
+  <link rel="icon" type="image/png" href="imgs/jsgam-fav-icon.svg">
 
 </head>
 <body>
@@ -37,60 +37,63 @@
       <h1>A Point & Click Adventure Game Engine</h1>
       <p class>Inspired on classic point-and-click adventure games. Made for 21st century.</p>
       <a class="button" href="https://github.com/kreezii/jsgam" target="_blank"><i class="fab fa-github fa-fw"></i></i>Download</a>
-      <a class="button button-primary" href="tutorial.html"><i class="fas fa-file-alt"></i>Documentation</a>
+      <a class="button button-primary" href="docs.html"><i class="fas fa-file-alt"></i>Get started</a>
     </section>
   </header>
   <main>
+    <h2>Introduction</h2>
+    <p>JavaScript Graphic Adventure Maker (JSGAM) is a set of tools to make adventure games inspired by the
+    90s point and click games running directly in <strong>the web browser</strong>.<br/>The project started as a personal game engine to make my own adventures but I decided to share it so
+    anyone with the same interest for classic adventure games can make them quickly without spend time in
+    the engine.<p>
+    <p>
+    To make games with JSGAM you don't need any knowledges about programming nor design, but It'll be
+    easier if you know at least the basics of GIMP, Blender, HTML, CSS and JavaScript.
+    </p>
     <section id="features" class="grid-container quarters">
       <section class="card">
-        <h3><i class="fas fa-desktop"></i>Desktop & Mobile</h3>
+        <h4><i class="fas fa-desktop"></i><br/>Desktop & Mobile</h4>
         <p>Gameplay adapted to make easy to play on desktop and touch devices.
         Play directly on your web browser</p>
       </section>
       <section class="card">
-          <h3><i class="fas fa-code"></i>No programming</h3>
+          <h4><i class="fas fa-code"></i><br/>No programming</h4>
           <p>You make your game with JSON.</p>
       </section>
       <section class="card">
-          <h3><i class="fas fa-bone"></i>Skeletal Animations</h3>
+          <h4><i class="fas fa-bone"></i><br/>Skeletal Animations</h4>
           <p>Gameplay adapted to make easy to play on desktop and touch devices.</p>
       </section>
       <section class="card">
-          <h3><i class="fas fa-tools"></i>Tools</h3>
+          <h4><i class="fas fa-tools"></i><br/>Tools</h4>
           <p>Edit your scenes thanks to the GIMP plugin.</p>
       </section>
     </section>
 
     <section id="examples">
-      <h2>Examples</h2>
+      <h2>Games</h2>
       <section class="grid-container halves">
         <div class="card">
-          <h4>Space Adventure</h4>
-          <img class="card" src="imgs/space-adventure.jpg" alt="Game Image"/>
-          <p>Somewhere in the space a ship is having problems while the crew is sleeping.
-            The emergency robot is activated to solve the problem.
+          <h4>The Wizard and The Squirrel</h4>
+          <img class="card" src="imgs/wizard-adventure.png" alt="Game Image"/>
+          <p>A wizard gets in troubles when his book of spells disappears...
           </p>
-          <a href="#" class="button button-play" target="_blank"></i>Play Now</a>
-          <a href="#" class="button" target="_blank">Source</a>
+          <a href="https://kreezii.github.io/wizard-adventure/" class="button button-play" target="_blank"></i>Play Now</a>
+          <a href="https://github.com/kreezii/wizard-adventure" class="button" target="_blank">Source</a>
         </div>
         <div class="card">
-          <h4>Space Adventure</h4>
-          <img src="imgs/space-adventure.jpg" alt="Game Image"/>
-          <p>Somewhere in the space a ship is having problems while the crew is sleeping.
-            The emergency robot is activated to solve the problem.
-          </p>
-          <a href="#" class="button button-play" target="_blank">Play Now</a>
-          <a href="#" class="button" target="_blank">Source</a>
+          Comming soon...
         </div>
       </section>
-    </section>
-    <section id="examples">
-      <h2>Examples</h2>
     </section>
   </main>
   <footer>
     © JavaScript Graphic Adventure Maker 2020.
-    <a title="JSGAM" href="https://www.codeandweb.com/tp-online/" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+    <a title="JSGAM" href="https://github.com/kreezii/jsgam/" target="_blank"><i class="fab fa-github fa-lg"></i></a>
   </footer>
+  <button id="sube" label="subir">
+    <i class="fas fa-chevron-circle-up"></i>
+  </button>
+  <script src="index.js"></script>
 </body>
 </html>

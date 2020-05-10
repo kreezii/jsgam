@@ -8,6 +8,9 @@
   margin: 1.25rem 1.25rem;
 }
 
+.logo-small{
+  width: 10vw;
+}
 .header-section{
 /*  background-color: #282c34;*/
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("../imgs/background.svg") no-repeat center;
@@ -55,6 +58,7 @@ main > section{
 .section-header{
   margin: 2rem 0;
   text-align: center;
+  border: 1px solid;
   text-transform: uppercase;
 }
 
@@ -91,4 +95,59 @@ main > section{
 
 .container{
   text-align: justify;
+}
+
+h2,h5{
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+img{
+  width: 95%;
+}
+
+#sube {
+  display: none;
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+  border: none;
+  padding: 10px;
+  background: transparent;
+  font-size: 50px;
+  color: rgba(50, 100, 250, 0.8);
+  transition: transform 0.25s;
+}
+
+.mostrar {
+  animation: btnEntra 0.25s;
+}
+
+.ocultar {
+  animation: btnSale 0.25s;
+}
+
+@keyframes btnEntra {
+  0% {
+    opacity: 0;
+    transform: translate(0, 100%);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes btnSale {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 100%);
+  }
+}
+#sube:hover,
+#sube:active {
+  color: rgb(24, 70, 207);
+  transform: scale(1.3, 1.3);
 }

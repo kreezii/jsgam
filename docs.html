@@ -27,27 +27,19 @@
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="imgs/jsgam-logo.svg">
+  <link rel="icon" type="image/png" href="imgs/jsgam-fav-icon.svg">
 
 </head>
 <body>
   <header>
     <section class="header-section">
-      <img class="logo" src="imgs/jsgam-logo.svg" alt="jsgam-logo"/>
+      <a href="index.html"><img class="logo-small" src="imgs/jsgam-logo.svg" alt="jsgam-logo"/></a>
       <h1>A Point & Click Adventure Game Engine</h1>
+      <a class="button button-primary" href="https://github.com/kreezii/jsgam-template" target="_blank"><i class="fas fa-layer-group"></i>Game Template</a>
     </section>
   </header>
   <main>
     <section class="container">
-      <h2>Introduction</h2>
-      <p>JavaScript Graphic Adventure Maker (JSGAM) is a set of tools to make adventure games inspired by the
-      90s point and click games running directly in <strong>the web browser</strong>.<br/>The project started to make personal games but I decided to share it so
-      anyone with the same interest for classic adventure games can make them quickly without spend time in
-      the engine.<br/>
-      To make games with JSGAM you don't need any knowledges about programming nor design, but It'll be
-      easier if you know at least the basics of GIMP, Blender, HTML, CSS and JavaScript.
-      </p>
-      <h3 class="section-header">Tools</h3>
       <section class="grid-container quarters">
         <div class="card">
           <a href="#jsgam-tools"><img  src="imgs/wilber-big.png"/></a>
@@ -121,46 +113,60 @@
       <article id="editor">
         <h4>Understanding the editor</h4>
         <a class="button button-primary" href="https://kreezii.github.io/jsgam-editor/" target="_blank"><i class="fas fa-rocket"></i>Launch</a>
-        <p>JSGAM engine uses JSON format to make the game. If you don't know what JSON is you should read <a href="https://www.json.org" target="_blank">this</a>.</p>
-          <h5>Workflow</h5>
-          <ol>
-            <li>The first step is adding the sources <code>images, fonts and music</code> we are going to use in our adventure</li>
-            <li>Add the characters, player and NPC's</li>
-          </ol>
-          <a href="imgs\editor-import-sources.png"><img class="thumb" src="imgs\editor-import-sources.png"/></a>
-
-      </article>
-    </section>
-    <section class="container">
-      <h3 class="section-header">My first adventure</h3>
-      <article id="firstadventure">
-        <a class="button button-primary" href="https://github.com/kreezii/jsgam-template" target="_blank"><i class="fas fa-download"></i>JSGAM-template</a>
-        <div class="grid-container quarters">
-          <video width="100%" controls>
-            <source src="vids/0-Coatools.webm" type="video/webm">
-            Your browser does not support HTML5 video.
-          </video>
-          <video width="100%" controls>
-            <source src="vids/0-Coatools.webm" type="video/webm">
-            Your browser does not support HTML5 video.
-          </video>
-          <video width="100%" controls>
-            <source src="vids/0-Coatools.webm" type="video/webm">
-            Your browser does not support HTML5 video.
-          </video>
-          <video width="100%" controls>
-            <source src="vids/0-Coatools.webm" type="video/webm">
-            Your browser does not support HTML5 video.
-          </video>
-        </div>
+        <section>
+        <h5>The menu</h5>
+          <div>
+            <a href="imgs/jsgam-editor-menu.png"><img class="thumb" src="imgs/jsgam-editor-menu.png"/></a>
+            <ol>
+              <li><strong>Load Adventure.</strong> Load a project adventure. Don't load a JSON you exported, only the ones you saved.</li>
+              <li><strong>Save Adventure.</strong> Save a project adventure to local disk. You can use this JSON&nbsp; also for game testing.</li>
+              <li><strong>Export Adventure.</strong> It removes the sources parameters and minify the JSON. You must include it for your game distribution.</li>
+              <li><strong>Delete Adventure.</strong> Clear everything. Also deletes any autosaved progress so make a local copy before use it.</li>
+              <li><strong>Import Scene.</strong> Import scene data exported with GIMP plug-in. Imports the scene itself and objects in it.</li>
+              <li><strong>Import Sources.</strong> Import the images, bitmapfonts and audio names. It's the first step to create an adventure.</li>
+              <li><strong>Import player and non-playable characters.</strong> Import the characters data.</li>
+              <li><strong>Tools.</strong> Useful external tools to create the adventure.</li>
+              <li><strong>Help.</strong> This tutorial.</li>
+              <li><strong>Error indicator.</strong> Check if the JSON is valid.</li>
+            </ol>
+          </div>
+        </section>
+        <section>
+          <h5>Sources</h5>
+            <a href="imgs/editor-sources.png"><img class="thumb" src="imgs/editor-sources.png"/></a>
+            <p>The first step is import the sources (really you import the names of the sources).
+              <ul>
+                <li>Images: import the JSON file generated with Texture Packer</li>
+                <li>Fonts: JSGAM uses bitmapfonts in <a href="https://www.angelcode.com/products/bmfont/" href="_blank">AngelCode</a> format (XML),
+                  import the FNT file.
+                <li>Audio: select any audio file</li>
+              </ul>
+              <p>You can see all sources you imported in the <strong>Sources</strong> tab.</p>
+              <a href="imgs/sources-tab.png"><img class="thumb" src="imgs/sources-tab.png"/></a>
+              <ul>
+                <li>Filename: It's the name by default when you save your adventure to local hard disk</li>
+                <li>Folders: It's a very important to make sure everything works correctly</li>
+                <a href="imgs/sources-properties.png"><img class="thumb" src="imgs/sources-properties.png"/></a>
+                <li>Images: the images names we'll use in our adventure</li>
+                <li>Fonts: the fonts names we'll use in our adventure</li>
+                <li>Audio: the audio names we'll use in our adventure</li>
+              </ul>
+          </section>
+          <section>
+            <h5>Importing Scenes</h5>
+          </section>
       </article>
     </section>
   </main>
   <footer class="grid-container full">
     <div>
     © JavaScript Graphic Adventure Maker 2020.
-    <a title="JSGAM" href="https://www.codeandweb.com/tp-online/" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+    <a title="JSGAM" href="https://github.com/kreezii/jsgam/" target="_blank"><i class="fab fa-github fa-lg"></i></a>
   </div>
   </footer>
+  <button id="sube" label="subir">
+    <i class="fas fa-chevron-circle-up"></i>
+  </button>
+  <script src="index.js"></script>
 </body>
 </html>
