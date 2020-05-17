@@ -74,7 +74,7 @@ class GameObject{
 
     this.holding=false;
     this.timeoutID;
-    
+
     if(this.config.Lock){
       this.locked=true;
     }
@@ -215,12 +215,12 @@ class GameObject{
         this.action="Look";
       }
 
-      if(this.action!==null){
+  /*    if(this.action!==null){
         this.game.player.endAction=this.action;
         this.game.player.move(moveTo);
       }else{
         this.cancel();
-      }
+      }*/
 
       if(this.game.player.touched) this.game.player.touched=false;
 
@@ -233,6 +233,13 @@ class GameObject{
       this.holding=false;
       this.interaction = null;
       this.dragging = false;
+
+      if(this.action!==null){
+        this.game.player.endAction=this.action;
+        this.game.player.move(moveTo);
+      }else{
+        this.cancel();
+      }
     }
   }
 
@@ -312,7 +319,7 @@ class GameObject{
 
     //Check if the object to remove is inside the inventory
     if(this.game.inventory.objects.includes(this.config.Name)){
-      this.game.inventory.remove(this.config.Name)
+      this.game.inventory.remove(this.config.Name);
     }
   }
 

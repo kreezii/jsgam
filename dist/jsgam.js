@@ -63319,11 +63319,10 @@ var Credits = /*#__PURE__*/function () {
       }
 
       this.structuredText = new PIXI.BitmapText(this.text, this.game.settings.Text.Credits);
+      this.structuredText.anchor.set(0.5, 0);
       this.tween = null;
       this.container.addChild(this.structuredText);
-      this.container.x = this.game.width / 2;
-      this.container.pivot.x = this.container.width / 2;
-      this.container.y = this.game.height;
+      this.adjust();
       this.container.on('pointerup', this.mainMenu.bind(this));
     }
   }, {
@@ -63335,11 +63334,11 @@ var Credits = /*#__PURE__*/function () {
   }, {
     key: "animate",
     value: function animate() {
-      TweenMax.set(this.container, {
+      TweenMax.set(this.structuredText, {
         y: this.game.height
       });
-      this.tween = TweenMax.to(this.container, 20, {
-        y: 0 - this.container.height,
+      this.tween = TweenMax.to(this.structuredText, 20, {
+        y: 0 - this.structuredText.height,
         onComplete: this.mainMenu.bind(this)
       });
     }
@@ -63369,14 +63368,17 @@ var Credits = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "update",
-    value: function update() {//PIXI.tweenManager.update();
+    key: "adjust",
+    value: function adjust() {
+      this.structuredText.x = this.game.width / 2;
+      this.structuredText.y = this.game.height;
     }
   }, {
     key: "changeLanguage",
     value: function changeLanguage() {
       this.buildText();
       this.structuredText.text = this.text;
+      this.adjust();
     }
   }, {
     key: "mainMenu",
@@ -63612,6 +63614,7 @@ var Title = /*#__PURE__*/function (_Scene) {
       this.states["MainMenu"].changeLanguage();
       this.states["Warning"].changeLanguage();
       this.states["Language"].update();
+      if (this.states["Credits"]) this.states["Credits"].changeLanguage();
     }
   }, {
     key: "warning",
@@ -69985,6 +69988,7 @@ var CutScene = /*#__PURE__*/function () {
         this.videoSprite.on('pointertap', this.end.bind(this));
         this.container.addChild(this.videoSprite);
       } else if (this.config.Sequence) {
+        this.update();
         this.adjust();
         this.setMusic();
         this.setVoice();
@@ -70004,9 +70008,10 @@ var CutScene = /*#__PURE__*/function () {
       if (this.timeoutID) clearTimeout(this.timeoutID);
 
       if (this.sequenceIndex < this.config.Sequence.length - 1) {
-        this.sequenceIndex += 1;
-        this.field.text = this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
+        this.sequenceIndex += 1; //this.field.text=this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
+
         this.image.texture = PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image);
+        this.update();
         this.adjust();
         this.setMusic();
         this.setVoice();
@@ -70073,7 +70078,7 @@ var CutScene = /*#__PURE__*/function () {
     key: "adjust",
     value: function adjust() {
       this.field.x = this.game.width / 2;
-      this.field.y = this.game.height;
+      if (this.config.Position === "Top") this.field.y = 0;else this.field.y = this.game.height;
     }
   }, {
     key: "setMusic",
@@ -70086,6 +70091,11 @@ var CutScene = /*#__PURE__*/function () {
         this.music = this.config.Sequence[this.sequenceIndex].Music;
         this.game.music[this.music].play(true);
       }
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      this.field.text = this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
     }
   }, {
     key: "setVoice",
@@ -71178,13 +71188,13 @@ var GameObject = /*#__PURE__*/function () {
         } else {
           this.action = "Look";
         }
+        /*    if(this.action!==null){
+              this.game.player.endAction=this.action;
+              this.game.player.move(moveTo);
+            }else{
+              this.cancel();
+            }*/
 
-        if (this.action !== null) {
-          this.game.player.endAction = this.action;
-          this.game.player.move(moveTo);
-        } else {
-          this.cancel();
-        }
 
         if (this.game.player.touched) this.game.player.touched = false;
         this.sprite.x = this.posX;
@@ -71195,6 +71205,13 @@ var GameObject = /*#__PURE__*/function () {
         this.holding = false;
         this.interaction = null;
         this.dragging = false;
+
+        if (this.action !== null) {
+          this.game.player.endAction = this.action;
+          this.game.player.move(moveTo);
+        } else {
+          this.cancel();
+        }
       }
     } //Check collision between objects
 
@@ -71396,6 +71413,7 @@ var Inventory = /*#__PURE__*/function () {
       //Check if object is already in inventory
       if (this.objects.includes(name)) {
         this.objects.splice(this.objects.indexOf(name), 1);
+        this.container.removeChild(this.game.objects[name].sprite);
         this.update();
       }
     }
@@ -71425,6 +71443,7 @@ var Inventory = /*#__PURE__*/function () {
   }, {
     key: "release",
     value: function release(event) {
+      var combineInventory = false;
       if (this.timeoutID) clearTimeout(this.timeoutID);
 
       if (this.interaction) {
@@ -71444,18 +71463,23 @@ var Inventory = /*#__PURE__*/function () {
           this.game.player.say(this.config.Description[this.game.activeLanguage], voice);
         } else if (this.config.Combine !== undefined && objectHit !== null) {
           if (this.config.Combine.With === objectHit) {
+            if (this.game.inventory.objects.includes(this.config.Combine.With)) combineInventory = true;
             this.game.activePuzzle = this.game.puzzles[this.config.Combine.Puzzle];
           }
 
-          this.action = "Use";
+          if (!combineInventory) this.action = "Use";
         }
+        /*
+                if(this.action!==null){
+                  this.game.player.endAction=this.action;
+                  this.game.player.move(moveTo);
+                }else if(combineInventory){
+                  this.game.activePuzzle.resolve();
+                }else{
+                  this.cancel();
+                }
+        */
 
-        if (this.action !== null) {
-          this.game.player.endAction = this.action;
-          this.game.player.move(moveTo);
-        } else {
-          this.cancel();
-        }
 
         this.sprite.x = this.posX;
         this.sprite.y = this.posY;
@@ -71464,6 +71488,15 @@ var Inventory = /*#__PURE__*/function () {
         this.interaction = null;
         this.dragging = false;
         this.holding = false;
+
+        if (this.action !== null) {
+          this.game.player.endAction = this.action;
+          this.game.player.move(moveTo);
+        } else if (combineInventory) {
+          this.game.activePuzzle.resolve();
+        } else {
+          this.cancel();
+        }
       }
     }
   }]);

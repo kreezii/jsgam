@@ -24,12 +24,11 @@ class Credits{
     }
 
     this.structuredText = new PIXI.BitmapText(this.text,this.game.settings.Text.Credits);
+    this.structuredText.anchor.set(0.5,0);
     this.tween=null;
     this.container.addChild(this.structuredText);
+    this.adjust();
 
-    this.container.x = this.game.width / 2;
-    this.container.pivot.x = this.container.width / 2;
-    this.container.y=this.game.height;
     this.container.on('pointerup', this.mainMenu.bind(this));
   }
 
@@ -39,8 +38,8 @@ class Credits{
   }
 
   animate(){
-    TweenMax.set(this.container,{y: this.game.height});
-    this.tween=TweenMax.to(this.container, 20, {y: 0 - this.container.height,onComplete:this.mainMenu.bind(this)});
+    TweenMax.set(this.structuredText,{y: this.game.height});
+    this.tween=TweenMax.to(this.structuredText, 20, {y: 0 - this.structuredText.height,onComplete:this.mainMenu.bind(this)});
   }
 
   hide(){
@@ -66,13 +65,15 @@ class Credits{
     }
   }
 
-  update(){
-    //PIXI.tweenManager.update();
+  adjust(){
+    this.structuredText.x = this.game.width / 2;
+    this.structuredText.y=this.game.height;
   }
 
   changeLanguage(){
     this.buildText();
     this.structuredText.text=this.text;
+    this.adjust();
   }
 
   mainMenu(){

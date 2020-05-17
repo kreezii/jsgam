@@ -38,6 +38,7 @@ class CutScene{
       this.videoSprite.on('pointertap',this.end.bind(this));
       this.container.addChild(this.videoSprite);
     }else if(this.config.Sequence) {
+      this.update();
       this.adjust();
       this.setMusic();
       this.setVoice();
@@ -55,8 +56,9 @@ class CutScene{
     if(this.timeoutID) clearTimeout(this.timeoutID);
     if(this.sequenceIndex<this.config.Sequence.length-1){
       this.sequenceIndex+=1;
-      this.field.text=this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
+      //this.field.text=this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
       this.image.texture=(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image));
+      this.update();
       this.adjust();
       this.setMusic();
       this.setVoice();
@@ -108,7 +110,8 @@ class CutScene{
 
   adjust(){
     this.field.x=this.game.width/2;
-    this.field.y=this.game.height;
+    if(this.config.Position==="Top")this.field.y=0;
+    else this.field.y=this.game.height;
   }
 
   setMusic(){
@@ -120,6 +123,10 @@ class CutScene{
       this.music=this.config.Sequence[this.sequenceIndex].Music;
       this.game.music[this.music].play(true);
     }
+  }
+
+  update(){
+    this.field.text=this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
   }
 
   setVoice(){

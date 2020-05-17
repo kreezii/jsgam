@@ -82,6 +82,7 @@ class Title extends Scene{
     this.states["MainMenu"].changeLanguage();
     this.states["Warning"].changeLanguage();
     this.states["Language"].update();
+    if(this.states["Credits"]) this.states["Credits"].changeLanguage();
   }
 
   warning(){

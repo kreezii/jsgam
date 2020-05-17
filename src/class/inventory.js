@@ -91,6 +91,7 @@ class Inventory{
       //Check if object is already in inventory
       if(this.objects.includes(name)){
         this.objects.splice(this.objects.indexOf(name),1);
+        this.container.removeChild(this.game.objects[name].sprite);
         this.update();
       }
     }
@@ -119,6 +120,8 @@ class Inventory{
     }
 
     release(event){
+      let combineInventory=false;
+
       if(this.timeoutID) clearTimeout(this.timeoutID);
 
       if(this.interaction){
@@ -135,18 +138,21 @@ class Inventory{
 
         }else if(this.config.Combine!==undefined && objectHit!==null){
           if(this.config.Combine.With===objectHit) {
+            if(this.game.inventory.objects.includes(this.config.Combine.With)) combineInventory=true;
             this.game.activePuzzle=this.game.puzzles[this.config.Combine.Puzzle];
           }
-          this.action="Use";
+          if(!combineInventory) this.action="Use";
         }
-
+/*
         if(this.action!==null){
           this.game.player.endAction=this.action;
           this.game.player.move(moveTo);
+        }else if(combineInventory){
+          this.game.activePuzzle.resolve();
         }else{
           this.cancel();
         }
-
+*/
         this.sprite.x = this.posX;
         this.sprite.y = this.posY;
         this.sprite.alpha = 1;
@@ -155,6 +161,15 @@ class Inventory{
         this.interaction = null;
         this.dragging = false;
         this.holding=false;
+        
+        if(this.action!==null){
+          this.game.player.endAction=this.action;
+          this.game.player.move(moveTo);
+        }else if(combineInventory){
+          this.game.activePuzzle.resolve();
+        }else{
+          this.cancel();
+        }
       }
     }
 }
