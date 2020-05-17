@@ -65,6 +65,105 @@
         </div>
       </section>
     </section>
+    <section class="container">
+      <h3 class="section-header">The editor</h3>
+      <article id="editor">
+        <h4>Understanding the editor</h4>
+        <a class="button button-primary" href="https://kreezii.github.io/jsgam-editor/" target="_blank"><i class="fas fa-rocket"></i>Launch</a>
+        <section>
+        <h5>The menu</h5>
+          <div>
+            <a href="imgs/jsgam-editor-menu.png"><img class="thumb" src="imgs/jsgam-editor-menu.png"/></a>
+            <ol>
+              <li><strong>Load Adventure.</strong> Load a project adventure. Don't load a JSON you exported, only the ones you saved.</li>
+              <li><strong>Save Adventure.</strong> Save a project adventure to local disk. You can use this JSON&nbsp; also for game testing.</li>
+              <li><strong>Export Adventure.</strong> It removes the sources parameters and minify the JSON. You must include it for your game distribution.</li>
+              <li><strong>Delete Adventure.</strong> Clear everything. Also deletes any autosaved progress so make a local copy before use it.</li>
+              <li><strong>Import Scene.</strong> Import scene data exported with GIMP plug-in. Imports the scene itself and objects in it.</li>
+              <li><strong>Import Sources.</strong> Import the images, bitmapfonts and audio names. It's the first step to create an adventure.</li>
+              <li><strong>Import player and non-playable characters.</strong> Import the characters data. You must select the <code>your-character_ske.json</code> file.</li>
+              <li><strong>Tools.</strong> Useful external tools to create the adventure.</li>
+              <li><strong>Help.</strong> This tutorial.</li>
+              <li><strong>Error indicator.</strong> Check if the JSON is valid.</li>
+            </ol>
+          </div>
+        </section>
+        <section>
+          <h5>JSON and Properties</h5>
+          <p>JSGAM Engine uses JSON configuration files to make the adventure, if you don't know what JSON is you should <a href="https://developer.mozilla.org/docs/Learn/JavaScript/Objects/JSON"
+            target="_blank">read this</a>.<br>
+          </p>
+          <div class="grid-container ">
+            <a href="imgs/json-button.png"><img class="thumb" src="imgs/json-button.png"/></a>
+            <a href="imgs/properties-button.png"><img class="thumb" src="imgs/properties-button.png"/></a>
+          </div>
+          <p>In the JSGAM Editor you can edit manually the JSON if needed, useful when you need to add or modify a <strong>walk area</strong> or an <strong>obstacle</strong>.<br>
+            The properties button allows you to add or remove properties, for example to make an object available to be taken you have to add the property <strong>Take</strong>.
+          </p>
+        </section>
+        <section>
+          <h5>Sources</h5>
+            <a href="imgs/editor-sources.png"><img class="thumb" src="imgs/editor-sources.png"/></a>
+            <p>The first step to work with the editor is to import the sources (really you import the names of the sources).
+              <ul>
+                <li>Images: import the JSON file generated with <a href="https://www.codeandweb.com/tp-online/" target="_blank">Texture Packer</a></li>
+                <li>Fonts: JSGAM uses bitmapfonts in <a href="https://www.angelcode.com/products/bmfont/" target="_blank">AngelCode</a> format (XML),
+                  import the FNT file.
+                <li>Audio: select any audio file (MP3, MPEG, OPUS, OGG, OGA, WAV, AAC, CAF, M4A, MP4, WEBA, WEBM, DOLBY, FLAC).</li>
+              </ul>
+              <p>You can see all sources you imported in the <strong>Sources</strong> tab.</p>
+              <a href="imgs/sources-tab.png"><img class="thumb" src="imgs/sources-tab.png"/></a>
+              <ul>
+                <li>Filename: It's the name by default when you save your adventure to local hard disk</li>
+                <li>Folders: It's a very important to make sure everything works correctly</li>
+                <a href="imgs/sources-properties.png"><img class="thumb" src="imgs/sources-properties.png"/></a>
+                <li>Images: the images names we'll use in our adventure</li>
+                <li>Fonts: the fonts names we'll use in our adventure</li>
+                <li>Audio: the audio names we'll use in our adventure</li>
+              </ul>
+          </section>
+          <section>
+            <h5>Settings</h5>
+            <p>
+              Here is the game configuration:
+              <ul>
+                <li>Set the first scene of the game (you have to create or import at least one scene to set this parameter)</li>
+                <li>Time for the use action in touch devices</li>
+                <li>Language list</li>
+                <li>Text styles for the game</li>
+                <li>Configure the title screen</li>
+                <li>Configure the inventory</li>
+                <li>Add logos to show before the title screen if you want</li>
+            </p>
+            <a href="imgs/settings-tab.png"><img class="thumb" src="imgs/settings-tab.png"/></a>
+          </section>
+          <section>
+            <h5>Texts</h5>
+            <p>
+              Set the user interface texts for the adventure. Use the character<code>></code> to set a line break.
+            </p>
+            <a href="imgs/editor-texts.png"><img class="thumb" src="imgs/editor-texts.png"/></a>
+
+          </section>
+          <section>
+            <h5>Player</h5>
+            <p>
+              <strong>IMPORTANT:</strong> Each character must have a different Armature name.
+              Import <code>your-player_ske.json</code> file to easier configuration.<br>
+              The default animations names are:
+              <ul>
+                <li>Stand action:"stand"</li>
+                <li>Walk action:"walk"</li>
+                <li>Take action:"take"</li>
+                <li>Use action:"use"</li>
+                <li>Say action:"speak"</li>
+              </ul>
+              <p>If you use another names for your animations, you can specify them checking the Animations property</p>
+            </p>
+            <a href="imgs/player-tab.png"><img class="thumb" src="imgs/player-tab.png"/></a>
+          </section>
+      </article>
+    </section>
     <section>
       <h3 class="section-header">Setting up the tools</h3>
       <article id="jsgam-tools" class="container">
@@ -108,69 +207,12 @@
         </p>
       </article>
     </section>
-    <section class="container">
-      <h3 class="section-header">The editor</h3>
-      <article id="editor">
-        <h4>Understanding the editor</h4>
-        <a class="button button-primary" href="https://kreezii.github.io/jsgam-editor/" target="_blank"><i class="fas fa-rocket"></i>Launch</a>
-        <section>
-        <h5>The menu</h5>
-          <div>
-            <a href="imgs/jsgam-editor-menu.png"><img class="thumb" src="imgs/jsgam-editor-menu.png"/></a>
-            <ol>
-              <li><strong>Load Adventure.</strong> Load a project adventure. Don't load a JSON you exported, only the ones you saved.</li>
-              <li><strong>Save Adventure.</strong> Save a project adventure to local disk. You can use this JSON&nbsp; also for game testing.</li>
-              <li><strong>Export Adventure.</strong> It removes the sources parameters and minify the JSON. You must include it for your game distribution.</li>
-              <li><strong>Delete Adventure.</strong> Clear everything. Also deletes any autosaved progress so make a local copy before use it.</li>
-              <li><strong>Import Scene.</strong> Import scene data exported with GIMP plug-in. Imports the scene itself and objects in it.</li>
-              <li><strong>Import Sources.</strong> Import the images, bitmapfonts and audio names. It's the first step to create an adventure.</li>
-              <li><strong>Import player and non-playable characters.</strong> Import the characters data.</li>
-              <li><strong>Tools.</strong> Useful external tools to create the adventure.</li>
-              <li><strong>Help.</strong> This tutorial.</li>
-              <li><strong>Error indicator.</strong> Check if the JSON is valid.</li>
-            </ol>
-          </div>
-        </section>
-        <section>
-          <h5>JSON and Properties</h5>
-          <p>JSGAM Engine uses JSON configuration files to make the adventure, if you don't know what JSON is, <a href="https://developer.mozilla.org/docs/Learn/JavaScript/Objects/JSON"
-            target="_blank">read this</a> before continue.</p>
-          <a href="imgs/json-button.png"><img class="thumb" src="imgs/json-button.png"/></a>
-          <a href="imgs/properties-button.png"><img class="thumb" src="imgs/properties-button.png"/></a>
-        </section>
-        <section>
-          <h5>Sources</h5>
-            <a href="imgs/editor-sources.png"><img class="thumb" src="imgs/editor-sources.png"/></a>
-            <p>The first step is import the sources (really you import the names of the sources).
-              <ul>
-                <li>Images: import the JSON file generated with Texture Packer</li>
-                <li>Fonts: JSGAM uses bitmapfonts in <a href="https://www.angelcode.com/products/bmfont/" href="_blank">AngelCode</a> format (XML),
-                  import the FNT file.
-                <li>Audio: select any audio file</li>
-              </ul>
-              <p>You can see all sources you imported in the <strong>Sources</strong> tab.</p>
-              <a href="imgs/sources-tab.png"><img class="thumb" src="imgs/sources-tab.png"/></a>
-              <ul>
-                <li>Filename: It's the name by default when you save your adventure to local hard disk</li>
-                <li>Folders: It's a very important to make sure everything works correctly</li>
-                <a href="imgs/sources-properties.png"><img class="thumb" src="imgs/sources-properties.png"/></a>
-                <li>Images: the images names we'll use in our adventure</li>
-                <li>Fonts: the fonts names we'll use in our adventure</li>
-                <li>Audio: the audio names we'll use in our adventure</li>
-              </ul>
-          </section>
-          <section>
-            <h5>Settings</h5>
-            <a href="imgs/settings-tab.png"><img class="thumb" src="imgs/settings-tab.png"/></a>
-          </section>
-      </article>
-    </section>
   </main>
   <footer class="grid-container full">
     <div>
-    © JavaScript Graphic Adventure Maker 2020.
-    <a title="JSGAM" href="https://github.com/kreezii/jsgam/" target="_blank"><i class="fab fa-github fa-lg"></i></a>
-  </div>
+      © JavaScript Graphic Adventure Maker 2020.
+      <a title="JSGAM" href="https://github.com/kreezii/jsgam/" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+    </div>
   </footer>
   <button id="sube" label="subir">
     <i class="fas fa-chevron-circle-up"></i>

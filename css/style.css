@@ -11,21 +11,30 @@
 .logo-small{
   width: 10vw;
 }
+
 .header-section{
-/*  background-color: #282c34;*/
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("../imgs/background.svg") no-repeat center;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),url("../imgs/background.png") no-repeat center;
   background-size: cover;
   text-align: center;
   padding: 2rem;
   user-select: none;
 }
 
-.header-section h1{
+.button-big{
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  height: auto;
+  margin: 2rem;
+}
 
+.button-big .fab, .button-big .fas{
+  font-size: 1.875em;
+}
+
+.header-section h1{
   font-family: "Elley";
   letter-spacing: .25rem;
   text-shadow: 1px 1px 3px rgba(0,0,0,.4);
-
 }
 
 .button i{
@@ -99,6 +108,9 @@ main > section{
 
 h2,h5{
   text-transform: uppercase;
+}
+
+h5{
   font-weight: bold;
 }
 
