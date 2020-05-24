@@ -73,6 +73,7 @@ class Character{
     }
 
     let findPath=this.game.activeScene.walkable.findPath(this.sprite.x,this.sprite.y,newPosition.x,newPosition.y,0);
+
     let i;
     let finalPath=[];
     for(i=0;i<findPath.length;i++){
@@ -81,6 +82,7 @@ class Character{
     }
 
     if(finalPath.length>0){
+
       let animationTime=Math.abs(this.sprite.x-newPosition.x)+Math.abs(this.sprite.y-newPosition.y);
       animationTime=animationTime/(this.game.width+this.game.height);
       animationTime*=10;
@@ -94,6 +96,10 @@ class Character{
 
       if(this.tween!==null) this.tween.kill();
       this.tween=TweenMax.to(this.sprite, animationTime, {bezier:finalPath, ease:Linear.easeNone,onComplete:this.stop.bind(this)});
+
+    }else{
+      this.stand();
+      if(this.endAction!=null) this.endAction=null;
     }
   }
 
@@ -118,6 +124,12 @@ class Character{
       else if(this.endAction==="Talk") this.talk();
       this.endAction=null;
     }
+  }
+
+  stand(){
+    this.animate(this.animations.Stand);
+    this.game.activeState=null;
+    this.lock=false;
   }
 
   say(text,voice){
@@ -147,7 +159,8 @@ class Character{
       this.game.voices[this.config.VoiceSet].stop();
       this.game.activeVoice=null
     }
-    this.animate(this.animations.Stand);
+    //this.animate(this.animations.Stand);
+    this.stand();
   }
 
   animate(animation,times){

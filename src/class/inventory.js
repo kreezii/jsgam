@@ -82,6 +82,7 @@ class Inventory{
                                       .on('pointerup',this.release.bind(this.game.objects[name]))
                                       .on('pointerupoutside',this.release.bind(this.game.objects[name]));
         if(this.game.objects[name].icon!==undefined) this.game.objects[name].sprite.texture=this.game.objects[name].icon;
+        if(this.game.objects[name].config.Lock) this.game.objects[name].config.Lock=false;
         this.update();
       }
     }
@@ -161,7 +162,7 @@ class Inventory{
         this.interaction = null;
         this.dragging = false;
         this.holding=false;
-        
+
         if(this.action!==null){
           this.game.player.endAction=this.action;
           this.game.player.move(moveTo);

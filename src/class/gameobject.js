@@ -65,19 +65,9 @@ class GameObject{
     else if(this.config.Layer==="Bottom") this.sprite.parentLayer=this.game.layerBottom;
     else this.sprite.parentLayer = this.game.layer;
 
-    //Is it a door?
-    if(this.config.Door){
-      this.door=true;
-      this.newScene=this.config.Door.To;
-      this.playerPos=this.config.Door.Player;
-    }
-
     this.holding=false;
     this.timeoutID;
 
-    if(this.config.Lock){
-      this.locked=true;
-    }
     //Game object events
     this.sprite.interactive=true;
     this.sprite.buttonMode=true;
@@ -140,12 +130,14 @@ class GameObject{
       let moveTo=this.interaction.getLocalPosition(this.game.app.stage);
       if(collision(moveTo,this.sprite)){
         if(this.interaction.button===2 || this.holding){
-          if(this.door===true ){
+          if(this.config.Door){
             let newPos=closestPoint(this.config.Area,moveTo);
             moveTo=newPos;
           }else if(this.config.Use!==undefined){
             this.game.activePuzzle=this.game.puzzles[this.config.Use];
           }
+          this.action="Use";
+        }else if(this.config.Door && this.config.Door.NoLook){
           this.action="Use";
         }else{
           this.action="Look";
@@ -186,7 +178,7 @@ class GameObject{
 
   //Object is being dragged
   move(){
-    if (this.dragging && !this.locked) {
+    if (this.dragging && !this.config.Lock) {
       this.sprite.setParent(this.game.app.stage);
       var newPosition = this.interaction.getLocalPosition(this.sprite.parent);
       let bounds=this.sprite.getBounds();
@@ -211,16 +203,11 @@ class GameObject{
       }else if(this.interaction.button===2  || this.holding){
         if(this.config.Use!==undefined) this.game.activePuzzle=this.game.puzzles[this.config.Use];
         this.action="Use";
+      }else if(this.config.Door!==undefined){
+        if(this.config.Door.NoLook) this.action="Use";
       }else{
         this.action="Look";
       }
-
-  /*    if(this.action!==null){
-        this.game.player.endAction=this.action;
-        this.game.player.move(moveTo);
-      }else{
-        this.cancel();
-      }*/
 
       if(this.game.player.touched) this.game.player.touched=false;
 

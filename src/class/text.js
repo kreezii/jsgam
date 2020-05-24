@@ -158,7 +158,7 @@ class TextField{
       this.setText("");
       this.hide();
       this.talker.shutup();
-      this.game.player.stop();
+      this.game.player.stand();
       if(this.game.activeObject!==null) this.game.activeObject.cancel();
     }
   }

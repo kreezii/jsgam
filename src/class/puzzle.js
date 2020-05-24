@@ -13,7 +13,7 @@ class Puzzle{
           let objectProperty=this.config.Modify.Object;
 
           if(objectProperty.Description!==undefined) objectMod.config.Description=objectProperty.Description;
-          if(objectProperty.Door!==undefined) this.setDoor(objectMod);
+          if(objectProperty.Door!==undefined) objectMod.config.Door=objectProperty.Door;
           if(objectProperty.Take!==undefined) objectMod.config.Take=objectProperty.Take;
           if(objectProperty.Position!==undefined) objectMod.setpos(objectProperty.Position[0],objectProperty.Position[1]);
           if(objectProperty.Mirror) objectMod.flip();
@@ -21,7 +21,7 @@ class Puzzle{
           if(objectProperty.Texture!==undefined) this.changeTexture(objectProperty.Texture);
           if(objectProperty.Combine!==undefined) objectMod.config.Combine=objectProperty.Combine;
           if(objectProperty.Use!==undefined) objectMod.config.Use=objectProperty.Use;
-          if(objectProperty.Lock!==undefined) objectMod.lock=objectProperty.Lock;
+          if(objectProperty.Lock!==undefined) objectMod.config.Lock=objectProperty.Lock;
         }
 /*
         if(this.config.Modify.Player){
@@ -84,7 +84,7 @@ class Puzzle{
         if(text===undefined) text=this.config.NPCSay.Text[0];
         this.game.npcs[this.config.NPCSay.Name].say(text);
       }else{
-        this.game.player.stop();
+        this.game.player.stand();
       }
 
       if(this.config.Sound!==undefined && !this.game.silentMode){
@@ -111,20 +111,10 @@ class Puzzle{
       this.solved=true;
 
     }else{
-      this.game.player.stop();
+      this.game.player.stand();
     }
 
     this.game.activePuzzle=null;
-  }
-
-  setDoor(target){
-    if(this.config.Modify.Object.Door===false){
-      target.door=false;
-    }else{
-      target.door=true;
-      target.newScene=this.config.Modify.Object.Door.To;
-      target.playerPos=this.config.Modify.Object.Door.Player;
-    }
   }
 }
 

@@ -62813,7 +62813,7 @@ var TextField = /*#__PURE__*/function () {
         this.setText("");
         this.hide();
         this.talker.shutup();
-        this.game.player.stop();
+        this.game.player.stand();
         if (this.game.activeObject !== null) this.game.activeObject.cancel();
       }
     }
@@ -63214,6 +63214,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _text = require("./text.js");
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -63228,14 +63230,16 @@ var Help = /*#__PURE__*/function () {
     this.container.visible = false;
     this.container.interactive = true;
     this.container.buttonMode = true;
+    this.text = "";
   }
 
   _createClass(Help, [{
     key: "create",
     value: function create() {
       var config = this.game.data.help;
-      this.background = new PIXI.Sprite(PIXI.Texture.from(config[this.game.activeLanguage]));
-      this.container.addChild(this.background);
+      this.buildText();
+      this.structuredText = new PIXI.BitmapText(this.text, this.game.settings.Text.Help);
+      this.container.addChild(this.text);
       this.center();
       this.container.on('pointerup', this.mainMenu.bind(this));
     }
@@ -63250,9 +63254,21 @@ var Help = /*#__PURE__*/function () {
       this.container.visible = false;
     }
   }, {
+    key: "buildText",
+    value: function buildText() {
+      var _this = this;
+
+      var helpText = this.game.data.help;
+      this.text = "";
+      helpText.forEach(function (item, i) {
+        _this.text += item;
+        if (i != helpText.length - 1) _this.text += "\n";
+      });
+    }
+  }, {
     key: "changeLanguage",
     value: function changeLanguage() {
-      this.background.texture = PIXI.Texture.from(this.game.data.help[this.game.activeLanguage]);
+      this.buildText();
       this.center();
     }
   }, {
@@ -63275,7 +63291,7 @@ var Help = /*#__PURE__*/function () {
 
 var _default = Help;
 exports.default = _default;
-},{}],"ZTS9":[function(require,module,exports) {
+},{"./text.js":"EwzB"}],"ZTS9":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -71027,21 +71043,9 @@ var GameObject = /*#__PURE__*/function () {
 
       if (!this.config.Area) this.sprite.anchor.set(0.5, 1); //Configure the layer for the z-order
 
-      if (this.config.Layer === "Top") this.sprite.parentLayer = this.game.layerTop;else if (this.config.Layer === "Bottom") this.sprite.parentLayer = this.game.layerBottom;else this.sprite.parentLayer = this.game.layer; //Is it a door?
-
-      if (this.config.Door) {
-        this.door = true;
-        this.newScene = this.config.Door.To;
-        this.playerPos = this.config.Door.Player;
-      }
-
+      if (this.config.Layer === "Top") this.sprite.parentLayer = this.game.layerTop;else if (this.config.Layer === "Bottom") this.sprite.parentLayer = this.game.layerBottom;else this.sprite.parentLayer = this.game.layer;
       this.holding = false;
-      this.timeoutID;
-
-      if (this.config.Lock) {
-        this.locked = true;
-      } //Game object events
-
+      this.timeoutID; //Game object events
 
       this.sprite.interactive = true;
       this.sprite.buttonMode = true;
@@ -71109,13 +71113,15 @@ var GameObject = /*#__PURE__*/function () {
 
         if ((0, _collisions.collision)(moveTo, this.sprite)) {
           if (this.interaction.button === 2 || this.holding) {
-            if (this.door === true) {
+            if (this.config.Door) {
               var newPos = (0, _collisions.closestPoint)(this.config.Area, moveTo);
               moveTo = newPos;
             } else if (this.config.Use !== undefined) {
               this.game.activePuzzle = this.game.puzzles[this.config.Use];
             }
 
+            this.action = "Use";
+          } else if (this.config.Door && this.config.Door.NoLook) {
             this.action = "Use";
           } else {
             this.action = "Look";
@@ -71158,7 +71164,7 @@ var GameObject = /*#__PURE__*/function () {
   }, {
     key: "move",
     value: function move() {
-      if (this.dragging && !this.locked) {
+      if (this.dragging && !this.config.Lock) {
         this.sprite.setParent(this.game.app.stage);
         var newPosition = this.interaction.getLocalPosition(this.sprite.parent);
         var bounds = this.sprite.getBounds();
@@ -71185,16 +71191,11 @@ var GameObject = /*#__PURE__*/function () {
         } else if (this.interaction.button === 2 || this.holding) {
           if (this.config.Use !== undefined) this.game.activePuzzle = this.game.puzzles[this.config.Use];
           this.action = "Use";
+        } else if (this.config.Door !== undefined) {
+          if (this.config.Door.NoLook) this.action = "Use";
         } else {
           this.action = "Look";
         }
-        /*    if(this.action!==null){
-              this.game.player.endAction=this.action;
-              this.game.player.move(moveTo);
-            }else{
-              this.cancel();
-            }*/
-
 
         if (this.game.player.touched) this.game.player.touched = false;
         this.sprite.x = this.posX;
@@ -71404,6 +71405,7 @@ var Inventory = /*#__PURE__*/function () {
         this.game.objects[name].sprite.parentLayer = this.game.layerUI;
         this.game.objects[name].sprite.on('pointermove', this.move.bind(this.game.objects[name])).off('pointerup').off('pointerupoutside').on('pointerup', this.release.bind(this.game.objects[name])).on('pointerupoutside', this.release.bind(this.game.objects[name]));
         if (this.game.objects[name].icon !== undefined) this.game.objects[name].sprite.texture = this.game.objects[name].icon;
+        if (this.game.objects[name].config.Lock) this.game.objects[name].config.Lock = false;
         this.update();
       }
     }
@@ -71538,7 +71540,7 @@ var Puzzle = /*#__PURE__*/function () {
             var objectMod = this.game.objects[this.config.Modify.Object.Name];
             var objectProperty = this.config.Modify.Object;
             if (objectProperty.Description !== undefined) objectMod.config.Description = objectProperty.Description;
-            if (objectProperty.Door !== undefined) this.setDoor(objectMod);
+            if (objectProperty.Door !== undefined) objectMod.config.Door = objectProperty.Door;
             if (objectProperty.Take !== undefined) objectMod.config.Take = objectProperty.Take;
             if (objectProperty.Position !== undefined) objectMod.setpos(objectProperty.Position[0], objectProperty.Position[1]);
             if (objectProperty.Mirror) objectMod.flip();
@@ -71546,7 +71548,7 @@ var Puzzle = /*#__PURE__*/function () {
             if (objectProperty.Texture !== undefined) this.changeTexture(objectProperty.Texture);
             if (objectProperty.Combine !== undefined) objectMod.config.Combine = objectProperty.Combine;
             if (objectProperty.Use !== undefined) objectMod.config.Use = objectProperty.Use;
-            if (objectProperty.Lock !== undefined) objectMod.lock = objectProperty.Lock;
+            if (objectProperty.Lock !== undefined) objectMod.config.Lock = objectProperty.Lock;
           }
           /*
                   if(this.config.Modify.Player){
@@ -71613,7 +71615,7 @@ var Puzzle = /*#__PURE__*/function () {
           if (_text === undefined) _text = this.config.NPCSay.Text[0];
           this.game.npcs[this.config.NPCSay.Name].say(_text);
         } else {
-          this.game.player.stop();
+          this.game.player.stand();
         }
 
         if (this.config.Sound !== undefined && !this.game.silentMode) {
@@ -71638,21 +71640,10 @@ var Puzzle = /*#__PURE__*/function () {
 
         this.solved = true;
       } else {
-        this.game.player.stop();
+        this.game.player.stand();
       }
 
       this.game.activePuzzle = null;
-    }
-  }, {
-    key: "setDoor",
-    value: function setDoor(target) {
-      if (this.config.Modify.Object.Door === false) {
-        target.door = false;
-      } else {
-        target.door = true;
-        target.newScene = this.config.Modify.Object.Door.To;
-        target.playerPos = this.config.Modify.Object.Door.Player;
-      }
     }
   }]);
 
@@ -87834,6 +87825,9 @@ var Character = /*#__PURE__*/function () {
           ease: Linear.easeNone,
           onComplete: this.stop.bind(this)
         });
+      } else {
+        this.stand();
+        if (this.endAction != null) this.endAction = null;
       }
     }
   }, {
@@ -87859,6 +87853,13 @@ var Character = /*#__PURE__*/function () {
         if (this.endAction === "Look") this.look();else if (this.endAction === "Take") this.take();else if (this.endAction === "Use") this.use();else if (this.endAction === "Talk") this.talk();
         this.endAction = null;
       }
+    }
+  }, {
+    key: "stand",
+    value: function stand() {
+      this.animate(this.animations.Stand);
+      this.game.activeState = null;
+      this.lock = false;
     }
   }, {
     key: "say",
@@ -87887,9 +87888,10 @@ var Character = /*#__PURE__*/function () {
       if (this.game.activeVoice != null) {
         this.game.voices[this.config.VoiceSet].stop();
         this.game.activeVoice = null;
-      }
+      } //this.animate(this.animations.Stand);
 
-      this.animate(this.animations.Stand);
+
+      this.stand();
     }
   }, {
     key: "animate",
@@ -88001,7 +88003,7 @@ var Player = /*#__PURE__*/function (_Character) {
       } else if (this.game.activeNPC !== null) {
         this.checkDirection(this.game.activeNPC);
         var _text = this.game.activeNPC.config.Description[this.game.activeLanguage];
-        if (_text === undefined) _text = this.game.activeObject.config.Description[0];
+        if (_text === undefined) _text = this.game.activeNPC.config.Description[0];
         this.say(_text);
         this.game.activeNPC.cancel();
       }
@@ -88028,25 +88030,32 @@ var Player = /*#__PURE__*/function (_Character) {
 
         this.game.inventory.add(name);
         this.game.activeObject.cancel();
-        this.stop();
       }
+
+      this.stand();
     }
   }, {
     key: "use",
     value: function use() {
-      this.lock = true;
-      this.animate(this.animations.Use, 1);
-      this.sprite.once(this.event.COMPLETE, this.useEnd, this);
+      if (this.game.activeObject.config.Animation) {
+        this.lock = true;
+        this.animate(this.game.activeObject.config.Animation, 1);
+        this.sprite.once(this.event.COMPLETE, this.useEnd, this);
+      } else {
+        this.useEnd();
+      }
     }
   }, {
     key: "useEnd",
     value: function useEnd() {
       if (this.game.activePuzzle !== undefined && this.game.activePuzzle !== null && !this.game.activePuzzle.solved) {
         this.game.activePuzzle.resolve();
-      } else if (this.game.activeObject !== undefined && this.game.activeObject !== null) {
-        if (this.game.activeObject.door) {
-          this.game.changeScene(this.game.activeObject.newScene, this.game.activeObject.playerPos);
-          this.stop();
+      }
+
+      if (this.game.activeObject !== undefined && this.game.activeObject !== null) {
+        if (this.game.activeObject.config.Door) {
+          this.game.changeScene(this.game.activeObject.config.Door.To, this.game.activeObject.config.Door.Player);
+          this.stand();
         } else {
           this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
         }

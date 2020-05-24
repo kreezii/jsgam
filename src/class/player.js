@@ -41,7 +41,7 @@ class Player extends Character{
     }else if(this.game.activeNPC!==null){
       this.checkDirection(this.game.activeNPC);
           let text=this.game.activeNPC.config.Description[this.game.activeLanguage];
-          if(text===undefined) text=this.game.activeObject.config.Description[0];
+          if(text===undefined) text=this.game.activeNPC.config.Description[0];
           this.say(text);
           this.game.activeNPC.cancel();
     }
@@ -64,26 +64,32 @@ class Player extends Character{
       }
       this.game.inventory.add(name);
       this.game.activeObject.cancel();
-      this.stop();
     }
+    this.stand();
   }
 
   use(){
-    this.lock=true;
-    this.animate(this.animations.Use,1);
-    this.sprite.once(this.event.COMPLETE, this.useEnd, this);
+    if(this.game.activeObject.config.Animation){
+      this.lock=true;
+      this.animate(this.game.activeObject.config.Animation,1);
+      this.sprite.once(this.event.COMPLETE, this.useEnd, this);
+    }else{
+      this.useEnd();
+    }
   }
 
   useEnd(){
     if(this.game.activePuzzle!==undefined && this.game.activePuzzle!==null && !this.game.activePuzzle.solved){
       this.game.activePuzzle.resolve();
-    }else if(this.game.activeObject!==undefined && this.game.activeObject!==null) {
-      if(this.game.activeObject.door){
-        this.game.changeScene(this.game.activeObject.newScene,
-          this.game.activeObject.playerPos);
-        this.stop();
+    }
+
+    if(this.game.activeObject!==undefined && this.game.activeObject!==null) {
+      if(this.game.activeObject.config.Door){
+        this.game.changeScene(this.game.activeObject.config.Door.To,
+          this.game.activeObject.config.Door.Player);
+          this.stand();
       }else{
-        this.say(this.game.data.texts.NotUsable[this.game.activeLanguage])
+        this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
       }
       this.game.activeObject.cancel();
     }
