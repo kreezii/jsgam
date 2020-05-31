@@ -92,7 +92,7 @@ class Puzzle{
           else this.game.sounds[this.config.Sound.Name].play();
       }
 
-      if(this.config.CutScene!==undefined && !this.game.silentMode && this.game.playSounds){
+      if(this.config.CutScene!==undefined && !this.game.silentMode){
         this.game.activeCutscene=this.game.cutscenes[this.config.CutScene];
         this.game.pause();
         this.game.activeCutscene.show();

@@ -59385,7 +59385,7 @@ var GameLoader = /*#__PURE__*/function (_Loader) {
   _createClass(GameLoader, [{
     key: "howlerMiddleware",
     value: function howlerMiddleware(resource, next) {
-      if (resource && ["wav", "ogg", "mp3"].includes(resource.extension)) {
+      if (resource && ["wav", "ogg", "mp3", "m4a", "opus"].includes(resource.extension)) {
         var options = JSON.parse(JSON.stringify(resource.metadata));
         options.src = [resource.url];
         resource.sound = new _howler.Howl(options);
@@ -62491,31 +62491,37 @@ var Sound = /*#__PURE__*/function () {
   _createClass(Sound, [{
     key: "play",
     value: function play(loop, src) {
-      this.source.volume(1);
-      if (loop !== undefined && loop !== null) this.source.loop(true);
-      if (src !== undefined && src !== null) this.sprite = this.source.play(src);else this.source.play();
+      if (this.game.playSounds) {
+        this.source.volume(1);
+        if (loop !== undefined && loop !== null) this.source.loop(true);
+        if (src !== undefined && src !== null) this.sprite = this.source.play(src);else this.source.play();
+      }
     }
   }, {
     key: "stop",
     value: function stop() {
-      if (this.sprite !== null) {
-        this.source.once('fade', this.onFade.bind(this), this.sprite);
-        this.source.fade(1, 0, 1000, this.sprite);
-      } else {
-        this.source.once('fade', this.onFade.bind(this));
-        this.source.fade(1, 0, 1000);
+      if (this.game.playSounds) {
+        if (this.sprite !== null) {
+          this.source.once('fade', this.onFade.bind(this), this.sprite);
+          this.source.fade(1, 0, 1000, this.sprite);
+        } else {
+          this.source.once('fade', this.onFade.bind(this));
+          this.source.fade(1, 0, 1000);
+        }
       }
     }
   }, {
     key: "onFade",
     value: function onFade() {
-      if (this.sprite !== null) {
-        this.source.stop(this.sprite);
-        this.source.volume(1, this.sprite);
-        this.sprite = null;
-      } else {
-        this.source.stop();
-        this.source.volume(1);
+      if (this.game.playSounds) {
+        if (this.sprite !== null) {
+          this.source.stop(this.sprite);
+          this.source.volume(1, this.sprite);
+          this.sprite = null;
+        } else {
+          this.source.stop();
+          this.source.volume(1);
+        }
       }
     }
   }, {
@@ -63237,10 +63243,13 @@ var Help = /*#__PURE__*/function () {
     key: "create",
     value: function create() {
       var config = this.game.data.help;
+      var style = this.game.settings.Text.Help;
+      if (!this.game.settings.Text.Help) style = this.game.settings.Text.Style;
       this.buildText();
-      this.structuredText = new PIXI.BitmapText(this.text, this.game.settings.Text.Help);
-      this.container.addChild(this.text);
-      this.center();
+      this.structuredText = new PIXI.BitmapText(this.text, style);
+      this.structuredText.anchor.set(0.5);
+      this.container.addChild(this.structuredText);
+      this.adjust();
       this.container.on('pointerup', this.mainMenu.bind(this));
     }
   }, {
@@ -63258,7 +63267,8 @@ var Help = /*#__PURE__*/function () {
     value: function buildText() {
       var _this = this;
 
-      var helpText = this.game.data.help;
+      var helpText = this.game.data.help[this.game.activeLanguage];
+      if (helpText === undefined) helpText = this.game.data.help[0];
       this.text = "";
       helpText.forEach(function (item, i) {
         _this.text += item;
@@ -63269,15 +63279,25 @@ var Help = /*#__PURE__*/function () {
     key: "changeLanguage",
     value: function changeLanguage() {
       this.buildText();
-      this.center();
+      this.structuredText.text = this.text;
+      this.adjust();
     }
   }, {
-    key: "center",
-    value: function center() {
-      this.container.x = this.game.width / 2;
-      this.container.y = this.game.height / 2;
-      this.container.pivot.x = this.container.width / 2;
-      this.container.pivot.y = this.container.height / 2;
+    key: "adjust",
+    value: function adjust() {
+      if (this.structuredText.width >= this.game.width || this.structuredText.height >= this.game.height) {
+        this.adjustText();
+      }
+
+      this.structuredText.x = this.game.width / 2;
+      this.structuredText.y = this.game.height / 2;
+    }
+  }, {
+    key: "adjustText",
+    value: function adjustText() {
+      var ratio = Math.min(this.game.width / this.structuredText.width, this.game.height / this.structuredText.height);
+      this.structuredText.width = this.structuredText.width * ratio * 0.9;
+      this.structuredText.height = this.structuredText.width * ratio * 0.9;
     }
   }, {
     key: "mainMenu",
@@ -69979,8 +69999,7 @@ var CutScene = /*#__PURE__*/function () {
         this.videoData.addEventListener('ended', this.videoEnds);
       } else if (this.config.Sequence) {
         this.tween = null;
-        this.image = new PIXI.Sprite(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image)); //this.image.anchor.set(0.5,0);
-
+        if (this.config.Sequence[this.sequenceIndex].Image) this.image = new PIXI.Sprite(PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image));else this.image = new PIXI.Sprite(PIXI.Texture.EMPTY);
         this.container.interactive = true;
         this.container.buttonMode = true;
         this.container.on('pointertap', this.next.bind(this));
@@ -70026,7 +70045,7 @@ var CutScene = /*#__PURE__*/function () {
       if (this.sequenceIndex < this.config.Sequence.length - 1) {
         this.sequenceIndex += 1; //this.field.text=this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
 
-        this.image.texture = PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image);
+        if (this.config.Sequence[this.sequenceIndex].Image) this.image.texture = PIXI.Texture.from(this.config.Sequence[this.sequenceIndex].Image);
         this.update();
         this.adjust();
         this.setMusic();
@@ -70099,7 +70118,7 @@ var CutScene = /*#__PURE__*/function () {
   }, {
     key: "setMusic",
     value: function setMusic() {
-      if (this.config.Sequence[this.sequenceIndex].Music !== undefined && this.game.playSounds) {
+      if (this.config.Sequence[this.sequenceIndex].Music !== undefined) {
         if (this.music !== null) {
           this.game.music[this.music].stop();
         }
@@ -70121,7 +70140,7 @@ var CutScene = /*#__PURE__*/function () {
         this.voice = null;
       }
 
-      if (this.config.Sequence[this.sequenceIndex].Voice !== undefined && this.game.playSounds) {
+      if (this.config.Sequence[this.sequenceIndex].Voice !== undefined) {
         this.voice = this.config.Sequence[this.sequenceIndex].Voice[this.game.activeLanguage];
         this.game.voices[this.config.VoiceSet].play(null, this.voice);
       }
@@ -71358,11 +71377,13 @@ var Inventory = /*#__PURE__*/function () {
     value: function show() {
       this.update();
       this.container.visible = true;
+      if (this.game.options) this.game.options.show();
     }
   }, {
     key: "hide",
     value: function hide() {
       this.container.visible = false;
+      if (this.game.options) this.game.options.hide();
     }
   }, {
     key: "showIcon",
@@ -71622,7 +71643,7 @@ var Puzzle = /*#__PURE__*/function () {
           if (this.config.Sound.Sprite !== undefined) this.game.sounds[this.config.Sound.Name].play(null, this.config.Sound.Sprite);else this.game.sounds[this.config.Sound.Name].play();
         }
 
-        if (this.config.CutScene !== undefined && !this.game.silentMode && this.game.playSounds) {
+        if (this.config.CutScene !== undefined && !this.game.silentMode) {
           this.game.activeCutscene = this.game.cutscenes[this.config.CutScene];
           this.game.pause();
           this.game.activeCutscene.show();
@@ -88466,6 +88487,7 @@ var Logo = /*#__PURE__*/function () {
 
       this.game.setScene(this.game.titleLabel);
       this.game.fadeIn();
+      if (this.game.options !== null) this.game.options.show();
     }
   }]);
 
@@ -88474,7 +88496,145 @@ var Logo = /*#__PURE__*/function () {
 
 var _default = Logo;
 exports.default = _default;
-},{}],"CN57":[function(require,module,exports) {
+},{}],"DwQs":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _pixi = require("pixi.js");
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var IconButton = /*#__PURE__*/function (_Sprite) {
+  _inherits(IconButton, _Sprite);
+
+  var _super = _createSuper(IconButton);
+
+  function IconButton(image) {
+    var _this;
+
+    _classCallCheck(this, IconButton);
+
+    _this = _super.call(this, image);
+    _this.interactive = true;
+    _this.buttonMode = true;
+    return _this;
+  }
+
+  return IconButton;
+}(_pixi.Sprite);
+
+var Options = /*#__PURE__*/function () {
+  function Options() {
+    _classCallCheck(this, Options);
+
+    this.container = new PIXI.Container();
+    this.container.visible = false;
+    this.game = null;
+  }
+
+  _createClass(Options, [{
+    key: "build",
+    value: function build() {
+      if (this.game.settings.Options.Sound) {
+        this.iconSound = new IconButton(PIXI.Texture.from(this.game.settings.Options.Sound.Icon));
+        this.iconSound.on('pointertap', this.sound.bind(this));
+        this.setIcon(this.iconSound, this.game.settings.Options.Sound.Position);
+        this.container.addChild(this.iconSound);
+        this.iconSound.parentLayer = this.game.layerUI;
+      }
+
+      if (this.game.settings.Options.Fullscreen) {
+        this.iconScreen = new IconButton(PIXI.Texture.from(this.game.settings.Options.Fullscreen.Icon));
+        this.iconScreen.on('pointertap', this.fullscreen.bind(this));
+        this.setIcon(this.iconScreen, this.game.settings.Options.Fullscreen.Position);
+        this.container.addChild(this.iconScreen);
+        this.iconScreen.parentLayer = this.game.layerUI;
+      }
+    }
+  }, {
+    key: "hide",
+    value: function hide() {
+      this.container.visible = false;
+    }
+  }, {
+    key: "show",
+    value: function show() {
+      this.container.visible = true;
+    }
+  }, {
+    key: "fullscreen",
+    value: function fullscreen() {
+      this.game.fullscreen();
+    }
+  }, {
+    key: "sound",
+    value: function sound() {
+      if (this.game.playSounds) {
+        if (this.game.activeScene.music !== undefined) {
+          this.game.music[this.game.activeScene.music].stop();
+        }
+
+        this.game.playSounds = false;
+      } else {
+        this.game.playSounds = true;
+
+        if (this.game.activeScene.music !== undefined) {
+          this.game.music[this.game.activeScene.music].play(true);
+        }
+      }
+    }
+  }, {
+    key: "setIcon",
+    value: function setIcon(icon, position) {
+      if (position == "bottom-right") {
+        icon.x = this.game.width - icon.width;
+        icon.y = this.game.height - icon.height;
+      } else if (position == "top-right") {
+        icon.x = this.game.width - icon.width;
+        icon.y = 0;
+      } else if (position == "bottom-left") {
+        icon.x = 0;
+        icon.y = this.game.height - icon.height;
+      } else if (position == "top-left") {
+        icon.x = this.game.width - icon.width;
+        icon.y = 0;
+      } else if (position == "top-left") {
+        icon.x = this.game.width - icon.width;
+        icon.y = 0;
+      }
+    }
+  }]);
+
+  return Options;
+}();
+
+var _default = Options;
+exports.default = _default;
+},{"pixi.js":"wbEC"}],"CN57":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -88561,6 +88721,8 @@ var _dialogue = _interopRequireDefault(require("./class/dialogue.js"));
 
 var _logo = _interopRequireDefault(require("./class/logo.js"));
 
+var _options = _interopRequireDefault(require("./class/options.js"));
+
 var _progressbar = _interopRequireDefault(require("./class/progressbar.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -88628,14 +88790,16 @@ var Game = /*#__PURE__*/function () {
 
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
-    }); //We append it to a HTML element or Document body
+    });
+    this.app.view.id = "JSGAM-Adventure"; //We append it to a HTML element or Document body
 
     if (config.parent) {
       document.getElementById(config.parent).appendChild(this.app.view);
     } else {
       document.body.appendChild(this.app.view);
-    } //Load config files
+    }
 
+    if (config.muteSound) this.playSounds = false; //Load config files
 
     this.preload(config.files);
   } //Read JSON configuration files
@@ -88644,14 +88808,7 @@ var Game = /*#__PURE__*/function () {
   _createClass(Game, [{
     key: "preload",
     value: function preload(files) {
-      //Text to show progress
-
-      /*  this.progressBar=new PIXI.Graphics();
-        this.progressBar.beginFill(0xDE3249);
-        this.progressBar.drawRect(0, 0, this.width, this.height/50);
-        this.progressBar.endFill();
-        this.progressBar.width=0;
-      */
+      //Loading bar
       this.progressBar = new _progressbar.default(this);
       this.loadingTxt = new PIXI.Text("Loading...", {
         fill: 'white',
@@ -88690,6 +88847,7 @@ var Game = /*#__PURE__*/function () {
       this.resize();
       this.tween = null;
       this.logo = null;
+      this.options = null;
       this.scenes = {};
       this.cutscenes = {};
       this.objects = {};
@@ -88710,8 +88868,7 @@ var Game = /*#__PURE__*/function () {
       this.activeState = null;
       this.finished = false;
       this.storage = new _storage.default(this);
-      if (this.settings.Logos !== undefined) this.logo = new _logo.default(this); //  this.sound=new SoundManager(this);
-
+      if (this.settings.Logos !== undefined) this.logo = new _logo.default(this);
       this.titleLabel = "Title";
       if (this.settings.HoldTime !== undefined) this.holdTime = this.settings.HoldTime * 1000;
       if (this.settings.dialogueChoices !== undefined) this.dialogueChoices = this.settings.dialogueChoices;else this.dialogueChoices = 3; //Setup title screen
@@ -88784,7 +88941,9 @@ var Game = /*#__PURE__*/function () {
 
       this.addTextField(); //Add player
 
-      this.addPlayer(); //Check if there is a saved game
+      this.addPlayer(); //Add Options if they are defined
+
+      if (this.settings.Options !== undefined) this.addOptions(); //Check if there is a saved game
 
       this.storage.check();
       this.addBlackScreen(); //Game's loop
@@ -88794,6 +88953,7 @@ var Game = /*#__PURE__*/function () {
         //Set Title as the first scene to show
         this.setScene(this.titleLabel);
         this.fadeIn();
+        if (this.options !== null) this.options.show();
       }
     }
   }, {
@@ -88915,6 +89075,13 @@ var Game = /*#__PURE__*/function () {
       this.inventory.build();
     }
   }, {
+    key: "addOptions",
+    value: function addOptions() {
+      this.options = new _options.default();
+      this.options.game = this;
+      this.options.build();
+    }
+  }, {
     key: "addPlayer",
     value: function addPlayer() {
       this.player = new _player.default();
@@ -88965,6 +89132,20 @@ var Game = /*#__PURE__*/function () {
       var ratio = Math.min(w / this.width, h / this.height);
       this.app.renderer.resize(this.width * ratio, this.height * ratio);
       this.app.stage.scale.set(ratio);
+    }
+  }, {
+    key: "fullscreen",
+    value: function fullscreen() {
+      var elem = document.getElementById(this.app.view.id);
+
+      if (!elem.fullscreenElement) {
+        elem.requestFullscreen();
+        console.log(elem);
+      } else {
+        if (elem.exitFullscreen) {
+          elem.exitFullscreen();
+        }
+      }
     } //The magic begins
 
   }, {
@@ -89042,7 +89223,7 @@ var Game = /*#__PURE__*/function () {
     key: "changeScene",
     value: function changeScene(name, playerCoords) {
       //Stop the current music playing
-      if (this.activeScene.music !== undefined && this.playSounds) {
+      if (this.activeScene.music !== undefined) {
         this.music[this.activeScene.music].stop();
       }
 
@@ -89081,7 +89262,7 @@ var Game = /*#__PURE__*/function () {
     value: function fadeInEnd() {
       this.app.stage.removeChild(this.blackScreen); //Play music if there is one to play
 
-      if (this.activeScene.music !== undefined && this.playSounds) {
+      if (this.activeScene.music !== undefined) {
         this.music[this.activeScene.music].play(true);
       }
     }
@@ -89108,7 +89289,7 @@ var Game = /*#__PURE__*/function () {
 
 var _default = Game;
 exports.default = _default;
-},{"pixi.js":"wbEC","pixi-layers":"hSFE","gsap":"TpQl","gsap/PixiPlugin":"Y7PD","./loader.js":"cGmI","./storage.js":"KZ7Y","./sound.js":"GOKF","./class/title.js":"xJND","./class/gamescene.js":"Bkuk","./class/cutscene.js":"LMeo","./class/gameobject.js":"koTY","./class/inventory.js":"cAfK","./class/puzzle.js":"v2k2","./class/text.js":"EwzB","./class/player.js":"LKzY","./class/npc.js":"NQ1q","./class/dialogue.js":"JL1J","./class/logo.js":"n7v1","./class/progressbar.js":"CN57"}],"Focm":[function(require,module,exports) {
+},{"pixi.js":"wbEC","pixi-layers":"hSFE","gsap":"TpQl","gsap/PixiPlugin":"Y7PD","./loader.js":"cGmI","./storage.js":"KZ7Y","./sound.js":"GOKF","./class/title.js":"xJND","./class/gamescene.js":"Bkuk","./class/cutscene.js":"LMeo","./class/gameobject.js":"koTY","./class/inventory.js":"cAfK","./class/puzzle.js":"v2k2","./class/text.js":"EwzB","./class/player.js":"LKzY","./class/npc.js":"NQ1q","./class/dialogue.js":"JL1J","./class/logo.js":"n7v1","./class/options.js":"DwQs","./class/progressbar.js":"CN57"}],"Focm":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

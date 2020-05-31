@@ -12,7 +12,7 @@ class GameLoader extends Loader{
 
   //Add loaded sounds from PIXI loader to Howler
   howlerMiddleware(resource,next){
-    if (resource && ["wav", "ogg", "mp3"].includes(resource.extension)) {
+    if (resource && ["wav", "ogg", "mp3", "m4a", "opus"].includes(resource.extension)) {
       const options = JSON.parse(JSON.stringify(resource.metadata));
       options.src = [resource.url];
       resource.sound = new Howl(options);

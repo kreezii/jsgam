@@ -57,6 +57,7 @@ class Logo{
     //Set Title as the first scene to show
     this.game.setScene(this.game.titleLabel);
     this.game.fadeIn();
+    if(this.game.options!==null) this.game.options.show();
   }
 }
 

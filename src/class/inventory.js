@@ -34,11 +34,12 @@ class Inventory{
     show(){
       this.update();
       this.container.visible=true;
+      if(this.game.options) this.game.options.show();
     }
 
     hide(){
       this.container.visible=false;
-
+      if(this.game.options) this.game.options.hide();
     }
 
     showIcon(){

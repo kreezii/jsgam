@@ -33,7 +33,6 @@ class Title extends Scene{
       this.addState("Credits", new Credits());
       this.addAction("MainMenu","Credits",this.showCredits.bind(this));
     }
-
   }
 
   addAction(name,button,action){

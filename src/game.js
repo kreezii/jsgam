@@ -20,6 +20,7 @@ import Player from './class/player.js';
 import NPC from './class/npc.js';
 import Dialogue from './class/dialogue.js';
 import Logo from './class/logo.js';
+import Options from './class/options.js';
 import ProgressBar from './class/progressbar.js';
 
 class Game {
@@ -61,12 +62,15 @@ class Game {
        e.preventDefault();
     });
 
+    this.app.view.id="JSGAM-Adventure";
+
     //We append it to a HTML element or Document body
     if(config.parent){
       document.getElementById(config.parent).appendChild(this.app.view)
     }else{
       document.body.appendChild(this.app.view);
     }
+    if(config.muteSound) this.playSounds = false;
 
     //Load config files
     this.preload(config.files);
@@ -74,13 +78,7 @@ class Game {
 
   //Read JSON configuration files
   preload(files){
-    //Text to show progress
-  /*  this.progressBar=new PIXI.Graphics();
-    this.progressBar.beginFill(0xDE3249);
-    this.progressBar.drawRect(0, 0, this.width, this.height/50);
-    this.progressBar.endFill();
-    this.progressBar.width=0;
-*/
+    //Loading bar
     this.progressBar=new ProgressBar(this);
 
     this.loadingTxt=new PIXI.Text("Loading...", {fill: 'white',"fontSize": 50});
@@ -120,6 +118,7 @@ class Game {
 
     this.tween=null;
     this.logo=null;
+    this.options=null;
 
     this.scenes={};
     this.cutscenes={};
@@ -147,10 +146,8 @@ class Game {
 
     this.storage=new Storage(this);
     if(this.settings.Logos!==undefined) this.logo=new Logo(this);
-  //  this.sound=new SoundManager(this);
 
     this.titleLabel="Title";
-
 
     if(this.settings.HoldTime!==undefined) this.holdTime=this.settings.HoldTime*1000;
     if(this.settings.dialogueChoices!==undefined) this.dialogueChoices=this.settings.dialogueChoices;
@@ -231,6 +228,9 @@ class Game {
     //Add player
     this.addPlayer();
 
+    //Add Options if they are defined
+    if(this.settings.Options!==undefined) this.addOptions();
+
     //Check if there is a saved game
     this.storage.check();
 
@@ -244,6 +244,7 @@ class Game {
       //Set Title as the first scene to show
       this.setScene(this.titleLabel);
       this.fadeIn();
+      if(this.options!==null) this.options.show();
     }
 
   }
@@ -374,6 +375,12 @@ class Game {
     this.inventory.build();
   }
 
+  addOptions(){
+    this.options=new Options();
+    this.options.game=this;
+    this.options.build();
+  }
+
   addPlayer(){
     this.player=new Player();
     this.player.game=this;
@@ -422,6 +429,18 @@ class Game {
     this.app.renderer.resize(this.width*ratio,this.height*ratio);
     this.app.stage.scale.set(ratio);
 
+  }
+
+  fullscreen(){
+    var elem = document.getElementById(this.app.view.id);
+    if (!elem.fullscreenElement) {
+        elem.requestFullscreen();
+        console.log(elem)
+    } else {
+      if (elem.exitFullscreen) {
+        elem.exitFullscreen();
+      }
+    }
   }
 
   //The magic begins
@@ -493,7 +512,7 @@ class Game {
 
   changeScene(name,playerCoords){
     //Stop the current music playing
-    if(this.activeScene.music!==undefined && this.playSounds){
+    if(this.activeScene.music!==undefined){
       this.music[this.activeScene.music].stop();
     }
 
@@ -524,7 +543,7 @@ class Game {
     this.app.stage.removeChild(this.blackScreen);
 
     //Play music if there is one to play
-    if(this.activeScene.music!==undefined && this.playSounds){
+    if(this.activeScene.music!==undefined){
       this.music[this.activeScene.music].play(true);
     }
   }
