@@ -99,14 +99,12 @@ class Player extends Character{
     //Player must look in the right direction
     if(this.sprite.x<this.game.activeNPC.sprite.x){
       this.sprite.armature.flipX=false;
-      //if(this.game.activeNPC.config.Mirror!==undefined) this.game.activeNPC.sprite.armature.flipX=true;
-      if(this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX=true;
-      else this.game.activeNPC.sprite.armature.flipX=false;
-    }else{
-      this.sprite.armature.flipX=true;
-      //if(this.game.activeNPC.config.Mirror!==undefined) this.game.activeNPC.sprite.armature.flipX=false;
       if(this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX=false;
       else this.game.activeNPC.sprite.armature.flipX=true;
+    }else{
+      this.sprite.armature.flipX=true;
+      if(this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX=true;
+      else this.game.activeNPC.sprite.armature.flipX=false;
     }
 
     //Let's talk

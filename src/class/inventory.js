@@ -16,7 +16,7 @@ class Inventory{
       this.background.parentLayer = this.game.layerUI;
       this.container.x = (this.game.width - this.background.width) / 2;
       this.container.y = (this.game.height - this.background.height) / 2;
-      this.border=10;
+      this.border=[0,0];
       if(this.game.settings.Inventory.Border) this.border=this.game.settings.Inventory.Border;
       this.icon=new PIXI.Sprite(PIXI.Texture.from(this.game.settings.Inventory.Icon));
       this.icon.on('pointertap',this.click.bind(this));
@@ -102,17 +102,22 @@ class Inventory{
       //Inventory is limited to 25 objects
       let i;
       let numObjs=this.objects.length;
+      if(numObjs>25) numObjs=25;
+
+      let containerWidth=this.background.width-this.border[0]*2;
+      let containerHeight=this.background.height-this.border[1]*2;
+      let objectWidth=containerWidth/5;
+      let objectHeight=containerHeight/5;
+
       for(i=0;i<numObjs;i++){
         let tmpObj=this.game.objects[this.objects[i]].sprite;
+        if(tmpObj.icon==undefined){
+          tmpObj.width=objectWidth;
+          tmpObj.height=objectHeight;
+        }
 
-        let desiredWidth=this.background.width/5-this.background.width*0.05;
-        let desiredHeight=this.background.height/5-this.background.height*0.05;
-        let ratio = Math.min( desiredWidth/tmpObj.width, desiredHeight/tmpObj.height);
-        tmpObj.width*=ratio;
-        tmpObj.height*=ratio;
-
-        tmpObj.x = ((i % 5) * this.background.width/5+this.border-i)+tmpObj.width/2;
-        tmpObj.y = (Math.floor(i / 5) * this.background.height/5+this.border-i)+tmpObj.height;
+        tmpObj.x=(i % 5) * objectWidth+objectWidth/2+this.border[0];
+        tmpObj.y=Math.floor(i / 5)* objectHeight+objectHeight+this.border[1];
       }
     }
 

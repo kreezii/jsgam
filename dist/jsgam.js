@@ -71359,7 +71359,7 @@ var Inventory = /*#__PURE__*/function () {
       this.background.parentLayer = this.game.layerUI;
       this.container.x = (this.game.width - this.background.width) / 2;
       this.container.y = (this.game.height - this.background.height) / 2;
-      this.border = 10;
+      this.border = [0, 0];
       if (this.game.settings.Inventory.Border) this.border = this.game.settings.Inventory.Border;
       this.icon = new PIXI.Sprite(PIXI.Texture.from(this.game.settings.Inventory.Icon));
       this.icon.on('pointertap', this.click.bind(this));
@@ -71446,16 +71446,22 @@ var Inventory = /*#__PURE__*/function () {
       //Inventory is limited to 25 objects
       var i;
       var numObjs = this.objects.length;
+      if (numObjs > 25) numObjs = 25;
+      var containerWidth = this.background.width - this.border[0] * 2;
+      var containerHeight = this.background.height - this.border[1] * 2;
+      var objectWidth = containerWidth / 5;
+      var objectHeight = containerHeight / 5;
 
       for (i = 0; i < numObjs; i++) {
         var tmpObj = this.game.objects[this.objects[i]].sprite;
-        var desiredWidth = this.background.width / 5 - this.background.width * 0.05;
-        var desiredHeight = this.background.height / 5 - this.background.height * 0.05;
-        var ratio = Math.min(desiredWidth / tmpObj.width, desiredHeight / tmpObj.height);
-        tmpObj.width *= ratio;
-        tmpObj.height *= ratio;
-        tmpObj.x = i % 5 * this.background.width / 5 + this.border - i + tmpObj.width / 2;
-        tmpObj.y = Math.floor(i / 5) * this.background.height / 5 + this.border - i + tmpObj.height;
+
+        if (tmpObj.icon == undefined) {
+          tmpObj.width = objectWidth;
+          tmpObj.height = objectHeight;
+        }
+
+        tmpObj.x = i % 5 * objectWidth + objectWidth / 2 + this.border[0];
+        tmpObj.y = Math.floor(i / 5) * objectHeight + objectHeight + this.border[1];
       }
     }
   }, {
@@ -71571,12 +71577,15 @@ var Puzzle = /*#__PURE__*/function () {
             if (objectProperty.Use !== undefined) objectMod.config.Use = objectProperty.Use;
             if (objectProperty.Lock !== undefined) objectMod.config.Lock = objectProperty.Lock;
           }
-          /*
-                  if(this.config.Modify.Player){
-          
-                  }
-          */
 
+          if (this.config.Modify.Player) {
+            var playerMod = this.config.Modify.Player;
+
+            if (this.config.Modify.Player.Position !== undefined) {
+              this.game.player.move(playerMod.Position); //this.player.sprite.x=playerMod.Position[0];
+              //this.player.sprite.y=playerMod.Position[1];
+            }
+          }
 
           if (this.config.Modify.Scene) {
             var sceneMod = this.config.Modify.Scene;
@@ -71593,6 +71602,12 @@ var Puzzle = /*#__PURE__*/function () {
 
             if (this.config.Modify.NPC.Dialogue !== undefined) {
               this.game.npcs[npcMod.Name].config.Dialogue = npcMod.Dialogue;
+            }
+
+            if (this.config.Modify.NPC.Position !== undefined) {
+              this.game.npcs[npcMod.Name].move(npcMod.Position);
+              /*  this.game.npcs[npcMod.Name].sprite.x=npcMod.Position[0];
+                this.game.npcs[npcMod.Name].sprite.y=npcMod.Position[1];*/
             }
           }
         }
@@ -88089,13 +88104,11 @@ var Player = /*#__PURE__*/function (_Character) {
     value: function talk() {
       //Player must look in the right direction
       if (this.sprite.x < this.game.activeNPC.sprite.x) {
-        this.sprite.armature.flipX = false; //if(this.game.activeNPC.config.Mirror!==undefined) this.game.activeNPC.sprite.armature.flipX=true;
-
-        if (this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX = true;else this.game.activeNPC.sprite.armature.flipX = false;
-      } else {
-        this.sprite.armature.flipX = true; //if(this.game.activeNPC.config.Mirror!==undefined) this.game.activeNPC.sprite.armature.flipX=false;
-
+        this.sprite.armature.flipX = false;
         if (this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX = false;else this.game.activeNPC.sprite.armature.flipX = true;
+      } else {
+        this.sprite.armature.flipX = true;
+        if (this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX = true;else this.game.activeNPC.sprite.armature.flipX = false;
       } //Let's talk
 
 

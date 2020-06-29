@@ -23,11 +23,16 @@ class Puzzle{
           if(objectProperty.Use!==undefined) objectMod.config.Use=objectProperty.Use;
           if(objectProperty.Lock!==undefined) objectMod.config.Lock=objectProperty.Lock;
         }
-/*
-        if(this.config.Modify.Player){
 
+        if(this.config.Modify.Player){
+          let playerMod=this.config.Modify.Player;
+          if(this.config.Modify.Player.Position!==undefined){
+            this.game.player.move(playerMod.Position);
+            //this.player.sprite.x=playerMod.Position[0];
+            //this.player.sprite.y=playerMod.Position[1];
+          }
         }
-*/
+
         if(this.config.Modify.Scene){
           let sceneMod=this.config.Modify.Scene;
           if(this.config.Modify.Scene.WalkArea){
@@ -41,6 +46,12 @@ class Puzzle{
           let npcMod=this.config.Modify.NPC;
           if(this.config.Modify.NPC.Dialogue!==undefined){
             this.game.npcs[npcMod.Name].config.Dialogue=npcMod.Dialogue;
+          }
+
+          if(this.config.Modify.NPC.Position!==undefined){
+            this.game.npcs[npcMod.Name].move(npcMod.Position);
+          /*  this.game.npcs[npcMod.Name].sprite.x=npcMod.Position[0];
+            this.game.npcs[npcMod.Name].sprite.y=npcMod.Position[1];*/
           }
         }
       }
