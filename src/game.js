@@ -2,8 +2,14 @@ import * as PIXI from 'pixi.js';
 window.PIXI=PIXI; //Solution to use pixi-layers with PIXI v5
 require("pixi-layers");
 
-import { TweenMax } from "gsap";
-import PixiPlugin from "gsap/PixiPlugin";
+import { gsap } from "gsap";
+import { PixiPlugin } from "gsap/PixiPlugin";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+// register the plugin
+gsap.registerPlugin(PixiPlugin,MotionPathPlugin);
+
+// give the plugin a reference to the PIXI object
 PixiPlugin.registerPIXI(PIXI);
 
 import GameLoader from './loader.js';
@@ -244,7 +250,10 @@ class Game {
       //Set Title as the first scene to show
       this.setScene(this.titleLabel);
       this.fadeIn();
-      if(this.options!==null) this.options.show();
+      if(this.options!==null){
+        this.app.stage.addChild(this.options.icon);
+        this.app.stage.addChild(this.options.container);
+      }
     }
 
   }
@@ -356,6 +365,7 @@ class Game {
     });
     this.TopGroup = new PIXI.display.Group(2,false);
     this.UIGroup = new PIXI.display.Group(3,false);
+    this.BlackGroup = new PIXI.display.Group(4,false);
 
     this.layerBottom=new PIXI.display.Layer(this.BottomGroup);
     this.layer=new PIXI.display.Layer(this.sortGroup);
@@ -432,13 +442,11 @@ class Game {
   }
 
   fullscreen(){
-    var elem = document.getElementById(this.app.view.id);
-    if (!elem.fullscreenElement) {
-        elem.requestFullscreen();
-        console.log(elem)
-    } else {
-      if (elem.exitFullscreen) {
-        elem.exitFullscreen();
+    if (document.fullscreenEnabled) {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+			} else {
+        document.exitFullscreen();
       }
     }
   }
@@ -518,10 +526,10 @@ class Game {
 
     this.app.stage.addChild(this.blackScreen);
     if(this.tween) this.tween.kill();
-    this.tween=TweenMax.set(this.blackScreen, {alpha:0});
-    this.tween=TweenMax.fromTo(this.blackScreen, 1,
+    this.tween=gsap.set(this.blackScreen, {alpha:0});
+    this.tween=gsap.fromTo(this.blackScreen,
       {alpha:0},
-      {alpha:1, onComplete:this.fadeOutEnd.bind(this),
+      {duration:1,alpha:1, onComplete:this.fadeOutEnd.bind(this),
         onCompleteParams:[name,playerCoords]});
   }
 
@@ -532,10 +540,11 @@ class Game {
     this.app.stage.addChild(this.blackScreen);
 
     if(this.tween) this.tween.kill();
-    this.tween=TweenMax.set(this.blackScreen, {alpha:1});
-    this.tween=TweenMax.fromTo(this.blackScreen, 1,
+
+    this.tween=gsap.set(this.blackScreen, {alpha:1});
+    this.tween=gsap.fromTo(this.blackScreen,
       {alpha:1},
-      {alpha:0, onComplete:this.fadeInEnd.bind(this)}
+      {duration:1,alpha:0, onComplete:this.fadeInEnd.bind(this)}
     );
   }
 

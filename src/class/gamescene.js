@@ -2,6 +2,7 @@ import Scene from './scene.js';
 
 import Walkable from 'walkable';
 
+
 class GameScene extends Scene{
   build(){
     if(this.foreground!==undefined) this.foreground.parentLayer = this.game.layerTop; //Z-order

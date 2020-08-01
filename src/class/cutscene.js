@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+
 class CutScene{
   constructor(){
     this.container=new PIXI.Container();
@@ -72,7 +74,8 @@ class CutScene{
 
   fadeIn(){
     if(this.tween) this.tween.kill();
-    this.tween=TweenMax.fromTo(this.container, 1, {alpha:0}, {alpha:1, onComplete:this.timer.bind(this)});
+
+    this.tween=gsap.fromTo(this.container, {alpha:0}, {duration:1, alpha:1, onComplete:this.timer.bind(this)});
   }
 
   timer(){
@@ -81,7 +84,7 @@ class CutScene{
 
   fadeOut(){
     if(this.tween) this.tween.kill();
-    this.tween=TweenMax.fromTo(this.container, 1, {alpha:1}, {alpha:0, onComplete:this.next.bind(this)});
+    this.tween=gsap.fromTo(this.container, {alpha:1}, {duration:1, alpha:0, onComplete:this.next.bind(this)});
   }
 
   end(){

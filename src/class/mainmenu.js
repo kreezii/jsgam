@@ -10,6 +10,7 @@ class MainMenu extends Menu{
       if(languages>1) this.addButton("Language",gameTexts.Language);
       if(this.game.data.help!==undefined)this.addButton("Help",gameTexts.Help);
       if(this.game.data.credits!==undefined) this.addButton("Credits",gameTexts.Credits);
+      this.container.parentLayer = this.game.layerUI;
       this.sort();
 
       this.disable("Continue");

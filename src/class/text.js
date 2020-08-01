@@ -77,10 +77,12 @@ class Phrases{
   }
 
   update(){
-    let choices=this.game.activeDialogue.currentBranch.Choices;
+    let branch=this.game.activeDialogue.currentBranch;
+    let choices=branch.Choices;
 
     for(let i=0;i<choices.length;i++){
-      if(choices[i].Size!==undefined) this.option[i].font.size=choices[i].Size;
+      if(branch.Size!==undefined) this.option[i].fontSize=branch.Size;
+      if(choices[i].Size!==undefined) this.option[i].fontSize=choices[i].Size;
       if(i>0) this.option[i].y=this.option[i-1].y+this.option[i-1].height*1.05;
     }
   }
@@ -112,13 +114,17 @@ class TextField{
     this.Background.alpha=0.5;
 
     this.Avatar=new PIXI.Sprite(PIXI.Texture.from(this.game.data.player.Avatar));
-    let ratio=this.Avatar.width / this.Avatar.height;
-    this.Avatar.height=this.Background.height;
-    this.Avatar.width=this.Avatar.height*ratio*0.95;
+    if(this.Avatar.height>this.Background.height){
+      let ratio=this.Avatar.width / this.Avatar.height;
+      this.Avatar.height=this.Background.height;
+      this.Avatar.width=this.Avatar.height*ratio*0.95;
+    }
+
 
     this.Text=new Button("", this.game.settings.Text.Style);
     this.Text.x=this.Avatar.width*1.05;
     this.Text.maxWidth=this.game.width-this.Avatar.width;
+    this.Text.Color=0xffffff;
 
     this.Text.y=0;
     this.Text.on('pointertap',this.skip.bind(this));
@@ -182,18 +188,7 @@ class TextField{
     this.Text.text=newText;
     let extraWidth=0;
     if(this.Avatar.visible) extraWidth=this.Avatar.width;
-    if(this.Text.width+extraWidth>=this.Background.width || this.Text.height>=this.Background.height){
-      this.adjustText();
-    }else{
-      this.Text.scale.set(.95);
-    }
-  }
-
-  adjustText(){
-    let ratio = Math.min( this.Background.width/this.Text.width,  this.Background.height/this.Text.height);
-
-    this.Text.width=this.Text.width*ratio*0.95;
-    this.Text.height=this.Background.height;
+    this.Text.scale.set(.95);
   }
 
   //Get words number of the text
@@ -215,11 +210,15 @@ class TextField{
   }
 
   setColor(colour){
-    this.Text.tint=colour;
+    //Change color only if really is necessary
+    if(this.Text.Color!=colour){
+      this.Text.tint=colour;
+      this.Text.Color=colour;
+    }
   }
 
   setFont(newFont){
-    this.Text.font=newFont;
+    this.Text.fontName=newFont;
   }
 
   setAvatar(newAvi){

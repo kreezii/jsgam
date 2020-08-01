@@ -26,10 +26,14 @@ class Puzzle{
 
         if(this.config.Modify.Player){
           let playerMod=this.config.Modify.Player;
-          if(this.config.Modify.Player.Position!==undefined){
-            this.game.player.move(playerMod.Position);
-            //this.player.sprite.x=playerMod.Position[0];
-            //this.player.sprite.y=playerMod.Position[1];
+
+          if(playerMod.Position!==undefined){
+            this.player.sprite.x=playerMod.Position[0];
+            this.player.sprite.y=playerMod.Position[1];
+          }
+
+          if(playerMod.Skin){
+            this.game.player.changeSkin(playerMod.Skin);
           }
         }
 
@@ -44,14 +48,22 @@ class Puzzle{
 
         if(this.config.Modify.NPC){
           let npcMod=this.config.Modify.NPC;
-          if(this.config.Modify.NPC.Dialogue!==undefined){
+
+          if(npcMod.Dialogue!==undefined){
             this.game.npcs[npcMod.Name].config.Dialogue=npcMod.Dialogue;
           }
 
-          if(this.config.Modify.NPC.Position!==undefined){
-            this.game.npcs[npcMod.Name].move(npcMod.Position);
-          /*  this.game.npcs[npcMod.Name].sprite.x=npcMod.Position[0];
-            this.game.npcs[npcMod.Name].sprite.y=npcMod.Position[1];*/
+          if(npcMod.Position!==undefined){
+            this.game.npcs[npcMod.Name].sprite.x=npcMod.Position[0];
+            this.game.npcs[npcMod.Name].sprite.y=npcMod.Position[1];
+          }
+
+          if(npcMod.Skin){
+            this.game.npcs[npcMod.Name].changeSkin(npcMod.Skin);
+          }
+
+          if(npcMod.Scene){
+            this.game.npcs[npcMod.Name].setScene(npcMod.Scene);
           }
         }
       }

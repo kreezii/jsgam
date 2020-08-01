@@ -9,6 +9,7 @@ class Confirmation extends Menu{
     this.addButton("Yes",gameTexts.Yes);
     this.addButton("No",gameTexts.No);
     this.adjust();
+    this.container.parentLayer = this.game.layerUI;
   }
 
   changeLanguage(){

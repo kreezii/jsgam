@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 window.PIXI=PIXI; //Solution to use dragonbones with PIXI v5
 const dragonBones=require('pixi5-dragonbones');
 const dbfactory=dragonBones.PixiFactory.factory;
+import { gsap } from "gsap";
 
 import {checkPath} from '../collisions.js'
 
@@ -17,7 +18,9 @@ class Character{
   setup(config){
     dbfactory.parseDragonBonesData(this.game.files.resources[config.Name+"Skeleton"].data);
     dbfactory.parseTextureAtlasData(this.game.files.resources[config.Name+"Json"].data,this.game.files.resources[config.Name+"Tex"].texture);
-    this.sprite = dbfactory.buildArmatureDisplay(config.Armature);
+    this.defaultSkin=dbfactory.buildArmatureDisplay(config.Armature);
+    this.sprite = this.defaultSkin;
+
     if(config.Size!==undefined){
       this.size=config.Size;
       this.sprite.scale.set(this.size);
@@ -43,6 +46,7 @@ class Character{
     }
     this.sprite.parentLayer = this.game.layer;//Z-order*/
     this.config=config;
+    //Añadir velocidad
   }
 
   hide(){
@@ -63,43 +67,50 @@ class Character{
   }
 
   move(coords){
-    let obstacles=this.game.activeScene.config.Obstacles;
-    let walkingArea=this.game.activeScene.config.WalkArea;
-    let newPosition=coords;
-    let closestPosition=checkPath(coords,obstacles,walkingArea);
+    if(this.sprite.x!=coords.x || this.sprite.y!=coords.y){
+      let obstacles=this.game.activeScene.config.Obstacles;
+      let walkingArea=this.game.activeScene.config.WalkArea;
+      let newPosition=coords;
+      let closestPosition=checkPath(coords,obstacles,walkingArea);
 
-    if(closestPosition){
-      newPosition=closestPosition;
-    }
+      if(closestPosition){
+        newPosition=closestPosition;
+      }
 
-    let findPath=this.game.activeScene.walkable.findPath(this.sprite.x,this.sprite.y,newPosition.x,newPosition.y,0);
+      let findPath=this.game.activeScene.walkable.findPath(this.sprite.x,this.sprite.y,newPosition.x,newPosition.y,0);
+      let i;
+      let finalPath=[];
 
-    let i;
-    let finalPath=[];
-    for(i=0;i<findPath.length;i++){
-      finalPath.push({x:findPath[i],y:findPath[i+1]})
-      i++;
-    }
+      for(i=0;i<findPath.length;i++){
+        finalPath.push({x:findPath[i],y:findPath[i+1]})
+        i++;
+      }
 
-    if(finalPath.length>0){
+      //Check we have a path to move
+      if(finalPath.length>0 && Math.abs(finalPath[0].x-finalPath[finalPath.length-1].x)>1){
 
-      let animationTime=Math.abs(this.sprite.x-newPosition.x)+Math.abs(this.sprite.y-newPosition.y);
-      animationTime=animationTime/(this.game.width+this.game.height);
-      animationTime*=10;
-      if(this.config.Speed!==undefined) animationTime/=this.config.Speed;
+        let animationTime=Math.abs(this.sprite.x-newPosition.x)+Math.abs(this.sprite.y-newPosition.y);
+        animationTime=animationTime/(this.game.width+this.game.height);
 
-      this.animate(this.animations.Walk);
-      if(this.sprite.x<newPosition.x) this.sprite.armature.flipX=false;
-      else this.sprite.armature.flipX=true;
+        animationTime*=10;
+        animationTime=animationTime+finalPath.length/20;
+        if(this.config.Speed!==undefined) animationTime+finalPath.length/(20*this.config.Speed);
 
-      this.game.activeState=this;
+        this.animate(this.animations.Walk);
+        if(this.sprite.x<newPosition.x) this.sprite.armature.flipX=false;
+        else this.sprite.armature.flipX=true;
 
-      if(this.tween!==null) this.tween.kill();
-      this.tween=TweenMax.to(this.sprite, animationTime, {bezier:finalPath, ease:Linear.easeNone,onComplete:this.stop.bind(this)});
+        this.game.activeState=this;
 
+        if(this.tween!==null) this.tween.kill();
+
+        this.tween=gsap.to(this.sprite, {duration: animationTime, motionPath:finalPath, ease:"none",onComplete:this.stop.bind(this)});
+
+      }else{
+        this.stop();
+      }
     }else{
-      this.stand();
-      if(this.endAction!=null) this.endAction=null;
+      this.stop();
     }
   }
 
@@ -136,8 +147,9 @@ class Character{
     this.game.textField.talker=this;
     //Setup the text to show
     if(this.config.Color!==undefined) this.game.textField.setColor(Number(this.config.Color));
-    if(this.config.Font!==undefined) this.game.textField.setFont(this.config.Font.font);
-    else this.game.textField.setFont(this.game.settings.Text.Style.font)
+    else this.game.textField.setColor(0xffffff);
+    if(this.config.Font!==undefined) this.game.textField.setFont(this.config.Font.fontName);
+    else this.game.textField.setFont(this.game.settings.Text.Style.fontName)
     this.game.textField.setText(text);
     this.game.textField.setAvatar(this.config.Avatar);
 
@@ -166,6 +178,34 @@ class Character{
   animate(animation,times){
     if(this.sprite.animation.lastAnimationName!==animation)
       this.sprite.animation.fadeIn(animation,0.25,times);
+  }
+
+  remove(){
+    this.sprite.parent.removeChild(this.sprite);
+  }
+
+  changeSkin(armature){
+    let currentParent=this.sprite.parent;
+
+    if(armature=="Default"){
+      this.defaultSkin.x=this.sprite.x;
+      this.defaultSkin.y=this.sprite.y;
+      currentParent.removeChild(this.sprite);
+      currentParent.addChild(this.defaultSkin);
+      this.sprite=this.defaultSkin;
+    }else{
+      this.game.npcs[armature].sprite.x=this.sprite.x;
+      this.game.npcs[armature].sprite.y=this.sprite.y;
+      currentParent.removeChild(this.sprite);
+      currentParent.addChild(this.game.npcs[armature].sprite);
+      this.sprite=this.game.npcs[armature].sprite;
+    }
+  }
+
+  setScene(sceneName){
+  //  let currentParent=this.sprite.parent;
+  //  currentParent.removeChild(this.sprite);
+    this.game.scenes[sceneName].container.addChild(this.sprite);
   }
 }
 

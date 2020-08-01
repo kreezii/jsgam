@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+
 class Credits{
   constructor(){
     this.container=new PIXI.Container();
@@ -38,8 +40,8 @@ class Credits{
   }
 
   animate(){
-    TweenMax.set(this.structuredText,{y: this.game.height});
-    this.tween=TweenMax.to(this.structuredText, 20, {y: 0 - this.structuredText.height,onComplete:this.mainMenu.bind(this)});
+    gsap.set(this.structuredText,{y: this.game.height});
+    this.tween=gsap.to(this.structuredText, {duration:20, y: 0 - this.structuredText.height,onComplete:this.mainMenu.bind(this)});
   }
 
   hide(){

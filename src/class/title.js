@@ -8,6 +8,8 @@ import Confirmation from './confirmation.js'
 class Title extends Scene{
   build(){
     this.states={};
+    this.background.parentLayer = this.game.layerBottom; //Z-order
+
     let languages=Object.values(this.game.settings.Languages).length;
     //Add Menus
     this.addState("MainMenu", new MainMenu());

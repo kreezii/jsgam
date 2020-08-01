@@ -34,12 +34,10 @@ class Inventory{
     show(){
       this.update();
       this.container.visible=true;
-      if(this.game.options) this.game.options.show();
     }
 
     hide(){
       this.container.visible=false;
-      if(this.game.options) this.game.options.hide();
     }
 
     showIcon(){
@@ -62,7 +60,7 @@ class Inventory{
         this.icon.x=0;
         this.icon.y=this.game.height - this.icon.height;
       }else if(position=="top-left"){
-        this.icon.x=this.game.width - this.icon.width;
+        this.icon.x=0;
         this.icon.y=0;
       }
     }

@@ -1,7 +1,7 @@
 ![](logo/jsgamLogo.png)
 # JavaScript Adventure Game Maker
 
-A game engine inspired on classic graphical point-and-click adventure games made for XXI century.
+A game engine inspired on classic graphical point-and-click adventure games made for the 21st century.
 
 ## Getting started
 Read [this tutorial](https://kreezii.github.io/jsgam/docs.html) to get started.

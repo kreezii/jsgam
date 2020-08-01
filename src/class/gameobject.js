@@ -146,6 +146,7 @@ class GameObject{
 
       if(this.action!==null){
         this.game.player.endAction=this.action;
+        if(this.config.InteractionPoint) moveTo={x:this.config.InteractionPoint[0],y:this.config.InteractionPoint[1]};
         this.game.player.move(moveTo);
       }else{
         this.cancel();
@@ -195,7 +196,12 @@ class GameObject{
     if(this.timeoutID) clearTimeout(this.timeoutID);
 
     if(this.interaction){
-      let moveTo={x:this.posX,y:this.posY};
+      let moveTo;
+      if(this.config.InteractionPoint){
+        moveTo={x:this.config.InteractionPoint[0],y:this.config.InteractionPoint[1]};
+      }else{
+        moveTo={x:this.posX,y:this.posY};
+      }
       //Check if we take it
       if(collision(this.sprite,this.game.inventory.icon) && this.config.Take){
         this.action="Take";

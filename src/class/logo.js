@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+
 class Logo{
   constructor(game){
     this.game=game;
@@ -21,8 +23,8 @@ class Logo{
 
   fadeIn(){
     if(this.tween) this.tween.kill();
-    this.tween=TweenMax.set(this.image,{alpha:0});
-    this.tween=TweenMax.fromTo(this.image, 1, {alpha:0}, {alpha:1, onComplete:this.timer.bind(this)});
+    this.tween=gsap.set(this.image,{alpha:0});
+    this.tween=gsap.fromTo(this.image, {alpha:0}, {duration:1, alpha:1, onComplete:this.timer.bind(this)});
   }
 
   timer(){
@@ -32,7 +34,7 @@ class Logo{
   fadeOut(){
     this.image.interactive=false;
     if(this.tween) this.tween.kill();
-    this.tween=TweenMax.fromTo(this.image, 1, {alpha:1}, {alpha:0, onComplete:this.next.bind(this)});
+    this.tween=gsap.fromTo(this.image, {alpha:1}, {duration:1, alpha:0, onComplete:this.next.bind(this)});
   }
 
   next(){
@@ -57,7 +59,10 @@ class Logo{
     //Set Title as the first scene to show
     this.game.setScene(this.game.titleLabel);
     this.game.fadeIn();
-    if(this.game.options!==null) this.game.options.show();
+    if(this.game.options!==null){
+      this.app.stage.addChild(this.game.options.icon);
+      this.app.stage.addChild(this.game.options.container);
+    }
   }
 }
 
