@@ -180,10 +180,6 @@ class Character{
       this.sprite.animation.fadeIn(animation,0.25,times);
   }
 
-  remove(){
-    this.sprite.parent.removeChild(this.sprite);
-  }
-
   changeSkin(armature){
     let currentParent=this.sprite.parent;
 
@@ -200,12 +196,6 @@ class Character{
       currentParent.addChild(this.game.npcs[armature].sprite);
       this.sprite=this.game.npcs[armature].sprite;
     }
-  }
-
-  setScene(sceneName){
-  //  let currentParent=this.sprite.parent;
-  //  currentParent.removeChild(this.sprite);
-    this.game.scenes[sceneName].container.addChild(this.sprite);
   }
 }
 

@@ -37,7 +37,7 @@ class GameObject{
       this.play();
     }
 
-    //Texture to shwo when the object is inside the inventory
+    //Texture to show when the object is inside the inventory
     if(this.config.Icon){
       this.icon=PIXI.Texture.from(this.config.Icon);
     }

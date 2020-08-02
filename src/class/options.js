@@ -75,12 +75,14 @@ class Options{
       if(this.game.activeScene.music!==undefined){
         this.game.music[this.game.activeScene.music].stop();
       }
+      if(this.game.settings.Options.Mute) this.iconSound.texture=PIXI.Texture.from(this.game.settings.Options.Mute);
       this.game.playSounds=false;
     }else{
       this.game.playSounds=true;
       if(this.game.activeScene.music!==undefined){
-        this.game.music[this.game.activeScene.music].play(true);
+        this.game.music[this.game.activeScene.music].play();
       }
+      if(this.game.settings.Options.Sound && this.game.settings.Options.Mute) this.iconSound.texture=PIXI.Texture.from(this.game.settings.Options.Sound);
     }
   }
 

@@ -109,10 +109,8 @@ class Inventory{
 
       for(i=0;i<numObjs;i++){
         let tmpObj=this.game.objects[this.objects[i]].sprite;
-        if(tmpObj.icon==undefined){
-          tmpObj.width=objectWidth;
-          tmpObj.height=objectHeight;
-        }
+        tmpObj.width=objectWidth;
+        tmpObj.height=objectHeight;
 
         tmpObj.x=(i % 5) * objectWidth+objectWidth/2+this.border[0];
         tmpObj.y=Math.floor(i / 5)* objectHeight+objectHeight+this.border[1];

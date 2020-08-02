@@ -17,7 +17,7 @@ class Puzzle{
           if(objectProperty.Take!==undefined) objectMod.config.Take=objectProperty.Take;
           if(objectProperty.Position!==undefined) objectMod.setpos(objectProperty.Position[0],objectProperty.Position[1]);
           if(objectProperty.Mirror) objectMod.flip();
-          if(objectProperty.Interactive!==undefined) this.setInteraction(objectProperty.Interactive);
+          if(objectProperty.Interactive!==undefined) objectMod.setInteraction(objectProperty.Interactive);
           if(objectProperty.Texture!==undefined) this.changeTexture(objectProperty.Texture);
           if(objectProperty.Combine!==undefined) objectMod.config.Combine=objectProperty.Combine;
           if(objectProperty.Use!==undefined) objectMod.config.Use=objectProperty.Use;
@@ -48,6 +48,8 @@ class Puzzle{
 
         if(this.config.Modify.NPC){
           let npcMod=this.config.Modify.NPC;
+
+          if(npcMod.Description!==undefined) this.game.npcs[npcMod.Name].config.Description=npcMod.Description;
 
           if(npcMod.Dialogue!==undefined){
             this.game.npcs[npcMod.Name].config.Dialogue=npcMod.Dialogue;

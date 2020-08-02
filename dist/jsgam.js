@@ -64139,6 +64139,7 @@ var Sound = /*#__PURE__*/function () {
     this.game = null;
     this.source = null;
     this.sprite = null;
+    this.id = null;
   }
 
   _createClass(Sound, [{
@@ -64146,8 +64147,9 @@ var Sound = /*#__PURE__*/function () {
     value: function play(loop, src) {
       if (this.game.playSounds) {
         this.source.volume(1);
-        if (loop !== undefined && loop !== null) this.source.loop(true);
-        if (src !== undefined && src !== null) this.sprite = this.source.play(src);else this.source.play();
+        if (this.id !== null) this.source.play(this.id);else this.id = this.source.play();
+        if (loop !== undefined && loop !== null) this.source.loop(true, this.id);
+        if (src !== undefined && src !== null) this.sprite = this.source.play(src);
       }
     }
   }, {
@@ -64158,7 +64160,7 @@ var Sound = /*#__PURE__*/function () {
           this.source.once('fade', this.onFade.bind(this), this.sprite);
           this.source.fade(1, 0, 1000, this.sprite);
         } else {
-          this.source.once('fade', this.onFade.bind(this));
+          this.source.once('fade', this.onFade.bind(this), this.id);
           this.source.fade(1, 0, 1000);
         }
       }
@@ -64171,8 +64173,8 @@ var Sound = /*#__PURE__*/function () {
           this.source.stop(this.sprite);
           this.source.volume(1, this.sprite);
           this.sprite = null;
-        } else {
-          this.source.stop();
+        } else if (this.id !== null) {
+          this.source.stop(this.id);
           this.source.volume(1);
         }
       }
@@ -72701,7 +72703,7 @@ var GameObject = /*#__PURE__*/function () {
         this.sprite = new PIXI.extras.AnimatedSprite(frames);
         this.animationSpeed = this.config.Animation.Speed;
         this.play();
-      } //Texture to shwo when the object is inside the inventory
+      } //Texture to show when the object is inside the inventory
 
 
       if (this.config.Icon) {
@@ -73129,12 +73131,10 @@ var Inventory = /*#__PURE__*/function () {
       var objectHeight = containerHeight / 5;
 
       for (i = 0; i < numObjs; i++) {
-        var tmpObj = this.game.objects[this.objects[i]].sprite;
+        var tmpObj = this.game.objects[this.objects[i]].sprite; //  if(tmpObj.icon==undefined){
 
-        if (tmpObj.icon == undefined) {
-          tmpObj.width = objectWidth;
-          tmpObj.height = objectHeight;
-        }
+        tmpObj.width = objectWidth;
+        tmpObj.height = objectHeight; //  }
 
         tmpObj.x = i % 5 * objectWidth + objectWidth / 2 + this.border[0];
         tmpObj.y = Math.floor(i / 5) * objectHeight + objectHeight + this.border[1];
@@ -73247,7 +73247,7 @@ var Puzzle = /*#__PURE__*/function () {
             if (objectProperty.Take !== undefined) objectMod.config.Take = objectProperty.Take;
             if (objectProperty.Position !== undefined) objectMod.setpos(objectProperty.Position[0], objectProperty.Position[1]);
             if (objectProperty.Mirror) objectMod.flip();
-            if (objectProperty.Interactive !== undefined) this.setInteraction(objectProperty.Interactive);
+            if (objectProperty.Interactive !== undefined) objectMod.setInteraction(objectProperty.Interactive);
             if (objectProperty.Texture !== undefined) this.changeTexture(objectProperty.Texture);
             if (objectProperty.Combine !== undefined) objectMod.config.Combine = objectProperty.Combine;
             if (objectProperty.Use !== undefined) objectMod.config.Use = objectProperty.Use;
@@ -73279,6 +73279,7 @@ var Puzzle = /*#__PURE__*/function () {
 
           if (this.config.Modify.NPC) {
             var npcMod = this.config.Modify.NPC;
+            if (npcMod.Description !== undefined) this.game.npcs[npcMod.Name].config.Description = npcMod.Description;
 
             if (npcMod.Dialogue !== undefined) {
               this.game.npcs[npcMod.Name].config.Dialogue = npcMod.Dialogue;
@@ -89631,11 +89632,6 @@ var Character = /*#__PURE__*/function () {
       if (this.sprite.animation.lastAnimationName !== animation) this.sprite.animation.fadeIn(animation, 0.25, times);
     }
   }, {
-    key: "remove",
-    value: function remove() {
-      this.sprite.parent.removeChild(this.sprite);
-    }
-  }, {
     key: "changeSkin",
     value: function changeSkin(armature) {
       var currentParent = this.sprite.parent;
@@ -89653,13 +89649,6 @@ var Character = /*#__PURE__*/function () {
         currentParent.addChild(this.game.npcs[armature].sprite);
         this.sprite = this.game.npcs[armature].sprite;
       }
-    }
-  }, {
-    key: "setScene",
-    value: function setScene(sceneName) {
-      //  let currentParent=this.sprite.parent;
-      //  currentParent.removeChild(this.sprite);
-      this.game.scenes[sceneName].container.addChild(this.sprite);
     }
   }]);
 
@@ -89982,7 +89971,8 @@ var NPC = /*#__PURE__*/function (_Character) {
   }, {
     key: "remove",
     value: function remove() {
-      this.sprite.parent.removeChild(this.sprite); //Check if we remove an object which is in an scene
+      var currentParent = this.sprite.parent;
+      currentParent.removeChild(this.sprite); //Remove from scene
 
       var scenesArray = Object.values(this.game.scenes);
       var i;
@@ -89994,6 +89984,11 @@ var NPC = /*#__PURE__*/function (_Character) {
           scenesArray[i].config.Characters.splice(tmpIndex, 1);
         }
       }
+    }
+  }, {
+    key: "setScene",
+    value: function setScene(sceneName) {
+      this.game.scenes[sceneName].container.addChild(this.sprite);
     }
   }]);
 
@@ -90371,13 +90366,16 @@ var Options = /*#__PURE__*/function () {
           this.game.music[this.game.activeScene.music].stop();
         }
 
+        if (this.game.settings.Options.Mute) this.iconSound.texture = PIXI.Texture.from(this.game.settings.Options.Mute);
         this.game.playSounds = false;
       } else {
         this.game.playSounds = true;
 
         if (this.game.activeScene.music !== undefined) {
-          this.game.music[this.game.activeScene.music].play(true);
+          this.game.music[this.game.activeScene.music].play();
         }
+
+        if (this.game.settings.Options.Sound && this.game.settings.Options.Mute) this.iconSound.texture = PIXI.Texture.from(this.game.settings.Options.Sound);
       }
     }
   }, {

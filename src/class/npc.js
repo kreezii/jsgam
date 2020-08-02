@@ -25,6 +25,7 @@ class NPC extends Character{
       this.pressTimeoutID=setTimeout(this.hold.bind(this), this.game.holdTime);
     }
   }
+
   //Object drag/touch ends
   release(){
     if(this.pressTimeoutID) clearTimeout(this.pressTimeoutID);
@@ -80,8 +81,10 @@ class NPC extends Character{
   }
 
   remove(){
-    this.sprite.parent.removeChild(this.sprite);
-    //Check if we remove an object which is in an scene
+    let currentParent=this.sprite.parent;
+    currentParent.removeChild(this.sprite);
+
+    //Remove from scene
     let scenesArray=Object.values(this.game.scenes)
     let i;
     let scenesLength=scenesArray.length;
@@ -91,6 +94,10 @@ class NPC extends Character{
         scenesArray[i].config.Characters.splice(tmpIndex,1);
       }
     }
+  }
+
+  setScene(sceneName){
+    this.game.scenes[sceneName].container.addChild(this.sprite);
   }
 }
 
