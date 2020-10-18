@@ -60,8 +60,8 @@ class Logo{
     this.game.setScene(this.game.titleLabel);
     this.game.fadeIn();
     if(this.game.options!==null){
-      this.app.stage.addChild(this.game.options.icon);
-      this.app.stage.addChild(this.game.options.container);
+      this.game.app.stage.addChild(this.game.options.icon);
+      this.game.app.stage.addChild(this.game.options.container);
     }
   }
 }

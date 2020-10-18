@@ -573,8 +573,8 @@ var _objectAssign = _interopRequireDefault(require("object-assign"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*!
- * @pixi/polyfill - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/polyfill - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/polyfill is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -854,8 +854,8 @@ var _ismobilejs = _interopRequireDefault(require("ismobilejs"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*!
- * @pixi/settings - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/settings - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/settings is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -2174,7 +2174,7 @@ earcut.flatten = function (data) {
     return result;
 };
 
-},{}],"GtVy":[function(require,module,exports) {
+},{}],"O2aP":[function(require,module,exports) {
 var global = arguments[3];
 var define;
 /*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -2711,7 +2711,7 @@ var define;
 
 }(this));
 
-},{}],"cG0P":[function(require,module,exports) {
+},{}],"RhWE":[function(require,module,exports) {
 'use strict';
 
 module.exports = {
@@ -2729,7 +2729,7 @@ module.exports = {
   }
 };
 
-},{}],"vNSc":[function(require,module,exports) {
+},{}],"rgkW":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2815,7 +2815,7 @@ module.exports = function (qs, sep, eq, options) {
 var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
-},{}],"AUvh":[function(require,module,exports) {
+},{}],"IEvL":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2904,12 +2904,12 @@ var objectKeys = Object.keys || function (obj) {
 
   return res;
 };
-},{}],"EHkK":[function(require,module,exports) {
+},{}],"tBmV":[function(require,module,exports) {
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
-},{"./decode":"vNSc","./encode":"AUvh"}],"IahG":[function(require,module,exports) {
+},{"./decode":"rgkW","./encode":"IEvL"}],"E4ju":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3643,7 +3643,7 @@ Url.prototype.parseHost = function() {
   if (host) this.hostname = host;
 };
 
-},{"punycode":"GtVy","./util":"cG0P","querystring":"EHkK"}],"LQBK":[function(require,module,exports) {
+},{"punycode":"O2aP","./util":"RhWE","querystring":"tBmV"}],"LQBK":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3652,8 +3652,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.WRAP_MODES = exports.TYPES = exports.TARGETS = exports.SCALE_MODES = exports.RENDERER_TYPE = exports.PRECISION = exports.MSAA_QUALITY = exports.MIPMAP_MODES = exports.MASK_TYPES = exports.GC_MODES = exports.FORMATS = exports.ENV = exports.DRAW_MODES = exports.CLEAR_MODES = exports.BUFFER_BITS = exports.BLEND_MODES = exports.ALPHA_MODES = void 0;
 
 /*!
- * @pixi/constants - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/constants - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/constants is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -4233,8 +4233,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*!
- * @pixi/utils - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/utils - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/utils is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -4265,7 +4265,7 @@ _settings.settings.RETINA_PREFIX = /@([0-9\.]+)x/;
 
 _settings.settings.FAIL_IF_MAJOR_PERFORMANCE_CAVEAT = true;
 var saidHello = false;
-var VERSION = '5.3.2';
+var VERSION = '5.3.3';
 /**
  * Skips the hello message of renderers that are created after this is run.
  *
@@ -5238,7 +5238,7 @@ function getResolutionOfUrl(url, defaultValue) {
  * console.log(PIXI.utils.hex2string(0xff00ff)); // returns: "#ff00ff"
  * @namespace PIXI.utils
  */
-},{"@pixi/settings":"t4Uo","eventemitter3":"JJlS","earcut":"vwhv","url":"IahG","@pixi/constants":"LQBK"}],"oNQC":[function(require,module,exports) {
+},{"@pixi/settings":"t4Uo","eventemitter3":"JJlS","earcut":"vwhv","url":"E4ju","@pixi/constants":"LQBK"}],"oNQC":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5247,8 +5247,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.groupD8 = exports.Transform = exports.SHAPES = exports.RoundedRectangle = exports.Rectangle = exports.RAD_TO_DEG = exports.Polygon = exports.Point = exports.PI_2 = exports.ObservablePoint = exports.Matrix = exports.Ellipse = exports.DEG_TO_RAD = exports.Circle = void 0;
 
 /*!
- * @pixi/math - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/math - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/math is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -7591,8 +7591,8 @@ var _math = require("@pixi/math");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/display - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/display - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/display is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -9571,8 +9571,8 @@ var _display = require("@pixi/display");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/accessibility - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/accessibility - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/accessibility is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -10256,8 +10256,8 @@ exports.UPDATE_PRIORITY = exports.TickerPlugin = exports.Ticker = void 0;
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/ticker - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/ticker - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/ticker is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -11249,8 +11249,8 @@ var _display = require("@pixi/display");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/interaction - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/interaction - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/interaction is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -13841,8 +13841,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.Runner = void 0;
 
 /*!
- * @pixi/runner - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/runner - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/runner is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -14093,8 +14093,8 @@ var _ticker = require("@pixi/ticker");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/core - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/core - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/core is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -27174,8 +27174,8 @@ var _display = require("@pixi/display");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/app - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/app - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/app is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -27499,8 +27499,8 @@ var _math = require("@pixi/math");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/extract - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/extract - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/extract is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -27741,7 +27741,8 @@ exports.Extract = Extract;
 },{"@pixi/utils":"G5Tu","@pixi/math":"oNQC","@pixi/core":"p2j5"}],"sX7F":[function(require,module,exports) {
 'use strict';
 
-module.exports = function parseURI(str, opts) {
+function parseURI(str, opts) {
+  if (!str) return undefined;
   opts = opts || {};
   var o = {
     key: ['source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'],
@@ -27765,7 +27766,9 @@ module.exports = function parseURI(str, opts) {
     if ($1) uri[o.q.name][$1] = $2;
   });
   return uri;
-};
+}
+
+module.exports = parseURI;
 },{}],"vKdq":[function(require,module,exports) {
 'use strict';
 
@@ -30296,8 +30299,8 @@ var _resourceLoader = require("resource-loader");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/loaders - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/loaders - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/loaders is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -30698,8 +30701,8 @@ var _core = require("@pixi/core");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/particles - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/particles - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/particles is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -31646,8 +31649,8 @@ var _constants = require("@pixi/constants");
 var _display = require("@pixi/display");
 
 /*!
- * @pixi/graphics - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/graphics - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/graphics is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -35498,8 +35501,8 @@ var _settings = require("@pixi/settings");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/sprite - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/sprite - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/sprite is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -36072,14 +36075,14 @@ function (_super) {
   });
   Object.defineProperty(Sprite.prototype, "anchor", {
     /**
-     * The anchor sets the origin point of the text. The default value is taken from the {@link PIXI.Texture|Texture}
+     * The anchor sets the origin point of the sprite. The default value is taken from the {@link PIXI.Texture|Texture}
      * and passed to the constructor.
      *
-     * The default is `(0,0)`, this means the text's origin is the top left.
+     * The default is `(0,0)`, this means the sprite's origin is the top left.
      *
-     * Setting the anchor to `(0.5,0.5)` means the text's origin is centered.
+     * Setting the anchor to `(0.5,0.5)` means the sprite's origin is centered.
      *
-     * Setting the anchor to `(1,1)` would mean the text's origin point will be the bottom right corner.
+     * Setting the anchor to `(1,1)` would mean the sprite's origin point will be the bottom right corner.
      *
      * If you pass only single parameter, it will set both x and y to the same value as shown in the example below.
      *
@@ -36174,8 +36177,8 @@ var _math = require("@pixi/math");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/text - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/text - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/text is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -38442,8 +38445,8 @@ var _display = require("@pixi/display");
 var _text = require("@pixi/text");
 
 /*!
- * @pixi/prepare - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/prepare - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/prepare is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39219,8 +39222,8 @@ var _utils = require("@pixi/utils");
 var _loaders = require("@pixi/loaders");
 
 /*!
- * @pixi/spritesheet - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/spritesheet - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/spritesheet is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39631,8 +39634,8 @@ var _utils = require("@pixi/utils");
 var _constants = require("@pixi/constants");
 
 /*!
- * @pixi/sprite-tiling - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/sprite-tiling - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/sprite-tiling is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -40128,8 +40131,8 @@ var _settings = require("@pixi/settings");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/mesh - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/mesh - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/mesh is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -40978,8 +40981,8 @@ var _display = require("@pixi/display");
 var _loaders = require("@pixi/loaders");
 
 /*!
- * @pixi/text-bitmap - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/text-bitmap - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/text-bitmap is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -41636,7 +41639,7 @@ function () {
     this.pageTextures = pageTextures; // Convert the input Texture, Textures or object
     // into a page Texture lookup by "id"
 
-    for (var i in data.page) {
+    for (var i = 0; i < data.page.length; i++) {
       var _a = data.page[i],
           id = _a.id,
           file = _a.file;
@@ -41644,7 +41647,7 @@ function () {
     } // parse letters
 
 
-    for (var i in data.char) {
+    for (var i = 0; i < data.char.length; i++) {
       var _b = data.char[i],
           id = _b.id,
           page_1 = _b.page;
@@ -41675,7 +41678,7 @@ function () {
     } // parse kernings
 
 
-    for (var i in data.kerning) {
+    for (var i = 0; i < data.kerning.length; i++) {
       var _d = data.kerning[i],
           first = _d.first,
           second = _d.second,
@@ -41766,7 +41769,25 @@ function () {
   };
   /**
    * Generates a bitmap-font for the given style and character set. This does not support
-   * kernings yet.
+   * kernings yet. With `style` properties, only the following non-layout properties are used:
+   *
+   * - {@link PIXI.TextStyle#dropShadow|dropShadow}
+   * - {@link PIXI.TextStyle#dropShadowDistance|dropShadowDistance}
+   * - {@link PIXI.TextStyle#dropShadowColor|dropShadowColor}
+   * - {@link PIXI.TextStyle#dropShadowBlur|dropShadowBlur}
+   * - {@link PIXI.TextStyle#dropShadowAngle|dropShadowAngle}
+   * - {@link PIXI.TextStyle#fill|fill}
+   * - {@link PIXI.TextStyle#fillGradientStops|fillGradientStops}
+   * - {@link PIXI.TextStyle#fillGradientType|fillGradientType}
+   * - {@link PIXI.TextStyle#fontFamily|fontFamily}
+   * - {@link PIXI.TextStyle#fontSize|fontSize}
+   * - {@link PIXI.TextStyle#fontVariant|fontVariant}
+   * - {@link PIXI.TextStyle#fontWeight|fontWeight}
+   * - {@link PIXI.TextStyle#lineJoin|lineJoin}
+   * - {@link PIXI.TextStyle#miterLimit|miterLimit}
+   * - {@link PIXI.TextStyle#stroke|stroke}
+   * - {@link PIXI.TextStyle#strokeThickness|strokeThickness}
+   * - {@link PIXI.TextStyle#textBaseline|textBaseline}
    *
    * @param {string} name - The name of the custom font to use with BitmapText.
    * @param {object|PIXI.TextStyle} [style] - Style options to render with BitmapFont.
@@ -41851,8 +41872,9 @@ function () {
         if (positionY === 0) {
           // We don't want user debugging an infinite loop (or do we? :)
           throw new Error("[BitmapFont] textureHeight " + textureHeight + "px is " + ("too small for " + style.fontSize + "px fonts"));
-        } // Create new atlas once current has filled up
+        }
 
+        --i; // Create new atlas once current has filled up
 
         canvas = null;
         context = null;
@@ -41878,7 +41900,7 @@ function () {
 
       var id = metrics.text.charCodeAt(0); // Create a texture holding just the glyph
 
-      fontData.char[id] = {
+      fontData.char.push({
         id: id,
         page: textures.length - 1,
         x: positionX / resolution,
@@ -41888,7 +41910,7 @@ function () {
         xoffset: 0,
         yoffset: 0,
         xadvance: Math.ceil(width - (style.dropShadow ? style.dropShadowDistance : 0) - (style.stroke ? style.strokeThickness : 0))
-      };
+      });
       positionX += (textureGlyphWidth + 2 * padding) * resolution;
       positionX = Math.ceil(positionX);
     }
@@ -42921,8 +42943,8 @@ exports.AlphaFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-alpha - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/filter-alpha - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/filter-alpha is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -43044,8 +43066,8 @@ var _core = require("@pixi/core");
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/filter-blur - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/filter-blur - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/filter-blur is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -43984,8 +44006,8 @@ exports.ColorMatrixFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-color-matrix - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/filter-color-matrix - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/filter-color-matrix is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -44527,8 +44549,8 @@ var _core = require("@pixi/core");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/filter-displacement - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/filter-displacement - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/filter-displacement is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -44697,8 +44719,8 @@ exports.FXAAFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-fxaa - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/filter-fxaa - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/filter-fxaa is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -44785,8 +44807,8 @@ exports.NoiseFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-noise - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/filter-noise - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/filter-noise is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -44933,8 +44955,8 @@ var _utils = require("@pixi/utils");
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/mixin-cache-as-bitmap - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/mixin-cache-as-bitmap - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/mixin-cache-as-bitmap is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -45309,8 +45331,8 @@ _display.DisplayObject.prototype._cacheAsBitmapDestroy = function _cacheAsBitmap
 var _display = require("@pixi/display");
 
 /*!
- * @pixi/mixin-get-child-by-name - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/mixin-get-child-by-name - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/mixin-get-child-by-name is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -45368,8 +45390,8 @@ var _display = require("@pixi/display");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/mixin-get-global-position - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/mixin-get-global-position - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/mixin-get-global-position is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -45419,8 +45441,8 @@ var _constants = require("@pixi/constants");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/mesh-extras - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/mesh-extras - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/mesh-extras is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -46329,8 +46351,8 @@ var _sprite = require("@pixi/sprite");
 var _ticker = require("@pixi/ticker");
 
 /*!
- * @pixi/sprite-animated - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * @pixi/sprite-animated - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * @pixi/sprite-animated is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -47219,8 +47241,8 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 /*!
- * pixi.js - v5.3.2
- * Compiled Mon, 27 Jul 2020 16:20:05 UTC
+ * pixi.js - v5.3.3
+ * Compiled Tue, 04 Aug 2020 16:23:09 UTC
  *
  * pixi.js is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -48689,7 +48711,7 @@ _app.Application.registerPlugin(_loaders.AppLoaderPlugin);
  */
 
 
-var VERSION = '5.3.2';
+var VERSION = '5.3.3';
 /**
  * @namespace PIXI
  */
@@ -49555,7 +49577,7 @@ function _inheritsLoose(subClass, superClass) {
   subClass.__proto__ = superClass;
 }
 /*!
- * GSAP 3.4.2
+ * GSAP 3.5.1
  * https://greensock.com
  *
  * @license Copyright 2008-2020, GreenSock. All rights reserved.
@@ -49612,7 +49634,9 @@ var _config = {
     _isFuncOrString = function _isFuncOrString(value) {
   return _isFunction(value) || _isString(value);
 },
-    _isArray = Array.isArray,
+    _isTypedArray = typeof ArrayBuffer === "function" && ArrayBuffer.isView || function () {},
+    // note: IE10 has ArrayBuffer, but NOT ArrayBuffer.isView().
+_isArray = Array.isArray,
     _strictNumExp = /(?:-?\.?\d|\.)+/gi,
     //only numbers (including negatives and decimals) but NOT relative values.
 _numExp = /[-+=.]*\d+[.e\-+]*\d*[e\-\+]*\d*/g,
@@ -49620,8 +49644,6 @@ _numExp = /[-+=.]*\d+[.e\-+]*\d*[e\-\+]*\d*/g,
 _numWithUnitExp = /[-+=.]*\d+[.e-]*\d*[a-z%]*/g,
     _complexStringNumExp = /[-+=.]*\d+(?:\.|e-|e)*\d*/gi,
     //duplicate so that while we're looping through matches from exec(), it doesn't contaminate the lastIndex of _numExp which we use to search for colors too.
-_parenthesesExp = /\(([^()]+)\)/i,
-    //finds the string between parentheses.
 _relExp = /[+-]=-?[\.\d]+/,
     _delimitedValueExp = /[#\-+.]*\b[a-z\d-=+%.]+/gi,
     _globalTimeline,
@@ -49659,10 +49681,7 @@ _relExp = /[+-]=-?[\.\d]+/,
   var target = targets[0],
       harnessPlugin,
       i;
-
-  if (!_isObject(target) && !_isFunction(target)) {
-    targets = [targets];
-  }
+  _isObject(target) || _isFunction(target) || (targets = [targets]);
 
   if (!(harnessPlugin = (target._gsap || {}).harness)) {
     i = _harnessPlugins.length;
@@ -49683,9 +49702,8 @@ _relExp = /[+-]=-?[\.\d]+/,
     _getCache = function _getCache(target) {
   return target._gsap || _harness(toArray(target))[0]._gsap;
 },
-    _getProperty = function _getProperty(target, property) {
-  var currentValue = target[property];
-  return _isFunction(currentValue) ? target[property]() : _isUndefined(currentValue) && target.getAttribute(property) || currentValue;
+    _getProperty = function _getProperty(target, property, v) {
+  return (v = target[property]) && _isFunction(v) ? target[property]() : _isUndefined(v) && target.getAttribute && target.getAttribute(property) || v;
 },
     _forEachName = function _forEachName(names, func) {
   return (names = names.split(",")).forEach(func) || names;
@@ -49710,10 +49728,7 @@ _round = function _round(value) {
       vars = params[varsIndex],
       irVars;
 
-  if (isLegacy) {
-    vars.duration = params[1];
-  }
-
+  isLegacy && (vars.duration = params[1]);
   vars.parent = parent;
 
   if (type) {
@@ -49726,12 +49741,7 @@ _round = function _round(value) {
     }
 
     vars.immediateRender = _isNotFalse(irVars.immediateRender);
-
-    if (type < 2) {
-      vars.runBackwards = 1;
-    } else {
-      vars.startAt = params[varsIndex - 1]; // "from" vars
-    }
+    type < 2 ? vars.runBackwards = 1 : vars.startAt = params[varsIndex - 1]; // "from" vars
   }
 
   return vars;
@@ -49757,7 +49767,7 @@ _round = function _round(value) {
 },
     _numericIfPossible = function _numericIfPossible(value) {
   var n = parseFloat(value);
-  return (n || n === 0) && (value + "").match(_delimitedValueExp).length < 2 ? n : value;
+  return (n || n === 0) && (value + "").match(_delimitedValueExp).length < 2 ? n : _isString(value) ? value.trim() : value;
 },
     _passThrough = function _passThrough(p) {
   return p;
@@ -49771,9 +49781,7 @@ _round = function _round(value) {
 },
     _setKeyframeDefaults = function _setKeyframeDefaults(obj, defaults) {
   for (var p in defaults) {
-    if (!(p in obj) && p !== "duration" && p !== "ease") {
-      obj[p] = defaults[p];
-    }
+    p in obj || p === "duration" || p === "ease" || (obj[p] = defaults[p]);
   }
 },
     _merge = function _merge(base, toMerge) {
@@ -49889,12 +49897,15 @@ _round = function _round(value) {
   child.parent && (!onlyIfParentHasAutoRemove || child.parent.autoRemoveChildren) && child.parent.remove(child);
   child._act = 0;
 },
-    _uncache = function _uncache(animation) {
-  var a = animation;
+    _uncache = function _uncache(animation, child) {
+  if (animation && (!child || child._end > animation._dur || child._start < 0)) {
+    // performance optimization: if a child animation is passed in we should only uncache if that child EXTENDS the animation (its end time is beyond the end)
+    var a = animation;
 
-  while (a) {
-    a._dirty = 1;
-    a = a.parent;
+    while (a) {
+      a._dirty = 1;
+      a = a.parent;
+    }
   }
 
   return animation;
@@ -49936,7 +49947,7 @@ _animationCycle = function _animationCycle(tTime, cycleDuration) {
 
     _setEnd(animation);
 
-    parent._dirty || _uncache(parent); //for performance improvement. If the parent's cache is already dirty, it already took care of marking the ancestors as dirty too, so skip the function call here.
+    parent._dirty || _uncache(parent, animation); //for performance improvement. If the parent's cache is already dirty, it already took care of marking the ancestors as dirty too, so skip the function call here.
   }
 
   return animation;
@@ -49965,7 +49976,7 @@ _postAddChecks = function _postAddChecks(timeline, child) {
   } //if the timeline has already ended but the inserted tween/timeline extends the duration, we should enable this timeline again so that it renders properly. We should also align the playhead with the parent timeline's when appropriate.
 
 
-  if (_uncache(timeline)._dp && timeline._initted && timeline._time >= timeline._dur && timeline._ts) {
+  if (_uncache(timeline, child)._dp && timeline._initted && timeline._time >= timeline._dur && timeline._ts) {
     //in case any of the ancestors had completed but should now be enabled...
     if (timeline._dur < timeline.duration()) {
       t = timeline;
@@ -50010,7 +50021,7 @@ _postAddChecks = function _postAddChecks(timeline, child) {
 },
     _renderZeroDurationTween = function _renderZeroDurationTween(tween, totalTime, suppressEvents, force) {
   var prevRatio = tween.ratio,
-      ratio = totalTime < 0 || !totalTime && prevRatio && !tween._start && tween._zTime > _tinyNum && !tween._dp._lock || tween._ts < 0 || tween._dp._ts < 0 ? 0 : 1,
+      ratio = totalTime < 0 || !totalTime && prevRatio && !tween._start && tween._zTime > _tinyNum && !tween._dp._lock || (tween._ts < 0 || tween._dp._ts < 0) && tween.data !== "isFromStart" && tween.data !== "isStart" ? 0 : 1,
       // check parent's _lock because when a timeline repeats/yoyos and does its artificial wrapping, we shouldn't force the ratio back to 0. Also, if the tween or its parent is reversed and the totalTime is 0, we should go to a ratio of 0.
   repeatDelay = tween._rDelay,
       tTime = 0,
@@ -50030,12 +50041,12 @@ _postAddChecks = function _postAddChecks(timeline, child) {
     }
   }
 
-  if (!tween._initted && _attemptInitTween(tween, totalTime, force, suppressEvents)) {
-    // if we render the very beginning (time == 0) of a fromTo(), we must force the render (normal tweens wouldn't need to render at a time of 0 when the prevTime was also 0). This is also mandatory to make sure overwriting kicks in immediately.
-    return;
-  }
-
   if (ratio !== prevRatio || force || tween._zTime === _tinyNum || !totalTime && tween._zTime) {
+    if (!tween._initted && _attemptInitTween(tween, totalTime, force, suppressEvents)) {
+      // if we render the very beginning (time == 0) of a fromTo(), we must force the render (normal tweens wouldn't need to render at a time of 0 when the prevTime was also 0). This is also mandatory to make sure overwriting kicks in immediately.
+      return;
+    }
+
     prevIteration = tween._zTime;
     tween._zTime = totalTime || (suppressEvents ? _tinyNum : 0); // when the playhead arrives at EXACTLY time 0 (right on top) of a zero-duration tween, we need to discern if events are suppressed so that when the playhead moves again (next time), it'll trigger the callback. If events are NOT suppressed, obviously the callback would be triggered in this render. Basically, the callback should fire either when the playhead ARRIVES or LEAVES this exact spot, not both. Imagine doing a timeline.seek(0) and there's a callback that sits at 0. Since events are suppressed on that seek() by default, nothing will fire, but when the playhead moves off of that position, the callback should fire. This behavior is what people intuitively expect.
 
@@ -50095,19 +50106,15 @@ _postAddChecks = function _postAddChecks(timeline, child) {
     }
   }
 },
-    _setDuration = function _setDuration(animation, duration, skipUncache) {
+    _setDuration = function _setDuration(animation, duration, skipUncache, leavePlayhead) {
   var repeat = animation._repeat,
-      dur = _round(duration) || 0;
+      dur = _round(duration) || 0,
+      totalProgress = animation._tTime / animation._tDur;
+  totalProgress && !leavePlayhead && (animation._time *= dur / animation._dur);
   animation._dur = dur;
   animation._tDur = !repeat ? dur : repeat < 0 ? 1e10 : _round(dur * (repeat + 1) + animation._rDelay * repeat);
-
-  if (animation._time > dur) {
-    animation._time = dur;
-    animation._tTime = Math.min(animation._tTime, animation._tDur);
-  }
-
-  !skipUncache && _uncache(animation.parent);
-  animation.parent && _setEnd(animation);
+  totalProgress && !leavePlayhead ? _alignPlayhead(animation, animation._tTime = animation._tDur * totalProgress) : animation.parent && _setEnd(animation);
+  skipUncache || _uncache(animation.parent, animation);
   return animation;
 },
     _onUpdateTotalDuration = function _onUpdateTotalDuration(animation) {
@@ -50153,9 +50160,10 @@ _postAddChecks = function _postAddChecks(timeline, child) {
   return value < min ? min : value > max ? max : value;
 },
     getUnit = function getUnit(value) {
-  return (value + "").substr((parseFloat(value) + "").length);
+  return (value = (value + "").substr((parseFloat(value) + "").length)) && isNaN(value) ? value : "";
 },
-    clamp = function clamp(min, max, value) {
+    // note: protect against padded numbers as strings, like "100.100". That shouldn't return "00" as the unit. If it's numeric, return no unit.
+clamp = function clamp(min, max, value) {
   return _conditionalReturn(value, function (v) {
     return _clamp(min, max, v);
   });
@@ -50383,7 +50391,7 @@ distribute = function distribute(v) {
     end = value.indexOf(")", i);
     isArray = value.charAt(i + 7) === "[";
     nums = value.substr(i + 7, end - i - 7).match(isArray ? _delimitedValueExp : _strictNumExp);
-    s += value.substr(prev, i - prev) + random(isArray ? nums : +nums[0], +nums[1], +nums[2] || 1e-5);
+    s += value.substr(prev, i - prev) + random(isArray ? nums : +nums[0], isArray ? 0 : +nums[1], +nums[2] || 1e-5);
     prev = end + 1;
   }
 
@@ -50492,10 +50500,7 @@ distribute = function distribute(v) {
     _interrupt = function _interrupt(animation) {
   _removeFromParent(animation);
 
-  if (animation.progress() < 1) {
-    _callback(animation, "onInterrupt");
-  }
-
+  animation.progress() < 1 && _callback(animation, "onInterrupt");
   return animation;
 },
     _quickTween,
@@ -50550,9 +50555,7 @@ distribute = function distribute(v) {
 
   _addGlobal(name, Plugin);
 
-  if (config.register) {
-    config.register(gsap, Plugin, PropTween);
-  }
+  config.register && config.register(gsap, Plugin, PropTween);
 },
 
 /*
@@ -50627,10 +50630,7 @@ _255 = 255,
         l = +a[2] / 100;
         g = l <= .5 ? l * (s + 1) : l + s - l * s;
         r = l * 2 - g;
-
-        if (a.length > 3) {
-          a[3] *= 1; //cast as number
-        }
+        a.length > 3 && (a[3] *= 1); //cast as number
 
         a[0] = _hue(h + 1 / 3, r, g);
         a[1] = _hue(h, r, g);
@@ -50767,38 +50767,44 @@ _tickerActive,
       _adjustedLag = 33,
       _startTime = _getTime(),
       _lastUpdate = _startTime,
-      _gap = 1 / 240,
+      _gap = 1000 / 240,
       _nextTime = _gap,
       _listeners = [],
       _id,
       _req,
       _raf,
       _self,
+      _delta,
+      _i,
       _tick = function _tick(v) {
     var elapsed = _getTime() - _lastUpdate,
         manual = v === true,
         overlap,
-        dispatch;
+        dispatch,
+        time,
+        frame;
 
-    if (elapsed > _lagThreshold) {
-      _startTime += elapsed - _adjustedLag;
-    }
-
+    elapsed > _lagThreshold && (_startTime += elapsed - _adjustedLag);
     _lastUpdate += elapsed;
-    _self.time = (_lastUpdate - _startTime) / 1000;
-    overlap = _self.time - _nextTime;
+    time = _lastUpdate - _startTime;
+    overlap = time - _nextTime;
 
     if (overlap > 0 || manual) {
-      _self.frame++;
-      _nextTime += overlap + (overlap >= _gap ? 0.004 : _gap - overlap);
+      frame = ++_self.frame;
+      _delta = time - _self.time * 1000;
+      _self.time = time = time / 1000;
+      _nextTime += overlap + (overlap >= _gap ? 4 : _gap - overlap);
       dispatch = 1;
     }
 
     manual || (_id = _req(_tick)); //make sure the request is made before we dispatch the "tick" event so that timing is maintained. Otherwise, if processing the "tick" requires a bunch of time (like 15ms) and we're using a setTimeout() that's based on 16.7ms, it'd technically take 31.7ms between frames otherwise.
 
-    dispatch && _listeners.forEach(function (l) {
-      return l(_self.time, elapsed, _self.frame, v);
-    });
+    if (dispatch) {
+      for (_i = 0; _i < _listeners.length; _i++) {
+        // use _i and check _listeners.length instead of a variable because a listener could get removed during the loop, and if that happens to an element less than the current index, it'd throw things off in the loop.
+        _listeners[_i](time, _delta, frame, v);
+      }
+    }
   };
 
   _self = {
@@ -50806,6 +50812,9 @@ _tickerActive,
     frame: 0,
     tick: function tick() {
       _tick(true);
+    },
+    deltaRatio: function deltaRatio(fps) {
+      return _delta / (1000 / (fps || 60));
     },
     wake: function wake() {
       if (_coreReady) {
@@ -50823,7 +50832,7 @@ _tickerActive,
         _id && _self.sleep();
 
         _req = _raf || function (f) {
-          return setTimeout(f, (_nextTime - _self.time) * 1000 + 1 | 0);
+          return setTimeout(f, _nextTime - _self.time * 1000 + 1 | 0);
         };
 
         _tickerActive = 1;
@@ -50842,8 +50851,8 @@ _tickerActive,
       _adjustedLag = Math.min(adjustedLag, _lagThreshold, 0);
     },
     fps: function fps(_fps) {
-      _gap = 1 / (_fps || 240);
-      _nextTime = _self.time + _gap;
+      _gap = 1000 / (_fps || 240);
+      _nextTime = _self.time * 1000 + _gap;
     },
     add: function add(callback) {
       _listeners.indexOf(callback) < 0 && _listeners.push(callback);
@@ -50852,7 +50861,7 @@ _tickerActive,
     },
     remove: function remove(callback) {
       var i;
-      ~(i = _listeners.indexOf(callback)) && _listeners.splice(i, 1);
+      ~(i = _listeners.indexOf(callback)) && _listeners.splice(i, 1) && _i >= i && _i--;
     },
     _listeners: _listeners
   };
@@ -50892,11 +50901,17 @@ _easeMap = {},
 
   return obj;
 },
+    _valueInParentheses = function _valueInParentheses(value) {
+  var open = value.indexOf("(") + 1,
+      close = value.indexOf(")"),
+      nested = value.indexOf("(", open);
+  return value.substring(open, ~nested && nested < close ? value.indexOf(")", close + 1) : close);
+},
     _configEaseFromString = function _configEaseFromString(name) {
   //name can be a string like "elastic.out(1,0.5)", and pass in _easeMap as obj and it'll parse it out and call the actual function like _easeMap.Elastic.easeOut.config(1,0.5). It will also parse custom ease strings as long as CustomEase is loaded and registered (internally as _easeMap._CE).
   var split = (name + "").split("("),
       ease = _easeMap[split[0]];
-  return ease && split.length > 1 && ease.config ? ease.config.apply(null, ~name.indexOf("{") ? [_parseObjectInString(split[1])] : _parenthesesExp.exec(name)[1].split(",").map(_numericIfPossible)) : _easeMap._CE && _customEaseExp.test(name) ? _easeMap._CE("", name) : ease;
+  return ease && split.length > 1 && ease.config ? ease.config.apply(null, ~name.indexOf("{") ? [_parseObjectInString(split[1])] : _valueInParentheses(name).split(",").map(_numericIfPossible)) : _easeMap._CE && _customEaseExp.test(name) ? _easeMap._CE("", name) : ease;
 },
     _invertEase = function _invertEase(ease) {
   return function (p) {
@@ -51152,7 +51167,7 @@ var Animation = /*#__PURE__*/function () {
 
     this._ts = 1;
 
-    _setDuration(this, +vars.duration, 1);
+    _setDuration(this, +vars.duration, 1, 1);
 
     this.data = vars.data;
     _tickerActive || _ticker.wake();
@@ -51183,11 +51198,7 @@ var Animation = /*#__PURE__*/function () {
     }
 
     this._dirty = 0;
-    var t = this._time / this._dur || 0;
-
-    _setDuration(this, this._repeat < 0 ? value : (value - this._repeat * this._rDelay) / (this._repeat + 1));
-
-    return this._tTime ? _alignPlayhead(this, t * value + _elapsedCycleDuration(this)) : this; // in case the animation hasn't even started yet and it has a delay. Aligning the playhead in that case would make it appear to lose the delay.
+    return _setDuration(this, this._repeat < 0 ? value : (value - this._repeat * this._rDelay) / (this._repeat + 1));
   };
 
   _proto.totalTime = function totalTime(_totalTime, suppressEvents) {
@@ -51217,7 +51228,8 @@ var Animation = /*#__PURE__*/function () {
       }
     }
 
-    if (this._tTime !== _totalTime || !this._dur && !suppressEvents || this._initted && Math.abs(this._zTime) === _tinyNum || !_totalTime && !this._initted) {
+    if (this._tTime !== _totalTime || !this._dur && !suppressEvents || this._initted && Math.abs(this._zTime) === _tinyNum || !_totalTime && !this._initted && (this.add || this._ptLookup)) {
+      // check for _ptLookup on a Tween instance to ensure it has actually finished being instantiated, otherwise if this.reverse() gets called in the Animation constructor, it could trigger a render() here even though the _targets weren't populated, thus when _init() is called there won't be any PropTweens (it'll act like the tween is non-functional)
       this._ts || (this._pTime = _totalTime); // otherwise, if an animation is paused, then the playhead is moved back to zero, then resumed, it'd revert back to the original time at the pause
 
       _lazySafeRender(this, _totalTime, suppressEvents);
@@ -51365,26 +51377,17 @@ var Animation = /*#__PURE__*/function () {
   };
 
   _proto.play = function play(from, suppressEvents) {
-    if (from != null) {
-      this.seek(from, suppressEvents);
-    }
-
+    from != null && this.seek(from, suppressEvents);
     return this.reversed(false).paused(false);
   };
 
   _proto.reverse = function reverse(from, suppressEvents) {
-    if (from != null) {
-      this.seek(from || this.totalDuration(), suppressEvents);
-    }
-
+    from != null && this.seek(from || this.totalDuration(), suppressEvents);
     return this.reversed(true).paused(false);
   };
 
   _proto.pause = function pause(atTime, suppressEvents) {
-    if (atTime != null) {
-      this.seek(atTime, suppressEvents);
-    }
-
+    atTime != null && this.seek(atTime, suppressEvents);
     return this.paused(true);
   };
 
@@ -51394,9 +51397,7 @@ var Animation = /*#__PURE__*/function () {
 
   _proto.reversed = function reversed(value) {
     if (arguments.length) {
-      if (!!value !== this.reversed()) {
-        this.timeScale(-this._rts || (value ? -_tinyNum : 0)); // in case timeScale is zero, reversing would have no effect so we use _tinyNum.
-      }
+      !!value !== this.reversed() && this.timeScale(-this._rts || (value ? -_tinyNum : 0)); // in case timeScale is zero, reversing would have no effect so we use _tinyNum.
 
       return this;
     }
@@ -51425,14 +51426,8 @@ var Animation = /*#__PURE__*/function () {
         delete vars[type];
       } else {
         vars[type] = callback;
-
-        if (params) {
-          vars[type + "Params"] = params;
-        }
-
-        if (type === "onUpdate") {
-          this._onUpdate = callback;
-        }
+        params && (vars[type + "Params"] = params);
+        type === "onUpdate" && (this._onUpdate = callback);
       }
 
       return this;
@@ -51614,15 +51609,19 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         cycleDuration = dur + this._rDelay;
         time = _round(tTime % cycleDuration); //round to avoid floating point errors. (4 % 0.8 should be 0 but some browsers report it as 0.79999999!)
 
-        if (time > dur || tDur === tTime) {
+        if (tTime === tDur) {
+          // the tDur === tTime is for edge cases where there's a lengthy decimal on the duration and it may reach the very end but the time is rendered as not-quite-there (remember, tDur is rounded to 4 decimals whereas dur isn't)
+          iteration = this._repeat;
           time = dur;
-        }
+        } else {
+          iteration = ~~(tTime / cycleDuration);
 
-        iteration = ~~(tTime / cycleDuration);
+          if (iteration && iteration === tTime / cycleDuration) {
+            time = dur;
+            iteration--;
+          }
 
-        if (iteration && iteration === tTime / cycleDuration) {
-          time = dur;
-          iteration--;
+          time > dur && (time = dur);
         }
 
         prevIteration = _animationCycle(this._tTime, cycleDuration);
@@ -51645,28 +51644,24 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         if (iteration !== prevIteration && !this._lock) {
           var rewinding = yoyo && prevIteration & 1,
               doesWrap = rewinding === (yoyo && iteration & 1);
-
-          if (iteration < prevIteration) {
-            rewinding = !rewinding;
-          }
-
+          iteration < prevIteration && (rewinding = !rewinding);
           prevTime = rewinding ? 0 : dur;
           this._lock = 1;
           this.render(prevTime || (isYoyo ? 0 : _round(iteration * cycleDuration)), suppressEvents, !dur)._lock = 0;
-
-          if (!suppressEvents && this.parent) {
-            _callback(this, "onRepeat");
-          }
-
+          !suppressEvents && this.parent && _callback(this, "onRepeat");
           this.vars.repeatRefresh && !isYoyo && (this.invalidate()._lock = 1);
 
           if (prevTime !== this._time || prevPaused !== !this._ts) {
             return this;
           }
 
+          dur = this._dur; // in case the duration changed in the onRepeat
+
+          tDur = this._tDur;
+
           if (doesWrap) {
             this._lock = 2;
-            prevTime = rewinding ? dur + 0.0001 : -0.0001;
+            prevTime = rewinding ? dur : -0.0001;
             this.render(prevTime, true);
             this.vars.repeatRefresh && !isYoyo && this.invalidate();
           }
@@ -51700,9 +51695,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         this._zTime = totalTime;
       }
 
-      if (!prevTime && time && !suppressEvents) {
-        _callback(this, "onStart");
-      }
+      !prevTime && time && !suppressEvents && _callback(this, "onStart");
 
       if (time >= prevTime && totalTime >= 0) {
         child = this._first;
@@ -51798,7 +51791,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         child.forEach(function (obj) {
           return _this2.add(obj, position);
         });
-        return _uncache(this);
+        return this;
       }
 
       if (_isString(child)) {
@@ -51976,11 +51969,12 @@ var Timeline = /*#__PURE__*/function (_Animation) {
       ease: "none",
       lazy: false,
       time: endTime,
+      overwrite: "auto",
       duration: vars.duration || Math.abs((endTime - (startAt && "time" in startAt ? startAt.time : tl._time)) / tl.timeScale()) || _tinyNum,
       onStart: function onStart() {
         tl.pause();
         var duration = vars.duration || Math.abs((endTime - tl._time) / tl.timeScale());
-        tween._dur !== duration && _setDuration(tween, duration).render(tween._time, true, true);
+        tween._dur !== duration && _setDuration(tween, duration, 0, 1).render(tween._time, true, true);
         _onStart && _onStart.apply(tween, onStartParams || []); //in case the user had an onStart in the vars - we don't want to overwrite it.
       }
     }));
@@ -52032,6 +52026,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
     while (child) {
       if (child._start >= ignoreBeforeTime) {
         child._start += amount;
+        child._end += amount;
       }
 
       child = child._next;
@@ -52075,11 +52070,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
     }
 
     this._time = this._tTime = this._pTime = 0;
-
-    if (includeLabels) {
-      this.labels = {};
-    }
-
+    includeLabels && (this.labels = {});
     return _uncache(this);
   };
 
@@ -52089,7 +52080,6 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         child = self._last,
         prevStart = _bigNum,
         prev,
-        end,
         start,
         parent;
 
@@ -52130,16 +52120,11 @@ var Timeline = /*#__PURE__*/function (_Animation) {
           prevStart = 0;
         }
 
-        end = _setEnd(child);
-
-        if (end > max && child._ts) {
-          max = end;
-        }
-
+        child._end > max && child._ts && (max = child._end);
         child = prev;
       }
 
-      _setDuration(self, self === _globalTimeline && self._time > max ? self._time : max, 1);
+      _setDuration(self, self === _globalTimeline && self._time > max ? self._time : max, 1, 1);
 
       self._dirty = 0;
     }
@@ -52279,11 +52264,9 @@ var _addComplexStringPropTween = function _addComplexStringPropTween(target, pro
 },
     //creates a copy of the vars object and processes any function-based values (putting the resulting values directly into the copy) as well as strings with "random()" in them. It does NOT process relative values.
 _processVars = function _processVars(vars, index, target, targets, tween) {
-  if (_isFunction(vars)) {
-    vars = _parseFuncOrString(vars, tween, index, target, targets);
-  }
+  _isFunction(vars) && (vars = _parseFuncOrString(vars, tween, index, target, targets));
 
-  if (!_isObject(vars) || vars.style && vars.nodeType || _isArray(vars)) {
+  if (!_isObject(vars) || vars.style && vars.nodeType || _isArray(vars) || _isTypedArray(vars)) {
     return _isString(vars) ? _parseFuncOrString(vars, tween, index, target, targets) : vars;
   }
 
@@ -52387,9 +52370,9 @@ _initTween = function _initTween(tween, time) {
 
       if (immediateRender) {
         if (time > 0) {
-          !autoRevert && (tween._startAt = 0); //tweens that render immediately (like most from() and fromTo() tweens) shouldn't revert when their parent timeline's playhead goes backward past the startTime because the initial render could have happened anytime and it shouldn't be directly correlated to this tween's startTime. Imagine setting up a complex animation where the beginning states of various objects are rendered immediately but the tween doesn't happen for quite some time - if we revert to the starting values as soon as the playhead goes backward past the tween's startTime, it will throw things off visually. Reversion should only happen in Timeline instances where immediateRender was false or when autoRevert is explicitly set to true.
+          autoRevert || (tween._startAt = 0); //tweens that render immediately (like most from() and fromTo() tweens) shouldn't revert when their parent timeline's playhead goes backward past the startTime because the initial render could have happened anytime and it shouldn't be directly correlated to this tween's startTime. Imagine setting up a complex animation where the beginning states of various objects are rendered immediately but the tween doesn't happen for quite some time - if we revert to the starting values as soon as the playhead goes backward past the tween's startTime, it will throw things off visually. Reversion should only happen in Timeline instances where immediateRender was false or when autoRevert is explicitly set to true.
         } else if (dur && !(time < 0 && prevStartAt)) {
-          tween._zTime = time;
+          time && (tween._zTime = time);
           return; //we skip initialization here so that overwriting doesn't occur until the tween actually begins. Otherwise, if you create several immediateRender:true tweens of the same target/properties to drop into a Timeline, the last one created would overwrite the first ones because they didn't get placed into the timeline yet before the first render occurs and kicks in overwriting.
         }
       }
@@ -52431,7 +52414,7 @@ _initTween = function _initTween(tween, time) {
       target = targets[i];
       gsData = target._gsap || _harness(targets)[i]._gsap;
       tween._ptLookup[i] = ptLookup = {};
-      _lazyLookup[gsData.id] && _lazyRender(); //if other tweens of the same target have recently initted but haven't rendered yet, we've got to force the render so that the starting values are correct (imagine populating a timeline with a bunch of sequential tweens and then jumping to the end)
+      _lazyLookup[gsData.id] && _lazyTweens.length && _lazyRender(); //if other tweens of the same target have recently initted but haven't rendered yet, we've got to force the render so that the starting values are correct (imagine populating a timeline with a bunch of sequential tweens and then jumping to the end)
 
       index = fullTargets === targets ? i : fullTargets.indexOf(target);
 
@@ -52544,7 +52527,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
         scrollTrigger = _this3$vars.scrollTrigger,
         yoyoEase = _this3$vars.yoyoEase,
         parent = _this3.parent,
-        parsedTargets = (_isArray(targets) ? _isNumber(targets[0]) : "length" in vars) ? [targets] : toArray(targets),
+        parsedTargets = (_isArray(targets) || _isTypedArray(targets) ? _isNumber(targets[0]) : "length" in vars) ? [targets] : toArray(targets),
         tl,
         i,
         copy,
@@ -52674,16 +52657,19 @@ var Tween = /*#__PURE__*/function (_Animation2) {
         cycleDuration = dur + this._rDelay;
         time = _round(tTime % cycleDuration); //round to avoid floating point errors. (4 % 0.8 should be 0 but some browsers report it as 0.79999999!)
 
-        if (time > dur || tDur === tTime) {
+        if (tTime === tDur) {
           // the tDur === tTime is for edge cases where there's a lengthy decimal on the duration and it may reach the very end but the time is rendered as not-quite-there (remember, tDur is rounded to 4 decimals whereas dur isn't)
+          iteration = this._repeat;
           time = dur;
-        }
+        } else {
+          iteration = ~~(tTime / cycleDuration);
 
-        iteration = ~~(tTime / cycleDuration);
+          if (iteration && iteration === tTime / cycleDuration) {
+            time = dur;
+            iteration--;
+          }
 
-        if (iteration && iteration === tTime / cycleDuration) {
-          time = dur;
-          iteration--;
+          time > dur && (time = dur);
         }
 
         isYoyo = this._yoyo && iteration & 1;
@@ -52750,10 +52736,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
       timeline && timeline.render(totalTime < 0 ? totalTime : !time && isYoyo ? -_tinyNum : timeline._dur * ratio, suppressEvents, force) || this._startAt && (this._zTime = totalTime);
 
       if (this._onUpdate && !suppressEvents) {
-        if (totalTime < 0 && this._startAt) {
-          this._startAt.render(totalTime, true, force); //note: for performance reasons, we tuck this conditional logic inside less traveled areas (most tweens don't have an onUpdate). We'd just have it at the end before the onComplete, but the values should be updated before any onUpdate is called, so we ALSO put it here and then if it's not called, we do so later near the onComplete.
-
-        }
+        totalTime < 0 && this._startAt && this._startAt.render(totalTime, true, force); //note: for performance reasons, we tuck this conditional logic inside less traveled areas (most tweens don't have an onUpdate). We'd just have it at the end before the onComplete, but the values should be updated before any onUpdate is called, so we ALSO put it here and then if it's not called, we do so later near the onComplete.
 
         _callback(this, "onUpdate");
       }
@@ -52804,7 +52787,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
       var tDur = this.timeline.totalDuration();
       this.timeline.killTweensOf(targets, vars, _overwritingTween && _overwritingTween.vars.overwrite !== true)._first || _interrupt(this); // if nothing is left tweenng, interrupt.
 
-      this.parent && tDur !== this.timeline.totalDuration() && _setDuration(this, this._dur * this.timeline._tDur / tDur); // if a nested tween is killed that changes the duration, it should affect this tween's duration. We must use the ratio, though, because sometimes the internal timeline is stretched like for keyframes where they don't all add up to whatever the parent tween's duration was set to.
+      this.parent && tDur !== this.timeline.totalDuration() && _setDuration(this, this._dur * this.timeline._tDur / tDur, 0, 1); // if a nested tween is killed that changes the duration, it should affect this tween's duration. We must use the ratio, though, because sometimes the internal timeline is stretched like for keyframes where they don't all add up to whatever the parent tween's duration was set to.
 
       return this;
     }
@@ -53011,11 +52994,7 @@ var _setterPlain = function _setterPlain(target, property, value) {
 
   while (pt) {
     next = pt._next;
-
-    if (pt.p === property) {
-      pt.modifier(modifier, tween, target);
-    }
-
+    pt.p === property && pt.modifier(modifier, tween, target);
     pt = next;
   }
 },
@@ -53151,18 +53130,12 @@ var _gsap = {
     return _globalTimeline.getTweensOf(targets, onlyActive);
   },
   getProperty: function getProperty(target, property, unit, uncache) {
-    if (_isString(target)) {
-      //in case selector text or an array is passed in
-      target = toArray(target)[0];
-    }
+    _isString(target) && (target = toArray(target)[0]); //in case selector text or an array is passed in
 
     var getter = _getCache(target || {}).get,
         format = unit ? _passThrough : _numericIfPossible;
 
-    if (unit === "native") {
-      unit = "";
-    }
-
+    unit === "native" && (unit = "");
     return !target ? target : !property ? function (property, unit, uncache) {
       return format((_plugins[property] && _plugins[property].get || getter)(target, property, unit, uncache));
     } : format((_plugins[property] && _plugins[property].get || getter)(target, property, unit, uncache));
@@ -53206,10 +53179,7 @@ var _gsap = {
     return _globalTimeline.getTweensOf(targets, true).length > 0;
   },
   defaults: function defaults(value) {
-    if (value && value.ease) {
-      value.ease = _parseEase(value.ease, _defaults.ease);
-    }
-
+    value && value.ease && (value.ease = _parseEase(value.ease, _defaults.ease));
     return _mergeDeep(_defaults, value || {});
   },
   config: function config(value) {
@@ -53395,7 +53365,7 @@ var gsap = _gsap.registerPlugin({
 
     for (p in vars) {
       pt = this.add(target, "setAttribute", (target.getAttribute(p) || 0) + "", vars[p], index, targets, 0, 0, p);
-      pt && (pt.op = p); //this.add(target, "setAttribute", (target.getAttribute((p in target.dataset ? (p = "data-" + p) : p)) || 0) + "", vars[p], index, targets, 0, 0, p);
+      pt && (pt.op = p);
 
       this._props.push(p);
     }
@@ -53413,7 +53383,7 @@ var gsap = _gsap.registerPlugin({
 
 
 exports.default = exports.gsap = gsap;
-Tween.version = Timeline.version = gsap.version = "3.4.2";
+Tween.version = Timeline.version = gsap.version = "3.5.1";
 _coreReady = 1;
 
 if (_windowExists()) {
@@ -53467,7 +53437,7 @@ exports.checkPrefix = exports._createElement = exports._getBBox = exports.defaul
 var _gsapCore = require("./gsap-core.js");
 
 /*!
- * CSSPlugin 3.4.2
+ * CSSPlugin 3.5.1
  * https://greensock.com
  *
  * Copyright 2008-2020, GreenSock. All rights reserved.
@@ -54665,10 +54635,7 @@ var CSSPlugin = {
         cache,
         smooth,
         hasPriority;
-
-    if (!_pluginInitted) {
-      _initCore();
-    }
+    _pluginInitted || _initCore();
 
     for (p in vars) {
       if (p === "autoRound") {
@@ -54701,7 +54668,7 @@ var CSSPlugin = {
       } else if (p.substr(0, 2) === "--") {
         //CSS variable
         this.add(style, "setProperty", getComputedStyle(target).getPropertyValue(p) + "", endValue + "", index, targets, 0, 0, p);
-      } else {
+      } else if (type !== "undefined") {
         startValue = _get(target, p);
         startNum = parseFloat(startValue);
         relative = type === "string" && endValue.charAt(1) === "=" ? +(endValue.charAt(0) + "1") : 0;
@@ -54725,10 +54692,7 @@ var CSSPlugin = {
 
           if (p !== "scale" && p !== "transform") {
             p = _propertyAliases[p];
-
-            if (~p.indexOf(",")) {
-              p = p.split(",")[0];
-            }
+            ~p.indexOf(",") && (p = p.split(",")[0]);
           }
         }
 
@@ -54757,9 +54721,7 @@ var CSSPlugin = {
             } else {
               endUnit = parseFloat(endValue.split(" ")[2]) || 0; //handle the zOrigin separately!
 
-              if (endUnit !== cache.zOrigin) {
-                _addNonTweeningPT(this, cache, "zOrigin", cache.zOrigin, endUnit);
-              }
+              endUnit !== cache.zOrigin && _addNonTweeningPT(this, cache, "zOrigin", cache.zOrigin, endUnit);
 
               _addNonTweeningPT(this, style, p, _firstTwoOnly(startValue), _firstTwoOnly(endValue));
             }
@@ -54793,12 +54755,8 @@ var CSSPlugin = {
           startUnit = (startValue + "").substr((startNum + "").length);
           endNum || (endNum = 0); // protect against NaN
 
-          endUnit = (endValue + "").substr((endNum + "").length) || (p in _gsapCore._config.units ? _gsapCore._config.units[p] : startUnit);
-
-          if (startUnit !== endUnit) {
-            startNum = _convertToUnit(target, p, startValue, endUnit);
-          }
-
+          endUnit = (0, _gsapCore.getUnit)(endValue) || (p in _gsapCore._config.units ? _gsapCore._config.units[p] : startUnit);
+          startUnit !== endUnit && (startNum = _convertToUnit(target, p, startValue, endUnit));
           this._pt = new _gsapCore.PropTween(this._pt, isTransformRelated ? cache : style, p, startNum, relative ? relative * endNum : endNum - startNum, endUnit === "px" && vars.autoRound !== false && !isTransformRelated ? _renderRoundedCSSProp : _renderCSSProp);
           this._pt.u = endUnit || 0;
 
@@ -54823,9 +54781,7 @@ var CSSPlugin = {
       }
     }
 
-    if (hasPriority) {
-      (0, _gsapCore._sortPropTweensByPriority)(this);
-    }
+    hasPriority && (0, _gsapCore._sortPropTweensByPriority)(this);
   },
   get: _get,
   aliases: _propertyAliases,
@@ -55022,7 +54978,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = exports.PixiPlugin = void 0;
 
 /*!
- * PixiPlugin 3.4.2
+ * PixiPlugin 3.5.1
  * https://greensock.com
  *
  * @license Copyright 2008-2020, GreenSock. All rights reserved.
@@ -55392,7 +55348,7 @@ for (i = 0; i < _xyContexts.length; i++) {
 }
 
 var PixiPlugin = {
-  version: "3.4.2",
+  version: "3.5.1",
   name: "pixi",
   register: function register(core, Plugin, propTween) {
     gsap = core;
@@ -55511,7 +55467,7 @@ exports.subdivideSegmentNear = subdivideSegmentNear;
 exports.rawPathToString = rawPathToString;
 
 /*!
- * paths 3.4.2
+ * paths 3.5.1
  * https://greensock.com
  *
  * Copyright 2008-2020, GreenSock. All rights reserved.
@@ -55880,18 +55836,10 @@ function sliceRawPath(rawPath, start, end) {
 
     if (!e.t) {
       eSegIndex--;
-
-      if (reverse) {
-        sSegIndex--;
-      }
+      reverse && sSegIndex--;
     } else if (_splitSegment(path, eSegIndex, ei, e.t)) {
-      if (invertedOrder && sShift) {
-        sSegIndex++;
-      }
-
-      if (reverse) {
-        eSegIndex++;
-      }
+      invertedOrder && sShift && sSegIndex++;
+      reverse && eSegIndex++;
     }
 
     copy = [];
@@ -55953,13 +55901,10 @@ function sliceRawPath(rawPath, start, end) {
     }
   }
 
-  if (reverse) {
-    _reverseRawPath(path, wrap || loops);
-  }
-
+  reverse && _reverseRawPath(path, wrap || loops);
   path.totalLength = 0;
   return path;
-} //measures a Segment according to its resolution (so if segment.resolution is 6, for example, it'll take 6 samples equally across each Bezier) and create/populate a "samples" array that has the length up to each of those sample points (always increasing from the start) as well as a "lookup" array that's broken up according to the smallest distance between 2 samples. This gives us a very fast way of looking up a progress position rather than looping through all the points/Beziers. You can optionally have it only measure a subset, starting at startIndex and going for a specific number of beziers (remember, there are 3 x/y pairs each, for a total of 6 elements for each Bezier). It will also populate a "totalLength" property, but that's not generally super accurate because by default it'll only take 6 samples per Bezier. But for performance reasons, it's perfectly adequate for measuring progress values along the path. If you need a more accurate totalLength, either increase the resolution or use the more advanced bezierToPoints() method which keeps adding points until they don't deviate by more than a certain precision value.
+} //measures a Segment according to its resolution (so if segment.resolution is 6, for example, it'll take 6 samples equally across each Bezier) and create/populate a "samples" Array that has the length up to each of those sample points (always increasing from the start) as well as a "lookup" array that's broken up according to the smallest distance between 2 samples. This gives us a very fast way of looking up a progress position rather than looping through all the points/Beziers. You can optionally have it only measure a subset, starting at startIndex and going for a specific number of beziers (remember, there are 3 x/y pairs each, for a total of 6 elements for each Bezier). It will also populate a "totalLength" property, but that's not generally super accurate because by default it'll only take 6 samples per Bezier. But for performance reasons, it's perfectly adequate for measuring progress values along the path. If you need a more accurate totalLength, either increase the resolution or use the more advanced bezierToPoints() method which keeps adding points until they don't deviate by more than a certain precision value.
 
 
 function measureSegment(segment, startIndex, bezierQty) {
@@ -57038,7 +56983,7 @@ exports.getGlobalMatrix = getGlobalMatrix;
 exports.Matrix2D = void 0;
 
 /*!
- * matrix 3.4.2
+ * matrix 3.5.1
  * https://greensock.com
  *
  * Copyright 2008-2020, GreenSock. All rights reserved.
@@ -57440,7 +57385,7 @@ var _paths = require("./utils/paths.js");
 var _matrix = require("./utils/matrix.js");
 
 /*!
- * MotionPathPlugin 3.4.2
+ * MotionPathPlugin 3.5.1
  * https://greensock.com
  *
  * @license Copyright 2008-2020, GreenSock. All rights reserved.
@@ -57639,7 +57584,7 @@ var _xProps = ["x", "translateX", "left", "marginLeft"],
 };
 
 var MotionPathPlugin = {
-  version: "3.4.2",
+  version: "3.5.1",
   name: "motionPath",
   register: function register(core, Plugin, propTween) {
     gsap = core;
@@ -57700,9 +57645,7 @@ var MotionPathPlugin = {
       }
 
       for (p in firstObj) {
-        if (p !== x && p !== y) {
-          rawPaths.push(_segmentToRawPath(this, _populateSegmentFromArray([], path, p, 2), target, p, 0, slicer, vars));
-        }
+        p !== x && p !== y && rawPaths.push(_segmentToRawPath(this, _populateSegmentFromArray([], path, p, 2), target, p, 0, slicer, vars));
       }
     } else {
       rawPath = slicer(_align((0, _paths.getRawPath)(vars.path), target, vars));
@@ -60998,7 +60941,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -61177,7 +61120,7 @@ var define;
 var global = arguments[3];
 /*!
     localForage -- Offline Storage, Improved
-    Version 1.8.1
+    Version 1.9.0
     https://localforage.github.io/localForage
     (c) 2013-2017 Mozilla, Apache License 2.0
 */
@@ -64272,7 +64215,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -64656,7 +64599,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -64772,7 +64715,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -65114,7 +65057,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -65210,7 +65153,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -71408,7 +71351,7 @@ wings_jsCanvas_CanvasHeader.__meta__ = { fields : { parseInt : { 'static' : null
 })(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this, typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 
 },{}],"FuT9":[function(require,module,exports) {
-var hxDaedalus = require('hxdaedalus-js').hxDaedalus;
+var hxDaedalus = require("hxdaedalus-js").hxDaedalus;
 
 var RectMesh = hxDaedalus.factories.RectMesh;
 var EntityAI = hxDaedalus.ai.EntityAI;
@@ -71428,7 +71371,7 @@ function Walkable(width, height) {
   this.path = [];
 }
 
-Walkable.prototype.addRect = function(w, h, x, y) {
+Walkable.prototype.addRect = function (w, h, x, y) {
   var obj = new DaedalusObject();
   obj.set_coordinates([0, 0, 0, h, 0, h, w, h, w, h, w, 0, w, 0, 0, 0]);
   obj.set_x(x);
@@ -71438,9 +71381,9 @@ Walkable.prototype.addRect = function(w, h, x, y) {
   return obj;
 };
 
-Walkable.prototype.addPolygon = function(vertices, x, y) {
+Walkable.prototype.addPolygon = function (vertices, x, y) {
   if (vertices.length < 6) {
-    console.log('Polygons must contain at least 3 points!');
+    console.log("Polygons must contain at least 3 points!");
     return;
   }
   var obj = new DaedalusObject();
@@ -71450,7 +71393,8 @@ Walkable.prototype.addPolygon = function(vertices, x, y) {
     prevY = vertices[vertices.length - 1];
 
   for (var i = 0; i < vertices.length; i += 2) {
-    var currX = vertices[i], currY = vertices[i + 1];
+    var currX = vertices[i],
+      currY = vertices[i + 1];
     coords.push(prevX, prevY, currX, currY);
     prevX = currX;
     prevY = currY;
@@ -71464,18 +71408,20 @@ Walkable.prototype.addPolygon = function(vertices, x, y) {
   return obj;
 };
 
-Walkable.prototype.addPolyline = function(vertices, x, y) {
+Walkable.prototype.addPolyline = function (vertices, x, y) {
   if (vertices.length < 4) {
-    console.log('Polylines must contain at least 2 points!');
+    console.log("Polylines must contain at least 2 points!");
     return;
   }
   var obj = new DaedalusObject();
   var coords = [];
 
-  var prevX = 0, prevY = 0;
+  var prevX = 0,
+    prevY = 0;
 
   for (var i = 0; i < vertices.length; i += 2) {
-    var currX = vertices[i], currY = vertices[i + 1];
+    var currX = vertices[i],
+      currY = vertices[i + 1];
     if (i > 0) {
       coords.push(prevX, prevY, currX, currY);
     }
@@ -71491,11 +71437,11 @@ Walkable.prototype.addPolyline = function(vertices, x, y) {
   return obj;
 };
 
-Walkable.prototype.deleteObstacle = function(obj) {
+Walkable.prototype.deleteObstacle = function (obj) {
   this.mesh.deleteObject(obj);
 };
 
-Walkable.prototype.findPath = function(fromX, fromY, toX, toY, radius) {
+Walkable.prototype.findPath = function (fromX, fromY, toX, toY, radius) {
   this.entity.set_radius(radius);
   this.entity.x = fromX;
   this.entity.y = fromY;
@@ -71533,7 +71479,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -71779,7 +71725,18 @@ var CutScene = /*#__PURE__*/function () {
     key: "adjust",
     value: function adjust() {
       this.field.x = this.game.width / 2;
-      if (this.config.Position === "Top") this.field.y = 0;else this.field.y = this.game.height;
+      var currentSequence = this.config.Sequence[this.sequenceIndex];
+
+      if (currentSequence.Position === "Top") {
+        this.field.anchor.set(0.5, 0);
+        this.field.y = 0;
+      } else if (currentSequence.Position === "Center") {
+        this.field.anchor.set(0.5, 0.5);
+        this.field.y = this.game.height / 2;
+      } else {
+        this.field.anchor.set(0.5, 1);
+        this.field.y = this.game.height;
+      }
     }
   }, {
     key: "setMusic",
@@ -71796,7 +71753,9 @@ var CutScene = /*#__PURE__*/function () {
   }, {
     key: "update",
     value: function update() {
-      this.field.text = this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
+      var currentSequence = this.config.Sequence[this.sequenceIndex];
+      this.field.text = currentSequence.Text[this.game.activeLanguage];
+      if (currentSequence.Size !== undefined) this.field.fontSize = currentSequence.Size;
     }
   }, {
     key: "setVoice",
@@ -73131,11 +73090,9 @@ var Inventory = /*#__PURE__*/function () {
       var objectHeight = containerHeight / 5;
 
       for (i = 0; i < numObjs; i++) {
-        var tmpObj = this.game.objects[this.objects[i]].sprite; //  if(tmpObj.icon==undefined){
-
+        var tmpObj = this.game.objects[this.objects[i]].sprite;
         tmpObj.width = objectWidth;
-        tmpObj.height = objectHeight; //  }
-
+        tmpObj.height = objectHeight;
         tmpObj.x = i % 5 * objectWidth + objectWidth / 2 + this.border[0];
         tmpObj.y = Math.floor(i / 5) * objectHeight + objectHeight + this.border[1];
       }
@@ -89687,7 +89644,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -89861,7 +89818,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -90228,8 +90185,8 @@ var Logo = /*#__PURE__*/function () {
       this.game.fadeIn();
 
       if (this.game.options !== null) {
-        this.app.stage.addChild(this.game.options.icon);
-        this.app.stage.addChild(this.game.options.container);
+        this.game.app.stage.addChild(this.game.options.icon);
+        this.game.app.stage.addChild(this.game.options.container);
       }
     }
   }]);
@@ -90261,7 +90218,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -90342,6 +90299,16 @@ var Options = /*#__PURE__*/function () {
     key: "click",
     value: function click() {
       if (this.container.visible) this.hide();else this.show();
+    }
+  }, {
+    key: "hideIcon",
+    value: function hideIcon() {
+      this.icon.visible = false;
+    }
+  }, {
+    key: "showIcon",
+    value: function showIcon() {
+      this.icon.visible = true;
     }
   }, {
     key: "hide",
@@ -90568,6 +90535,7 @@ var Game = /*#__PURE__*/function () {
     };
     this.width = config.width;
     this.height = config.height;
+    this.gameContainer = document.getElementById(config.container);
     this.holdTime = 500;
     this.playSounds = true; //Setup the application
 
@@ -90578,19 +90546,14 @@ var Game = /*#__PURE__*/function () {
     });
     this.app.stage = new PIXI.display.Stage(); //Change game size when window size changes
 
-    if (config.autoResize !== undefined) this.app.renderer.autoResize = config.autoResize;else window.addEventListener('resize', this.resize.bind(this)); //Disable contextmenu for mouse interaction
+    if (config.autoResize !== undefined) this.app.renderer.autoResize = config.autoResize;else window.addEventListener('resize', this.resize.bind(this));
+    if (config.fitToContainer !== undefined) this.fitToContainer(); //Disable contextmenu for mouse interaction
 
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
-    });
-    this.app.view.id = "JSGAM-Adventure"; //We append it to a HTML element or Document body
+    }); //Append it to a HTML element
 
-    if (config.parent) {
-      document.getElementById(config.parent).appendChild(this.app.view);
-    } else {
-      document.body.appendChild(this.app.view);
-    }
-
+    this.gameContainer.appendChild(this.app.view);
     if (config.muteSound) this.playSounds = false; //Load config files
 
     this.preload(config.files);
@@ -90929,17 +90892,34 @@ var Game = /*#__PURE__*/function () {
       var ratio = Math.min(w / this.width, h / this.height);
       this.app.renderer.resize(this.width * ratio, this.height * ratio);
       this.app.stage.scale.set(ratio);
+    } //Adjust game screen to container
+
+  }, {
+    key: "fitToContainer",
+    value: function fitToContainer() {
+      var canvas = this.app.view;
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     }
   }, {
     key: "fullscreen",
     value: function fullscreen() {
-      if (document.fullscreenEnabled) {
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen();
-        } else {
-          document.exitFullscreen();
-        }
+      if (this.gameContainer.requestFullscreen) {
+        this.gameContainer.requestFullscreen();
+      } else if (this.gameContainer.mozRequestFullScreen) {
+        /* Firefox */
+        this.gameContainer.mozRequestFullScreen();
+      } else if (this.gameContainer.webkitRequestFullscreen) {
+        /* Chrome, Safari and Opera */
+        this.gameContainer.webkitRequestFullscreen();
+      } else if (this.gameContainer.msRequestFullscreen) {
+        /* IE/Edge */
+        this.gameContainer.msRequestFullscreen();
       }
+
+      if (!this.app.renderer.autoResize) this.resize();
     } //The magic begins
 
   }, {
@@ -90959,6 +90939,12 @@ var Game = /*#__PURE__*/function () {
       this.activeScene.hide();
       this.inventory.hide();
       this.inventory.hideIcon();
+
+      if (this.options !== null) {
+        this.options.hide();
+        this.options.hideIcon();
+      }
+
       this.player.hide();
 
       if (this.activeScene.music !== undefined) {
@@ -90969,6 +90955,11 @@ var Game = /*#__PURE__*/function () {
     key: "resume",
     value: function resume() {
       this.inventory.showIcon();
+
+      if (this.options !== null) {
+        this.options.showIcon();
+      }
+
       this.player.show();
       this.activeScene.show();
       this.fadeIn();
@@ -91068,8 +91059,8 @@ var Game = /*#__PURE__*/function () {
       this.setScene(name, playerCoords); //Check Cutscenes
 
       if (this.activeScene.config.CutScene !== undefined && !this.cutscenes[this.activeScene.config.CutScene].played) {
-        this.activeCutscene = this.cutscenes[this.activeScene.config.CutScene]; //  this.pause();
-
+        this.activeCutscene = this.cutscenes[this.activeScene.config.CutScene];
+        this.pause();
         this.activeCutscene.show();
       } else {
         this.resume();

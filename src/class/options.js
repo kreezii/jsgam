@@ -58,6 +58,14 @@ class Options{
     else this.show();
   }
 
+  hideIcon(){
+    this.icon.visible=false;
+  }
+
+  showIcon(){
+    this.icon.visible=true;
+  }
+
   hide(){
     this.container.visible=false;
   }

@@ -115,8 +115,18 @@ class CutScene{
 
   adjust(){
     this.field.x=this.game.width/2;
-    if(this.config.Position==="Top")this.field.y=0;
-    else this.field.y=this.game.height;
+    let currentSequence=this.config.Sequence[this.sequenceIndex];
+
+    if(currentSequence.Position==="Top"){
+      this.field.anchor.set(0.5,0);
+      this.field.y=0;
+    }else if(currentSequence.Position==="Center"){
+      this.field.anchor.set(0.5,0.5);
+      this.field.y=this.game.height/2;
+    }else{
+      this.field.anchor.set(0.5,1);
+      this.field.y=this.game.height;
+    }
   }
 
   setMusic(){
@@ -131,7 +141,9 @@ class CutScene{
   }
 
   update(){
-    this.field.text=this.config.Sequence[this.sequenceIndex].Text[this.game.activeLanguage];
+    let currentSequence=this.config.Sequence[this.sequenceIndex];
+    this.field.text=currentSequence.Text[this.game.activeLanguage];
+    if(currentSequence.Size!==undefined) this.field.fontSize=currentSequence.Size;
   }
 
   setVoice(){

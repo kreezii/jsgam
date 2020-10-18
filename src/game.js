@@ -46,6 +46,7 @@ class Game {
     };
     this.width=config.width;
     this.height=config.height;
+    this.gameContainer=document.getElementById(config.container);
     this.holdTime=500;
     this.playSounds = true;
 
@@ -63,19 +64,16 @@ class Game {
     if(config.autoResize!==undefined) this.app.renderer.autoResize=config.autoResize;
     else window.addEventListener('resize', this.resize.bind(this));
 
+    if(config.fitToContainer!==undefined) this.fitToContainer();
+
     //Disable contextmenu for mouse interaction
     document.addEventListener('contextmenu', e => {
        e.preventDefault();
     });
 
-    this.app.view.id="JSGAM-Adventure";
+    //Append it to a HTML element
+    this.gameContainer.appendChild(this.app.view)
 
-    //We append it to a HTML element or Document body
-    if(config.parent){
-      document.getElementById(config.parent).appendChild(this.app.view)
-    }else{
-      document.body.appendChild(this.app.view);
-    }
     if(config.muteSound) this.playSounds = false;
 
     //Load config files
@@ -438,17 +436,28 @@ class Game {
     var ratio = Math.min( w/this.width,  h/this.height);
     this.app.renderer.resize(this.width*ratio,this.height*ratio);
     this.app.stage.scale.set(ratio);
+  }
 
+  //Adjust game screen to container
+  fitToContainer() {
+    let canvas=this.app.view;
+    canvas.style.width='100%';
+    canvas.style.height='100%';
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
   }
 
   fullscreen(){
-    if (document.fullscreenEnabled) {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-			} else {
-        document.exitFullscreen();
+    if (this.gameContainer.requestFullscreen) {
+        this.gameContainer.requestFullscreen();
+      } else if (this.gameContainer.mozRequestFullScreen) { /* Firefox */
+        this.gameContainer.mozRequestFullScreen();
+      } else if (this.gameContainer.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        this.gameContainer.webkitRequestFullscreen();
+      } else if (this.gameContainer.msRequestFullscreen) { /* IE/Edge */
+        this.gameContainer.msRequestFullscreen();
       }
-    }
+      if(!this.app.renderer.autoResize) this.resize();
   }
 
   //The magic begins
@@ -468,6 +477,10 @@ class Game {
     this.activeScene.hide();
     this.inventory.hide();
     this.inventory.hideIcon();
+    if(this.options!==null){
+      this.options.hide();
+      this.options.hideIcon();
+    }
     this.player.hide();
     if(this.activeScene.music!==undefined){
       this.music[this.activeScene.music].stop();
@@ -476,6 +489,9 @@ class Game {
 
   resume(){
     this.inventory.showIcon();
+    if(this.options!==null){
+      this.options.showIcon();
+    }
     this.player.show();
     this.activeScene.show();
     this.fadeIn();
@@ -563,7 +579,7 @@ class Game {
     if(this.activeScene.config.CutScene!==undefined &&
       !this.cutscenes[this.activeScene.config.CutScene].played){
         this.activeCutscene=this.cutscenes[this.activeScene.config.CutScene];
-      //  this.pause();
+        this.pause();
         this.activeCutscene.show();
     }else{
       this.resume();
