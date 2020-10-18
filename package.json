@@ -1,6 +1,6 @@
 {
   "name": "jsgam",
-  "version": "5.1.0c",
+  "version": "5.1.0d",
   "description": "JavaScript Graphic Adventure Maker",
   "repository": {
     "type": "git",
@@ -26,13 +26,13 @@
   "author": "R.Vañes",
   "license": "MIT",
   "dependencies": {
-    "gsap": "^3.4.2",
+    "gsap": "^3.5.1",
     "howler": "^2.2.0",
-    "localforage": "^1.8.1",
-    "pixi-layers": "^0.2.1",
-    "pixi.js": "^5.3.2",
+    "localforage": "^1.9.0",
+    "pixi-layers": "^0.3.1",
+    "pixi.js": "^5.3.3",
     "pixi5-dragonbones": "^5.7.0-2",
     "polyk": "^0.24.0",
-    "walkable": "^1.0.3"
+    "walkable": "^1.0.5"
   }
 }

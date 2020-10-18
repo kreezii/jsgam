@@ -49035,7 +49035,7 @@ var pixi_display;
                         renderer.renderTexture.clear(group.clearColor);
                     }
                 }
-                renderer.texture.unbind(rt);
+                renderer.texture.unbind(rt.baseTexture);
                 rt.baseTexture._glTextures = buffer.baseTexture._glTextures;
                 rt.baseTexture.framebuffer = buffer.baseTexture.framebuffer;
                 buffer = db[1 - this.currentBufferIndex];
@@ -49064,7 +49064,7 @@ var pixi_display;
             var group = this.layer.group;
             var db = this.doubleBuffer;
             if (group.useDoubleBuffer) {
-                renderer.texture.unbind(rt);
+                renderer.texture.unbind(rt.baseTexture);
                 this.currentBufferIndex = 1 - this.currentBufferIndex;
                 var buffer = db[this.currentBufferIndex];
                 rt.baseTexture._glTextures = buffer.baseTexture._glTextures;
@@ -49152,7 +49152,7 @@ var pixi_display;
             set: function (value) {
                 this.group.useRenderTexture = value;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(Layer.prototype, "useDoubleBuffer", {
@@ -49162,7 +49162,7 @@ var pixi_display;
             set: function (value) {
                 this.group.useDoubleBuffer = value;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(Layer.prototype, "clearColor", {
@@ -49172,7 +49172,7 @@ var pixi_display;
             set: function (value) {
                 this.group.clearColor = value;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(Layer.prototype, "sortPriority", {
@@ -49182,7 +49182,7 @@ var pixi_display;
             set: function (value) {
                 this.group.sortPriority = value;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Layer.prototype.getRenderTexture = function () {
@@ -91088,7 +91088,7 @@ var _game = _interopRequireDefault(require("./game"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log("JSGAM 5.1.0 https://github.com/kreezii/jsgam");
+console.log("JSGAM 5.1.0d https://github.com/kreezii/jsgam");
 /*function Adventure(config){
   new Game(config);
 }*/
