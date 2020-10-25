@@ -24,3 +24,18 @@ botonArriba.addEventListener("click", () => {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 });
+
+
+current_date = new Date()
+cmm = current_date.getFullYear()
+document.querySelector("#currentYear").innerHTML=cmm;
+
+document.querySelector("#switchTheme").onclick=switchTheme;
+
+function switchTheme(){
+  if(document.documentElement.hasAttribute("data-theme")){
+    document.documentElement.removeAttribute("data-theme")
+  }else{
+    document.documentElement.setAttribute("data-theme","dark");
+  }
+}

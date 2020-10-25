@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>JavaScript Adventure Maker</title>
+  <meta name="description" content="JSGAM Website">
+  <meta name="author" content="Kreezii">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/barebones.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="imgs/jsgam-fav-icon.svg">
+
+</head>
+<body>
+  <a class=" menuSwitch" id="switchTheme"><i class="fas fa-adjust"></i></a>
+  <header>
+    <section class="header-section">
+      <a href="index.html"><img class="logo-small" src="imgs/jsgam-logo.svg" alt="jsgam-logo"/></a>
+      <h1>A Point & Click Adventure Game Engine</h1>
+    </section>
+  </header>
+  <nav class="menu sticky">
+      <span class="menu-toggle grid-container full">
+          <i class="button fas fa-bars"></i>
+      </span>
+      <div class="menu-items">
+        <div class="grid-container full">
+          <a href="#intro" class="button">Introduction</a>
+        </div>
+        <div class="grid-container fifths">
+          <a href="#graphics" class="button">Graphics</a>
+          <a href="#fonts" class="button">Fonts</a>
+          <a href="#charas" class="button">Characters</a>
+          <a href="#scenes" class="button">Scenes</a>
+          <a href="#editor" class="button">Editor</a>
+        </div>
+      </div>
+  </nav>
+  <main>
+    <section class="container">
+      <h3 class="section-header">Creating an adventure with JSGAM</h3>
+      <article id="intro">
+        <h3>Introduction</h3>
+        To make a JSGAM adventure you need:
+        <ul>
+          <li>A basic webpage with a HTML file, a CSS file and a JavaScript file</li>
+          <li>Image Atlas for the graphics</li>
+          <li>Music and Sounds (Optional)</li>
+          <li>Angel Code Bitmap Fonts to display text in the game</li>
+          <li>A JSON file with the game parameters</li>
+        </ul>
+        Let's start getting the :
+        <a class="button button-primary" href="https://github.com/kreezii/jsgam-template" target="_blank"><i class="fas fa-layer-group"></i>Game Template</a>
+        <section class="container">
+          <img src="imgs/file-list.png"/>
+          <p>
+            Open the index.html file and modify the title tag inside the head of your HTML.<br>
+            <code>&lt;title&gt;JSGAM Template Game&lt;/title&gt;</code><br><br>
+            Inside the body the important lines are:
+            <pre><code>
+&lt;div id="JSGAM"&gt;&lt;/div&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/jsgam@latest/dist/jsgam.min.js"&gt;&lt;/script&gt;
+&lt;script src="index.js"&gt;&lt;/script&gt;
+            </code></pre>
+            The DIV is the game container. The first script is the JSGAM engine and the second is the configuration script.
+          </p>
+          <p>
+            Now let's look the index.js
+            <pre><code>
+var jsgam=window.jsgam.default;
+
+//Basic game configuration
+var config={
+  width:960, //Must be the same the image backgrounds
+  height:540, //Must be the same the image backgrounds
+  container:'JSGAM',
+  //autoResize:false,
+  //fitToContainer: true,
+  files:[
+    //Add the path to the atlas JSONs files, the fonts and the JSON generated with the JSGAM Editor
+    //For example:
+
+    /*
+    'data/atlas.json',
+    'data/font.fnt',
+    'data/game.json',
+    */
+  ]
+};
+
+new jsgam(config); //This command makes all the magic
+          </code></pre>
+          <ul>
+            <li>The <code>width</code> and <code>height</code> of your game, it must be <strong>exactly</strong> the same size as background images.</li>
+            <li>The <code>container</code> is the <strong>ID name</strong> of the <code>div</code> in the index.html</li>
+            <li><code>autoResize</code> is <code>true</code> by default, it resizes the game container to fit the browser window</li>
+            <li><code>fitToContainer</code> is <code>false</code> by default, it fits the game into the container size.
+              Set the width and height of the container in your CSS before enable this option.
+              Also set <code>autoResize</code> option to <code>false</code>.
+            </li>
+            <li><code>Files</code> is the array containing all game files (graphics, fonts and game configuration)</li>
+          </ul>
+        </section>
+      </article>
+      <h3>Prepare the graphics</h3>
+      <article id="graphics">
+        In this basic example we'll use:
+        <ul>
+          <li>A background image, remember the width and height must be the ones you set in your the config file</li>
+          <li>An image for a logo</li>
+          <li>An image icon for inventory</li>
+          <li>An image for inventory background</li>
+          <li>A image for an object, in the example a key</li>
+        </ul>
+        You can download the files <a href="files/jsgam-tutorial-imgs">here</a>
+        <h4>Creating the image atlas</h4>
+        You can use online or offline texture packers.
+        <ul>
+          <li><a href="https://www.codeandweb.com/tp-online/index.html?layout=horizontal&show-settings=false" target="_blank">Texture Packer</a></li>
+          <li><a href="http://free-tex-packer.com/" target="_blank">Free Texture Packer</a></li>
+        </ul>
+        <p>
+          Use any of two. If you never used a texture packer before try the first option.<br>
+          Click on the Clear button, drop all images and download the <code>.png</code> file and the <code>.json</code> file
+        </p>
+        <img src="imgs/texturepacker.png"/>
+        <p>Now create a folder called <strong>data</strong> and a subfolder called <strong>imgs</strong> and drop the JSON and PNG files inside.<br>
+          Add the image atlas to the game config, only add the JSON file.
+        </p>
+         <img src="imgs/addimageatlas.png"/>
+      </article>
+      <h3>Bitmap Fonts</h3>
+      <article id="fonts">
+        Now we need one or more bitmapfonts to show the text in our adventure. JSGAM uses the Angel Code font format.
+        <p>
+          Software to create bitmapfonts:
+          <ul>
+            <li><a href="http://www.angelcode.com/products/bmfont/" target="_blank">AngelCode BMFONT</a></li>
+            <li><a href="https://github.com/libgdx/libgdx/wiki/Hiero" target="_blank">Hiero</a></li>
+          </ul>
+        </p>
+        We'll use the <a href="https://libgdx.badlogicgames.com/nightlies/runnables/runnable-hiero.jar" target="_blank">Hiero Tool</a> in this example
+        because It's an open source tool written in Java and It's cross-platform.<br>
+        In the snapshots below you can see a quick configuration.
+        <div class="grid-container full">
+         <img src="imgs/hierotool.png"/>
+         <img src="imgs/hieroexport.png"/>
+       </div>
+       Once you export the BMFont files you'll get 2 files. In this example <code>notosans.fnt</code> and <code>notosans.png</code>
+       <br>We need to convert the format before use it in our adventur, let's go to the <a class="button button-primary" href="https://kreezii.github.io/jsgam-editor/" target="_blank"><i class="fas fa-rocket"></i>JSGAM Editor</a><br>
+       Go to <strong>Tools -> Convert Hiero Font</strong>, select .fnt file and download the converted file. Now we can delete the <code>notosans.fnt</code> file because we'll use the converted file.
+       <div class="grid-container full">
+         <img src="imgs/jsgam-editor-menu.png"/>
+         <img src="imgs/hieroconvert.png"/>
+       </div>
+       Now let's add the font to the configuration file. We placed it inside <code>data/fonts</code>.
+       <div class="grid-container full">
+         <img src="imgs/addfont.png"/>
+       </div>
+       We only have to the add the .fnt file to the configuration.
+      </article>
+      <h3>Characters</h3>
+      <article id="charas">
+        In this example we only have one character, the player. To make characters we'll use Blender and COA Tools:<br>
+        <a class="button button-primary" href="https://www.blender.org/download/" target="_blank"><i class="fas fa-download"></i>Blender</a>
+        <a class="button button-primary" href="https://github.com/ndee85/coa_tools" target="_blank"><i class="fas fa-download"></i>Coa-Tool</a>
+        <p>
+          GIMP Exporter:<br/>
+          The coatools_exporter.py should be copied to your GIMP plug-ins folder which is located in:
+        </p>
+        <ul>
+          <li><strong>Linux</strong>: ~/.config/GIMP/2.10/plug-ins</li>
+          <li><strong>Windows</strong>: C:\Users\yourname\AppData\Roaming\GIMP\2.10\plug-ins</li>
+        </ul>
+        <p>
+          Blender plug-in:<br/>
+          Go to <strong>File -> User Preferences -> Add-ons</strong> and click the <code>Install from file...</code>.
+        </p>
+        <h4>Export from GIMP</h4>
+        <p>
+          Download the <a href="files/character-template.xcf">character template</a> GIMP file.<br>
+          Export to CoaTools <code>File->Export to CoaTools...</code><br>
+          We get a folder with a JSON file and a subfolder with the image files.
+        </p>
+        <div class="grid-container full">
+          <img src="imgs/gimpexport.png"/>
+        </div>
+        <h4>Import to Blender</h4>
+        <p>
+          Open Blender, press <strong>'N'</strong> key to show the properties panel and select COA Tools.<br>
+          Click on <strong>"Set Textuted Shading Mode"</strong> and <strong>2D View</strong><br>
+          Now click on <code>Re/Import Sprites</code> and select the JSON we exported from GIMP.
+        </p>
+        <div class="grid-container thirds">
+          <img src="imgs/coatoolspanel.png"/>
+          <img src="imgs/coatoolsimport.png"/>
+          <img src="imgs/coatoolssprite.png"/>
+        </div>
+        Now press <strong>'G'</strong> to move the character and set it <strong>above the X axis</strong>.
+        <div class="grid-container full">
+          <img src="imgs/characteraxis.png"/>
+        </div>
+        <h4>Create the armature</h4>
+        Now click on <strong>Edit Armature</strong> and create the armature.<br>
+        The parent bone is at bottom, then we create another bone on the character's pelvis,the body bone is child of pelvis bone.<br>
+        Below you can see the complete armature structure:
+        <ul class="tree">
+          <li>
+            'Foot' bone (root)
+            <ul>
+              <li>Pelvis bone
+                <ul>
+                  <li>Body bone
+                    <ul>
+                      <li>Head bone</li>
+                      <li>Right Upper Arm bone
+                        <ul>
+                          <li>Right Fore Arm bone</li>
+                        </ul>
+                      </li>
+                      <li>Left Upper Arm bone
+                        <ul>
+                          <li>Left Fore Arm bone</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>Left Upper leg bone
+                    <ul>
+                      <li>Left Lower Leg bone</li>
+                    </ul>
+                  </li>
+                  <li>Right Upper leg bone
+                    <ul>
+                      <li>Right Lower Leg bone</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="grid-container full">
+          <img src="imgs/editarmature.png"/>
+        </div>
+        <div class="grid-container halves">
+          <div>
+            To assign each bone to a body part, while you are in "Edit Armature<article id="charas">" mode, select the bone,
+            hold on the ALT key and select the body part. Once you are done click <strong>"Finish Edit Armature"</strong>.
+            <div class="block">
+              <img src="imgs/assignbones.png"/>
+            </div>
+          </div>
+          <div>
+            IK Bones are optional but very useful to animate characters.
+            Click on the <strong>"Create IK Bone"</strong> button
+            <div class="block">
+              <img src="imgs/ikbones.png"/>
+            </div>
+          </div>
+        </div>
+        <h4>Animations</h4>
+        <div class="grid-container halves">
+          <div>
+            Add the animations:
+            <div class="block">
+              <img src="imgs/addanimation.png"/>
+            </div>
+          </div>
+          <div>
+            Select the bone you want to animate and press <strong>'F'</strong> key.
+            <div class="grid-container full">
+              <img src="imgs/addkeyframe.png"/>
+            </div>
+          </div>
+        </div>
+        Export the character, we'll get 3 files, move them to the project folder.
+        <div class="grid-container halves">
+          <img src="imgs/characterexport.png"/>
+          <img src="imgs/characterfiles.png"/>
+        </div>
+      </arcticle>
+      <article id="scenes">
+        <h3>Edit the scenes</h3>
+        <h4>JSGAM-Tools GIMP plug-in</h4>
+        <a class="button button-primary" href="https://github.com/kreezii/jsgam-tools"><i class="fas fa-download"></i>Download</a>
+        <p>
+          Copy the jsgam-tools.py should the GIMP plug-ins folder which is located in:
+          <ul>
+            <li><strong>Linux</strong>: ~/.config/GIMP/2.10/plug-ins</li>
+            <li><strong>Windows</strong>: C:\Users\yourname\AppData\Roaming\GIMP\2.10\plug-ins</li>
+          </ul>
+          You should find it under<strong> File>Export to JSGAM... </strong>after restarting GIMP.
+        </p>
+        Place the background image at the bottom of the layers, after add the objects, in our example the key.
+        <div class="grid-container full">
+          <img src="imgs/gimpscene.png"/>
+        </div>
+        Now define the walk area, invisible objects (in our example two doors and a window) and the obsctales (optional).
+        <div class="grid-container halves">
+          <img src="imgs/gimppathtool.png"/>
+          <img src="imgs/gimppaths.png"/>
+        </div>
+      </article>
+      <article id="editor">
+        <h3>Making the adventure</h3>
+        <a class="button button-primary" href="https://kreezii.github.io/jsgam-editor/" target="_blank"><i class="fas fa-rocket"></i>JSGAM Editor</a>
+        <div class="grid-container full">
+          <img src="imgs/jsgam-editor-menu.png"/>
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer class="grid-container full">
+    <div>
+      © JavaScript Graphic Adventure Maker <span id="currentYear"></span>.
+      <a title="JSGAM" href="https://github.com/kreezii/jsgam/" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+  </footer>
+  <button id="sube" label="subir">
+    <i class="fas fa-chevron-circle-up"></i>
+  </button>
+  <script src="index.js"></script>
+</body>
+</html>
