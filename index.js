@@ -1,8 +1,8 @@
 var botonArriba = document.querySelector("#sube");
 
-window.addEventListener("scroll", mostrarBoton);
+window.addEventListener("scroll", scrolling);
 
-function mostrarBoton() {
+function scrolling() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     if (!botonArriba.classList.contains("mostrar")) {
       botonArriba.classList.remove("ocultar");
@@ -37,5 +37,16 @@ function switchTheme(){
     document.documentElement.removeAttribute("data-theme")
   }else{
     document.documentElement.setAttribute("data-theme","dark");
+  }
+}
+
+document.querySelector(".menu-toggle").onclick=switchMenu;
+
+function switchMenu(){
+  let menu=document.querySelector(".menu-items");
+  if(menu.style.display=="none"){
+    menu.style.display="block";
+  }else{
+    menu.style.display="none";
   }
 }

@@ -213,24 +213,25 @@ img{
   position: fixed;
   font-size: 3rem;
   cursor: pointer;
-  top: 0;
-  right: 0;
+  top: 1rem;
+  right: 1rem;
   z-index: 2;
   transform: scale(.75);
 }
 
 @media (min-width: 600px) {
-  .menu-toggle {
+/*  .menu-toggle {
     display: none;
   }
 
   .menu-items{
     display: grid;
-  }
+  }*/
 
   .menuSwitch{
     top: 2rem;
     right: 2rem;
+    font-size: 5rem;
   /*  transform: scale(1.0);*/
   }
 }

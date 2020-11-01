@@ -163,10 +163,18 @@ new jsgam(config); //This command makes all the magic
         In the snapshots below you can see a quick configuration.
         <div class="grid-container full">
          <img src="imgs/hierotool.png"/>
-         <img src="imgs/hieroexport.png"/>
        </div>
-       Once you export the BMFont files you'll get 2 files. In this example <code>notosans.fnt</code> and <code>notosans.png</code>
-       <br>We need to convert the format before use it in our adventur, let's go to the <a class="button button-primary" href="https://kreezii.github.io/jsgam-editor/" target="_blank"><i class="fas fa-rocket"></i>JSGAM Editor</a><br>
+       <div class="grid-container halves">
+         <div>
+           <p>To avoid artifacts in the text, make sure the padding is greater than 1.</p>
+           <img src="imgs/hieropadding.png"/>
+         </div>
+         <div>
+           <p>Once you export the BMFont files you'll get 2 files. In this example <code>notosans.fnt</code> and <code>notosans.png</code></p>
+           <img src="imgs/hieroexport.png"/>
+         </div>
+       </div>
+       We need to convert the format before use it in our adventure, let's go to the <a class="button button-primary" href="https://kreezii.github.io/jsgam-editor/" target="_blank"><i class="fas fa-rocket"></i>JSGAM Editor</a><br>
        Go to <strong>Tools -> Convert Hiero Font</strong>, select .fnt file and download the converted file. Now we can delete the <code>notosans.fnt</code> file because we'll use the converted file.
        <div class="grid-container full">
          <img src="imgs/jsgam-editor-menu.png"/>
@@ -180,9 +188,9 @@ new jsgam(config); //This command makes all the magic
       </article>
       <h3>Characters</h3>
       <article id="charas">
-        In this example we only have one character, the player. To make characters we'll use Blender and COA Tools:<br>
-        <a class="button button-primary" href="https://www.blender.org/download/" target="_blank"><i class="fas fa-download"></i>Blender</a>
-        <a class="button button-primary" href="https://github.com/ndee85/coa_tools" target="_blank"><i class="fas fa-download"></i>Coa-Tool</a>
+        In this example we only have one character, the player. To make characters we'll use <a href="" target="_blank">Blender</a>, <a href="" target="_blank">GIMP and COA Tools. Download the plug-ins:<br>
+        <a class="button button-primary" href="files/coa_tools.zip" target="_blank"><i class="fas fa-download"></i>Blender</a>
+        <a class="button button-primary" href="files/coatools_gimp.zip" target="_blank"><i class="fas fa-download"></i>GIMP</a>
         <p>
           GIMP Exporter:<br/>
           The coatools_exporter.py should be copied to your GIMP plug-ins folder which is located in:
@@ -305,7 +313,7 @@ new jsgam(config); //This command makes all the magic
         <h4>JSGAM-Tools GIMP plug-in</h4>
         <a class="button button-primary" href="https://github.com/kreezii/jsgam-tools"><i class="fas fa-download"></i>Download</a>
         <p>
-          Copy the jsgam-tools.py should the GIMP plug-ins folder which is located in:
+          Copy the jsgam-tools.py in the GIMP plug-ins folder which is located in:
           <ul>
             <li><strong>Linux</strong>: ~/.config/GIMP/2.10/plug-ins</li>
             <li><strong>Windows</strong>: C:\Users\yourname\AppData\Roaming\GIMP\2.10\plug-ins</li>
@@ -321,12 +329,117 @@ new jsgam(config); //This command makes all the magic
           <img src="imgs/gimppathtool.png"/>
           <img src="imgs/gimppaths.png"/>
         </div>
+        Select <strong>File>Export to JSGAM...</strong> an choose a name, for example room. You'll get a json file.
       </article>
       <article id="editor">
         <h3>Making the adventure</h3>
-        <a class="button button-primary" href="https://kreezii.github.io/jsgam-editor/" target="_blank"><i class="fas fa-rocket"></i>JSGAM Editor</a>
+        <p>Time to make the adventure!</p>
+        Launch the <a class="button button-primary" href="https://kreezii.github.io/jsgam-editor/" target="_blank"><i class="fas fa-rocket"></i>JSGAM Editor</a>
         <div class="grid-container full">
           <img src="imgs/jsgam-editor-menu.png"/>
+        </div>
+        First we need to import the graphics, fonts, characters...
+        <div class="grid-container halves">
+          <div>
+            <p>Import the graphics <strong>Import Sources->Images</strong> and select the <code>spritesheet.json</code> image atlas.</p>
+            <img src="imgs/jsgam-import-images.png"/>
+            <p>Import the fonts <strong>Import Sources->Fonts</strong> and select the <code>noto-sans-converted.fnt</code>.</p>
+            <img src="imgs/jsgam-import-fonts.png"/>
+          </div>
+          <div>
+            <p>Now if we go to the <strong>Sources</strong> tab, we can see the image file names and the font.
+            <img src="imgs/jsgam-sources.png"/>
+          </div>
+        </div>
+        In the same Sources tab, pay attention to the Folders option, here we tell to the engine where are the resources.
+        By default it's placed in the <strong>data</strong> folder.
+        <div class="grid-container full">
+          <img src="imgs/jsgam-folders.png"/>
+        </div>
+        <div class="grid-container halves">
+          <div>
+            <p>Import the player <strong>Import Characters->Player</strong> and select the <code>Player_ske.json</code>.</p>
+            <img src="imgs/jsgam-import-player.png"/>
+          </div>
+          <div>
+            <p>Now if we go to the <strong>Player</strong> tab.
+            <img src="imgs/jsgam-player.png"/>
+          </div>
+        </div>
+        We didn't create a player avatar (the image shown when a character talks), so we'll use the jsgam-logo as you can see in the image above.<br>
+        The next step is to import the scene. <strong>Import Scene</strong> and choose the <code>room.json</code> file.
+        <div class="grid-container halves">
+          <img src="imgs/jsgam-scenes.png"/>
+          <img src="imgs/jsgam-objects.png"/>
+       </div>
+       <small>In the current version of the editor when we import a scene it doesn't add the objects to the scene</small><br>
+       Click on the scene properties and check the Objects then add the objects you want to the scene.
+       <div class="grid-container halves">
+         <img src="imgs/jsgam-scene-objects.png"/>
+         <img src="imgs/jsgam-scene-addobject.png"/>
+       </div>
+       <h4>Configure the game</h4>
+       <div class="grid-container thirds">
+         <div>
+           Select the first scene of the game, in our case <strong>room</strong>.<br>
+           <img src="imgs/settings-mainscene.png"/>
+         </div>
+         <div>
+           Now select the font for the text and buttons.
+           <img src="imgs/settings-textstyle.png"/>
+         </div>
+         <img src="imgs/settings-buttonstyle.png"/>
+       </div>
+       Configure the inventory.
+       <div class="grid-container full">
+         <img src="imgs/settings-inventory.png"/>
+       </div>
+       At this moment we can save the adventure and It will work. Let's save the adventure and move the JSON to our project's folder.
+       <div class="grid-container full">
+         <img src="imgs/gamejson.png"/>
+       </div>
+       We need a local server to test our game. If you don't know how to set up it, please read <strong><a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server"
+        target="_blank">this</a></strong>.
+        <br>When we run the local server we should see something like this:
+        <div class="grid-container full">
+          <img src="imgs/newadventuretitle.png"/>
+        </div>
+        <p>We should use another background or another font color for our main title but our objective now is to make a working game.<br>
+        Click on <strong>New Game</strong> and finally we got something!</p>
+        <div class="grid-container full">
+          <img src="imgs/newadventurescene.png"/>
+        </div>
+        <p>But... not exactly what we expected. Go back to the editor, first we need to fix the player position and size.</p>
+        <div class="grid-container full">
+          <img src="imgs/playerpos.png"/>
+        </div>
+        <div class="grid-container full">
+          <img src="imgs/playersize.png"/>
+        </div>
+        <p>Let's add a description to our objects.</p>
+        <div class="grid-container full">
+          <img src="imgs/objectdescription.png"/>
+        </div>
+        <div class="grid-container full">
+          <img src="imgs/objectdescription2.png"/>
+        </div>
+        <p>Repeat the same action for the window and the doors. Let's save the adventure and try again</p>
+        Also we are going to make possible to take the key.
+        <div class="grid-container full">
+          <img src="imgs/object-take.png"/>
+        </div>
+        Save the adventure and overwrite the <code>game.json</code>.
+        <div class="grid-container full">
+          <img src="imgs/adventurescene.png"/>
+        </div>
+        Now we get a better result. Drag and drop the key on the inventory icon to test we can take the key.
+        <div class="grid-container full">
+          <img src="imgs/inventory-key.png"/>
+        </div>
+        <h4>Puzzles</h4>
+        Puzzles are the game events, in our example we are going to open the door with the key and when we open that door the game ends (not a very difficult puzzle, but it's just an example).
+        <div class="grid-container halves">
+          <img src="imgs/inventory-key.png"/>
         </div>
       </article>
     </section>
