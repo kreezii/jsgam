@@ -110,6 +110,7 @@ class Puzzle{
         this.game.npcs[this.config.NPCSay.Name].say(text);
       }else{
         this.game.player.stand();
+        this.game.player.unlock();
       }
 
       if(this.config.Sound!==undefined && !this.game.silentMode){
@@ -137,6 +138,7 @@ class Puzzle{
 
     }else{
       this.game.player.stand();
+      this.game.player.unlock();
     }
 
     this.game.activePuzzle=null;

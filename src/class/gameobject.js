@@ -1,9 +1,9 @@
 import {boxesIntersect,collision,closestPoint} from '../collisions.js';
 
 class GameObject{
-  constructor(){
+  constructor(game){
     this.sprite=null;
-    this.game=null;
+    this.game=game;
     this.action=null;
   }
 

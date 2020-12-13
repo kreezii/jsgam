@@ -2,7 +2,8 @@ import {Button} from './text.js'
 
 //Branches dialogue system
 class Dialogue{
-  constructor(){
+  constructor(game){
+    this.game=game;
     this.timeoutID=null;
     this.firstTime=true;
     this.choice=null;
@@ -77,7 +78,7 @@ class Dialogue{
     if(choiceSelected.Link){
       this.currentBranch=this.branches[choiceSelected.Link];
     }
-    
+
     if(choiceSelected.Puzzle){
       this.game.puzzles[choiceSelected.Puzzle].resolve();
     }

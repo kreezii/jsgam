@@ -13,6 +13,8 @@ gsap.registerPlugin(PixiPlugin,MotionPathPlugin);
 PixiPlugin.registerPIXI(PIXI);
 
 import GameLoader from './loader.js';
+import Particles from './particles.js';
+import Filters from './filters.js';
 import Storage from './storage.js';
 import Sound from './sound.js';
 import Title from './class/title.js';
@@ -151,77 +153,40 @@ class Game {
     this.storage=new Storage(this);
     if(this.settings.Logos!==undefined) this.logo=new Logo(this);
 
+    //Initialize particles and filter systems
+    this.particles=new Particles(this);
+    this.filters=new Filters(this);
+
     this.titleLabel="Title";
 
     if(this.settings.HoldTime!==undefined) this.holdTime=this.settings.HoldTime*1000;
     if(this.settings.dialogueChoices!==undefined) this.dialogueChoices=this.settings.dialogueChoices;
     else this.dialogueChoices=3;
 
+
     //Setup title screen
-    this.addScene(this.titleLabel,new Title(),this.settings.TitleScreen);
+    this.addTitle();
 
     //Add sounds,music and voices
-    let i;
-    let length=this.data.music.length;
-    for(i=0;i<length;i++)
-    {
-      this.addMusic(this.data.music[i].Name,new Sound(),this.data.music[i]);
-    }
-
-    length=this.data.sounds.length;
-    for(i=0;i<length;i++)
-    {
-      this.addSound(this.data.sounds[i].Name,new Sound(),this.data.sounds[i]);
-    }
-
-    length=this.data.voices.length;
-    for(i=0;i<length;i++)
-    {
-      this.addVoice(this.data.voices[i].Name,new Sound(),this.data.voices[i]);
-    }
-
+    this.addAudio(this.data.music,this.data.sounds,this.data.voices);
 
     //Add game objects
-    length=this.data.objects.length;
-    for(i=0;i<length;i++)
-    {
-      this.addObject(this.data.objects[i].Name,new GameObject(),this.data.objects[i]);
-    }
+    this.addObjects(this.data.objects);
 
     //Non-playable characters
-    length=this.data.npc.length;
-    for(i=0;i<length;i++)
-    {
-      this.addNPC(this.data.npc[i].Name,new NPC(),this.data.npc[i]);
-    }
+    this.addNPC(this.data.npc);
 
     //Dialogues
-    length=this.data.dialogues.length;
-    for(i=0;i<length;i++)
-    {
-      this.addDialogue(this.data.dialogues[i].Name,new Dialogue(),this.data.dialogues[i]);
-    }
+    this.addDialogues(this.data.dialogues);
 
     //Add game scenes
-    length=this.data.scenes.length;
-    for(i=0;i<length;i++)
-    {
-      this.addScene(this.data.scenes[i].Name,new GameScene(),this.data.scenes[i]);
-    }
+    this.addScenes(this.data.scenes);
 
     //Add cutscenes
-    length=this.data.cutscenes.length;
-    for(i=0;i<length;i++)
-    {
-      this.addCutscene(this.data.cutscenes[i].Name,new CutScene(),this.data.cutscenes[i]);
-    }
+    this.addCutscenes(this.data.cutscenes);
 
     //Puzzles
-    length=this.data.puzzles.length;
-    for(i=0;i<length;i++)
-    {
-      this.addPuzzle(this.data.puzzles[i].Name,new Puzzle(),this.data.puzzles[i]);
-    }
+    this.addPuzzles(this.data.puzzles);
 
     //Add Inventory
     this.addInventory();
@@ -261,98 +226,93 @@ class Game {
     if (this.activeState != null) {
         this.activeState.update(dt);
     }
+    if(this.particles.emitter!=null) this.particles.update();
+    if(this.filters.filter!=null) this.filters.update();
   }
 
-  addMusic(name, music, config) {
-      this.music[name] = music;
-
-      //Music parameters
-      music.config=config;
-
-      //Set game so music can access it
-      music.game = this;
-
-      music.source=this.files.resources[name].sound;
+  addTitle(){
+    this.scenes[this.titleLabel]=new Title(this);
+    this.scenes[this.titleLabel].setup(this.settings.TitleScreen);
+    this.scenes[this.titleLabel].build();
   }
 
-  addSound(name, sound, config) {
-      this.sounds[name] = sound;
+  addAudio(music,sounds,voices){
+    if(music!==undefined){
+      music.forEach((element, index) => {
+        this.music[element.Name]=new Sound(this);
+        this.music[element.Name].config=element;
+        this.music[element.Name].source=this.files.resources[element.Name].sound;
+      });
+    }
 
-      //Music parameters
-      sound.config=config;
+    if(sounds!==undefined){
+      sounds.forEach((element, index) => {
+        this.sounds[element.Name]=new Sound(this);
+        this.sounds[element.Name].config=element;
+        this.sounds[element.Name].source=this.files.resources[element.Name].sound;
+        if(element.Sprites){
+          let audioSprite = Object.assign({}, ...element.Sprites.map(object => ({[object.key]: object.value})));
+          this.sounds[element.Name].source._sprite=audioSprite;
+        }
+      });
+    }
 
-      //Set game so music can access it
-      sound.game = this;
-
-      sound.source=this.files.resources[name].sound;
-
-      if(config.Sprites){
-        let audioSprite = Object.assign({}, ...config.Sprites.map(object => ({[object.key]: object.value})));
-        sound.source._sprite=audioSprite;
-      }
+    if(voices!==undefined){
+      voices.forEach((element, index) => {
+        this.voices[element.Name]=new Sound(this);
+        this.voices[element.Name].config=element;
+        this.voices[element.Name].source=this.files.resources[element.Name].sound;
+        this.voices[element.Name].source._sprite=element.Sprites;
+      });
+    }
   }
 
-  addVoice(name, voice, config) {
-      this.voices[name] = voice;
-
-      //Music parameters
-      voice.config=config;
-
-      //Set game so music can access it
-      voice.game = this;
-
-      voice.source=this.files.resources[name].sound;
-
-      voice.source._sprite=config.Sprites;
+  addObjects(objects) {
+    objects.forEach((element, index) => {
+      this.objects[element.Name]=new GameObject(this);
+      this.objects[element.Name].config=element;
+      this.objects[element.Name].build();
+    });
   }
 
-  addObject(name, object, config) {
-      this.objects[name] = object;
-
-      //Config the object
-      object.config=config;
-
-      //Set game so object can access it
-      object.game = this;
-
-      //Build object
-      object.build();
+  addScenes(scenes) {
+    scenes.forEach((element, index) => {
+      this.scenes[element.Name]=new GameScene(this);
+      this.scenes[element.Name].config=element;
+      this.scenes[element.Name].setup(element);
+      this.scenes[element.Name].build();
+    });
   }
 
-  addScene(name, scene, config) {
-      this.scenes[name] = scene;
-
-      //Config the scene
-      scene.setup(config);
-
-      //Set game so scene can access it
-      scene.game = this;
-
-      //Build scene
-      scene.build();
+  addCutscenes(cutscenes) {
+    cutscenes.forEach((element, index) => {
+      this.cutscenes[element.Name]=new CutScene(this);
+      this.cutscenes[element.Name].config=element;
+      this.cutscenes[element.Name].build();
+    });
   }
 
-  addCutscene(name, cutscene, config) {
-      this.cutscenes[name] = cutscene;
-
-      //Config the scene
-      cutscene.config=config;
-
-      //Set game so scene can access it
-      cutscene.game = this;
-
-      //Build scene
-      cutscene.build();
+  addPuzzles(puzzles) {
+    puzzles.forEach((element, index) => {
+      this.puzzles[element.Name]=new Puzzle(this);
+      this.puzzles[element.Name].config=element;
+    });
   }
 
-  addPuzzle(name, puzzle, config) {
-      this.puzzles[name] = puzzle;
+  addNPC(charas){
+    charas.forEach((element, index) => {
+      this.npcs[element.Name]=new NPC(this);
+      this.npcs[element.Name].config=element;
+      this.npcs[element.Name].setup(element);
+      this.npcs[element.Name].build();
+    });
+  }
 
-      //Puzzle's config
-      puzzle.config=config;
-
-      //Set game so puzzle can access it
-      puzzle.game = this;
+  addDialogues(dialogues){
+    dialogues.forEach((element, index) => {
+      this.dialogues[element.Name]=new Dialogue(this);
+      this.dialogues[element.Name].setup(element);
+    });
   }
 
   addZOrder(){
@@ -375,6 +335,7 @@ class Game {
     this.app.stage.addChild(this.layer);//Z-order
     this.app.stage.addChild(this.layerTop);//Z-order
     this.app.stage.addChild(this.layerUI);//Z-order
+
   }
 
   addInventory(){
@@ -390,28 +351,9 @@ class Game {
   }
 
   addPlayer(){
-    this.player=new Player();
-    this.player.game=this;
+    this.player=new Player(this);
     this.data.player.Name="player";
     this.player.setup(this.data.player);
-  }
-
-  addNPC(name, char, config){
-    this.npcs[name] = char;
-
-    char.game = this;
-
-    char.setup(config);
-
-    char.build();
-  }
-
-  addDialogue(name, dialogue, config){
-    this.dialogues[name] = dialogue;
-
-    dialogue.game = this;
-
-    dialogue.setup(config);
   }
 
   addTextField(){
@@ -529,6 +471,19 @@ class Game {
         this.player.scale();
       }
     }
+
+    //Particles and filters systems
+    if(this.particles.emitter!=null) this.particles.stop();
+
+    if(this.activeScene.config.Particles!==undefined){
+      this.particles.start(this.activeScene.config.Particles);
+    }
+
+    if(this.filters.filter!=null) this.filters.stop();
+    if(this.activeScene.config.Filter!==undefined){
+      this.filters.start(this.activeScene.config.Filter);
+    }
+
     //Save game progress
     if(this.activeScene!==this.scenes[this.titleLabel])
       this.storage.save();

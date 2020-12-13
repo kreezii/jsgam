@@ -1,7 +1,7 @@
 class Scene{
-  constructor(){
+  constructor(game){
     this.container = new PIXI.Container();
-    this.game=null;
+    this.game=game;
   }
 
   setup(config){

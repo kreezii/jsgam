@@ -19,41 +19,38 @@ class GameScene extends Scene{
       }
 
       if(this.config.Obstacles!==undefined){
-        let obstacles=Object.values(this.config.Obstacles);
-        this.config.Obstacles=obstacles;
-        for(let i=0;i<this.config.Obstacles.length;i++){
-          this.walkable.addPolygon(this.config.Obstacles[i]);
-        }
+        this.config.Obstacles=Object.values(this.config.Obstacles);
+        this.config.Obstacles.forEach((element, index) => {
+          this.walkable.addPolygon(element);
+        });
       }
 
       //Add objects to the scene
-      let sceneObjects=this.config.Objects;
-      if(sceneObjects){
-        for(let i=0;i<sceneObjects.length;i++){
-          if(this.game.objects[sceneObjects[i]]!==undefined){
-            this.container.addChild(this.game.objects[sceneObjects[i]].sprite);
+      if(this.config.Objects){
+        this.config.Objects.forEach((element, index) => {
+          if(this.game.objects[element]!==undefined){
+            this.container.addChild(this.game.objects[element].sprite);
           }else{
-            console.log("Error:Game object "+sceneObjects[i]+" not found");
+            console.log("Error:Game object "+element+" not found");
           }
-        }
+        });
       }
 
       //Add NPCs (non-playable characters) to the scene
-      let sceneChars=this.config.Characters;
-      if(sceneChars){
-        for(let i=0;i<sceneChars.length;i++){
-          if(this.game.npcs[sceneChars[i]]!==undefined){
-            this.container.addChild(this.game.npcs[sceneChars[i]].sprite);
+      if(this.config.Characters){
+        this.config.Characters.forEach((element, index) => {
+          if(this.game.npcs[element]!==undefined){
+            this.container.addChild(this.game.npcs[element].sprite);
           }else{
-            console.log("Error:Game character "+sceneChars[i]+" not found");
+            console.log("Error:Game character "+element+" not found");
           }
-        }
+        });
       }
   }
 
   getPosition(event){
     let coord=event.data.getLocalPosition(this.game.app.stage);
-    if(!this.game.player.lock && this.game.activeObject===null && this.game.activeNPC===null){
+    if(!this.game.player.lock/* && this.game.activeObject===null && this.game.activeNPC===null*/){
       this.game.player.move(coord);
     }
   }

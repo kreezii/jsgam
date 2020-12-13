@@ -1,7 +1,8 @@
 import { gsap } from "gsap";
 
 class CutScene{
-  constructor(){
+  constructor(game){
+    this.game=game;
     this.container=new PIXI.Container();
     this.music=null;
     this.voice=null;

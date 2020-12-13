@@ -7,8 +7,8 @@ import { gsap } from "gsap";
 import {checkPath} from '../collisions.js'
 
 class Character{
-  constructor(){
-    this.game=null;
+  constructor(game){
+    this.game=game;
     this.state=null;
     this.lock=false;
     this.endAction=null;
@@ -57,6 +57,10 @@ class Character{
     this.sprite.visible=true;
   }
 
+  unlock(){
+    this.lock=false;
+  }
+
   width(){
     return this.sprite.getBounds().width;
   }
@@ -103,7 +107,7 @@ class Character{
         this.game.activeState=this;
 
         if(this.tween!==null) this.tween.kill();
-
+        this.lock=true;
         this.tween=gsap.to(this.sprite, {duration: animationTime, motionPath:finalPath, ease:"none",onComplete:this.stop.bind(this)});
 
       }else{
@@ -127,20 +131,19 @@ class Character{
   stop(){
     this.animate(this.animations.Stand);
     this.game.activeState=null;
-    this.lock=false;
+
     if(this.endAction!==null){
       if(this.endAction==="Look") this.look();
       else if(this.endAction==="Take") this.take();
       else if(this.endAction==="Use") this.use();
       else if(this.endAction==="Talk") this.talk();
       this.endAction=null;
-    }
+    }else this.unlock();
   }
 
   stand(){
     this.animate(this.animations.Stand);
     this.game.activeState=null;
-    this.lock=false;
   }
 
   say(text,voice){

@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"aj4z":[function(require,module,exports) {
+})({"../node_modules/es6-promise-polyfill/promise.js":[function(require,module,exports) {
 var global = arguments[3];
 var define;
 (function(global){
@@ -467,7 +467,7 @@ Promise.reject = function(reason){
 
 })(typeof window != 'undefined' ? window : typeof global != 'undefined' ? global : typeof self != 'undefined' ? self : this);
 
-},{}],"J4Nk":[function(require,module,exports) {
+},{}],"../node_modules/object-assign/index.js":[function(require,module,exports) {
 /*
 object-assign
 (c) Sindre Sorhus
@@ -563,7 +563,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
   return to;
 };
-},{}],"y4AA":[function(require,module,exports) {
+},{}],"../node_modules/@pixi/polyfill/lib/polyfill.es.js":[function(require,module,exports) {
 "use strict";
 
 var _es6PromisePolyfill = require("es6-promise-polyfill");
@@ -701,7 +701,7 @@ if (!window.Uint8Array) {
 if (!window.Int32Array) {
   window.Int32Array = Array;
 }
-},{"es6-promise-polyfill":"aj4z","object-assign":"J4Nk"}],"UGVv":[function(require,module,exports) {
+},{"es6-promise-polyfill":"../node_modules/es6-promise-polyfill/promise.js","object-assign":"../node_modules/object-assign/index.js"}],"../node_modules/ismobilejs/esm/isMobile.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -811,7 +811,7 @@ function isMobile(param) {
   result.tablet = result.apple.tablet || result.android.tablet || result.windows.tablet;
   return result;
 }
-},{}],"KzjX":[function(require,module,exports) {
+},{}],"../node_modules/ismobilejs/esm/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -830,6 +830,7 @@ var _isMobile = _interopRequireWildcard(require("./isMobile"));
 Object.keys(_isMobile).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _isMobile[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -841,7 +842,7 @@ Object.keys(_isMobile).forEach(function (key) {
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-},{"./isMobile":"UGVv"}],"t4Uo":[function(require,module,exports) {
+},{"./isMobile":"../node_modules/ismobilejs/esm/isMobile.js"}],"../node_modules/@pixi/settings/lib/settings.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1155,7 +1156,7 @@ var settings = {
   ROUND_PIXELS: false
 };
 exports.settings = settings;
-},{"ismobilejs":"KzjX"}],"JJlS":[function(require,module,exports) {
+},{"ismobilejs":"../node_modules/ismobilejs/esm/index.js"}],"../node_modules/eventemitter3/index.js":[function(require,module,exports) {
 'use strict';
 
 var has = Object.prototype.hasOwnProperty
@@ -1493,7 +1494,7 @@ if ('undefined' !== typeof module) {
   module.exports = EventEmitter;
 }
 
-},{}],"vwhv":[function(require,module,exports) {
+},{}],"../node_modules/earcut/src/earcut.js":[function(require,module,exports) {
 'use strict';
 
 module.exports = earcut;
@@ -2174,7 +2175,7 @@ earcut.flatten = function (data) {
     return result;
 };
 
-},{}],"O2aP":[function(require,module,exports) {
+},{}],"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/node-libs-browser/node_modules/punycode/punycode.js":[function(require,module,exports) {
 var global = arguments[3];
 var define;
 /*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -2711,7 +2712,7 @@ var define;
 
 }(this));
 
-},{}],"RhWE":[function(require,module,exports) {
+},{}],"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/url/util.js":[function(require,module,exports) {
 'use strict';
 
 module.exports = {
@@ -2729,7 +2730,7 @@ module.exports = {
   }
 };
 
-},{}],"rgkW":[function(require,module,exports) {
+},{}],"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/querystring-es3/decode.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2815,7 +2816,7 @@ module.exports = function (qs, sep, eq, options) {
 var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
-},{}],"IEvL":[function(require,module,exports) {
+},{}],"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/querystring-es3/encode.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2904,12 +2905,12 @@ var objectKeys = Object.keys || function (obj) {
 
   return res;
 };
-},{}],"tBmV":[function(require,module,exports) {
+},{}],"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/querystring-es3/index.js":[function(require,module,exports) {
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
-},{"./decode":"rgkW","./encode":"IEvL"}],"E4ju":[function(require,module,exports) {
+},{"./decode":"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/querystring-es3/decode.js","./encode":"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/querystring-es3/encode.js"}],"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/url/url.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3643,7 +3644,7 @@ Url.prototype.parseHost = function() {
   if (host) this.hostname = host;
 };
 
-},{"punycode":"O2aP","./util":"RhWE","querystring":"tBmV"}],"LQBK":[function(require,module,exports) {
+},{"punycode":"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/node-libs-browser/node_modules/punycode/punycode.js","./util":"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/url/util.js","querystring":"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/querystring-es3/index.js"}],"../node_modules/@pixi/constants/lib/constants.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4157,7 +4158,7 @@ exports.MSAA_QUALITY = MSAA_QUALITY;
   MSAA_QUALITY[MSAA_QUALITY["MEDIUM"] = 4] = "MEDIUM";
   MSAA_QUALITY[MSAA_QUALITY["HIGH"] = 8] = "HIGH";
 })(MSAA_QUALITY || (exports.MSAA_QUALITY = MSAA_QUALITY = {}));
-},{}],"G5Tu":[function(require,module,exports) {
+},{}],"../node_modules/@pixi/utils/lib/utils.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5238,7 +5239,7 @@ function getResolutionOfUrl(url, defaultValue) {
  * console.log(PIXI.utils.hex2string(0xff00ff)); // returns: "#ff00ff"
  * @namespace PIXI.utils
  */
-},{"@pixi/settings":"t4Uo","eventemitter3":"JJlS","earcut":"vwhv","url":"E4ju","@pixi/constants":"LQBK"}],"oNQC":[function(require,module,exports) {
+},{"@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js","eventemitter3":"../node_modules/eventemitter3/index.js","earcut":"../node_modules/earcut/src/earcut.js","url":"../../../../.npm-packages/lib/node_modules/parcel-bundler/node_modules/url/url.js","@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js"}],"../node_modules/@pixi/math/lib/math.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7576,7 +7577,7 @@ function () {
 
 
 exports.Transform = Transform;
-},{}],"nL3p":[function(require,module,exports) {
+},{}],"../node_modules/@pixi/display/lib/display.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9558,7 +9559,7 @@ function (_super) {
 
 exports.Container = Container;
 Container.prototype.containerUpdateTransform = Container.prototype.updateTransform;
-},{"@pixi/settings":"t4Uo","@pixi/math":"oNQC","@pixi/utils":"G5Tu"}],"jM0u":[function(require,module,exports) {
+},{"@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/accessibility/lib/accessibility.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10245,7 +10246,7 @@ function () {
 }();
 
 exports.AccessibilityManager = AccessibilityManager;
-},{"@pixi/display":"nL3p","@pixi/utils":"G5Tu"}],"F3Q6":[function(require,module,exports) {
+},{"@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/ticker/lib/ticker.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11232,7 +11233,7 @@ function () {
 }();
 
 exports.TickerPlugin = TickerPlugin;
-},{"@pixi/settings":"t4Uo"}],"Jbe7":[function(require,module,exports) {
+},{"@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js"}],"../node_modules/@pixi/interaction/lib/interaction.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13832,7 +13833,7 @@ function (_super) {
 }(_utils.EventEmitter);
 
 exports.InteractionManager = InteractionManager;
-},{"@pixi/math":"oNQC","@pixi/ticker":"F3Q6","@pixi/display":"nL3p","@pixi/utils":"G5Tu"}],"QNVA":[function(require,module,exports) {
+},{"@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/ticker":"../node_modules/@pixi/ticker/lib/ticker.es.js","@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/runner/lib/runner.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -14069,7 +14070,7 @@ Object.defineProperties(Runner.prototype, {
     value: Runner.prototype.emit
   }
 });
-},{}],"p2j5":[function(require,module,exports) {
+},{}],"../node_modules/@pixi/core/lib/core.es.js":[function(require,module,exports) {
 
 "use strict";
 
@@ -27161,7 +27162,7 @@ function () {
 exports.BatchPluginFactory = BatchPluginFactory;
 var BatchRenderer = BatchPluginFactory.create();
 exports.BatchRenderer = BatchRenderer;
-},{"@pixi/settings":"t4Uo","@pixi/constants":"LQBK","@pixi/utils":"G5Tu","@pixi/runner":"QNVA","@pixi/ticker":"F3Q6","@pixi/math":"oNQC"}],"aWkH":[function(require,module,exports) {
+},{"@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js","@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js","@pixi/runner":"../node_modules/@pixi/runner/lib/runner.es.js","@pixi/ticker":"../node_modules/@pixi/ticker/lib/ticker.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js"}],"../node_modules/@pixi/app/lib/app.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27484,7 +27485,7 @@ function () {
 }();
 
 Application.registerPlugin(ResizePlugin);
-},{"@pixi/display":"nL3p","@pixi/core":"p2j5"}],"rWhx":[function(require,module,exports) {
+},{"@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/extract/lib/extract.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27738,7 +27739,7 @@ function () {
 }();
 
 exports.Extract = Extract;
-},{"@pixi/utils":"G5Tu","@pixi/math":"oNQC","@pixi/core":"p2j5"}],"sX7F":[function(require,module,exports) {
+},{"@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/parse-uri/index.js":[function(require,module,exports) {
 'use strict';
 
 function parseURI(str, opts) {
@@ -27769,7 +27770,7 @@ function parseURI(str, opts) {
 }
 
 module.exports = parseURI;
-},{}],"vKdq":[function(require,module,exports) {
+},{}],"../node_modules/mini-signals/lib/mini-signals.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -27936,7 +27937,7 @@ MiniSignal.MiniSignalBinding = MiniSignalBinding;
 exports['default'] = MiniSignal;
 module.exports = exports['default'];
 
-},{}],"OCxJ":[function(require,module,exports) {
+},{}],"../node_modules/resource-loader/dist/resource-loader.esm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30286,7 +30287,7 @@ Loader.use = function LoaderUseStatic(fn) {
 
   return Loader;
 };
-},{"parse-uri":"sX7F","mini-signals":"vKdq"}],"hQvf":[function(require,module,exports) {
+},{"parse-uri":"../node_modules/parse-uri/index.js","mini-signals":"../node_modules/mini-signals/lib/mini-signals.js"}],"../node_modules/@pixi/loaders/lib/loaders.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30681,7 +30682,7 @@ function () {
 }();
 
 exports.AppLoaderPlugin = AppLoaderPlugin;
-},{"resource-loader":"OCxJ","@pixi/core":"p2j5"}],"j0p2":[function(require,module,exports) {
+},{"resource-loader":"../node_modules/resource-loader/dist/resource-loader.esm.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/particles/lib/particles.es.js":[function(require,module,exports) {
 
 "use strict";
 
@@ -31630,7 +31631,7 @@ function (_super) {
 }(_core.ObjectRenderer);
 
 exports.ParticleRenderer = ParticleRenderer;
-},{"@pixi/constants":"LQBK","@pixi/display":"nL3p","@pixi/utils":"G5Tu","@pixi/core":"p2j5","@pixi/math":"oNQC"}],"KxlN":[function(require,module,exports) {
+},{"@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js","@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js"}],"../node_modules/@pixi/graphics/lib/graphics.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35480,7 +35481,7 @@ function (_super) {
 }(_display.Container);
 
 exports.Graphics = Graphics;
-},{"@pixi/core":"p2j5","@pixi/math":"oNQC","@pixi/utils":"G5Tu","@pixi/constants":"LQBK","@pixi/display":"nL3p"}],"ueA8":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js","@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js","@pixi/display":"../node_modules/@pixi/display/lib/display.es.js"}],"../node_modules/@pixi/sprite/lib/sprite.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36158,7 +36159,7 @@ function (_super) {
 }(_display.Container);
 
 exports.Sprite = Sprite;
-},{"@pixi/constants":"LQBK","@pixi/core":"p2j5","@pixi/display":"nL3p","@pixi/math":"oNQC","@pixi/settings":"t4Uo","@pixi/utils":"G5Tu"}],"T62s":[function(require,module,exports) {
+},{"@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/text/lib/text.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38424,7 +38425,7 @@ function (_super) {
 }(_sprite.Sprite);
 
 exports.Text = Text;
-},{"@pixi/sprite":"ueA8","@pixi/core":"p2j5","@pixi/settings":"t4Uo","@pixi/math":"oNQC","@pixi/utils":"G5Tu"}],"EBFb":[function(require,module,exports) {
+},{"@pixi/sprite":"../node_modules/@pixi/sprite/lib/sprite.es.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/prepare/lib/prepare.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39205,7 +39206,7 @@ function () {
 }();
 
 exports.TimeLimiter = TimeLimiter;
-},{"@pixi/settings":"t4Uo","@pixi/core":"p2j5","@pixi/graphics":"KxlN","@pixi/ticker":"F3Q6","@pixi/display":"nL3p","@pixi/text":"T62s"}],"LQzI":[function(require,module,exports) {
+},{"@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/graphics":"../node_modules/@pixi/graphics/lib/graphics.es.js","@pixi/ticker":"../node_modules/@pixi/ticker/lib/ticker.es.js","@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/text":"../node_modules/@pixi/text/lib/text.es.js"}],"../node_modules/@pixi/spritesheet/lib/spritesheet.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39615,7 +39616,7 @@ function () {
 }();
 
 exports.SpritesheetLoader = SpritesheetLoader;
-},{"@pixi/math":"oNQC","@pixi/core":"p2j5","@pixi/utils":"G5Tu","@pixi/loaders":"hQvf"}],"kMpM":[function(require,module,exports) {
+},{"@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js","@pixi/loaders":"../node_modules/@pixi/loaders/lib/loaders.es.js"}],"../node_modules/@pixi/sprite-tiling/lib/sprite-tiling.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -40109,7 +40110,7 @@ function (_super) {
 }(_core.ObjectRenderer);
 
 exports.TilingSpriteRenderer = TilingSpriteRenderer;
-},{"@pixi/core":"p2j5","@pixi/math":"oNQC","@pixi/sprite":"ueA8","@pixi/utils":"G5Tu","@pixi/constants":"LQBK"}],"Ihaq":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/sprite":"../node_modules/@pixi/sprite/lib/sprite.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js","@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js"}],"../node_modules/@pixi/mesh/lib/mesh.es.js":[function(require,module,exports) {
 
 "use strict";
 
@@ -40956,7 +40957,7 @@ function (_super) {
 }(_core.Geometry);
 
 exports.MeshGeometry = MeshGeometry;
-},{"@pixi/core":"p2j5","@pixi/math":"oNQC","@pixi/constants":"LQBK","@pixi/display":"nL3p","@pixi/settings":"t4Uo","@pixi/utils":"G5Tu"}],"LwOx":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js","@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/text-bitmap/lib/text-bitmap.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42932,7 +42933,7 @@ function () {
 }();
 
 exports.BitmapFontLoader = BitmapFontLoader;
-},{"@pixi/math":"oNQC","@pixi/settings":"t4Uo","@pixi/mesh":"Ihaq","@pixi/utils":"G5Tu","@pixi/core":"p2j5","@pixi/text":"T62s","@pixi/display":"nL3p","@pixi/loaders":"hQvf"}],"h70E":[function(require,module,exports) {
+},{"@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js","@pixi/mesh":"../node_modules/@pixi/mesh/lib/mesh.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/text":"../node_modules/@pixi/text/lib/text.es.js","@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/loaders":"../node_modules/@pixi/loaders/lib/loaders.es.js"}],"../node_modules/@pixi/filter-alpha/lib/filter-alpha.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43053,7 +43054,7 @@ function (_super) {
 }(_core.Filter);
 
 exports.AlphaFilter = AlphaFilter;
-},{"@pixi/core":"p2j5"}],"XHCc":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-blur/lib/filter-blur.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43995,7 +43996,7 @@ function (_super) {
 }(_core.Filter);
 
 exports.BlurFilter = BlurFilter;
-},{"@pixi/core":"p2j5","@pixi/settings":"t4Uo"}],"atfW":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js"}],"../node_modules/@pixi/filter-color-matrix/lib/filter-color-matrix.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44536,7 +44537,7 @@ function (_super) {
 
 exports.ColorMatrixFilter = ColorMatrixFilter;
 ColorMatrixFilter.prototype.grayscale = ColorMatrixFilter.prototype.greyscale;
-},{"@pixi/core":"p2j5"}],"rpU2":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-displacement/lib/filter-displacement.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44708,7 +44709,7 @@ function (_super) {
 }(_core.Filter);
 
 exports.DisplacementFilter = DisplacementFilter;
-},{"@pixi/core":"p2j5","@pixi/math":"oNQC"}],"zKIa":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js"}],"../node_modules/@pixi/filter-fxaa/lib/filter-fxaa.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44796,7 +44797,7 @@ function (_super) {
 }(_core.Filter);
 
 exports.FXAAFilter = FXAAFilter;
-},{"@pixi/core":"p2j5"}],"nEkq":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-noise/lib/filter-noise.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44934,7 +44935,7 @@ function (_super) {
 }(_core.Filter);
 
 exports.NoiseFilter = NoiseFilter;
-},{"@pixi/core":"p2j5"}],"fh0A":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/mixin-cache-as-bitmap/lib/mixin-cache-as-bitmap.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45325,7 +45326,7 @@ _display.DisplayObject.prototype._cacheAsBitmapDestroy = function _cacheAsBitmap
   this.cacheAsBitmap = false;
   this.destroy(options);
 };
-},{"@pixi/core":"p2j5","@pixi/sprite":"ueA8","@pixi/display":"nL3p","@pixi/math":"oNQC","@pixi/utils":"G5Tu","@pixi/settings":"t4Uo"}],"CSWr":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/sprite":"../node_modules/@pixi/sprite/lib/sprite.es.js","@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js","@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js"}],"../node_modules/@pixi/mixin-get-child-by-name/lib/mixin-get-child-by-name.es.js":[function(require,module,exports) {
 "use strict";
 
 var _display = require("@pixi/display");
@@ -45382,7 +45383,7 @@ _display.Container.prototype.getChildByName = function getChildByName(name, deep
 
   return null;
 };
-},{"@pixi/display":"nL3p"}],"bmhz":[function(require,module,exports) {
+},{"@pixi/display":"../node_modules/@pixi/display/lib/display.es.js"}],"../node_modules/@pixi/mixin-get-global-position/lib/mixin-get-global-position.es.js":[function(require,module,exports) {
 "use strict";
 
 var _display = require("@pixi/display");
@@ -45426,7 +45427,7 @@ _display.DisplayObject.prototype.getGlobalPosition = function getGlobalPosition(
 
   return point;
 };
-},{"@pixi/display":"nL3p","@pixi/math":"oNQC"}],"kDGc":[function(require,module,exports) {
+},{"@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js"}],"../node_modules/@pixi/mesh-extras/lib/mesh-extras.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46336,7 +46337,7 @@ function (_super) {
 }(SimplePlane);
 
 exports.NineSlicePlane = NineSlicePlane;
-},{"@pixi/mesh":"Ihaq","@pixi/constants":"LQBK","@pixi/core":"p2j5"}],"GC82":[function(require,module,exports) {
+},{"@pixi/mesh":"../node_modules/@pixi/mesh/lib/mesh.es.js","@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/sprite-animated/lib/sprite-animated.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46898,7 +46899,7 @@ function (_super) {
 
 
 exports.AnimatedSprite = AnimatedSprite;
-},{"@pixi/core":"p2j5","@pixi/sprite":"ueA8","@pixi/ticker":"F3Q6"}],"wbEC":[function(require,module,exports) {
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/sprite":"../node_modules/@pixi/sprite/lib/sprite.es.js","@pixi/ticker":"../node_modules/@pixi/ticker/lib/ticker.es.js"}],"../node_modules/pixi.js/lib/pixi.es.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46924,6 +46925,7 @@ var _accessibility = require("@pixi/accessibility");
 Object.keys(_accessibility).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _accessibility[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -46937,6 +46939,7 @@ var _interaction = require("@pixi/interaction");
 Object.keys(_interaction).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _interaction[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -46950,6 +46953,7 @@ var _app = require("@pixi/app");
 Object.keys(_app).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _app[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -46963,6 +46967,7 @@ var _core = require("@pixi/core");
 Object.keys(_core).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _core[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -46976,6 +46981,7 @@ var _extract = require("@pixi/extract");
 Object.keys(_extract).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _extract[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -46989,6 +46995,7 @@ var _loaders = require("@pixi/loaders");
 Object.keys(_loaders).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _loaders[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47002,6 +47009,7 @@ var _particles = require("@pixi/particles");
 Object.keys(_particles).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _particles[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47015,6 +47023,7 @@ var _prepare = require("@pixi/prepare");
 Object.keys(_prepare).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _prepare[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47028,6 +47037,7 @@ var _spritesheet = require("@pixi/spritesheet");
 Object.keys(_spritesheet).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _spritesheet[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47041,6 +47051,7 @@ var _spriteTiling = require("@pixi/sprite-tiling");
 Object.keys(_spriteTiling).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _spriteTiling[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47054,6 +47065,7 @@ var _textBitmap = require("@pixi/text-bitmap");
 Object.keys(_textBitmap).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _textBitmap[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47067,6 +47079,7 @@ var _ticker = require("@pixi/ticker");
 Object.keys(_ticker).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _ticker[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47098,6 +47111,7 @@ var _constants = require("@pixi/constants");
 Object.keys(_constants).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _constants[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47111,6 +47125,7 @@ var _display = require("@pixi/display");
 Object.keys(_display).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _display[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47124,6 +47139,7 @@ var _graphics = require("@pixi/graphics");
 Object.keys(_graphics).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _graphics[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47137,6 +47153,7 @@ var _math = require("@pixi/math");
 Object.keys(_math).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _math[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47150,6 +47167,7 @@ var _mesh = require("@pixi/mesh");
 Object.keys(_mesh).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _mesh[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47163,6 +47181,7 @@ var _meshExtras = require("@pixi/mesh-extras");
 Object.keys(_meshExtras).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _meshExtras[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47176,6 +47195,7 @@ var _runner = require("@pixi/runner");
 Object.keys(_runner).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _runner[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47189,6 +47209,7 @@ var _sprite = require("@pixi/sprite");
 Object.keys(_sprite).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _sprite[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47202,6 +47223,7 @@ var _spriteAnimated = require("@pixi/sprite-animated");
 Object.keys(_spriteAnimated).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _spriteAnimated[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47215,6 +47237,7 @@ var _text = require("@pixi/text");
 Object.keys(_text).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _text[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -47228,6 +47251,7 @@ var _settings = require("@pixi/settings");
 Object.keys(_settings).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _settings[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function () {
@@ -48755,7 +48779,7 @@ var filters = {
   NoiseFilter: _filterNoise.NoiseFilter
 };
 exports.filters = filters;
-},{"@pixi/polyfill":"y4AA","@pixi/utils":"G5Tu","@pixi/accessibility":"jM0u","@pixi/interaction":"Jbe7","@pixi/app":"aWkH","@pixi/core":"p2j5","@pixi/extract":"rWhx","@pixi/loaders":"hQvf","@pixi/particles":"j0p2","@pixi/prepare":"EBFb","@pixi/spritesheet":"LQzI","@pixi/sprite-tiling":"kMpM","@pixi/text-bitmap":"LwOx","@pixi/ticker":"F3Q6","@pixi/filter-alpha":"h70E","@pixi/filter-blur":"XHCc","@pixi/filter-color-matrix":"atfW","@pixi/filter-displacement":"rpU2","@pixi/filter-fxaa":"zKIa","@pixi/filter-noise":"nEkq","@pixi/mixin-cache-as-bitmap":"fh0A","@pixi/mixin-get-child-by-name":"CSWr","@pixi/mixin-get-global-position":"bmhz","@pixi/constants":"LQBK","@pixi/display":"nL3p","@pixi/graphics":"KxlN","@pixi/math":"oNQC","@pixi/mesh":"Ihaq","@pixi/mesh-extras":"kDGc","@pixi/runner":"QNVA","@pixi/sprite":"ueA8","@pixi/sprite-animated":"GC82","@pixi/text":"T62s","@pixi/settings":"t4Uo"}],"hSFE":[function(require,module,exports) {
+},{"@pixi/polyfill":"../node_modules/@pixi/polyfill/lib/polyfill.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js","@pixi/accessibility":"../node_modules/@pixi/accessibility/lib/accessibility.es.js","@pixi/interaction":"../node_modules/@pixi/interaction/lib/interaction.es.js","@pixi/app":"../node_modules/@pixi/app/lib/app.es.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/extract":"../node_modules/@pixi/extract/lib/extract.es.js","@pixi/loaders":"../node_modules/@pixi/loaders/lib/loaders.es.js","@pixi/particles":"../node_modules/@pixi/particles/lib/particles.es.js","@pixi/prepare":"../node_modules/@pixi/prepare/lib/prepare.es.js","@pixi/spritesheet":"../node_modules/@pixi/spritesheet/lib/spritesheet.es.js","@pixi/sprite-tiling":"../node_modules/@pixi/sprite-tiling/lib/sprite-tiling.es.js","@pixi/text-bitmap":"../node_modules/@pixi/text-bitmap/lib/text-bitmap.es.js","@pixi/ticker":"../node_modules/@pixi/ticker/lib/ticker.es.js","@pixi/filter-alpha":"../node_modules/@pixi/filter-alpha/lib/filter-alpha.es.js","@pixi/filter-blur":"../node_modules/@pixi/filter-blur/lib/filter-blur.es.js","@pixi/filter-color-matrix":"../node_modules/@pixi/filter-color-matrix/lib/filter-color-matrix.es.js","@pixi/filter-displacement":"../node_modules/@pixi/filter-displacement/lib/filter-displacement.es.js","@pixi/filter-fxaa":"../node_modules/@pixi/filter-fxaa/lib/filter-fxaa.es.js","@pixi/filter-noise":"../node_modules/@pixi/filter-noise/lib/filter-noise.es.js","@pixi/mixin-cache-as-bitmap":"../node_modules/@pixi/mixin-cache-as-bitmap/lib/mixin-cache-as-bitmap.es.js","@pixi/mixin-get-child-by-name":"../node_modules/@pixi/mixin-get-child-by-name/lib/mixin-get-child-by-name.es.js","@pixi/mixin-get-global-position":"../node_modules/@pixi/mixin-get-global-position/lib/mixin-get-global-position.es.js","@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js","@pixi/display":"../node_modules/@pixi/display/lib/display.es.js","@pixi/graphics":"../node_modules/@pixi/graphics/lib/graphics.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/mesh":"../node_modules/@pixi/mesh/lib/mesh.es.js","@pixi/mesh-extras":"../node_modules/@pixi/mesh-extras/lib/mesh-extras.es.js","@pixi/runner":"../node_modules/@pixi/runner/lib/runner.es.js","@pixi/sprite":"../node_modules/@pixi/sprite/lib/sprite.es.js","@pixi/sprite-animated":"../node_modules/@pixi/sprite-animated/lib/sprite-animated.es.js","@pixi/text":"../node_modules/@pixi/text/lib/text.es.js","@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js"}],"../node_modules/pixi-layers/dist/pixi-layers.js":[function(require,module,exports) {
 var pixi_display;
 (function (pixi_display) {
     Object.assign(PIXI.Container.prototype, {
@@ -49554,8 +49578,8 @@ var pixi_display;
 (function (pixi_display) {
     PIXI.display = pixi_display;
 })(pixi_display || (pixi_display = {}));
-
-},{}],"TNS6":[function(require,module,exports) {
+//# sourceMappingURL=pixi-layers.js.map
+},{}],"../node_modules/gsap/gsap-core.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53426,7 +53450,7 @@ exports.Power3 = Power3;
 exports.Power2 = Power2;
 exports.Power1 = Power1;
 exports.Power0 = Power0;
-},{}],"bp4Z":[function(require,module,exports) {
+},{}],"../node_modules/gsap/CSSPlugin.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54819,7 +54843,7 @@ _gsapCore.gsap.utils.checkPrefix = _checkPropPrefix;
 });
 
 _gsapCore.gsap.registerPlugin(CSSPlugin);
-},{"./gsap-core.js":"TNS6"}],"TpQl":[function(require,module,exports) {
+},{"./gsap-core.js":"../node_modules/gsap/gsap-core.js"}],"../node_modules/gsap/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54969,7 +54993,7 @@ TweenMaxWithCSS = gsapWithCSS.core.Tween;
 
 exports.TweenMax = TweenMaxWithCSS;
 exports.default = exports.gsap = gsapWithCSS;
-},{"./gsap-core.js":"TNS6","./CSSPlugin.js":"bp4Z"}],"Y7PD":[function(require,module,exports) {
+},{"./gsap-core.js":"../node_modules/gsap/gsap-core.js","./CSSPlugin.js":"../node_modules/gsap/CSSPlugin.js"}],"../node_modules/gsap/PixiPlugin.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55441,7 +55465,7 @@ var PixiPlugin = {
 };
 exports.default = exports.PixiPlugin = PixiPlugin;
 _getGSAP() && gsap.registerPlugin(PixiPlugin);
-},{}],"ED4Q":[function(require,module,exports) {
+},{}],"../node_modules/gsap/utils/paths.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56973,7 +56997,7 @@ export function pointToScreen(svgElement, point) {
 }
 
 */
-},{}],"ZBXp":[function(require,module,exports) {
+},{}],"../node_modules/gsap/utils/matrix.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57372,7 +57396,7 @@ function getGlobalMatrix(element, inverse, adjustGOffset) {
 // 		is2D = m && m.length === 6;
 // 	return !m || m.length < 6 ? new Matrix2D() : new Matrix2D(+m[0], +m[1], +m[is2D ? 2 : 4], +m[is2D ? 3 : 5], +m[is2D ? 4 : 12], +m[is2D ? 5 : 13]);
 // }
-},{}],"DOrM":[function(require,module,exports) {
+},{}],"../node_modules/gsap/MotionPathPlugin.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57720,11 +57744,11 @@ var MotionPathPlugin = {
 };
 exports.default = exports.MotionPathPlugin = MotionPathPlugin;
 _getGSAP() && gsap.registerPlugin(MotionPathPlugin);
-},{"./utils/paths.js":"ED4Q","./utils/matrix.js":"ZBXp"}],"lyKV":[function(require,module,exports) {
+},{"./utils/paths.js":"../node_modules/gsap/utils/paths.js","./utils/matrix.js":"../node_modules/gsap/utils/matrix.js"}],"../node_modules/howler/dist/howler.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /*!
- *  howler.js v2.2.0
+ *  howler.js v2.2.1
  *  howlerjs.com
  *
  *  (c) 2013-2020, James Simpson of GoldFire Studios
@@ -57998,7 +58022,7 @@ var global = arguments[3];
         opus: !!audioTest.canPlayType('audio/ogg; codecs="opus"').replace(/^no$/, ''),
         ogg: !!audioTest.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ''),
         oga: !!audioTest.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ''),
-        wav: !!audioTest.canPlayType('audio/wav; codecs="1"').replace(/^no$/, ''),
+        wav: !!(audioTest.canPlayType('audio/wav; codecs="1"') || audioTest.canPlayType('audio/wav')).replace(/^no$/, ''),
         aac: !!audioTest.canPlayType('audio/aac;').replace(/^no$/, ''),
         caf: !!audioTest.canPlayType('audio/x-caf;').replace(/^no$/, ''),
         m4a: !!(audioTest.canPlayType('audio/x-m4a;') || audioTest.canPlayType('audio/m4a;') || audioTest.canPlayType('audio/aac;')).replace(/^no$/, ''),
@@ -59087,15 +59111,15 @@ var global = arguments[3];
         lastTick = Date.now();
         vol += diff * tick;
 
+        // Round to within 2 decimal points.
+        vol = Math.round(vol * 100) / 100;
+
         // Make sure the volume is in the right bounds.
         if (diff < 0) {
           vol = Math.max(to, vol);
         } else {
           vol = Math.min(to, vol);
         }
-
-        // Round to within 2 decimal points.
-        vol = Math.round(vol * 100) / 100;
 
         // Change the volume.
         if (self._webAudio) {
@@ -59329,7 +59353,7 @@ var global = arguments[3];
       }
 
       // If the sound hasn't loaded, add it to the load queue to seek when capable.
-      if (self._state !== 'loaded' || self._playLock) {
+      if (typeof seek === 'number' && (self._state !== 'loaded' || self._playLock)) {
         self._queue.push({
           event: 'seek',
           action: function() {
@@ -59471,6 +59495,7 @@ var global = arguments[3];
           // Remove any event listeners.
           sounds[i]._node.removeEventListener('error', sounds[i]._errorFn, false);
           sounds[i]._node.removeEventListener(Howler._canPlayEvent, sounds[i]._loadFn, false);
+          sounds[i]._node.removeEventListener('ended', sounds[i]._endFn, false);
 
           // Release the Audio object back to the pool.
           Howler._releaseHtml5Audio(sounds[i]._node);
@@ -59967,6 +59992,11 @@ var global = arguments[3];
         self._loadFn = self._loadListener.bind(self);
         self._node.addEventListener(Howler._canPlayEvent, self._loadFn, false);
 
+        // Listen for the 'ended' event on the sound to account for edge-case where
+        // a finite sound has a duration of Infinity.
+        self._endFn = self._endListener.bind(self);
+        self._node.addEventListener('ended', self._endFn, false);
+
         // Setup the new audio node.
         self._node.src = parent._src;
         self._node.preload = parent._preload === true ? 'auto' : parent._preload;
@@ -60040,6 +60070,32 @@ var global = arguments[3];
 
       // Clear the event listener.
       self._node.removeEventListener(Howler._canPlayEvent, self._loadFn, false);
+    },
+
+    /**
+     * HTML5 Audio ended listener callback.
+     */
+    _endListener: function() {
+      var self = this;
+      var parent = self._parent;
+
+      // Only handle the `ended`` event if the duration is Infinity.
+      if (parent._duration === Infinity) {
+        // Update the parent duration to match the real audio duration.
+        // Round up the duration to account for the lower precision in HTML5 Audio.
+        parent._duration = Math.ceil(self._node.duration * 10) / 10;
+
+        // Update the sprite that corresponds to the real duration.
+        if (parent._sprite.__default[1] === Infinity) {
+          parent._sprite.__default[1] = parent._duration * 1000;
+        }
+
+        // Run the regular ended method.
+        parent._ended(self);
+      }
+
+      // Clear the event listener since the duration is now correct.
+      self._node.removeEventListener('ended', self._endFn, false);
     }
   };
 
@@ -60262,7 +60318,7 @@ var global = arguments[3];
 /*!
  *  Spatial Plugin - Adds support for stereo and 3D audio where Web Audio is supported.
  *  
- *  howler.js v2.2.0
+ *  howler.js v2.2.1
  *  howlerjs.com
  *
  *  (c) 2013-2020, James Simpson of GoldFire Studios
@@ -60917,7 +60973,7 @@ var global = arguments[3];
   };
 })();
 
-},{}],"cGmI":[function(require,module,exports) {
+},{}],"loader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -61115,7 +61171,9234 @@ var GameLoader = /*#__PURE__*/function (_Loader) {
 
 var _default = GameLoader;
 exports.default = _default;
-},{"howler":"lyKV","pixi.js":"wbEC"}],"EM1A":[function(require,module,exports) {
+},{"howler":"../node_modules/howler/dist/howler.js","pixi.js":"../node_modules/pixi.js/lib/pixi.es.js"}],"../node_modules/pixi-particles/lib/pixi-particles.es.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GetTextureFromString = GetTextureFromString;
+exports.PropertyNode = exports.PropertyList = exports.PolygonalChain = exports.PathParticle = exports.ParticleUtils = exports.Particle = exports.LinkedListContainer = exports.Emitter = exports.AnimatedParticle = void 0;
+
+var pixi = _interopRequireWildcard(require("pixi.js"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+/*!
+ * pixi-particles - v4.3.0
+ * Compiled Fri, 18 Sep 2020 13:47:54 UTC
+ *
+ * pixi-particles is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/**
+ * A single node in a PropertyList.
+ */
+var PropertyNode =
+/** @class */
+function () {
+  /**
+   * @param value The value for this node
+   * @param time The time for this node, between 0-1
+   * @param [ease] Custom ease for this list. Only relevant for the first node.
+   */
+  function PropertyNode(value, time, ease) {
+    this.value = value;
+    this.time = time;
+    this.next = null;
+    this.isStepped = false;
+
+    if (ease) {
+      this.ease = typeof ease === 'function' ? ease : ParticleUtils.generateEase(ease);
+    } else {
+      this.ease = null;
+    }
+  }
+  /**
+   * Creates a list of property values from a data object {list, isStepped} with a list of objects in
+   * the form {value, time}. Alternatively, the data object can be in the deprecated form of
+   * {start, end}.
+   * @param data The data for the list.
+   * @param data.list The array of value and time objects.
+   * @param data.isStepped If the list is stepped rather than interpolated.
+   * @param data.ease Custom ease for this list.
+   * @return The first node in the list
+   */
+  // eslint-disable-next-line max-len
+
+
+  PropertyNode.createList = function (data) {
+    if ('list' in data) {
+      var array = data.list;
+      var node = void 0;
+      var _a = array[0],
+          value = _a.value,
+          time = _a.time; // eslint-disable-next-line max-len
+
+      var first = node = new PropertyNode(typeof value === 'string' ? ParticleUtils.hexToRGB(value) : value, time, data.ease); // only set up subsequent nodes if there are a bunch or the 2nd one is different from the first
+
+      if (array.length > 2 || array.length === 2 && array[1].value !== value) {
+        for (var i = 1; i < array.length; ++i) {
+          var _b = array[i],
+              value_1 = _b.value,
+              time_1 = _b.time;
+          node.next = new PropertyNode(typeof value_1 === 'string' ? ParticleUtils.hexToRGB(value_1) : value_1, time_1);
+          node = node.next;
+        }
+      }
+
+      first.isStepped = !!data.isStepped;
+      return first;
+    } // Handle deprecated version here
+
+
+    var start = new PropertyNode(typeof data.start === 'string' ? ParticleUtils.hexToRGB(data.start) : data.start, 0); // only set up a next value if it is different from the starting value
+
+    if (data.end !== data.start) {
+      start.next = new PropertyNode(typeof data.end === 'string' ? ParticleUtils.hexToRGB(data.end) : data.end, 1);
+    }
+
+    return start;
+  };
+
+  return PropertyNode;
+}(); // get Texture.from()/Texture.fromImage(), in V4 and V5 friendly methods
+
+/**
+ * @hidden
+ */
+
+
+exports.PropertyNode = PropertyNode;
+var TextureFromString; // to avoid Rollup transforming our import, save pixi namespace in a variable
+
+var pixiNS = pixi;
+
+if (parseInt(/^(\d+)\./.exec(pixi.VERSION)[1], 10) < 5) {
+  TextureFromString = pixiNS.Texture.fromImage;
+} else {
+  TextureFromString = pixiNS.Texture.from;
+}
+
+function GetTextureFromString(s) {
+  return TextureFromString(s);
+}
+/**
+ * Contains helper functions for particles and emitters to use.
+ */
+
+
+var ParticleUtils;
+exports.ParticleUtils = ParticleUtils;
+
+(function (ParticleUtils) {
+  /**
+   * If errors and warnings should be logged within the library.
+   */
+  ParticleUtils.verbose = false;
+  ParticleUtils.DEG_TO_RADS = Math.PI / 180;
+  /**
+   * Rotates a point by a given angle.
+   * @param angle The angle to rotate by in degrees
+   * @param p The point to rotate around 0,0.
+   */
+
+  function rotatePoint(angle, p) {
+    if (!angle) return;
+    angle *= ParticleUtils.DEG_TO_RADS;
+    var s = Math.sin(angle);
+    var c = Math.cos(angle);
+    var xnew = p.x * c - p.y * s;
+    var ynew = p.x * s + p.y * c;
+    p.x = xnew;
+    p.y = ynew;
+  }
+
+  ParticleUtils.rotatePoint = rotatePoint;
+  /**
+   * Combines separate color components (0-255) into a single uint color.
+   * @param r The red value of the color
+   * @param g The green value of the color
+   * @param b The blue value of the color
+   * @return The color in the form of 0xRRGGBB
+   */
+
+  function combineRGBComponents(r, g, b
+  /* , a*/
+  ) {
+    return (
+      /* a << 24 |*/
+      r << 16 | g << 8 | b
+    );
+  }
+
+  ParticleUtils.combineRGBComponents = combineRGBComponents;
+  /**
+   * Reduces the point to a length of 1.
+   * @param point The point to normalize
+   */
+
+  function normalize(point) {
+    var oneOverLen = 1 / ParticleUtils.length(point);
+    point.x *= oneOverLen;
+    point.y *= oneOverLen;
+  }
+
+  ParticleUtils.normalize = normalize;
+  /**
+   * Multiplies the x and y values of this point by a value.
+   * @param point The point to scaleBy
+   * @param value The value to scale by.
+   */
+
+  function scaleBy(point, value) {
+    point.x *= value;
+    point.y *= value;
+  }
+
+  ParticleUtils.scaleBy = scaleBy;
+  /**
+   * Returns the length (or magnitude) of this point.
+   * @param point The point to measure length
+   * @return The length of this point.
+   */
+
+  function length(point) {
+    return Math.sqrt(point.x * point.x + point.y * point.y);
+  }
+
+  ParticleUtils.length = length;
+  /**
+   * Converts a hex string from "#AARRGGBB", "#RRGGBB", "0xAARRGGBB", "0xRRGGBB",
+   * "AARRGGBB", or "RRGGBB" to an object of ints of 0-255, as
+   * {r, g, b, (a)}.
+   * @param color The input color string.
+   * @param output An object to put the output in. If omitted, a new object is created.
+   * @return The object with r, g, and b properties, possibly with an a property.
+   */
+
+  function hexToRGB(color, output) {
+    if (!output) {
+      output = {};
+    }
+
+    if (color.charAt(0) === '#') {
+      color = color.substr(1);
+    } else if (color.indexOf('0x') === 0) {
+      color = color.substr(2);
+    }
+
+    var alpha;
+
+    if (color.length === 8) {
+      alpha = color.substr(0, 2);
+      color = color.substr(2);
+    }
+
+    output.r = parseInt(color.substr(0, 2), 16); // Red
+
+    output.g = parseInt(color.substr(2, 2), 16); // Green
+
+    output.b = parseInt(color.substr(4, 2), 16); // Blue
+
+    if (alpha) {
+      output.a = parseInt(alpha, 16);
+    }
+
+    return output;
+  }
+
+  ParticleUtils.hexToRGB = hexToRGB;
+  /**
+   * Generates a custom ease function, based on the GreenSock custom ease, as demonstrated
+   * by the related tool at http://www.greensock.com/customease/.
+   * @param segments An array of segments, as created by
+   * http://www.greensock.com/customease/.
+   * @return A function that calculates the percentage of change at
+   *                    a given point in time (0-1 inclusive).
+   */
+
+  function generateEase(segments) {
+    var qty = segments.length;
+    var oneOverQty = 1 / qty;
+    /*
+     * Calculates the percentage of change at a given point in time (0-1 inclusive).
+     * @param {Number} time The time of the ease, 0-1 inclusive.
+     * @return {Number} The percentage of the change, 0-1 inclusive (unless your
+     *                  ease goes outside those bounds).
+     */
+    // eslint-disable-next-line func-names
+
+    return function (time) {
+      var i = qty * time | 0; // do a quick floor operation
+
+      var t = (time - i * oneOverQty) * qty;
+      var s = segments[i] || segments[qty - 1];
+      return s.s + t * (2 * (1 - t) * (s.cp - s.s) + t * (s.e - s.s));
+    };
+  }
+
+  ParticleUtils.generateEase = generateEase;
+  /**
+   * Gets a blend mode, ensuring that it is valid.
+   * @param name The name of the blend mode to get.
+   * @return The blend mode as specified in the PIXI.BLEND_MODES enumeration.
+   */
+
+  function getBlendMode(name) {
+    if (!name) return pixi.BLEND_MODES.NORMAL;
+    name = name.toUpperCase();
+
+    while (name.indexOf(' ') >= 0) {
+      name = name.replace(' ', '_');
+    }
+
+    return pixi.BLEND_MODES[name] || pixi.BLEND_MODES.NORMAL;
+  }
+
+  ParticleUtils.getBlendMode = getBlendMode;
+  /**
+   * Converts a list of {value, time} objects starting at time 0 and ending at time 1 into an evenly
+   * spaced stepped list of PropertyNodes for color values. This is primarily to handle conversion of
+   * linear gradients to fewer colors, allowing for some optimization for Canvas2d fallbacks.
+   * @param list The list of data to convert.
+   * @param [numSteps=10] The number of steps to use.
+   * @return The blend mode as specified in the PIXI.blendModes enumeration.
+   */
+
+  function createSteppedGradient(list, numSteps) {
+    if (numSteps === void 0) {
+      numSteps = 10;
+    }
+
+    if (typeof numSteps !== 'number' || numSteps <= 0) {
+      numSteps = 10;
+    }
+
+    var first = new PropertyNode(ParticleUtils.hexToRGB(list[0].value), list[0].time);
+    first.isStepped = true;
+    var currentNode = first;
+    var current = list[0];
+    var nextIndex = 1;
+    var next = list[nextIndex];
+
+    for (var i = 1; i < numSteps; ++i) {
+      var lerp = i / numSteps; // ensure we are on the right segment, if multiple
+
+      while (lerp > next.time) {
+        current = next;
+        next = list[++nextIndex];
+      } // convert the lerp value to the segment range
+
+
+      lerp = (lerp - current.time) / (next.time - current.time);
+      var curVal = ParticleUtils.hexToRGB(current.value);
+      var nextVal = ParticleUtils.hexToRGB(next.value);
+      var output = {
+        r: (nextVal.r - curVal.r) * lerp + curVal.r,
+        g: (nextVal.g - curVal.g) * lerp + curVal.g,
+        b: (nextVal.b - curVal.b) * lerp + curVal.b
+      };
+      currentNode.next = new PropertyNode(output, i / numSteps);
+      currentNode = currentNode.next;
+    } // we don't need to have a PropertyNode for time of 1, because in a stepped version at that point
+    // the particle has died of old age
+
+
+    return first;
+  }
+
+  ParticleUtils.createSteppedGradient = createSteppedGradient;
+})(ParticleUtils || (exports.ParticleUtils = ParticleUtils = {}));
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+/* global Reflect, Promise */
+
+
+var extendStatics = function (d, b) {
+  extendStatics = Object.setPrototypeOf || {
+    __proto__: []
+  } instanceof Array && function (d, b) {
+    d.__proto__ = b;
+  } || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+  };
+
+  return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+  extendStatics(d, b);
+
+  function __() {
+    this.constructor = d;
+  }
+
+  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+function intValueSimple(lerp) {
+  if (this.ease) {
+    lerp = this.ease(lerp);
+  }
+
+  return (this.next.value - this.current.value) * lerp + this.current.value;
+}
+
+function intColorSimple(lerp) {
+  if (this.ease) {
+    lerp = this.ease(lerp);
+  }
+
+  var curVal = this.current.value;
+  var nextVal = this.next.value;
+  var r = (nextVal.r - curVal.r) * lerp + curVal.r;
+  var g = (nextVal.g - curVal.g) * lerp + curVal.g;
+  var b = (nextVal.b - curVal.b) * lerp + curVal.b;
+  return ParticleUtils.combineRGBComponents(r, g, b);
+}
+
+function intValueComplex(lerp) {
+  if (this.ease) {
+    lerp = this.ease(lerp);
+  } // make sure we are on the right segment
+
+
+  while (lerp > this.next.time) {
+    this.current = this.next;
+    this.next = this.next.next;
+  } // convert the lerp value to the segment range
+
+
+  lerp = (lerp - this.current.time) / (this.next.time - this.current.time);
+  return (this.next.value - this.current.value) * lerp + this.current.value;
+}
+
+function intColorComplex(lerp) {
+  if (this.ease) {
+    lerp = this.ease(lerp);
+  } // make sure we are on the right segment
+
+
+  while (lerp > this.next.time) {
+    this.current = this.next;
+    this.next = this.next.next;
+  } // convert the lerp value to the segment range
+
+
+  lerp = (lerp - this.current.time) / (this.next.time - this.current.time);
+  var curVal = this.current.value;
+  var nextVal = this.next.value;
+  var r = (nextVal.r - curVal.r) * lerp + curVal.r;
+  var g = (nextVal.g - curVal.g) * lerp + curVal.g;
+  var b = (nextVal.b - curVal.b) * lerp + curVal.b;
+  return ParticleUtils.combineRGBComponents(r, g, b);
+}
+
+function intValueStepped(lerp) {
+  if (this.ease) {
+    lerp = this.ease(lerp);
+  } // make sure we are on the right segment
+
+
+  while (this.next && lerp > this.next.time) {
+    this.current = this.next;
+    this.next = this.next.next;
+  }
+
+  return this.current.value;
+}
+
+function intColorStepped(lerp) {
+  if (this.ease) {
+    lerp = this.ease(lerp);
+  } // make sure we are on the right segment
+
+
+  while (this.next && lerp > this.next.time) {
+    this.current = this.next;
+    this.next = this.next.next;
+  }
+
+  var curVal = this.current.value;
+  return ParticleUtils.combineRGBComponents(curVal.r, curVal.g, curVal.b);
+}
+/**
+ * Singly linked list container for keeping track of interpolated properties for particles.
+ * Each Particle will have one of these for each interpolated property.
+ */
+
+
+var PropertyList =
+/** @class */
+function () {
+  /**
+   * @param isColor If this list handles color values
+   */
+  function PropertyList(isColor) {
+    if (isColor === void 0) {
+      isColor = false;
+    }
+
+    this.current = null;
+    this.next = null;
+    this.isColor = !!isColor;
+    this.interpolate = null;
+    this.ease = null;
+  }
+  /**
+   * Resets the list for use.
+   * @param first The first node in the list.
+   * @param first.isStepped If the values should be stepped instead of interpolated linearly.
+   */
+
+
+  PropertyList.prototype.reset = function (first) {
+    this.current = first;
+    this.next = first.next;
+    var isSimple = this.next && this.next.time >= 1;
+
+    if (isSimple) {
+      this.interpolate = this.isColor ? intColorSimple : intValueSimple;
+    } else if (first.isStepped) {
+      this.interpolate = this.isColor ? intColorStepped : intValueStepped;
+    } else {
+      this.interpolate = this.isColor ? intColorComplex : intValueComplex;
+    }
+
+    this.ease = this.current.ease;
+  };
+
+  return PropertyList;
+}();
+/**
+ * An individual particle image. You shouldn't have to deal with these.
+ */
+
+
+exports.PropertyList = PropertyList;
+
+var Particle =
+/** @class */
+function (_super) {
+  __extends(Particle, _super);
+  /**
+   * @param {PIXI.particles.Emitter} emitter The emitter that controls this particle.
+   */
+
+
+  function Particle(emitter) {
+    var _this = // start off the sprite with a blank texture, since we are going to replace it
+    // later when the particle is initialized.
+    _super.call(this) || this; // initialize LinkedListChild props so they are included in underlying JS class definition
+
+
+    _this.prevChild = _this.nextChild = null;
+    _this.emitter = emitter; // particles should be centered
+
+    _this.anchor.x = _this.anchor.y = 0.5;
+    _this.velocity = new pixi.Point();
+    _this.rotationSpeed = 0;
+    _this.rotationAcceleration = 0;
+    _this.maxLife = 0;
+    _this.age = 0;
+    _this.ease = null;
+    _this.extraData = null;
+    _this.alphaList = new PropertyList();
+    _this.speedList = new PropertyList();
+    _this.speedMultiplier = 1;
+    _this.acceleration = new pixi.Point();
+    _this.maxSpeed = NaN;
+    _this.scaleList = new PropertyList();
+    _this.scaleMultiplier = 1;
+    _this.colorList = new PropertyList(true);
+    _this._doAlpha = false;
+    _this._doScale = false;
+    _this._doSpeed = false;
+    _this._doAcceleration = false;
+    _this._doColor = false;
+    _this._doNormalMovement = false;
+    _this._oneOverLife = 0;
+    _this.next = null;
+    _this.prev = null; // save often used functions on the instance instead of the prototype for better speed
+
+    _this.init = _this.init;
+    _this.Particle_init = Particle.prototype.init;
+    _this.update = _this.update;
+    _this.Particle_update = Particle.prototype.update;
+    _this.Sprite_destroy = _super.prototype.destroy;
+    _this.Particle_destroy = Particle.prototype.destroy;
+    _this.applyArt = _this.applyArt;
+    _this.kill = _this.kill;
+    return _this;
+  }
+  /**
+   * Initializes the particle for use, based on the properties that have to
+   * have been set already on the particle.
+   */
+
+
+  Particle.prototype.init = function () {
+    // reset the age
+    this.age = 0; // set up the velocity based on the start speed and rotation
+
+    this.velocity.x = this.speedList.current.value * this.speedMultiplier;
+    this.velocity.y = 0;
+    ParticleUtils.rotatePoint(this.rotation, this.velocity);
+
+    if (this.noRotation) {
+      this.rotation = 0;
+    } else {
+      // convert rotation to Radians from Degrees
+      this.rotation *= ParticleUtils.DEG_TO_RADS;
+    } // convert rotation speed to Radians from Degrees
+
+
+    this.rotationSpeed *= ParticleUtils.DEG_TO_RADS;
+    this.rotationAcceleration *= ParticleUtils.DEG_TO_RADS; // set alpha to inital alpha
+
+    this.alpha = this.alphaList.current.value; // set scale to initial scale
+
+    this.scale.x = this.scale.y = this.scaleList.current.value; // figure out what we need to interpolate
+
+    this._doAlpha = !!this.alphaList.current.next;
+    this._doSpeed = !!this.speedList.current.next;
+    this._doScale = !!this.scaleList.current.next;
+    this._doColor = !!this.colorList.current.next;
+    this._doAcceleration = this.acceleration.x !== 0 || this.acceleration.y !== 0; // _doNormalMovement can be cancelled by subclasses
+
+    this._doNormalMovement = this._doSpeed || this.speedList.current.value !== 0 || this._doAcceleration; // save our lerp helper
+
+    this._oneOverLife = 1 / this.maxLife; // set the inital color
+
+    var color = this.colorList.current.value;
+    this.tint = ParticleUtils.combineRGBComponents(color.r, color.g, color.b); // ensure visibility
+
+    this.visible = true;
+  };
+  /**
+   * Sets the texture for the particle. This can be overridden to allow
+   * for an animated particle.
+   * @param art The texture to set.
+   */
+
+
+  Particle.prototype.applyArt = function (art) {
+    this.texture = art || pixi.Texture.EMPTY;
+  };
+  /**
+   * Updates the particle.
+   * @param delta Time elapsed since the previous frame, in __seconds__.
+   * @return The standard interpolation multiplier (0-1) used for all
+   *         relevant particle properties. A value of -1 means the particle
+   *         died of old age instead.
+   */
+
+
+  Particle.prototype.update = function (delta) {
+    // increase age
+    this.age += delta; // recycle particle if it is too old
+
+    if (this.age >= this.maxLife || this.age < 0) {
+      this.kill();
+      return -1;
+    } // determine our interpolation value
+
+
+    var lerp = this.age * this._oneOverLife; // lifetime / maxLife;
+
+    if (this.ease) {
+      if (this.ease.length === 4) {
+        // the t, b, c, d parameters that some tween libraries use
+        // (time, initial value, end value, duration)
+        lerp = this.ease(lerp, 0, 1, 1);
+      } else {
+        // the simplified version that we like that takes
+        // one parameter, time from 0-1. TweenJS eases provide this usage.
+        lerp = this.ease(lerp);
+      }
+    } // interpolate alpha
+
+
+    if (this._doAlpha) {
+      this.alpha = this.alphaList.interpolate(lerp);
+    } // interpolate scale
+
+
+    if (this._doScale) {
+      var scale = this.scaleList.interpolate(lerp) * this.scaleMultiplier;
+      this.scale.x = this.scale.y = scale;
+    } // handle movement
+
+
+    if (this._doNormalMovement) {
+      var deltaX = void 0;
+      var deltaY = void 0; // interpolate speed
+
+      if (this._doSpeed) {
+        var speed = this.speedList.interpolate(lerp) * this.speedMultiplier;
+        ParticleUtils.normalize(this.velocity);
+        ParticleUtils.scaleBy(this.velocity, speed);
+        deltaX = this.velocity.x * delta;
+        deltaY = this.velocity.y * delta;
+      } else if (this._doAcceleration) {
+        var oldVX = this.velocity.x;
+        var oldVY = this.velocity.y;
+        this.velocity.x += this.acceleration.x * delta;
+        this.velocity.y += this.acceleration.y * delta;
+
+        if (this.maxSpeed) {
+          var currentSpeed = ParticleUtils.length(this.velocity); // if we are going faster than we should, clamp at the max speed
+          // DO NOT recalculate vector length
+
+          if (currentSpeed > this.maxSpeed) {
+            ParticleUtils.scaleBy(this.velocity, this.maxSpeed / currentSpeed);
+          }
+        } // calculate position delta by the midpoint between our old velocity and our new velocity
+
+
+        deltaX = (oldVX + this.velocity.x) / 2 * delta;
+        deltaY = (oldVY + this.velocity.y) / 2 * delta;
+      } else {
+        deltaX = this.velocity.x * delta;
+        deltaY = this.velocity.y * delta;
+      } // adjust position based on velocity
+
+
+      this.position.x += deltaX;
+      this.position.y += deltaY;
+    } // interpolate color
+
+
+    if (this._doColor) {
+      this.tint = this.colorList.interpolate(lerp);
+    } // update rotation
+
+
+    if (this.rotationAcceleration !== 0) {
+      var newRotationSpeed = this.rotationSpeed + this.rotationAcceleration * delta;
+      this.rotation += (this.rotationSpeed + newRotationSpeed) / 2 * delta;
+      this.rotationSpeed = newRotationSpeed;
+    } else if (this.rotationSpeed !== 0) {
+      this.rotation += this.rotationSpeed * delta;
+    } else if (this.acceleration && !this.noRotation) {
+      this.rotation = Math.atan2(this.velocity.y, this.velocity.x); // + Math.PI / 2;
+    }
+
+    return lerp;
+  };
+  /**
+   * Kills the particle, removing it from the display list
+   * and telling the emitter to recycle it.
+   */
+
+
+  Particle.prototype.kill = function () {
+    this.emitter.recycle(this);
+  };
+  /**
+   * Destroys the particle, removing references and preventing future use.
+   */
+
+
+  Particle.prototype.destroy = function () {
+    if (this.parent) {
+      this.parent.removeChild(this);
+    }
+
+    this.Sprite_destroy();
+    this.emitter = this.velocity = this.colorList = this.scaleList = this.alphaList = this.speedList = this.ease = this.next = this.prev = null;
+  };
+  /**
+   * Checks over the art that was passed to the Emitter's init() function, to do any special
+   * modifications to prepare it ahead of time.
+   * @param art The array of art data. For Particle, it should be an array of
+   *            Textures. Any strings in the array will be converted to
+   *            Textures via Texture.from().
+   * @return The art, after any needed modifications.
+   */
+
+
+  Particle.parseArt = function (art) {
+    // convert any strings to Textures.
+    var i;
+
+    for (i = art.length; i >= 0; --i) {
+      if (typeof art[i] === 'string') {
+        art[i] = GetTextureFromString(art[i]);
+      }
+    } // particles from different base textures will be slower in WebGL than if they
+    // were from one spritesheet
+
+
+    if (ParticleUtils.verbose) {
+      for (i = art.length - 1; i > 0; --i) {
+        if (art[i].baseTexture !== art[i - 1].baseTexture) {
+          if (window.console) {
+            // eslint-disable-next-line max-len
+            console.warn('PixiParticles: using particle textures from different images may hinder performance in WebGL');
+          }
+
+          break;
+        }
+      }
+    }
+
+    return art;
+  };
+  /**
+   * Parses extra emitter data to ensure it is set up for this particle class.
+   * Particle does nothing to the extra data.
+   * @param extraData The extra data from the particle config.
+   * @return The parsed extra data.
+   */
+
+
+  Particle.parseData = function (extraData) {
+    return extraData;
+  };
+
+  return Particle;
+}(pixi.Sprite);
+/**
+ * Chain of line segments for generating spawn positions.
+ */
+
+
+exports.Particle = Particle;
+
+var PolygonalChain =
+/** @class */
+function () {
+  /**
+   * @param data Point data for polygon chains. Either a list of points for a single chain, or a list of chains.
+   */
+  function PolygonalChain(data) {
+    this.segments = [];
+    this.countingLengths = [];
+    this.totalLength = 0;
+    this.init(data);
+  }
+  /**
+   * @param data Point data for polygon chains. Either a list of points for a single chain, or a list of chains.
+   */
+
+
+  PolygonalChain.prototype.init = function (data) {
+    // if data is not present, set up a segment of length 0
+    if (!data || !data.length) {
+      this.segments.push({
+        p1: {
+          x: 0,
+          y: 0
+        },
+        p2: {
+          x: 0,
+          y: 0
+        },
+        l: 0
+      });
+    } else if (Array.isArray(data[0])) {
+      // list of segment chains, each defined as a list of points
+      for (var i = 0; i < data.length; ++i) {
+        // loop through the chain, connecting points
+        var chain = data[i];
+        var prevPoint = chain[0];
+
+        for (var j = 1; j < chain.length; ++j) {
+          var second = chain[j];
+          this.segments.push({
+            p1: prevPoint,
+            p2: second,
+            l: 0
+          });
+          prevPoint = second;
+        }
+      }
+    } else {
+      var prevPoint = data[0]; // list of points
+
+      for (var i = 1; i < data.length; ++i) {
+        var second = data[i];
+        this.segments.push({
+          p1: prevPoint,
+          p2: second,
+          l: 0
+        });
+        prevPoint = second;
+      }
+    } // now go through our segments to calculate the lengths so that we
+    // can set up a nice weighted random distribution
+
+
+    for (var i = 0; i < this.segments.length; ++i) {
+      var _a = this.segments[i],
+          p1 = _a.p1,
+          p2 = _a.p2;
+      var segLength = Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y)); // save length so we can turn a random number into a 0-1 interpolation value later
+
+      this.segments[i].l = segLength;
+      this.totalLength += segLength; // keep track of the length so far, counting up
+
+      this.countingLengths.push(this.totalLength);
+    }
+  };
+  /**
+   * Gets a random point in the chain.
+   * @param out The point to store the selected position in.
+   */
+
+
+  PolygonalChain.prototype.getRandomPoint = function (out) {
+    // select a random spot in the length of the chain
+    var rand = Math.random() * this.totalLength;
+    var chosenSeg;
+    var lerp; // if only one segment, it wins
+
+    if (this.segments.length === 1) {
+      chosenSeg = this.segments[0];
+      lerp = rand;
+    } else {
+      // otherwise, go through countingLengths until we have determined
+      // which segment we chose
+      for (var i = 0; i < this.countingLengths.length; ++i) {
+        if (rand < this.countingLengths[i]) {
+          chosenSeg = this.segments[i]; // set lerp equal to the length into that segment
+          // (i.e. the remainder after subtracting all the segments before it)
+
+          lerp = i === 0 ? rand : rand - this.countingLengths[i - 1];
+          break;
+        }
+      }
+    } // divide lerp by the segment length, to result in a 0-1 number.
+
+
+    lerp /= chosenSeg.l || 1;
+    var p1 = chosenSeg.p1,
+        p2 = chosenSeg.p2; // now calculate the position in the segment that the lerp value represents
+
+    out.x = p1.x + lerp * (p2.x - p1.x);
+    out.y = p1.y + lerp * (p2.y - p1.y);
+  };
+
+  return PolygonalChain;
+}(); // get the shared ticker, in V4 and V5 friendly methods
+
+/**
+ * @hidden
+ */
+
+
+exports.PolygonalChain = PolygonalChain;
+var ticker; // to avoid Rollup transforming our import, save pixi namespace in a variable
+
+var pixiNS$1 = pixi;
+
+if (parseInt(/^(\d+)\./.exec(pixi.VERSION)[1], 10) < 5) {
+  ticker = pixiNS$1.ticker.shared;
+} else {
+  ticker = pixiNS$1.Ticker.shared;
+}
+/**
+ * @hidden
+ */
+
+
+var helperPoint = new pixi.Point();
+/**
+ * A particle emitter.
+ */
+
+var Emitter =
+/** @class */
+function () {
+  /**
+   * @param particleParent The container to add the particles to.
+   * @param particleImages A texture or array of textures to use
+   *                       for the particles. Strings will be turned
+   *                       into textures via Texture.fromImage().
+   * @param config A configuration object containing settings for the emitter.
+   * @param config.emit If config.emit is explicitly passed as false, the
+   *                    Emitter will start disabled.
+   * @param config.autoUpdate If config.autoUpdate is explicitly passed as
+   *                          true, the Emitter will automatically call
+   *                          update via the PIXI shared ticker.
+   */
+  function Emitter(particleParent, particleImages, config) {
+    /**
+     * A number keeping index of currently applied image. Used to emit arts in order.
+     */
+    this._currentImageIndex = -1;
+    this._particleConstructor = Particle; // properties for individual particles
+
+    this.particleImages = null;
+    this.startAlpha = null;
+    this.startSpeed = null;
+    this.minimumSpeedMultiplier = 1;
+    this.acceleration = null;
+    this.maxSpeed = NaN;
+    this.startScale = null;
+    this.minimumScaleMultiplier = 1;
+    this.startColor = null;
+    this.minLifetime = 0;
+    this.maxLifetime = 0;
+    this.minStartRotation = 0;
+    this.maxStartRotation = 0;
+    this.noRotation = false;
+    this.minRotationSpeed = 0;
+    this.maxRotationSpeed = 0;
+    this.particleBlendMode = 0;
+    this.customEase = null;
+    this.extraData = null; // properties for spawning particles
+
+    this._frequency = 1;
+    this.spawnChance = 1;
+    this.maxParticles = 1000;
+    this.emitterLifetime = -1;
+    this.spawnPos = null;
+    this.spawnType = null;
+    this._spawnFunc = null;
+    this.spawnRect = null;
+    this.spawnCircle = null;
+    this.spawnPolygonalChain = null;
+    this.particlesPerWave = 1;
+    this.particleSpacing = 0;
+    this.angleStart = 0; // emitter properties
+
+    this.rotation = 0;
+    this.ownerPos = null;
+    this._prevEmitterPos = null;
+    this._prevPosIsValid = false;
+    this._posChanged = false;
+    this._parent = null;
+    this.addAtBack = false;
+    this.particleCount = 0;
+    this._emit = false;
+    this._spawnTimer = 0;
+    this._emitterLife = -1;
+    this._activeParticlesFirst = null;
+    this._activeParticlesLast = null;
+    this._poolFirst = null;
+    this._origConfig = null;
+    this._origArt = null;
+    this._autoUpdate = false;
+    this._currentImageIndex = -1;
+    this._destroyWhenComplete = false;
+    this._completeCallback = null; // set the initial parent
+
+    this.parent = particleParent;
+
+    if (particleImages && config) {
+      this.init(particleImages, config);
+    } // save often used functions on the instance instead of the prototype for better speed
+
+
+    this.recycle = this.recycle;
+    this.update = this.update;
+    this.rotate = this.rotate;
+    this.updateSpawnPos = this.updateSpawnPos;
+    this.updateOwnerPos = this.updateOwnerPos;
+  }
+
+  Object.defineProperty(Emitter.prototype, "orderedArt", {
+    /**
+     * If the emitter is using particle art in order as provided in `particleImages`.
+     * Effective only when `particleImages` has multiple art options.
+     * This is particularly useful ensuring that each art shows up once, in case you need to emit a body in an order.
+     * For example: dragon - [Head, body1, body2, ..., tail]
+     */
+    get: function () {
+      return this._currentImageIndex !== -1;
+    },
+    set: function (value) {
+      this._currentImageIndex = value ? 0 : -1;
+    },
+    enumerable: true,
+    configurable: true
+  });
+  Object.defineProperty(Emitter.prototype, "frequency", {
+    /**
+     * Time between particle spawns in seconds. If this value is not a number greater than 0,
+     * it will be set to 1 (particle per second) to prevent infinite loops.
+     */
+    get: function () {
+      return this._frequency;
+    },
+    set: function (value) {
+      // do some error checking to prevent infinite loops
+      if (typeof value === 'number' && value > 0) {
+        this._frequency = value;
+      } else {
+        this._frequency = 1;
+      }
+    },
+    enumerable: true,
+    configurable: true
+  });
+  Object.defineProperty(Emitter.prototype, "particleConstructor", {
+    /**
+     * The constructor used to create new particles. The default is
+     * the built in Particle class. Setting this will dump any active or
+     * pooled particles, if the emitter has already been used.
+     */
+    get: function () {
+      return this._particleConstructor;
+    },
+    set: function (value) {
+      if (value !== this._particleConstructor) {
+        this._particleConstructor = value; // clean up existing particles
+
+        this.cleanup(); // scrap all the particles
+
+        for (var particle = this._poolFirst; particle; particle = particle.next) {
+          particle.destroy();
+        }
+
+        this._poolFirst = null; // re-initialize the emitter so that the new constructor can do anything it needs to
+
+        if (this._origConfig && this._origArt) {
+          this.init(this._origArt, this._origConfig);
+        }
+      }
+    },
+    enumerable: true,
+    configurable: true
+  });
+  Object.defineProperty(Emitter.prototype, "parent", {
+    /**
+    * The container to add particles to. Settings this will dump any active particles.
+    */
+    get: function () {
+      return this._parent;
+    },
+    set: function (value) {
+      this.cleanup();
+      this._parent = value;
+    },
+    enumerable: true,
+    configurable: true
+  });
+  /**
+   * Sets up the emitter based on the config settings.
+   * @param art A texture or array of textures to use for the particles.
+   * @param config A configuration object containing settings for the emitter.
+   */
+
+  Emitter.prototype.init = function (art, config) {
+    if (!art || !config) {
+      return;
+    } // clean up any existing particles
+
+
+    this.cleanup(); // store the original config and particle images, in case we need to re-initialize
+    // when the particle constructor is changed
+
+    this._origConfig = config;
+    this._origArt = art; // set up the array of data, also ensuring that it is an array
+
+    art = Array.isArray(art) ? art.slice() : [art]; // run the art through the particle class's parsing function
+
+    var partClass = this._particleConstructor;
+    this.particleImages = partClass.parseArt ? partClass.parseArt(art) : art; // /////////////////////////
+    // Particle Properties   //
+    // /////////////////////////
+    // set up the alpha
+
+    if (config.alpha) {
+      this.startAlpha = PropertyNode.createList(config.alpha);
+    } else {
+      this.startAlpha = new PropertyNode(1, 0);
+    } // set up the speed
+
+
+    if (config.speed) {
+      this.startSpeed = PropertyNode.createList(config.speed); // eslint-disable-next-line max-len
+
+      this.minimumSpeedMultiplier = ('minimumSpeedMultiplier' in config ? config.minimumSpeedMultiplier : config.speed.minimumSpeedMultiplier) || 1;
+    } else {
+      this.minimumSpeedMultiplier = 1;
+      this.startSpeed = new PropertyNode(0, 0);
+    } // set up acceleration
+
+
+    var acceleration = config.acceleration;
+
+    if (acceleration && (acceleration.x || acceleration.y)) {
+      // make sure we disable speed interpolation
+      this.startSpeed.next = null;
+      this.acceleration = new pixi.Point(acceleration.x, acceleration.y);
+      this.maxSpeed = config.maxSpeed || NaN;
+    } else {
+      this.acceleration = new pixi.Point();
+    } // set up the scale
+
+
+    if (config.scale) {
+      this.startScale = PropertyNode.createList(config.scale); // eslint-disable-next-line max-len
+
+      this.minimumScaleMultiplier = ('minimumScaleMultiplier' in config ? config.minimumScaleMultiplier : config.scale.minimumScaleMultiplier) || 1;
+    } else {
+      this.startScale = new PropertyNode(1, 0);
+      this.minimumScaleMultiplier = 1;
+    } // set up the color
+
+
+    if (config.color) {
+      this.startColor = PropertyNode.createList(config.color);
+    } else {
+      this.startColor = new PropertyNode({
+        r: 0xFF,
+        g: 0xFF,
+        b: 0xFF
+      }, 0);
+    } // set up the start rotation
+
+
+    if (config.startRotation) {
+      this.minStartRotation = config.startRotation.min;
+      this.maxStartRotation = config.startRotation.max;
+    } else {
+      this.minStartRotation = this.maxStartRotation = 0;
+    }
+
+    if (config.noRotation && (this.minStartRotation || this.maxStartRotation)) {
+      this.noRotation = !!config.noRotation;
+    } else {
+      this.noRotation = false;
+    } // set up the rotation speed
+
+
+    if (config.rotationSpeed) {
+      this.minRotationSpeed = config.rotationSpeed.min;
+      this.maxRotationSpeed = config.rotationSpeed.max;
+    } else {
+      this.minRotationSpeed = this.maxRotationSpeed = 0;
+    }
+
+    this.rotationAcceleration = config.rotationAcceleration || 0; // set up the lifetime
+
+    this.minLifetime = config.lifetime.min;
+    this.maxLifetime = config.lifetime.max; // get the blend mode
+
+    this.particleBlendMode = ParticleUtils.getBlendMode(config.blendMode); // use the custom ease if provided
+
+    if (config.ease) {
+      this.customEase = typeof config.ease === 'function' ? config.ease : ParticleUtils.generateEase(config.ease);
+    } else {
+      this.customEase = null;
+    } // set up the extra data, running it through the particle class's parseData function.
+
+
+    if (partClass.parseData) {
+      this.extraData = partClass.parseData(config.extraData);
+    } else {
+      this.extraData = config.extraData || null;
+    } // ////////////////////////
+    // Emitter Properties   //
+    // ////////////////////////
+    // reset spawn type specific settings
+
+
+    this.spawnRect = this.spawnCircle = null;
+    this.particlesPerWave = 1;
+
+    if (config.particlesPerWave && config.particlesPerWave > 1) {
+      this.particlesPerWave = config.particlesPerWave;
+    }
+
+    this.particleSpacing = 0;
+    this.angleStart = 0; // determine the spawn function to use
+
+    this.parseSpawnType(config); // set the spawning frequency
+
+    this.frequency = config.frequency;
+    this.spawnChance = typeof config.spawnChance === 'number' && config.spawnChance > 0 ? config.spawnChance : 1; // set the emitter lifetime
+
+    this.emitterLifetime = config.emitterLifetime || -1; // set the max particles
+
+    this.maxParticles = config.maxParticles > 0 ? config.maxParticles : 1000; // determine if we should add the particle at the back of the list or not
+
+    this.addAtBack = !!config.addAtBack; // reset the emitter position and rotation variables
+
+    this.rotation = 0;
+    this.ownerPos = new pixi.Point();
+    this.spawnPos = new pixi.Point(config.pos.x, config.pos.y);
+    this.initAdditional(art, config);
+    this._prevEmitterPos = this.spawnPos.clone(); // previous emitter position is invalid and should not be used for interpolation
+
+    this._prevPosIsValid = false; // start emitting
+
+    this._spawnTimer = 0;
+    this.emit = config.emit === undefined ? true : !!config.emit;
+    this.autoUpdate = !!config.autoUpdate;
+    this.orderedArt = !!config.orderedArt;
+  };
+  /**
+   * Sets up additional parameters to the emitter from config settings.
+   * Using for parsing additional parameters on classes that extend from Emitter
+   * @param art A texture or array of textures to use for the particles.
+   * @param config A configuration object containing settings for the emitter.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+
+  Emitter.prototype.initAdditional = function (art, config) {// override in subclasses
+  };
+  /**
+   * Parsing emitter spawn type from config settings.
+   * Place for override and add new kind of spawn type
+   * @param config A configuration object containing settings for the emitter.
+   */
+
+
+  Emitter.prototype.parseSpawnType = function (config) {
+    var spawnCircle;
+
+    switch (config.spawnType) {
+      case 'rect':
+        this.spawnType = 'rect';
+        this._spawnFunc = this._spawnRect;
+        var spawnRect = config.spawnRect;
+        this.spawnRect = new pixi.Rectangle(spawnRect.x, spawnRect.y, spawnRect.w, spawnRect.h);
+        break;
+
+      case 'circle':
+        this.spawnType = 'circle';
+        this._spawnFunc = this._spawnCircle;
+        spawnCircle = config.spawnCircle;
+        this.spawnCircle = new pixi.Circle(spawnCircle.x, spawnCircle.y, spawnCircle.r);
+        break;
+
+      case 'ring':
+        this.spawnType = 'ring';
+        this._spawnFunc = this._spawnRing;
+        spawnCircle = config.spawnCircle;
+        this.spawnCircle = new pixi.Circle(spawnCircle.x, spawnCircle.y, spawnCircle.r);
+        this.spawnCircle.minRadius = spawnCircle.minR;
+        break;
+
+      case 'burst':
+        this.spawnType = 'burst';
+        this._spawnFunc = this._spawnBurst;
+        this.particleSpacing = config.particleSpacing;
+        this.angleStart = config.angleStart ? config.angleStart : 0;
+        break;
+
+      case 'point':
+        this.spawnType = 'point';
+        this._spawnFunc = this._spawnPoint;
+        break;
+
+      case 'polygonalChain':
+        this.spawnType = 'polygonalChain';
+        this._spawnFunc = this._spawnPolygonalChain;
+        this.spawnPolygonalChain = new PolygonalChain(config.spawnPolygon);
+        break;
+
+      default:
+        this.spawnType = 'point';
+        this._spawnFunc = this._spawnPoint;
+        break;
+    }
+  };
+  /**
+   * Recycles an individual particle. For internal use only.
+   * @param particle The particle to recycle.
+   * @internal
+   */
+
+
+  Emitter.prototype.recycle = function (particle) {
+    if (particle.next) {
+      particle.next.prev = particle.prev;
+    }
+
+    if (particle.prev) {
+      particle.prev.next = particle.next;
+    }
+
+    if (particle === this._activeParticlesLast) {
+      this._activeParticlesLast = particle.prev;
+    }
+
+    if (particle === this._activeParticlesFirst) {
+      this._activeParticlesFirst = particle.next;
+    } // add to pool
+
+
+    particle.prev = null;
+    particle.next = this._poolFirst;
+    this._poolFirst = particle; // remove child from display, or make it invisible if it is in a ParticleContainer
+
+    if (particle.parent) {
+      particle.parent.removeChild(particle);
+    } // decrease count
+
+
+    --this.particleCount;
+  };
+  /**
+   * Sets the rotation of the emitter to a new value.
+   * @param newRot The new rotation, in degrees.
+   */
+
+
+  Emitter.prototype.rotate = function (newRot) {
+    if (this.rotation === newRot) return; // caclulate the difference in rotation for rotating spawnPos
+
+    var diff = newRot - this.rotation;
+    this.rotation = newRot; // rotate spawnPos
+
+    ParticleUtils.rotatePoint(diff, this.spawnPos); // mark the position as having changed
+
+    this._posChanged = true;
+  };
+  /**
+   * Changes the spawn position of the emitter.
+   * @param x The new x value of the spawn position for the emitter.
+   * @param y The new y value of the spawn position for the emitter.
+   */
+
+
+  Emitter.prototype.updateSpawnPos = function (x, y) {
+    this._posChanged = true;
+    this.spawnPos.x = x;
+    this.spawnPos.y = y;
+  };
+  /**
+   * Changes the position of the emitter's owner. You should call this if you are adding
+   * particles to the world container that your emitter's owner is moving around in.
+   * @param x The new x value of the emitter's owner.
+   * @param y The new y value of the emitter's owner.
+   */
+
+
+  Emitter.prototype.updateOwnerPos = function (x, y) {
+    this._posChanged = true;
+    this.ownerPos.x = x;
+    this.ownerPos.y = y;
+  };
+  /**
+   * Prevents emitter position interpolation in the next update.
+   * This should be used if you made a major position change of your emitter's owner
+   * that was not normal movement.
+   */
+
+
+  Emitter.prototype.resetPositionTracking = function () {
+    this._prevPosIsValid = false;
+  };
+
+  Object.defineProperty(Emitter.prototype, "emit", {
+    /**
+     * If particles should be emitted during update() calls. Setting this to false
+     * stops new particles from being created, but allows existing ones to die out.
+     */
+    get: function () {
+      return this._emit;
+    },
+    set: function (value) {
+      this._emit = !!value;
+      this._emitterLife = this.emitterLifetime;
+    },
+    enumerable: true,
+    configurable: true
+  });
+  Object.defineProperty(Emitter.prototype, "autoUpdate", {
+    /**
+     * If the update function is called automatically from the shared ticker.
+     * Setting this to false requires calling the update function manually.
+     */
+    get: function () {
+      return this._autoUpdate;
+    },
+    set: function (value) {
+      if (this._autoUpdate && !value) {
+        ticker.remove(this.update, this);
+      } else if (!this._autoUpdate && value) {
+        ticker.add(this.update, this);
+      }
+
+      this._autoUpdate = !!value;
+    },
+    enumerable: true,
+    configurable: true
+  });
+  /**
+   * Starts emitting particles, sets autoUpdate to true, and sets up the Emitter to destroy itself
+   * when particle emission is complete.
+   * @param callback Callback for when emission is complete (all particles have died off)
+   */
+
+  Emitter.prototype.playOnceAndDestroy = function (callback) {
+    this.autoUpdate = true;
+    this.emit = true;
+    this._destroyWhenComplete = true;
+    this._completeCallback = callback;
+  };
+  /**
+   * Starts emitting particles and optionally calls a callback when particle emission is complete.
+   * @param callback Callback for when emission is complete (all particles have died off)
+   */
+
+
+  Emitter.prototype.playOnce = function (callback) {
+    this.emit = true;
+    this._completeCallback = callback;
+  };
+  /**
+   * Updates all particles spawned by this emitter and emits new ones.
+   * @param delta Time elapsed since the previous frame, in __seconds__.
+   */
+
+
+  Emitter.prototype.update = function (delta) {
+    if (this._autoUpdate) {
+      delta = delta / pixi.settings.TARGET_FPMS / 1000;
+    } // if we don't have a parent to add particles to, then don't do anything.
+    // this also works as a isDestroyed check
+
+
+    if (!this._parent) return; // update existing particles
+
+    var i;
+    var particle;
+    var next;
+
+    for (particle = this._activeParticlesFirst; particle; particle = next) {
+      next = particle.next;
+      particle.update(delta);
+    }
+
+    var prevX;
+    var prevY; // if the previous position is valid, store these for later interpolation
+
+    if (this._prevPosIsValid) {
+      prevX = this._prevEmitterPos.x;
+      prevY = this._prevEmitterPos.y;
+    } // store current position of the emitter as local variables
+
+
+    var curX = this.ownerPos.x + this.spawnPos.x;
+    var curY = this.ownerPos.y + this.spawnPos.y; // spawn new particles
+
+    if (this._emit) {
+      // decrease spawn timer
+      this._spawnTimer -= delta < 0 ? 0 : delta; // while _spawnTimer < 0, we have particles to spawn
+
+      while (this._spawnTimer <= 0) {
+        // determine if the emitter should stop spawning
+        if (this._emitterLife >= 0) {
+          this._emitterLife -= this._frequency;
+
+          if (this._emitterLife <= 0) {
+            this._spawnTimer = 0;
+            this._emitterLife = 0;
+            this.emit = false;
+            break;
+          }
+        } // determine if we have hit the particle limit
+
+
+        if (this.particleCount >= this.maxParticles) {
+          this._spawnTimer += this._frequency;
+          continue;
+        } // determine the particle lifetime
+
+
+        var lifetime = void 0;
+
+        if (this.minLifetime === this.maxLifetime) {
+          lifetime = this.minLifetime;
+        } else {
+          lifetime = Math.random() * (this.maxLifetime - this.minLifetime) + this.minLifetime;
+        } // only make the particle if it wouldn't immediately destroy itself
+
+
+        if (-this._spawnTimer < lifetime) {
+          // If the position has changed and this isn't the first spawn,
+          // interpolate the spawn position
+          var emitPosX = void 0;
+          var emitPosY = void 0;
+
+          if (this._prevPosIsValid && this._posChanged) {
+            // 1 - _spawnTimer / delta, but _spawnTimer is negative
+            var lerp = 1 + this._spawnTimer / delta;
+            emitPosX = (curX - prevX) * lerp + prevX;
+            emitPosY = (curY - prevY) * lerp + prevY;
+          } else // otherwise just set to the spawn position
+            {
+              emitPosX = curX;
+              emitPosY = curY;
+            } // create enough particles to fill the wave (non-burst types have a wave of 1)
+
+
+          i = 0;
+
+          for (var len = Math.min(this.particlesPerWave, this.maxParticles - this.particleCount); i < len; ++i) {
+            // see if we actually spawn one
+            if (this.spawnChance < 1 && Math.random() >= this.spawnChance) {
+              continue;
+            } // create particle
+
+
+            var p = void 0;
+
+            if (this._poolFirst) {
+              p = this._poolFirst;
+              this._poolFirst = this._poolFirst.next;
+              p.next = null;
+            } else {
+              p = new this.particleConstructor(this);
+            } // set a random texture if we have more than one
+
+
+            if (this.particleImages.length > 1) {
+              // if using ordered art
+              if (this._currentImageIndex !== -1) {
+                // get current art index, then increment for the next particle
+                p.applyArt(this.particleImages[this._currentImageIndex++]); // loop around if needed
+
+                if (this._currentImageIndex < 0 || this._currentImageIndex >= this.particleImages.length) {
+                  this._currentImageIndex = 0;
+                }
+              } // otherwise grab a random one
+              else {
+                  p.applyArt(this.particleImages[Math.floor(Math.random() * this.particleImages.length)]);
+                }
+            } else {
+              // if they are actually the same texture, a standard particle
+              // will quit early from the texture setting in setTexture().
+              p.applyArt(this.particleImages[0]);
+            } // set up the start and end values
+
+
+            p.alphaList.reset(this.startAlpha);
+
+            if (this.minimumSpeedMultiplier !== 1) {
+              // eslint-disable-next-line max-len
+              p.speedMultiplier = Math.random() * (1 - this.minimumSpeedMultiplier) + this.minimumSpeedMultiplier;
+            }
+
+            p.speedList.reset(this.startSpeed);
+            p.acceleration.x = this.acceleration.x;
+            p.acceleration.y = this.acceleration.y;
+            p.maxSpeed = this.maxSpeed;
+
+            if (this.minimumScaleMultiplier !== 1) {
+              // eslint-disable-next-line max-len
+              p.scaleMultiplier = Math.random() * (1 - this.minimumScaleMultiplier) + this.minimumScaleMultiplier;
+            }
+
+            p.scaleList.reset(this.startScale);
+            p.colorList.reset(this.startColor); // randomize the rotation speed
+
+            if (this.minRotationSpeed === this.maxRotationSpeed) {
+              p.rotationSpeed = this.minRotationSpeed;
+            } else {
+              // eslint-disable-next-line max-len
+              p.rotationSpeed = Math.random() * (this.maxRotationSpeed - this.minRotationSpeed) + this.minRotationSpeed;
+            }
+
+            p.rotationAcceleration = this.rotationAcceleration;
+            p.noRotation = this.noRotation; // set up the lifetime
+
+            p.maxLife = lifetime; // set the blend mode
+
+            p.blendMode = this.particleBlendMode; // set the custom ease, if any
+
+            p.ease = this.customEase; // set the extra data, if any
+
+            p.extraData = this.extraData; // set additional properties to particle
+
+            this.applyAdditionalProperties(p); // call the proper function to handle rotation and position of particle
+
+            this._spawnFunc(p, emitPosX, emitPosY, i); // initialize particle
+
+
+            p.init(); // add the particle to the display list
+
+            if (this.addAtBack) {
+              this._parent.addChildAt(p, 0);
+            } else {
+              this._parent.addChild(p);
+            } // add particle to list of active particles
+
+
+            if (this._activeParticlesLast) {
+              this._activeParticlesLast.next = p;
+              p.prev = this._activeParticlesLast;
+              this._activeParticlesLast = p;
+            } else {
+              this._activeParticlesLast = this._activeParticlesFirst = p;
+            }
+
+            ++this.particleCount; // update the particle by the time passed, so the particles are spread out properly
+
+            p.update(-this._spawnTimer); // we want a positive delta, because a negative delta messes things up
+          }
+        } // increase timer and continue on to any other particles that need to be created
+
+
+        this._spawnTimer += this._frequency;
+      }
+    } // if the position changed before this update, then keep track of that
+
+
+    if (this._posChanged) {
+      this._prevEmitterPos.x = curX;
+      this._prevEmitterPos.y = curY;
+      this._prevPosIsValid = true;
+      this._posChanged = false;
+    } // if we are all done and should destroy ourselves, take care of that
+
+
+    if (!this._emit && !this._activeParticlesFirst) {
+      if (this._completeCallback) {
+        var cb = this._completeCallback;
+        this._completeCallback = null;
+        cb();
+      }
+
+      if (this._destroyWhenComplete) {
+        this.destroy();
+      }
+    }
+  };
+  /**
+   * Set additional properties to new particle.
+   * Using on classes that extend from Emitter
+   * @param p The particle
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+
+  Emitter.prototype.applyAdditionalProperties = function (p) {// for override in subclass
+  };
+  /**
+   * Positions a particle for a point type emitter.
+   * @param p The particle to position and rotate.
+   * @param emitPosX The emitter's x position
+   * @param emitPosY The emitter's y position
+   * @param i The particle number in the current wave. Not used for this function.
+   */
+
+
+  Emitter.prototype._spawnPoint = function (p, emitPosX, emitPosY) {
+    // set the initial rotation/direction of the particle based on
+    // starting particle angle and rotation of emitter
+    if (this.minStartRotation === this.maxStartRotation) {
+      p.rotation = this.minStartRotation + this.rotation;
+    } else {
+      // eslint-disable-next-line max-len
+      p.rotation = Math.random() * (this.maxStartRotation - this.minStartRotation) + this.minStartRotation + this.rotation;
+    } // drop the particle at the emitter's position
+
+
+    p.position.x = emitPosX;
+    p.position.y = emitPosY;
+  };
+  /**
+   * Positions a particle for a rectangle type emitter.
+   * @param p The particle to position and rotate.
+   * @param emitPosX The emitter's x position
+   * @param emitPosY The emitter's y position
+   * @param i The particle number in the current wave. Not used for this function.
+   */
+
+
+  Emitter.prototype._spawnRect = function (p, emitPosX, emitPosY) {
+    // set the initial rotation/direction of the particle based on starting
+    // particle angle and rotation of emitter
+    if (this.minStartRotation === this.maxStartRotation) {
+      p.rotation = this.minStartRotation + this.rotation;
+    } else {
+      // eslint-disable-next-line max-len
+      p.rotation = Math.random() * (this.maxStartRotation - this.minStartRotation) + this.minStartRotation + this.rotation;
+    } // place the particle at a random point in the rectangle
+
+
+    helperPoint.x = Math.random() * this.spawnRect.width + this.spawnRect.x;
+    helperPoint.y = Math.random() * this.spawnRect.height + this.spawnRect.y;
+
+    if (this.rotation !== 0) {
+      ParticleUtils.rotatePoint(this.rotation, helperPoint);
+    }
+
+    p.position.x = emitPosX + helperPoint.x;
+    p.position.y = emitPosY + helperPoint.y;
+  };
+  /**
+   * Positions a particle for a circle type emitter.
+   * @param p The particle to position and rotate.
+   * @param emitPosX The emitter's x position
+   * @param emitPosY The emitter's y position
+   * @param i The particle number in the current wave. Not used for this function.
+   */
+
+
+  Emitter.prototype._spawnCircle = function (p, emitPosX, emitPosY) {
+    // set the initial rotation/direction of the particle based on starting
+    // particle angle and rotation of emitter
+    if (this.minStartRotation === this.maxStartRotation) {
+      p.rotation = this.minStartRotation + this.rotation;
+    } else {
+      // eslint-disable-next-line max-len
+      p.rotation = Math.random() * (this.maxStartRotation - this.minStartRotation) + this.minStartRotation + this.rotation;
+    } // place the particle at a random radius in the circle
+
+
+    helperPoint.x = Math.random() * this.spawnCircle.radius;
+    helperPoint.y = 0; // rotate the point to a random angle in the circle
+
+    ParticleUtils.rotatePoint(Math.random() * 360, helperPoint); // offset by the circle's center
+
+    helperPoint.x += this.spawnCircle.x;
+    helperPoint.y += this.spawnCircle.y; // rotate the point by the emitter's rotation
+
+    if (this.rotation !== 0) {
+      ParticleUtils.rotatePoint(this.rotation, helperPoint);
+    } // set the position, offset by the emitter's position
+
+
+    p.position.x = emitPosX + helperPoint.x;
+    p.position.y = emitPosY + helperPoint.y;
+  };
+  /**
+   * Positions a particle for a ring type emitter.
+   * @param p The particle to position and rotate.
+   * @param emitPosX The emitter's x position
+   * @param emitPosY The emitter's y position
+   * @param i The particle number in the current wave. Not used for this function.
+   */
+
+
+  Emitter.prototype._spawnRing = function (p, emitPosX, emitPosY) {
+    var spawnCircle = this.spawnCircle; // set the initial rotation/direction of the particle based on starting
+    // particle angle and rotation of emitter
+
+    if (this.minStartRotation === this.maxStartRotation) {
+      p.rotation = this.minStartRotation + this.rotation;
+    } else {
+      p.rotation = Math.random() * (this.maxStartRotation - this.minStartRotation) + this.minStartRotation + this.rotation;
+    } // place the particle at a random radius in the ring
+
+
+    if (spawnCircle.minRadius !== spawnCircle.radius) {
+      helperPoint.x = Math.random() * (spawnCircle.radius - spawnCircle.minRadius) + spawnCircle.minRadius;
+    } else {
+      helperPoint.x = spawnCircle.radius;
+    }
+
+    helperPoint.y = 0; // rotate the point to a random angle in the circle
+
+    var angle = Math.random() * 360;
+    p.rotation += angle;
+    ParticleUtils.rotatePoint(angle, helperPoint); // offset by the circle's center
+
+    helperPoint.x += this.spawnCircle.x;
+    helperPoint.y += this.spawnCircle.y; // rotate the point by the emitter's rotation
+
+    if (this.rotation !== 0) {
+      ParticleUtils.rotatePoint(this.rotation, helperPoint);
+    } // set the position, offset by the emitter's position
+
+
+    p.position.x = emitPosX + helperPoint.x;
+    p.position.y = emitPosY + helperPoint.y;
+  };
+  /**
+   * Positions a particle for polygonal chain.
+   * @param p The particle to position and rotate.
+   * @param emitPosX The emitter's x position
+   * @param emitPosY The emitter's y position
+   * @param i The particle number in the current wave. Not used for this function.
+   */
+
+
+  Emitter.prototype._spawnPolygonalChain = function (p, emitPosX, emitPosY) {
+    // set the initial rotation/direction of the particle based on starting
+    // particle angle and rotation of emitter
+    if (this.minStartRotation === this.maxStartRotation) {
+      p.rotation = this.minStartRotation + this.rotation;
+    } else {
+      p.rotation = Math.random() * (this.maxStartRotation - this.minStartRotation) + this.minStartRotation + this.rotation;
+    } // get random point on the polygon chain
+
+
+    this.spawnPolygonalChain.getRandomPoint(helperPoint); // rotate the point by the emitter's rotation
+
+    if (this.rotation !== 0) {
+      ParticleUtils.rotatePoint(this.rotation, helperPoint);
+    } // set the position, offset by the emitter's position
+
+
+    p.position.x = emitPosX + helperPoint.x;
+    p.position.y = emitPosY + helperPoint.y;
+  };
+  /**
+   * Positions a particle for a burst type emitter.
+   * @param p The particle to position and rotate.
+   * @param emitPosX The emitter's x position
+   * @param emitPosY The emitter's y position
+   * @param i The particle number in the current wave.
+   */
+
+
+  Emitter.prototype._spawnBurst = function (p, emitPosX, emitPosY, i) {
+    // set the initial rotation/direction of the particle based on spawn
+    // angle and rotation of emitter
+    if (this.particleSpacing === 0) {
+      p.rotation = Math.random() * 360;
+    } else {
+      p.rotation = this.angleStart + this.particleSpacing * i + this.rotation;
+    } // drop the particle at the emitter's position
+
+
+    p.position.x = emitPosX;
+    p.position.y = emitPosY;
+  };
+  /**
+   * Kills all active particles immediately.
+   */
+
+
+  Emitter.prototype.cleanup = function () {
+    var particle;
+    var next;
+
+    for (particle = this._activeParticlesFirst; particle; particle = next) {
+      next = particle.next;
+      this.recycle(particle);
+
+      if (particle.parent) {
+        particle.parent.removeChild(particle);
+      }
+    }
+
+    this._activeParticlesFirst = this._activeParticlesLast = null;
+    this.particleCount = 0;
+  };
+  /**
+   * Destroys the emitter and all of its particles.
+   */
+
+
+  Emitter.prototype.destroy = function () {
+    // make sure we aren't still listening to any tickers
+    this.autoUpdate = false; // puts all active particles in the pool, and removes them from the particle parent
+
+    this.cleanup(); // wipe the pool clean
+
+    var next;
+
+    for (var particle = this._poolFirst; particle; particle = next) {
+      // store next value so we don't lose it in our destroy call
+      next = particle.next;
+      particle.destroy();
+    }
+
+    this._poolFirst = this._parent = this.particleImages = this.spawnPos = this.ownerPos = this.startColor = this.startScale = this.startAlpha = this.startSpeed = this.customEase = this._completeCallback = null;
+  };
+
+  return Emitter;
+}();
+/**
+ * A helper point for math things.
+ * @hidden
+ */
+
+
+exports.Emitter = Emitter;
+var helperPoint$1 = new pixi.Point();
+/**
+ * A hand picked list of Math functions (and a couple properties) that are
+ * allowable. They should be used without the preceding "Math."
+ * @hidden
+ */
+
+var MATH_FUNCS = ['pow', 'sqrt', 'abs', 'floor', 'round', 'ceil', 'E', 'PI', 'sin', 'cos', 'tan', 'asin', 'acos', 'atan', 'atan2', 'log'];
+/**
+ * create an actual regular expression object from the string
+ * @hidden
+ */
+
+var WHITELISTER = new RegExp([// Allow the 4 basic operations, parentheses and all numbers/decimals, as well
+// as 'x', for the variable usage.
+'[01234567890\\.\\*\\-\\+\\/\\(\\)x ,]'].concat(MATH_FUNCS).join('|'), 'g');
+/**
+ * Parses a string into a function for path following.
+ * This involves whitelisting the string for safety, inserting "Math." to math function
+ * names, and using `new Function()` to generate a function.
+ * @hidden
+ * @param pathString The string to parse.
+ * @return The path function - takes x, outputs y.
+ */
+
+function parsePath(pathString) {
+  var matches = pathString.match(WHITELISTER);
+
+  for (var i = matches.length - 1; i >= 0; --i) {
+    if (MATH_FUNCS.indexOf(matches[i]) >= 0) {
+      matches[i] = "Math." + matches[i];
+    }
+  }
+
+  pathString = matches.join(''); // eslint-disable-next-line no-new-func
+
+  return new Function('x', "return " + pathString + ";");
+}
+/**
+ * An particle that follows a path defined by an algebraic expression, e.g. "sin(x)" or
+ * "5x + 3".
+ * To use this class, the particle config must have a "path" string in the
+ * "extraData" parameter. This string should have "x" in it to represent movement (from the
+ * speed settings of the particle). It may have numbers, parentheses, the four basic
+ * operations, and the following Math functions or properties (without the preceding "Math."):
+ * "pow", "sqrt", "abs", "floor", "round", "ceil", "E", "PI", "sin", "cos", "tan", "asin",
+ * "acos", "atan", "atan2", "log".
+ * The overall movement of the particle and the expression value become x and y positions for
+ * the particle, respectively. The final position is rotated by the spawn rotation/angle of
+ * the particle.
+ *
+ * Some example paths:
+ *
+ * 	"sin(x/10) * 20" // A sine wave path.
+ * 	"cos(x/100) * 30" // Particles curve counterclockwise (for medium speed/low lifetime particles)
+ * 	"pow(x/10, 2) / 2" // Particles curve clockwise (remember, +y is down).
+ */
+
+
+var PathParticle =
+/** @class */
+function (_super) {
+  __extends(PathParticle, _super);
+  /**
+   * @param {PIXI.particles.Emitter} emitter The emitter that controls this PathParticle.
+   */
+
+
+  function PathParticle(emitter) {
+    var _this = _super.call(this, emitter) || this;
+
+    _this.path = null;
+    _this.initialRotation = 0;
+    _this.initialPosition = new pixi.Point();
+    _this.movement = 0;
+    return _this;
+  }
+  /**
+   * Initializes the particle for use, based on the properties that have to
+   * have been set already on the particle.
+   */
+
+
+  PathParticle.prototype.init = function () {
+    // get initial rotation before it is converted to radians
+    this.initialRotation = this.rotation; // standard init
+
+    this.Particle_init(); // set the path for the particle
+
+    this.path = this.extraData.path; // cancel the normal movement behavior
+
+    this._doNormalMovement = !this.path; // reset movement
+
+    this.movement = 0; // grab position
+
+    this.initialPosition.x = this.position.x;
+    this.initialPosition.y = this.position.y;
+  };
+  /**
+   * Updates the particle.
+   * @param delta Time elapsed since the previous frame, in __seconds__.
+   */
+
+
+  PathParticle.prototype.update = function (delta) {
+    var lerp = this.Particle_update(delta); // if the particle died during the update, then don't bother
+
+    if (lerp >= 0 && this.path) {
+      // increase linear movement based on speed
+      if (this._doSpeed) {
+        var speed = this.speedList.interpolate(lerp) * this.speedMultiplier;
+        this.movement += speed * delta;
+      } else {
+        var speed = this.speedList.current.value * this.speedMultiplier;
+        this.movement += speed * delta;
+      } // set up the helper point for rotation
+
+
+      helperPoint$1.x = this.movement;
+      helperPoint$1.y = this.path(this.movement);
+      ParticleUtils.rotatePoint(this.initialRotation, helperPoint$1);
+      this.position.x = this.initialPosition.x + helperPoint$1.x;
+      this.position.y = this.initialPosition.y + helperPoint$1.y;
+    }
+
+    return lerp;
+  };
+  /**
+   * Destroys the particle, removing references and preventing future use.
+   */
+
+
+  PathParticle.prototype.destroy = function () {
+    this.Particle_destroy();
+    this.path = this.initialPosition = null;
+  };
+  /**
+   * Checks over the art that was passed to the Emitter's init() function, to do any special
+   * modifications to prepare it ahead of time. This just runs Particle.parseArt().
+   * @param art The array of art data. For Particle, it should be an array of
+   *            Textures. Any strings in the array will be converted to
+   *            Textures via Texture.fromImage().
+   * @return The art, after any needed modifications.
+   */
+
+
+  PathParticle.parseArt = function (art) {
+    return Particle.parseArt(art);
+  };
+  /**
+   * Parses extra emitter data to ensure it is set up for this particle class.
+   * PathParticle checks for the existence of path data, and parses the path data for use
+   * by particle instances.
+   * @param extraData The extra data from the particle config.
+   * @return The parsed extra data.
+   */
+
+
+  PathParticle.parseData = function (extraData) {
+    var output = {};
+
+    if (extraData && extraData.path) {
+      try {
+        output.path = parsePath(extraData.path);
+      } catch (e) {
+        if (ParticleUtils.verbose) {
+          console.error('PathParticle: error in parsing path expression');
+        }
+
+        output.path = null;
+      }
+    } else {
+      if (ParticleUtils.verbose) {
+        console.error('PathParticle requires a path string in extraData!');
+      }
+
+      output.path = null;
+    }
+
+    return output;
+  };
+
+  return PathParticle;
+}(Particle);
+/**
+ * An individual particle image with an animation. Art data passed to the emitter must be
+ * formatted in a particular way for AnimatedParticle to be able to handle it:
+ *
+ * ```typescript
+ * {
+ *     //framerate is required. It is the animation speed of the particle in frames per
+ *     //second.
+ *     //A value of "matchLife" causes the animation to match the lifetime of an individual
+ *     //particle, instead of at a constant framerate. This causes the animation to play
+ *     //through one time, completing when the particle expires.
+ *     framerate: 6,
+ *     //loop is optional, and defaults to false.
+ *     loop: true,
+ *     //textures is required, and can be an array of any (non-zero) length.
+ *     textures: [
+ *         //each entry represents a single texture that should be used for one or more
+ *         //frames. Any strings will be converted to Textures with Texture.from().
+ *         //Instances of PIXI.Texture will be used directly.
+ *         "animFrame1.png",
+ *         //entries can be an object with a 'count' property, telling AnimatedParticle to
+ *         //use that texture for 'count' frames sequentially.
+ *         {
+ *             texture: "animFrame2.png",
+ *             count: 3
+ *         },
+ *         "animFrame3.png"
+ *     ]
+ * }
+ * ```
+ */
+
+
+exports.PathParticle = PathParticle;
+
+var AnimatedParticle =
+/** @class */
+function (_super) {
+  __extends(AnimatedParticle, _super);
+  /**
+   * @param emitter The emitter that controls this AnimatedParticle.
+   */
+
+
+  function AnimatedParticle(emitter) {
+    var _this = _super.call(this, emitter) || this;
+
+    _this.textures = null;
+    _this.duration = 0;
+    _this.framerate = 0;
+    _this.elapsed = 0;
+    _this.loop = false;
+    return _this;
+  }
+  /**
+   * Initializes the particle for use, based on the properties that have to
+   * have been set already on the particle.
+   */
+
+
+  AnimatedParticle.prototype.init = function () {
+    this.Particle_init();
+    this.elapsed = 0; // if the animation needs to match the particle's life, then cacluate variables
+
+    if (this.framerate < 0) {
+      this.duration = this.maxLife;
+      this.framerate = this.textures.length / this.duration;
+    }
+  };
+  /**
+   * Sets the textures for the particle.
+   * @param art An array of PIXI.Texture objects for this animated particle.
+   */
+
+
+  AnimatedParticle.prototype.applyArt = function (art) {
+    this.textures = art.textures;
+    this.framerate = art.framerate;
+    this.duration = art.duration;
+    this.loop = art.loop;
+  };
+  /**
+   * Updates the particle.
+   * @param delta Time elapsed since the previous frame, in __seconds__.
+   */
+
+
+  AnimatedParticle.prototype.update = function (delta) {
+    var lerp = this.Particle_update(delta); // only animate the particle if it is still alive
+
+    if (lerp >= 0) {
+      this.elapsed += delta;
+
+      if (this.elapsed > this.duration) {
+        // loop elapsed back around
+        if (this.loop) {
+          this.elapsed = this.elapsed % this.duration;
+        } // subtract a small amount to prevent attempting to go past the end of the animation
+        else {
+            this.elapsed = this.duration - 0.000001;
+          }
+      } // add a very small number to the frame and then floor it to avoid
+      // the frame being one short due to floating point errors.
+
+
+      var frame = this.elapsed * this.framerate + 0.0000001 | 0;
+      this.texture = this.textures[frame] || pixi.Texture.EMPTY;
+    }
+
+    return lerp;
+  };
+  /**
+   * Destroys the particle, removing references and preventing future use.
+   */
+
+
+  AnimatedParticle.prototype.destroy = function () {
+    this.Particle_destroy();
+    this.textures = null;
+  };
+  /**
+   * Checks over the art that was passed to the Emitter's init() function, to do any special
+   * modifications to prepare it ahead of time.
+   * @param art The array of art data, properly formatted for AnimatedParticle.
+   * @return The art, after any needed modifications.
+   */
+
+
+  AnimatedParticle.parseArt = function (art) {
+    var outArr = [];
+
+    for (var i = 0; i < art.length; ++i) {
+      var data = art[i];
+      var output = outArr[i] = {};
+      var outTextures = output.textures = [];
+      var textures = data.textures;
+
+      for (var j = 0; j < textures.length; ++j) {
+        var tex = textures[j];
+
+        if (typeof tex === 'string') {
+          outTextures.push(GetTextureFromString(tex));
+        } else if (tex instanceof pixi.Texture) {
+          outTextures.push(tex);
+        } // assume an object with extra data determining duplicate frame data
+        else {
+            var dupe = tex.count || 1;
+
+            if (typeof tex.texture === 'string') {
+              tex = GetTextureFromString(tex.texture);
+            } else // if(tex.texture instanceof Texture)
+              {
+                tex = tex.texture;
+              }
+
+            for (; dupe > 0; --dupe) {
+              outTextures.push(tex);
+            }
+          }
+      } // use these values to signify that the animation should match the particle life time.
+
+
+      if (data.framerate === 'matchLife') {
+        // -1 means that it should be calculated
+        output.framerate = -1;
+        output.duration = 0;
+        output.loop = false;
+      } else {
+        // determine if the animation should loop
+        output.loop = !!data.loop; // get the framerate, default to 60
+
+        output.framerate = data.framerate > 0 ? data.framerate : 60; // determine the duration
+
+        output.duration = outTextures.length / output.framerate;
+      }
+    }
+
+    return outArr;
+  };
+
+  return AnimatedParticle;
+}(Particle);
+/**
+ * A semi-experimental Container that uses a doubly linked list to manage children instead of an
+ * array. This means that adding/removing children often is not the same performance hit that
+ * it would to be continually pushing/splicing.
+ * However, this is primarily intended to be used for heavy particle usage, and may not handle
+ * edge cases well if used as a complete Container replacement.
+ */
+
+
+exports.AnimatedParticle = AnimatedParticle;
+
+var LinkedListContainer =
+/** @class */
+function (_super) {
+  __extends(LinkedListContainer, _super);
+
+  function LinkedListContainer() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this._firstChild = null;
+    _this._lastChild = null;
+    _this._childCount = 0;
+    return _this;
+  }
+
+  Object.defineProperty(LinkedListContainer.prototype, "firstChild", {
+    get: function () {
+      return this._firstChild;
+    },
+    enumerable: true,
+    configurable: true
+  });
+  Object.defineProperty(LinkedListContainer.prototype, "lastChild", {
+    get: function () {
+      return this._lastChild;
+    },
+    enumerable: true,
+    configurable: true
+  });
+  Object.defineProperty(LinkedListContainer.prototype, "childCount", {
+    get: function () {
+      return this._childCount;
+    },
+    enumerable: true,
+    configurable: true
+  });
+
+  LinkedListContainer.prototype.addChild = function () {
+    var children = [];
+
+    for (var _i = 0; _i < arguments.length; _i++) {
+      children[_i] = arguments[_i];
+    } // if there is only one argument we can bypass looping through the them
+
+
+    if (children.length > 1) {
+      // loop through the array and add all children
+      for (var i = 0; i < children.length; i++) {
+        // eslint-disable-next-line prefer-rest-params
+        this.addChild(children[i]);
+      }
+    } else {
+      var child = children[0]; // if the child has a parent then lets remove it as PixiJS objects can only exist in one place
+
+      if (child.parent) {
+        child.parent.removeChild(child);
+      }
+
+      child.parent = this;
+      this.sortDirty = true; // ensure child transform will be recalculated
+
+      child.transform._parentID = -1; // add to list if we have a list
+
+      if (this._lastChild) {
+        this._lastChild.nextChild = child;
+        child.prevChild = this._lastChild;
+        this._lastChild = child;
+      } // otherwise initialize the list
+      else {
+          this._firstChild = this._lastChild = child;
+        } // update child count
+
+
+      ++this._childCount; // ensure bounds will be recalculated
+
+      this._boundsID++; // TODO - lets either do all callbacks or all events.. not both!
+
+      this.onChildrenChange();
+      this.emit('childAdded', child, this, this._childCount);
+      child.emit('added', this);
+    }
+
+    return children[0];
+  };
+
+  LinkedListContainer.prototype.addChildAt = function (child, index) {
+    if (index < 0 || index > this._childCount) {
+      throw new Error("addChildAt: The index " + index + " supplied is out of bounds " + this._childCount);
+    }
+
+    if (child.parent) {
+      child.parent.removeChild(child);
+    }
+
+    child.parent = this;
+    this.sortDirty = true; // ensure child transform will be recalculated
+
+    child.transform._parentID = -1;
+    var c = child; // if no children, do basic initialization
+
+    if (!this._firstChild) {
+      this._firstChild = this._lastChild = c;
+    } // add at beginning (back)
+    else if (index === 0) {
+        this._firstChild.prevChild = c;
+        c.nextChild = this._firstChild;
+        this._firstChild = c;
+      } // add at end (front)
+      else if (index === this._childCount) {
+          this._lastChild.nextChild = c;
+          c.prevChild = this._lastChild;
+          this._lastChild = c;
+        } // otherwise we have to start counting through the children to find the right one
+        // - SLOW, only provided to fully support the possibility of use
+        else {
+            var i = 0;
+            var target = this._firstChild;
+
+            while (i < index) {
+              target = target.nextChild;
+              ++i;
+            } // insert before the target that we found at the specified index
+
+
+            target.prevChild.nextChild = c;
+            c.prevChild = target.prevChild;
+            c.nextChild = target;
+            target.prevChild = c;
+          } // update child count
+
+
+    ++this._childCount; // ensure bounds will be recalculated
+
+    this._boundsID++; // TODO - lets either do all callbacks or all events.. not both!
+
+    this.onChildrenChange(index); // the PixiJS types say this has no arguments
+
+    child.emit('added', this);
+    this.emit('childAdded', child, this, index);
+    return child;
+  };
+  /**
+   * Adds a child to the container to be rendered below another child.
+   *
+   * @param child The child to add
+   * @param relative - The current child to add the new child relative to.
+   * @return The child that was added.
+   */
+
+
+  LinkedListContainer.prototype.addChildBelow = function (child, relative) {
+    if (relative.parent !== this) {
+      throw new Error("addChildBelow: The relative target must be a child of this parent");
+    }
+
+    if (child.parent) {
+      child.parent.removeChild(child);
+    }
+
+    child.parent = this;
+    this.sortDirty = true; // ensure child transform will be recalculated
+
+    child.transform._parentID = -1; // insert before the target that we were given
+
+    relative.prevChild.nextChild = child;
+    child.prevChild = relative.prevChild;
+    child.nextChild = relative;
+    relative.prevChild = child;
+
+    if (this._firstChild === relative) {
+      this._firstChild = child;
+    } // update child count
+
+
+    ++this._childCount; // ensure bounds will be recalculated
+
+    this._boundsID++; // TODO - lets either do all callbacks or all events.. not both!
+
+    this.onChildrenChange();
+    this.emit('childAdded', child, this, this._childCount);
+    child.emit('added', this);
+    return child;
+  };
+  /**
+   * Adds a child to the container to be rendered above another child.
+   *
+   * @param child The child to add
+   * @param relative - The current child to add the new child relative to.
+   * @return The child that was added.
+   */
+
+
+  LinkedListContainer.prototype.addChildAbove = function (child, relative) {
+    if (relative.parent !== this) {
+      throw new Error("addChildBelow: The relative target must be a child of this parent");
+    }
+
+    if (child.parent) {
+      child.parent.removeChild(child);
+    }
+
+    child.parent = this;
+    this.sortDirty = true; // ensure child transform will be recalculated
+
+    child.transform._parentID = -1; // insert after the target that we were given
+
+    relative.nextChild.prevChild = child;
+    child.nextChild = relative.nextChild;
+    child.prevChild = relative;
+    relative.nextChild = child;
+
+    if (this._lastChild === relative) {
+      this._lastChild = child;
+    } // update child count
+
+
+    ++this._childCount; // ensure bounds will be recalculated
+
+    this._boundsID++; // TODO - lets either do all callbacks or all events.. not both!
+
+    this.onChildrenChange();
+    this.emit('childAdded', child, this, this._childCount);
+    child.emit('added', this);
+    return child;
+  };
+
+  LinkedListContainer.prototype.swapChildren = function (child, child2) {
+    if (child === child2 || child.parent !== this || child2.parent !== this) {
+      return;
+    }
+
+    var _a = child,
+        prevChild = _a.prevChild,
+        nextChild = _a.nextChild;
+    child.prevChild = child2.prevChild;
+    child.nextChild = child2.nextChild;
+    child2.prevChild = prevChild;
+    child2.nextChild = nextChild;
+
+    if (this._firstChild === child) {
+      this._firstChild = child2;
+    } else if (this._firstChild === child2) {
+      this._firstChild = child;
+    }
+
+    if (this._lastChild === child) {
+      this._lastChild = child2;
+    } else if (this._lastChild === child2) {
+      this._lastChild = child;
+    }
+
+    this.onChildrenChange();
+  };
+
+  LinkedListContainer.prototype.getChildIndex = function (child) {
+    var index = 0;
+    var test = this._firstChild;
+
+    while (test) {
+      if (test === child) {
+        break;
+      }
+
+      test = test.nextChild;
+      ++index;
+    }
+
+    if (!test) {
+      throw new Error('The supplied DisplayObject must be a child of the caller');
+    }
+
+    return index;
+  };
+
+  LinkedListContainer.prototype.setChildIndex = function (child, index) {
+    if (index < 0 || index >= this._childCount) {
+      throw new Error("The index " + index + " supplied is out of bounds " + this._childCount);
+    }
+
+    if (child.parent !== this) {
+      throw new Error('The supplied DisplayObject must be a child of the caller');
+    } // remove child
+
+
+    if (child.nextChild) {
+      child.nextChild.prevChild = child.prevChild;
+    }
+
+    if (child.prevChild) {
+      child.prevChild.nextChild = child.nextChild;
+    }
+
+    if (this._firstChild === child) {
+      this._firstChild = child.nextChild;
+    }
+
+    if (this._lastChild === child) {
+      this._lastChild = child.prevChild;
+    }
+
+    child.nextChild = null;
+    child.prevChild = null; // do addChildAt
+
+    if (!this._firstChild) {
+      this._firstChild = this._lastChild = child;
+    } else if (index === 0) {
+      this._firstChild.prevChild = child;
+      child.nextChild = this._firstChild;
+      this._firstChild = child;
+    } else if (index === this._childCount) {
+      this._lastChild.nextChild = child;
+      child.prevChild = this._lastChild;
+      this._lastChild = child;
+    } else {
+      var i = 0;
+      var target = this._firstChild;
+
+      while (i < index) {
+        target = target.nextChild;
+        ++i;
+      }
+
+      target.prevChild.nextChild = child;
+      child.prevChild = target.prevChild;
+      child.nextChild = target;
+      target.prevChild = child;
+    }
+
+    this.onChildrenChange(index);
+  };
+
+  LinkedListContainer.prototype.removeChild = function () {
+    var children = [];
+
+    for (var _i = 0; _i < arguments.length; _i++) {
+      children[_i] = arguments[_i];
+    } // if there is only one argument we can bypass looping through the them
+
+
+    if (children.length > 1) {
+      // loop through the arguments property and remove all children
+      for (var i = 0; i < children.length; i++) {
+        this.removeChild(children[i]);
+      }
+    } else {
+      var child = children[0]; // bail if not actually our child
+
+      if (child.parent !== this) return null;
+      child.parent = null; // ensure child transform will be recalculated
+
+      child.transform._parentID = -1; // swap out child references
+
+      if (child.nextChild) {
+        child.nextChild.prevChild = child.prevChild;
+      }
+
+      if (child.prevChild) {
+        child.prevChild.nextChild = child.nextChild;
+      }
+
+      if (this._firstChild === child) {
+        this._firstChild = child.nextChild;
+      }
+
+      if (this._lastChild === child) {
+        this._lastChild = child.prevChild;
+      } // clear sibling references
+
+
+      child.nextChild = null;
+      child.prevChild = null; // update child count
+
+      --this._childCount; // ensure bounds will be recalculated
+
+      this._boundsID++; // TODO - lets either do all callbacks or all events.. not both!
+
+      this.onChildrenChange();
+      child.emit('removed', this);
+      this.emit('childRemoved', child, this);
+    }
+
+    return children[0];
+  };
+
+  LinkedListContainer.prototype.getChildAt = function (index) {
+    if (index < 0 || index >= this._childCount) {
+      throw new Error("getChildAt: Index (" + index + ") does not exist.");
+    }
+
+    if (index === 0) {
+      return this._firstChild;
+    } // add at end (front)
+    else if (index === this._childCount) {
+        return this._lastChild;
+      } // otherwise we have to start counting through the children to find the right one
+    // - SLOW, only provided to fully support the possibility of use
+
+
+    var i = 0;
+    var target = this._firstChild;
+
+    while (i < index) {
+      target = target.nextChild;
+      ++i;
+    }
+
+    return target;
+  };
+
+  LinkedListContainer.prototype.removeChildAt = function (index) {
+    var child = this.getChildAt(index); // ensure child transform will be recalculated..
+
+    child.parent = null;
+    child.transform._parentID = -1; // swap out child references
+
+    if (child.nextChild) {
+      child.nextChild.prevChild = child.prevChild;
+    }
+
+    if (child.prevChild) {
+      child.prevChild.nextChild = child.nextChild;
+    }
+
+    if (this._firstChild === child) {
+      this._firstChild = child.nextChild;
+    }
+
+    if (this._lastChild === child) {
+      this._lastChild = child.prevChild;
+    } // clear sibling references
+
+
+    child.nextChild = null;
+    child.prevChild = null; // update child count
+
+    --this._childCount; // ensure bounds will be recalculated
+
+    this._boundsID++; // TODO - lets either do all callbacks or all events.. not both!
+
+    this.onChildrenChange(index); // the PixiJS types say this has no arguments
+
+    child.emit('removed', this);
+    this.emit('childRemoved', child, this, index);
+    return child;
+  };
+
+  LinkedListContainer.prototype.removeChildren = function (beginIndex, endIndex) {
+    if (beginIndex === void 0) {
+      beginIndex = 0;
+    }
+
+    if (endIndex === void 0) {
+      endIndex = this._childCount;
+    }
+
+    var begin = beginIndex;
+    var end = endIndex;
+    var range = end - begin;
+
+    if (range > 0 && range <= end) {
+      var removed = [];
+      var child = this._firstChild;
+
+      for (var i = 0; i <= end && child; ++i, child = child.nextChild) {
+        if (i >= begin) {
+          removed.push(child);
+        }
+      } // child before removed section
+
+
+      var prevChild = removed[0].prevChild; // child after removed section
+
+      var nextChild = removed[removed.length - 1].nextChild;
+
+      if (!nextChild) {
+        // if we removed the last child, then the new last child is the one before
+        // the removed section
+        this._lastChild = prevChild;
+      } else {
+        // otherwise, stitch the child before the section to the child after
+        nextChild.prevChild = prevChild;
+      }
+
+      if (!prevChild) {
+        // if we removed the first child, then the new first child is the one after
+        // the removed section
+        this._firstChild = nextChild;
+      } else {
+        // otherwise stich the child after the section to the one before
+        prevChild.nextChild = nextChild;
+      }
+
+      for (var i = 0; i < removed.length; ++i) {
+        // clear parenting and sibling references for all removed children
+        removed[i].parent = null;
+
+        if (removed[i].transform) {
+          removed[i].transform._parentID = -1;
+        }
+
+        removed[i].nextChild = null;
+        removed[i].prevChild = null;
+      }
+
+      this._boundsID++;
+      this.onChildrenChange(beginIndex);
+
+      for (var i = 0; i < removed.length; ++i) {
+        removed[i].emit('removed', this);
+        this.emit('childRemoved', removed[i], this, i);
+      }
+
+      return removed;
+    } else if (range === 0 && this._childCount === 0) {
+      return [];
+    }
+
+    throw new RangeError('removeChildren: numeric values are outside the acceptable range.');
+  };
+  /**
+   * Updates the transform on all children of this container for rendering.
+   * Copied from and overrides PixiJS v5 method (v4 method is identical)
+   */
+
+
+  LinkedListContainer.prototype.updateTransform = function () {
+    this._boundsID++;
+    this.transform.updateTransform(this.parent.transform); // TODO: check render flags, how to process stuff here
+
+    this.worldAlpha = this.alpha * this.parent.worldAlpha;
+    var child;
+    var next;
+
+    for (child = this._firstChild; child; child = next) {
+      next = child.nextChild;
+
+      if (child.visible) {
+        child.updateTransform();
+      }
+    }
+  };
+  /**
+   * Recalculates the bounds of the container.
+   * Copied from and overrides PixiJS v5 method (v4 method is identical)
+   */
+
+
+  LinkedListContainer.prototype.calculateBounds = function () {
+    this._bounds.clear();
+
+    this._calculateBounds();
+
+    var child;
+    var next;
+
+    for (child = this._firstChild; child; child = next) {
+      next = child.nextChild;
+
+      if (!child.visible || !child.renderable) {
+        continue;
+      }
+
+      child.calculateBounds(); // TODO: filter+mask, need to mask both somehow
+
+      if (child._mask) {
+        var maskObject = child._mask.maskObject || child._mask;
+        maskObject.calculateBounds();
+
+        this._bounds.addBoundsMask(child._bounds, maskObject._bounds);
+      } else if (child.filterArea) {
+        this._bounds.addBoundsArea(child._bounds, child.filterArea);
+      } else {
+        this._bounds.addBounds(child._bounds);
+      }
+    }
+
+    this._bounds.updateID = this._boundsID;
+  };
+  /**
+   * Retrieves the local bounds of the displayObject as a rectangle object. Copied from and overrides PixiJS v5 method
+   */
+
+
+  LinkedListContainer.prototype.getLocalBounds = function (rect, skipChildrenUpdate) {
+    if (skipChildrenUpdate === void 0) {
+      skipChildrenUpdate = false;
+    } // skip Container's getLocalBounds, go directly to DisplayObject
+
+
+    var result = pixi.DisplayObject.prototype.getLocalBounds.call(this, rect);
+
+    if (!skipChildrenUpdate) {
+      var child = void 0;
+      var next = void 0;
+
+      for (child = this._firstChild; child; child = next) {
+        next = child.nextChild;
+
+        if (child.visible) {
+          child.updateTransform();
+        }
+      }
+    }
+
+    return result;
+  };
+  /**
+   * Renders the object using the WebGL renderer. Copied from and overrides PixiJS v5 method
+   */
+
+
+  LinkedListContainer.prototype.render = function (renderer) {
+    // if the object is not visible or the alpha is 0 then no need to render this element
+    if (!this.visible || this.worldAlpha <= 0 || !this.renderable) {
+      return;
+    } // do a quick check to see if this element has a mask or a filter.
+
+
+    if (this._mask || this.filters && this.filters.length) {
+      this.renderAdvanced(renderer);
+    } else {
+      this._render(renderer);
+
+      var child = void 0;
+      var next = void 0; // simple render children!
+
+      for (child = this._firstChild; child; child = next) {
+        next = child.nextChild;
+        child.render(renderer);
+      }
+    }
+  };
+  /**
+   * Render the object using the WebGL renderer and advanced features. Copied from and overrides PixiJS v5 method
+   */
+
+
+  LinkedListContainer.prototype.renderAdvanced = function (renderer) {
+    renderer.batch.flush();
+    var filters = this.filters;
+    var mask = this._mask; // _enabledFilters note: As of development, _enabledFilters is not documented in pixi.js
+    // types but is in code of current release (5.2.4).
+    // push filter first as we need to ensure the stencil buffer is correct for any masking
+
+    if (filters) {
+      if (!this._enabledFilters) {
+        this._enabledFilters = [];
+      }
+
+      this._enabledFilters.length = 0;
+
+      for (var i = 0; i < filters.length; i++) {
+        if (filters[i].enabled) {
+          this._enabledFilters.push(filters[i]);
+        }
+      }
+
+      if (this._enabledFilters.length) {
+        renderer.filter.push(this, this._enabledFilters);
+      }
+    }
+
+    if (mask) {
+      renderer.mask.push(this, this._mask);
+    } // add this object to the batch, only rendered if it has a texture.
+
+
+    this._render(renderer);
+
+    var child;
+    var next; // now loop through the children and make sure they get rendered
+
+    for (child = this._firstChild; child; child = next) {
+      next = child.nextChild;
+      child.render(renderer);
+    }
+
+    renderer.batch.flush();
+
+    if (mask) {
+      renderer.mask.pop(this);
+    }
+
+    if (filters && this._enabledFilters && this._enabledFilters.length) {
+      renderer.filter.pop();
+    }
+  };
+  /**
+   * Renders the object using the WebGL renderer. Copied from and overrides PixiJS V4 method.
+   */
+
+
+  LinkedListContainer.prototype.renderWebGL = function (renderer) {
+    // if the object is not visible or the alpha is 0 then no need to render this element
+    if (!this.visible || this.worldAlpha <= 0 || !this.renderable) {
+      return;
+    } // do a quick check to see if this element has a mask or a filter.
+
+
+    if (this._mask || this.filters && this.filters.length) {
+      this.renderAdvancedWebGL(renderer);
+    } else {
+      this._renderWebGL(renderer);
+
+      var child = void 0;
+      var next = void 0; // simple render children!
+
+      for (child = this._firstChild; child; child = next) {
+        next = child.nextChild;
+        child.renderWebGL(renderer);
+      }
+    }
+  };
+  /**
+   * Render the object using the WebGL renderer and advanced features. Copied from and overrides PixiJS V4 method.
+   */
+
+
+  LinkedListContainer.prototype.renderAdvancedWebGL = function (renderer) {
+    renderer.flush(); // _filters is a v4 specific property
+
+    var filters = this._filters;
+    var mask = this._mask; // push filter first as we need to ensure the stencil buffer is correct for any masking
+
+    if (filters) {
+      if (!this._enabledFilters) {
+        this._enabledFilters = [];
+      }
+
+      this._enabledFilters.length = 0;
+
+      for (var i = 0; i < filters.length; i++) {
+        if (filters[i].enabled) {
+          this._enabledFilters.push(filters[i]);
+        }
+      }
+
+      if (this._enabledFilters.length) {
+        renderer.filterManager.pushFilter(this, this._enabledFilters);
+      }
+    }
+
+    if (mask) {
+      renderer.maskManager.pushMask(this, this._mask);
+    } // add this object to the batch, only rendered if it has a texture.
+
+
+    this._renderWebGL(renderer);
+
+    var child;
+    var next; // now loop through the children and make sure they get rendered
+
+    for (child = this._firstChild; child; child = next) {
+      next = child.nextChild;
+      child.renderWebGL(renderer);
+    }
+
+    renderer.flush();
+
+    if (mask) {
+      renderer.maskManager.popMask(this, this._mask);
+    }
+
+    if (filters && this._enabledFilters && this._enabledFilters.length) {
+      renderer.filterManager.popFilter();
+    }
+  };
+  /**
+   * Renders the object using the Canvas renderer. Copied from and overrides PixiJS V4 method or Canvas mixin in V5.
+   */
+
+
+  LinkedListContainer.prototype.renderCanvas = function (renderer) {
+    // if not visible or the alpha is 0 then no need to render this
+    if (!this.visible || this.worldAlpha <= 0 || !this.renderable) {
+      return;
+    }
+
+    if (this._mask) {
+      renderer.maskManager.pushMask(this._mask);
+    }
+
+    this._renderCanvas(renderer);
+
+    var child;
+    var next;
+
+    for (child = this._firstChild; child; child = next) {
+      next = child.nextChild;
+      child.renderCanvas(renderer);
+    }
+
+    if (this._mask) {
+      renderer.maskManager.popMask(renderer);
+    }
+  };
+
+  return LinkedListContainer;
+}(pixi.Container);
+
+exports.LinkedListContainer = LinkedListContainer;
+},{"pixi.js":"../node_modules/pixi.js/lib/pixi.es.js"}],"particles.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var PIXIParticles = _interopRequireWildcard(require("pixi-particles"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var dust = {
+  "alpha": {
+    "start": 0.4,
+    "end": 0
+  },
+  "scale": {
+    "start": 0.25,
+    "end": 0.1,
+    "minimumScaleMultiplier": 1
+  },
+  "color": {
+    "start": "#ffffff",
+    "end": "#ffffff"
+  },
+  "speed": {
+    "start": 50,
+    "end": 50,
+    "minimumSpeedMultiplier": 1
+  },
+  "acceleration": {
+    "x": 0,
+    "y": 0
+  },
+  "maxSpeed": 0,
+  "startRotation": {
+    "min": 0,
+    "max": 360
+  },
+  "noRotation": false,
+  "rotationSpeed": {
+    "min": 0,
+    "max": 0
+  },
+  "lifetime": {
+    "min": 2,
+    "max": 1.8
+  },
+  "blendMode": "normal",
+  "frequency": 0.5,
+  "emitterLifetime": -1,
+  "maxParticles": 1000,
+  "pos": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "addAtBack": true,
+  "spawnType": "rect",
+  "spawnRect": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+  }
+};
+
+var Particles = /*#__PURE__*/function () {
+  function Particles(game) {
+    _classCallCheck(this, Particles);
+
+    this.game = game;
+    this.emitter = null;
+    this.container = new PIXI.Container();
+    this.game.app.stage.addChild(this.container);
+    this.container.parentLayer = this.game.layerTop;
+  }
+
+  _createClass(Particles, [{
+    key: "start",
+    value: function start(style) {
+      var texture;
+
+      if (style == "Dust") {
+        texture = PIXI.Texture.from('particle.png');
+        dust.spawnRect.w = this.game.width;
+        dust.spawnRect.h = this.game.height;
+        this.params = dust;
+      }
+
+      this.emitter = new PIXIParticles.Emitter(this.container, texture, this.params); //this.elapsed=Date.now();
+
+      this.emitter.emit = true;
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
+      this.emitter.emit = false;
+      this.emitter = null;
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      //this.now = Date.now();
+      //this.emitter.update((this.now - this.elapsed) * 0.001);
+      this.emitter.update(this.game.app.ticker.elapsedMS / 1000); //this.elapsed=this.now;
+    }
+  }]);
+
+  return Particles;
+}();
+
+var _default = Particles;
+exports.default = _default;
+},{"pixi-particles":"../node_modules/pixi-particles/lib/pixi-particles.es.js"}],"../node_modules/@pixi/filter-adjustment/lib/filter-adjustment.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AdjustmentFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-adjustment - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-adjustment is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform float gamma;\nuniform float contrast;\nuniform float saturation;\nuniform float brightness;\nuniform float red;\nuniform float green;\nuniform float blue;\nuniform float alpha;\n\nvoid main(void)\n{\n    vec4 c = texture2D(uSampler, vTextureCoord);\n\n    if (c.a > 0.0) {\n        c.rgb /= c.a;\n\n        vec3 rgb = pow(c.rgb, vec3(1. / gamma));\n        rgb = mix(vec3(.5), mix(vec3(dot(vec3(.2125, .7154, .0721), rgb)), rgb, saturation), contrast);\n        rgb.r *= red;\n        rgb.g *= green;\n        rgb.b *= blue;\n        c.rgb = rgb * brightness;\n\n        c.rgb *= c.a;\n    }\n\n    gl_FragColor = c * alpha;\n}\n";
+/**
+ * The ability to adjust gamma, contrast, saturation, brightness, alpha or color-channel shift. This is a faster
+ * and much simpler to use than {@link http://pixijs.download/release/docs/PIXI.filters.ColorMatrixFilter.html ColorMatrixFilter}
+ * because it does not use a matrix.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/adjustment.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-adjustment|@pixi/filter-adjustment}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ *
+ * @param {object|number} [options] - The optional parameters of the filter.
+ * @param {number} [options.gamma=1] - The amount of luminance
+ * @param {number} [options.saturation=1] - The amount of color saturation
+ * @param {number} [options.contrast=1] - The amount of contrast
+ * @param {number} [options.brightness=1] - The overall brightness
+ * @param {number} [options.red=1] - The multipled red channel
+ * @param {number} [options.green=1] - The multipled green channel
+ * @param {number} [options.blue=1] - The multipled blue channel
+ * @param {number} [options.alpha=1] - The overall alpha amount
+ */
+
+var AdjustmentFilter = /*@__PURE__*/function (Filter) {
+  function AdjustmentFilter(options) {
+    Filter.call(this, vertex, fragment);
+    Object.assign(this, {
+      /**
+       * The amount of luminance
+       * @member {number}
+       * @memberof PIXI.filters.AdjustmentFilter#
+       * @default 1
+       */
+      gamma: 1,
+
+      /**
+       * The amount of saturation
+       * @member {number}
+       * @memberof PIXI.filters.AdjustmentFilter#
+       * @default 1
+       */
+      saturation: 1,
+
+      /**
+       * The amount of contrast
+       * @member {number}
+       * @memberof PIXI.filters.AdjustmentFilter#
+       * @default 1
+       */
+      contrast: 1,
+
+      /**
+       * The amount of brightness
+       * @member {number}
+       * @memberof PIXI.filters.AdjustmentFilter#
+       * @default 1
+       */
+      brightness: 1,
+
+      /**
+       * The amount of red channel
+       * @member {number}
+       * @memberof PIXI.filters.AdjustmentFilter#
+       * @default 1
+       */
+      red: 1,
+
+      /**
+       * The amount of green channel
+       * @member {number}
+       * @memberof PIXI.filters.AdjustmentFilter#
+       * @default 1
+       */
+      green: 1,
+
+      /**
+       * The amount of blue channel
+       * @member {number}
+       * @memberof PIXI.filters.AdjustmentFilter#
+       * @default 1
+       */
+      blue: 1,
+
+      /**
+       * The amount of alpha channel
+       * @member {number}
+       * @memberof PIXI.filters.AdjustmentFilter#
+       * @default 1
+       */
+      alpha: 1
+    }, options);
+  }
+
+  if (Filter) AdjustmentFilter.__proto__ = Filter;
+  AdjustmentFilter.prototype = Object.create(Filter && Filter.prototype);
+  AdjustmentFilter.prototype.constructor = AdjustmentFilter;
+  /**
+   * Override existing apply method in PIXI.Filter
+   * @private
+   */
+
+  AdjustmentFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    this.uniforms.gamma = Math.max(this.gamma, 0.0001);
+    this.uniforms.saturation = this.saturation;
+    this.uniforms.contrast = this.contrast;
+    this.uniforms.brightness = this.brightness;
+    this.uniforms.red = this.red;
+    this.uniforms.green = this.green;
+    this.uniforms.blue = this.blue;
+    this.uniforms.alpha = this.alpha;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+
+  return AdjustmentFilter;
+}(_core.Filter);
+
+exports.AdjustmentFilter = AdjustmentFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-kawase-blur/lib/filter-kawase-blur.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.KawaseBlurFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _math = require("@pixi/math");
+
+/*!
+ * @pixi/filter-kawase-blur - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-kawase-blur is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "\nvarying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec2 uOffset;\n\nvoid main(void)\n{\n    vec4 color = vec4(0.0);\n\n    // Sample top left pixel\n    color += texture2D(uSampler, vec2(vTextureCoord.x - uOffset.x, vTextureCoord.y + uOffset.y));\n\n    // Sample top right pixel\n    color += texture2D(uSampler, vec2(vTextureCoord.x + uOffset.x, vTextureCoord.y + uOffset.y));\n\n    // Sample bottom right pixel\n    color += texture2D(uSampler, vec2(vTextureCoord.x + uOffset.x, vTextureCoord.y - uOffset.y));\n\n    // Sample bottom left pixel\n    color += texture2D(uSampler, vec2(vTextureCoord.x - uOffset.x, vTextureCoord.y - uOffset.y));\n\n    // Average\n    color *= 0.25;\n\n    gl_FragColor = color;\n}";
+var fragmentClamp = "\nvarying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec2 uOffset;\nuniform vec4 filterClamp;\n\nvoid main(void)\n{\n    vec4 color = vec4(0.0);\n\n    // Sample top left pixel\n    color += texture2D(uSampler, clamp(vec2(vTextureCoord.x - uOffset.x, vTextureCoord.y + uOffset.y), filterClamp.xy, filterClamp.zw));\n\n    // Sample top right pixel\n    color += texture2D(uSampler, clamp(vec2(vTextureCoord.x + uOffset.x, vTextureCoord.y + uOffset.y), filterClamp.xy, filterClamp.zw));\n\n    // Sample bottom right pixel\n    color += texture2D(uSampler, clamp(vec2(vTextureCoord.x + uOffset.x, vTextureCoord.y - uOffset.y), filterClamp.xy, filterClamp.zw));\n\n    // Sample bottom left pixel\n    color += texture2D(uSampler, clamp(vec2(vTextureCoord.x - uOffset.x, vTextureCoord.y - uOffset.y), filterClamp.xy, filterClamp.zw));\n\n    // Average\n    color *= 0.25;\n\n    gl_FragColor = color;\n}\n";
+/**
+ * A much faster blur than Gaussian blur, but more complicated to use.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/kawase-blur.png)
+ *
+ * @see https://software.intel.com/en-us/blogs/2014/07/15/an-investigation-of-fast-real-time-gpu-based-image-blur-algorithms
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-kawase-blur|@pixi/filter-kawase-blur}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number|number[]} [blur=4] - The blur of the filter. Should be greater than `0`. If
+ *        value is an Array, setting kernels.
+ * @param {number} [quality=3] - The quality of the filter. Should be an integer greater than `1`.
+ * @param {boolean} [clamp=false] - Clamp edges, useful for removing dark edges
+ *        from fullscreen filters or bleeding to the edge of filterArea.
+ */
+
+var KawaseBlurFilter = /*@__PURE__*/function (Filter) {
+  function KawaseBlurFilter(blur, quality, clamp) {
+    if (blur === void 0) blur = 4;
+    if (quality === void 0) quality = 3;
+    if (clamp === void 0) clamp = false;
+    Filter.call(this, vertex, clamp ? fragmentClamp : fragment);
+    this.uniforms.uOffset = new Float32Array(2);
+    this._pixelSize = new _math.Point();
+    this.pixelSize = 1;
+    this._clamp = clamp;
+    this._kernels = null; // if `blur` is array , as kernels
+
+    if (Array.isArray(blur)) {
+      this.kernels = blur;
+    } else {
+      this._blur = blur;
+      this.quality = quality;
+    }
+  }
+
+  if (Filter) KawaseBlurFilter.__proto__ = Filter;
+  KawaseBlurFilter.prototype = Object.create(Filter && Filter.prototype);
+  KawaseBlurFilter.prototype.constructor = KawaseBlurFilter;
+  var prototypeAccessors = {
+    kernels: {
+      configurable: true
+    },
+    clamp: {
+      configurable: true
+    },
+    pixelSize: {
+      configurable: true
+    },
+    quality: {
+      configurable: true
+    },
+    blur: {
+      configurable: true
+    }
+  };
+  /**
+   * Overrides apply
+   * @private
+   */
+
+  KawaseBlurFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    var uvX = this.pixelSize.x / input._frame.width;
+    var uvY = this.pixelSize.y / input._frame.height;
+    var offset;
+
+    if (this._quality === 1 || this._blur === 0) {
+      offset = this._kernels[0] + 0.5;
+      this.uniforms.uOffset[0] = offset * uvX;
+      this.uniforms.uOffset[1] = offset * uvY;
+      filterManager.applyFilter(this, input, output, clear);
+    } else {
+      var renderTarget = filterManager.getFilterTexture();
+      var source = input;
+      var target = renderTarget;
+      var tmp;
+      var last = this._quality - 1;
+
+      for (var i = 0; i < last; i++) {
+        offset = this._kernels[i] + 0.5;
+        this.uniforms.uOffset[0] = offset * uvX;
+        this.uniforms.uOffset[1] = offset * uvY;
+        filterManager.applyFilter(this, source, target, 1);
+        tmp = source;
+        source = target;
+        target = tmp;
+      }
+
+      offset = this._kernels[last] + 0.5;
+      this.uniforms.uOffset[0] = offset * uvX;
+      this.uniforms.uOffset[1] = offset * uvY;
+      filterManager.applyFilter(this, source, output, clear);
+      filterManager.returnFilterTexture(renderTarget);
+    }
+  };
+  /**
+   * Auto generate kernels by blur & quality
+   * @private
+   */
+
+
+  KawaseBlurFilter.prototype._generateKernels = function _generateKernels() {
+    var blur = this._blur;
+    var quality = this._quality;
+    var kernels = [blur];
+
+    if (blur > 0) {
+      var k = blur;
+      var step = blur / quality;
+
+      for (var i = 1; i < quality; i++) {
+        k -= step;
+        kernels.push(k);
+      }
+    }
+
+    this._kernels = kernels;
+  };
+  /**
+   * The kernel size of the blur filter, for advanced usage.
+   *
+   * @member {number[]}
+   * @default [0]
+   */
+
+
+  prototypeAccessors.kernels.get = function () {
+    return this._kernels;
+  };
+
+  prototypeAccessors.kernels.set = function (value) {
+    if (Array.isArray(value) && value.length > 0) {
+      this._kernels = value;
+      this._quality = value.length;
+      this._blur = Math.max.apply(Math, value);
+    } else {
+      // if value is invalid , set default value
+      this._kernels = [0];
+      this._quality = 1;
+    }
+  };
+  /**
+   * Get the if the filter is clampped.
+   *
+   * @readonly
+   * @member {boolean}
+   * @default false
+   */
+
+
+  prototypeAccessors.clamp.get = function () {
+    return this._clamp;
+  };
+  /**
+   * Sets the pixel size of the filter. Large size is blurrier. For advanced usage.
+   *
+   * @member {PIXI.Point|number[]}
+   * @default [1, 1]
+   */
+
+
+  prototypeAccessors.pixelSize.set = function (value) {
+    if (typeof value === 'number') {
+      this._pixelSize.x = value;
+      this._pixelSize.y = value;
+    } else if (Array.isArray(value)) {
+      this._pixelSize.x = value[0];
+      this._pixelSize.y = value[1];
+    } else if (value instanceof _math.Point) {
+      this._pixelSize.x = value.x;
+      this._pixelSize.y = value.y;
+    } else {
+      // if value is invalid , set default value
+      this._pixelSize.x = 1;
+      this._pixelSize.y = 1;
+    }
+  };
+
+  prototypeAccessors.pixelSize.get = function () {
+    return this._pixelSize;
+  };
+  /**
+   * The quality of the filter, integer greater than `1`.
+   *
+   * @member {number}
+   * @default 3
+   */
+
+
+  prototypeAccessors.quality.get = function () {
+    return this._quality;
+  };
+
+  prototypeAccessors.quality.set = function (value) {
+    this._quality = Math.max(1, Math.round(value));
+
+    this._generateKernels();
+  };
+  /**
+   * The amount of blur, value greater than `0`.
+   *
+   * @member {number}
+   * @default 4
+   */
+
+
+  prototypeAccessors.blur.get = function () {
+    return this._blur;
+  };
+
+  prototypeAccessors.blur.set = function (value) {
+    this._blur = value;
+
+    this._generateKernels();
+  };
+
+  Object.defineProperties(KawaseBlurFilter.prototype, prototypeAccessors);
+  return KawaseBlurFilter;
+}(_core.Filter);
+
+exports.KawaseBlurFilter = KawaseBlurFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js"}],"../node_modules/@pixi/filter-advanced-bloom/lib/filter-advanced-bloom.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AdvancedBloomFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _filterKawaseBlur = require("@pixi/filter-kawase-blur");
+
+var _settings = require("@pixi/settings");
+
+/*!
+ * @pixi/filter-advanced-bloom - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-advanced-bloom is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "\nuniform sampler2D uSampler;\nvarying vec2 vTextureCoord;\n\nuniform float threshold;\n\nvoid main() {\n    vec4 color = texture2D(uSampler, vTextureCoord);\n\n    // A simple & fast algorithm for getting brightness.\n    // It's inaccuracy , but good enought for this feature.\n    float _max = max(max(color.r, color.g), color.b);\n    float _min = min(min(color.r, color.g), color.b);\n    float brightness = (_max + _min) * 0.5;\n\n    if(brightness > threshold) {\n        gl_FragColor = color;\n    } else {\n        gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);\n    }\n}\n";
+/**
+ * Internal filter for AdvancedBloomFilter to get brightness.
+ * @class
+ * @private
+ * @param {number} [threshold=0.5] Defines how bright a color needs to be extracted.
+ */
+
+var ExtractBrightnessFilter = /*@__PURE__*/function (Filter) {
+  function ExtractBrightnessFilter(threshold) {
+    if (threshold === void 0) threshold = 0.5;
+    Filter.call(this, vertex, fragment);
+    this.threshold = threshold;
+  }
+
+  if (Filter) ExtractBrightnessFilter.__proto__ = Filter;
+  ExtractBrightnessFilter.prototype = Object.create(Filter && Filter.prototype);
+  ExtractBrightnessFilter.prototype.constructor = ExtractBrightnessFilter;
+  var prototypeAccessors = {
+    threshold: {
+      configurable: true
+    }
+  };
+  /**
+   * Defines how bright a color needs to be extracted.
+   *
+   * @member {number}
+   * @default 0.5
+   */
+
+  prototypeAccessors.threshold.get = function () {
+    return this.uniforms.threshold;
+  };
+
+  prototypeAccessors.threshold.set = function (value) {
+    this.uniforms.threshold = value;
+  };
+
+  Object.defineProperties(ExtractBrightnessFilter.prototype, prototypeAccessors);
+  return ExtractBrightnessFilter;
+}(_core.Filter);
+
+var fragment$1 = "uniform sampler2D uSampler;\nvarying vec2 vTextureCoord;\n\nuniform sampler2D bloomTexture;\nuniform float bloomScale;\nuniform float brightness;\n\nvoid main() {\n    vec4 color = texture2D(uSampler, vTextureCoord);\n    color.rgb *= brightness;\n    vec4 bloomColor = vec4(texture2D(bloomTexture, vTextureCoord).rgb, 0.0);\n    bloomColor.rgb *= bloomScale;\n    gl_FragColor = color + bloomColor;\n}\n";
+/**
+ * The AdvancedBloomFilter applies a Bloom Effect to an object. Unlike the normal BloomFilter
+ * this had some advanced controls for adjusting the look of the bloom. Note: this filter
+ * is slower than normal BloomFilter.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/advanced-bloom.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-advanced-bloom|@pixi/filter-advanced-bloom}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ *
+ * @param {object|number} [options] - The optional parameters of advanced bloom filter.
+ *                        When options is a number , it will be `options.threshold`.
+ * @param {number} [options.threshold=0.5] - Defines how bright a color needs to be to affect bloom.
+ * @param {number} [options.bloomScale=1.0] - To adjust the strength of the bloom. Higher values is more intense brightness.
+ * @param {number} [options.brightness=1.0] - The brightness, lower value is more subtle brightness, higher value is blown-out.
+ * @param {number} [options.blur=8] - Sets the strength of the Blur properties simultaneously
+ * @param {number} [options.quality=4] - The quality of the Blur filter.
+ * @param {number[]} [options.kernels=null] - The kernels of the Blur filter.
+ * @param {number|number[]|PIXI.Point} [options.pixelSize=1] - the pixelSize of the Blur filter.
+ * @param {number} [options.resolution=PIXI.settings.RESOLUTION] - The resolution of the Blur filter.
+ */
+
+var AdvancedBloomFilter = /*@__PURE__*/function (Filter) {
+  function AdvancedBloomFilter(options) {
+    Filter.call(this, vertex, fragment$1);
+
+    if (typeof options === 'number') {
+      options = {
+        threshold: options
+      };
+    }
+
+    options = Object.assign({
+      threshold: 0.5,
+      bloomScale: 1.0,
+      brightness: 1.0,
+      kernels: null,
+      blur: 8,
+      quality: 4,
+      pixelSize: 1,
+      resolution: _settings.settings.RESOLUTION
+    }, options);
+    /**
+     * To adjust the strength of the bloom. Higher values is more intense brightness.
+     *
+     * @member {number}
+     * @default 1.0
+     */
+
+    this.bloomScale = options.bloomScale;
+    /**
+     * The brightness, lower value is more subtle brightness, higher value is blown-out.
+     *
+     * @member {number}
+     * @default 1.0
+     */
+
+    this.brightness = options.brightness;
+    var kernels = options.kernels;
+    var blur = options.blur;
+    var quality = options.quality;
+    var pixelSize = options.pixelSize;
+    var resolution = options.resolution;
+    this._extractFilter = new ExtractBrightnessFilter(options.threshold);
+    this._extractFilter.resolution = resolution;
+    this._blurFilter = kernels ? new _filterKawaseBlur.KawaseBlurFilter(kernels) : new _filterKawaseBlur.KawaseBlurFilter(blur, quality);
+    this.pixelSize = pixelSize;
+    this.resolution = resolution;
+  }
+
+  if (Filter) AdvancedBloomFilter.__proto__ = Filter;
+  AdvancedBloomFilter.prototype = Object.create(Filter && Filter.prototype);
+  AdvancedBloomFilter.prototype.constructor = AdvancedBloomFilter;
+  var prototypeAccessors = {
+    resolution: {
+      configurable: true
+    },
+    threshold: {
+      configurable: true
+    },
+    kernels: {
+      configurable: true
+    },
+    blur: {
+      configurable: true
+    },
+    quality: {
+      configurable: true
+    },
+    pixelSize: {
+      configurable: true
+    }
+  };
+  /**
+   * Override existing apply method in PIXI.Filter
+   * @private
+   */
+
+  AdvancedBloomFilter.prototype.apply = function apply(filterManager, input, output, clear, currentState) {
+    var brightTarget = filterManager.getFilterTexture();
+
+    this._extractFilter.apply(filterManager, input, brightTarget, 1, currentState);
+
+    var bloomTarget = filterManager.getFilterTexture();
+
+    this._blurFilter.apply(filterManager, brightTarget, bloomTarget, 1, currentState);
+
+    this.uniforms.bloomScale = this.bloomScale;
+    this.uniforms.brightness = this.brightness;
+    this.uniforms.bloomTexture = bloomTarget;
+    filterManager.applyFilter(this, input, output, clear);
+    filterManager.returnFilterTexture(bloomTarget);
+    filterManager.returnFilterTexture(brightTarget);
+  };
+  /**
+   * The resolution of the filter.
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.resolution.get = function () {
+    return this._resolution;
+  };
+
+  prototypeAccessors.resolution.set = function (value) {
+    this._resolution = value;
+
+    if (this._extractFilter) {
+      this._extractFilter.resolution = value;
+    }
+
+    if (this._blurFilter) {
+      this._blurFilter.resolution = value;
+    }
+  };
+  /**
+   * Defines how bright a color needs to be to affect bloom.
+   *
+   * @member {number}
+   * @default 0.5
+   */
+
+
+  prototypeAccessors.threshold.get = function () {
+    return this._extractFilter.threshold;
+  };
+
+  prototypeAccessors.threshold.set = function (value) {
+    this._extractFilter.threshold = value;
+  };
+  /**
+   * Sets the kernels of the Blur Filter
+   *
+   * @member {number}
+   * @default 4
+   */
+
+
+  prototypeAccessors.kernels.get = function () {
+    return this._blurFilter.kernels;
+  };
+
+  prototypeAccessors.kernels.set = function (value) {
+    this._blurFilter.kernels = value;
+  };
+  /**
+   * Sets the strength of the Blur properties simultaneously
+   *
+   * @member {number}
+   * @default 2
+   */
+
+
+  prototypeAccessors.blur.get = function () {
+    return this._blurFilter.blur;
+  };
+
+  prototypeAccessors.blur.set = function (value) {
+    this._blurFilter.blur = value;
+  };
+  /**
+   * Sets the quality of the Blur Filter
+   *
+   * @member {number}
+   * @default 4
+   */
+
+
+  prototypeAccessors.quality.get = function () {
+    return this._blurFilter.quality;
+  };
+
+  prototypeAccessors.quality.set = function (value) {
+    this._blurFilter.quality = value;
+  };
+  /**
+   * Sets the pixelSize of the Kawase Blur filter
+   *
+   * @member {number|number[]|PIXI.Point}
+   * @default 1
+   */
+
+
+  prototypeAccessors.pixelSize.get = function () {
+    return this._blurFilter.pixelSize;
+  };
+
+  prototypeAccessors.pixelSize.set = function (value) {
+    this._blurFilter.pixelSize = value;
+  };
+
+  Object.defineProperties(AdvancedBloomFilter.prototype, prototypeAccessors);
+  return AdvancedBloomFilter;
+}(_core.Filter);
+
+exports.AdvancedBloomFilter = AdvancedBloomFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/filter-kawase-blur":"../node_modules/@pixi/filter-kawase-blur/lib/filter-kawase-blur.esm.js","@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js"}],"../node_modules/@pixi/filter-ascii/lib/filter-ascii.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AsciiFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-ascii - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-ascii is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\n\nuniform vec4 filterArea;\nuniform float pixelSize;\nuniform sampler2D uSampler;\n\nvec2 mapCoord( vec2 coord )\n{\n    coord *= filterArea.xy;\n    coord += filterArea.zw;\n\n    return coord;\n}\n\nvec2 unmapCoord( vec2 coord )\n{\n    coord -= filterArea.zw;\n    coord /= filterArea.xy;\n\n    return coord;\n}\n\nvec2 pixelate(vec2 coord, vec2 size)\n{\n    return floor( coord / size ) * size;\n}\n\nvec2 getMod(vec2 coord, vec2 size)\n{\n    return mod( coord , size) / size;\n}\n\nfloat character(float n, vec2 p)\n{\n    p = floor(p*vec2(4.0, -4.0) + 2.5);\n\n    if (clamp(p.x, 0.0, 4.0) == p.x)\n    {\n        if (clamp(p.y, 0.0, 4.0) == p.y)\n        {\n            if (int(mod(n/exp2(p.x + 5.0*p.y), 2.0)) == 1) return 1.0;\n        }\n    }\n    return 0.0;\n}\n\nvoid main()\n{\n    vec2 coord = mapCoord(vTextureCoord);\n\n    // get the rounded color..\n    vec2 pixCoord = pixelate(coord, vec2(pixelSize));\n    pixCoord = unmapCoord(pixCoord);\n\n    vec4 color = texture2D(uSampler, pixCoord);\n\n    // determine the character to use\n    float gray = (color.r + color.g + color.b) / 3.0;\n\n    float n =  65536.0;             // .\n    if (gray > 0.2) n = 65600.0;    // :\n    if (gray > 0.3) n = 332772.0;   // *\n    if (gray > 0.4) n = 15255086.0; // o\n    if (gray > 0.5) n = 23385164.0; // &\n    if (gray > 0.6) n = 15252014.0; // 8\n    if (gray > 0.7) n = 13199452.0; // @\n    if (gray > 0.8) n = 11512810.0; // #\n\n    // get the mod..\n    vec2 modd = getMod(coord, vec2(pixelSize));\n\n    gl_FragColor = color * character( n, vec2(-1.0) + modd * 2.0);\n\n}\n"; // TODO (cengler) - The Y is flipped in this shader for some reason.
+
+/**
+ * @author Vico @vicocotea
+ * original shader : https://www.shadertoy.com/view/lssGDj by @movAX13h
+ */
+
+/**
+ * An ASCII filter.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/ascii.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-ascii|@pixi/filter-ascii}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number} [size=8] Size of the font
+ */
+
+var AsciiFilter = /*@__PURE__*/function (Filter) {
+  function AsciiFilter(size) {
+    if (size === void 0) size = 8;
+    Filter.call(this, vertex, fragment);
+    this.size = size;
+  }
+
+  if (Filter) AsciiFilter.__proto__ = Filter;
+  AsciiFilter.prototype = Object.create(Filter && Filter.prototype);
+  AsciiFilter.prototype.constructor = AsciiFilter;
+  var prototypeAccessors = {
+    size: {
+      configurable: true
+    }
+  };
+  /**
+   * The pixel size used by the filter.
+   *
+   * @member {number}
+   */
+
+  prototypeAccessors.size.get = function () {
+    return this.uniforms.pixelSize;
+  };
+
+  prototypeAccessors.size.set = function (value) {
+    this.uniforms.pixelSize = value;
+  };
+
+  Object.defineProperties(AsciiFilter.prototype, prototypeAccessors);
+  return AsciiFilter;
+}(_core.Filter);
+
+exports.AsciiFilter = AsciiFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-bevel/lib/filter-bevel.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.BevelFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _math = require("@pixi/math");
+
+var _utils = require("@pixi/utils");
+
+/*!
+ * @pixi/filter-bevel - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-bevel is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "precision mediump float;\n\nvarying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\n\nuniform float transformX;\nuniform float transformY;\nuniform vec3 lightColor;\nuniform float lightAlpha;\nuniform vec3 shadowColor;\nuniform float shadowAlpha;\n\nvoid main(void) {\n    vec2 transform = vec2(1.0 / filterArea) * vec2(transformX, transformY);\n    vec4 color = texture2D(uSampler, vTextureCoord);\n    float light = texture2D(uSampler, vTextureCoord - transform).a;\n    float shadow = texture2D(uSampler, vTextureCoord + transform).a;\n\n    color.rgb = mix(color.rgb, lightColor, clamp((color.a - light) * lightAlpha, 0.0, 1.0));\n    color.rgb = mix(color.rgb, shadowColor, clamp((color.a - shadow) * shadowAlpha, 0.0, 1.0));\n    gl_FragColor = vec4(color.rgb * color.a, color.a);\n}\n";
+/**
+ * Bevel Filter.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/bevel.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-bevel|@pixi/filter-bevel}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {object} [options] - The optional parameters of the filter.
+ * @param {number} [options.rotation = 45] - The angle of the light in degrees.
+ * @param {number} [options.thickness = 2] - The tickness of the bevel.
+ * @param {number} [options.lightColor = 0xffffff] - Color of the light.
+ * @param {number} [options.lightAlpha = 0.7] - Alpha of the light.
+ * @param {number} [options.shadowColor = 0x000000] - Color of the shadow.
+ * @param {number} [options.shadowAlpha = 0.7] - Alpha of the shadow.
+ */
+
+var BevelFilter = /*@__PURE__*/function (Filter) {
+  function BevelFilter(options) {
+    if (options === void 0) options = {};
+    Filter.call(this, vertex, fragment);
+    this.uniforms.lightColor = new Float32Array(3);
+    this.uniforms.shadowColor = new Float32Array(3);
+    options = Object.assign({
+      rotation: 45,
+      thickness: 2,
+      lightColor: 0xffffff,
+      lightAlpha: 0.7,
+      shadowColor: 0x000000,
+      shadowAlpha: 0.7
+    }, options);
+    /**
+     * The angle of the light in degrees.
+     * @member {number}
+     * @default 45
+     */
+
+    this.rotation = options.rotation;
+    /**
+     * The tickness of the bevel.
+     * @member {number}
+     * @default 2
+     */
+
+    this.thickness = options.thickness;
+    /**
+     * Color of the light.
+     * @member {number}
+     * @default 0xffffff
+     */
+
+    this.lightColor = options.lightColor;
+    /**
+     * Alpha of the light.
+     * @member {number}
+     * @default 0.7
+     */
+
+    this.lightAlpha = options.lightAlpha;
+    /**
+     * Color of the shadow.
+     * @member {number}
+     * @default 0x000000
+     */
+
+    this.shadowColor = options.shadowColor;
+    /**
+     * Alpha of the shadow.
+     * @member {number}
+     * @default 0.7
+     */
+
+    this.shadowAlpha = options.shadowAlpha;
+  }
+
+  if (Filter) BevelFilter.__proto__ = Filter;
+  BevelFilter.prototype = Object.create(Filter && Filter.prototype);
+  BevelFilter.prototype.constructor = BevelFilter;
+  var prototypeAccessors = {
+    rotation: {
+      configurable: true
+    },
+    thickness: {
+      configurable: true
+    },
+    lightColor: {
+      configurable: true
+    },
+    lightAlpha: {
+      configurable: true
+    },
+    shadowColor: {
+      configurable: true
+    },
+    shadowAlpha: {
+      configurable: true
+    }
+  };
+  /**
+   * Update the transform matrix of offset angle.
+   * @private
+   */
+
+  BevelFilter.prototype._updateTransform = function _updateTransform() {
+    this.uniforms.transformX = this._thickness * Math.cos(this._angle);
+    this.uniforms.transformY = this._thickness * Math.sin(this._angle);
+  };
+
+  prototypeAccessors.rotation.get = function () {
+    return this._angle / _math.DEG_TO_RAD;
+  };
+
+  prototypeAccessors.rotation.set = function (value) {
+    this._angle = value * _math.DEG_TO_RAD;
+
+    this._updateTransform();
+  };
+
+  prototypeAccessors.thickness.get = function () {
+    return this._thickness;
+  };
+
+  prototypeAccessors.thickness.set = function (value) {
+    this._thickness = value;
+
+    this._updateTransform();
+  };
+
+  prototypeAccessors.lightColor.get = function () {
+    return (0, _utils.rgb2hex)(this.uniforms.lightColor);
+  };
+
+  prototypeAccessors.lightColor.set = function (value) {
+    (0, _utils.hex2rgb)(value, this.uniforms.lightColor);
+  };
+
+  prototypeAccessors.lightAlpha.get = function () {
+    return this.uniforms.lightAlpha;
+  };
+
+  prototypeAccessors.lightAlpha.set = function (value) {
+    this.uniforms.lightAlpha = value;
+  };
+
+  prototypeAccessors.shadowColor.get = function () {
+    return (0, _utils.rgb2hex)(this.uniforms.shadowColor);
+  };
+
+  prototypeAccessors.shadowColor.set = function (value) {
+    (0, _utils.hex2rgb)(value, this.uniforms.shadowColor);
+  };
+
+  prototypeAccessors.shadowAlpha.get = function () {
+    return this.uniforms.shadowAlpha;
+  };
+
+  prototypeAccessors.shadowAlpha.set = function (value) {
+    this.uniforms.shadowAlpha = value;
+  };
+
+  Object.defineProperties(BevelFilter.prototype, prototypeAccessors);
+  return BevelFilter;
+}(_core.Filter);
+
+exports.BevelFilter = BevelFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/filter-bloom/lib/filter-bloom.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.BloomFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _constants = require("@pixi/constants");
+
+var _filterAlpha = require("@pixi/filter-alpha");
+
+var _filterBlur = require("@pixi/filter-blur");
+
+var _settings = require("@pixi/settings");
+
+var _math = require("@pixi/math");
+
+/*!
+ * @pixi/filter-bloom - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-bloom is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/**
+ * The BloomFilter applies a Gaussian blur to an object.
+ * The strength of the blur can be set for x- and y-axis separately.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/bloom.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-bloom|@pixi/filter-bloom}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number|PIXI.Point|number[]} [blur=2] Sets the strength of both the blurX and blurY properties simultaneously
+ * @param {number} [quality=4] The quality of the blurX & blurY filter.
+ * @param {number} [resolution=PIXI.settings.RESOLUTION] The resolution of the blurX & blurY filter.
+ * @param {number} [kernelSize=5] The kernelSize of the blurX & blurY filter.Options: 5, 7, 9, 11, 13, 15.
+ */
+var BloomFilter = /*@__PURE__*/function (Filter) {
+  function BloomFilter(blur, quality, resolution, kernelSize) {
+    if (blur === void 0) blur = 2;
+    if (quality === void 0) quality = 4;
+    if (resolution === void 0) resolution = _settings.settings.RESOLUTION;
+    if (kernelSize === void 0) kernelSize = 5;
+    Filter.call(this);
+    var blurX;
+    var blurY;
+
+    if (typeof blur === 'number') {
+      blurX = blur;
+      blurY = blur;
+    } else if (blur instanceof _math.Point) {
+      blurX = blur.x;
+      blurY = blur.y;
+    } else if (Array.isArray(blur)) {
+      blurX = blur[0];
+      blurY = blur[1];
+    }
+
+    this.blurXFilter = new _filterBlur.BlurFilterPass(true, blurX, quality, resolution, kernelSize);
+    this.blurYFilter = new _filterBlur.BlurFilterPass(false, blurY, quality, resolution, kernelSize);
+    this.blurYFilter.blendMode = _constants.BLEND_MODES.SCREEN;
+    this.defaultFilter = new _filterAlpha.AlphaFilter();
+  }
+
+  if (Filter) BloomFilter.__proto__ = Filter;
+  BloomFilter.prototype = Object.create(Filter && Filter.prototype);
+  BloomFilter.prototype.constructor = BloomFilter;
+  var prototypeAccessors = {
+    blur: {
+      configurable: true
+    },
+    blurX: {
+      configurable: true
+    },
+    blurY: {
+      configurable: true
+    }
+  };
+
+  BloomFilter.prototype.apply = function apply(filterManager, input, output) {
+    var renderTarget = filterManager.getFilterTexture(true); //TODO - copyTexSubImage2D could be used here?
+
+    this.defaultFilter.apply(filterManager, input, output);
+    this.blurXFilter.apply(filterManager, input, renderTarget);
+    this.blurYFilter.apply(filterManager, renderTarget, output);
+    filterManager.returnFilterTexture(renderTarget);
+  };
+  /**
+   * Sets the strength of both the blurX and blurY properties simultaneously
+   *
+   * @member {number}
+   * @default 2
+   */
+
+
+  prototypeAccessors.blur.get = function () {
+    return this.blurXFilter.blur;
+  };
+
+  prototypeAccessors.blur.set = function (value) {
+    this.blurXFilter.blur = this.blurYFilter.blur = value;
+  };
+  /**
+   * Sets the strength of the blurX property
+   *
+   * @member {number}
+   * @default 2
+   */
+
+
+  prototypeAccessors.blurX.get = function () {
+    return this.blurXFilter.blur;
+  };
+
+  prototypeAccessors.blurX.set = function (value) {
+    this.blurXFilter.blur = value;
+  };
+  /**
+   * Sets the strength of the blurY property
+   *
+   * @member {number}
+   * @default 2
+   */
+
+
+  prototypeAccessors.blurY.get = function () {
+    return this.blurYFilter.blur;
+  };
+
+  prototypeAccessors.blurY.set = function (value) {
+    this.blurYFilter.blur = value;
+  };
+
+  Object.defineProperties(BloomFilter.prototype, prototypeAccessors);
+  return BloomFilter;
+}(_core.Filter);
+
+exports.BloomFilter = BloomFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js","@pixi/filter-alpha":"../node_modules/@pixi/filter-alpha/lib/filter-alpha.es.js","@pixi/filter-blur":"../node_modules/@pixi/filter-blur/lib/filter-blur.es.js","@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js"}],"../node_modules/@pixi/filter-bulge-pinch/lib/filter-bulge-pinch.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.BulgePinchFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-bulge-pinch - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-bulge-pinch is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "uniform float radius;\nuniform float strength;\nuniform vec2 center;\nuniform sampler2D uSampler;\nvarying vec2 vTextureCoord;\n\nuniform vec4 filterArea;\nuniform vec4 filterClamp;\nuniform vec2 dimensions;\n\nvoid main()\n{\n    vec2 coord = vTextureCoord * filterArea.xy;\n    coord -= center * dimensions.xy;\n    float distance = length(coord);\n    if (distance < radius) {\n        float percent = distance / radius;\n        if (strength > 0.0) {\n            coord *= mix(1.0, smoothstep(0.0, radius / distance, percent), strength * 0.75);\n        } else {\n            coord *= mix(1.0, pow(percent, 1.0 + strength * 0.75) * radius / distance, 1.0 - percent);\n        }\n    }\n    coord += center * dimensions.xy;\n    coord /= filterArea.xy;\n    vec2 clampedCoord = clamp(coord, filterClamp.xy, filterClamp.zw);\n    vec4 color = texture2D(uSampler, clampedCoord);\n    if (coord != clampedCoord) {\n        color *= max(0.0, 1.0 - length(coord - clampedCoord));\n    }\n\n    gl_FragColor = color;\n}\n";
+/**
+ * @author Julien CLEREL @JuloxRox
+ * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/warp/bulgepinch.js by Evan Wallace : http://madebyevan.com/
+ */
+
+/**
+ * Bulges or pinches the image in a circle.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/bulge-pinch.gif)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-bulge-pinch|@pixi/filter-bulge-pinch}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {object} [options] Options to use for filter.
+ * @param {PIXI.Point|Array<number>} [options.center=[0,0]] The x and y coordinates of the center of the circle of effect.
+ * @param {number} [options.radius=100] The radius of the circle of effect.
+ * @param {number} [options.strength=1] -1 to 1 (-1 is strong pinch, 0 is no effect, 1 is strong bulge)
+ */
+
+var BulgePinchFilter = /*@__PURE__*/function (Filter) {
+  function BulgePinchFilter(options) {
+    Filter.call(this, vertex, fragment); // @deprecated (center, radius, strength) args
+
+    if (typeof options !== 'object') {
+      var center = arguments[0];
+      var radius = arguments[1];
+      var strength = arguments[2];
+      options = {};
+
+      if (center !== undefined) {
+        options.center = center;
+      }
+
+      if (radius !== undefined) {
+        options.radius = radius;
+      }
+
+      if (strength !== undefined) {
+        options.strength = strength;
+      }
+    }
+
+    this.uniforms.dimensions = new Float32Array(2);
+    Object.assign(this, {
+      center: [0.5, 0.5],
+      radius: 100,
+      strength: 1
+    }, options);
+  }
+
+  if (Filter) BulgePinchFilter.__proto__ = Filter;
+  BulgePinchFilter.prototype = Object.create(Filter && Filter.prototype);
+  BulgePinchFilter.prototype.constructor = BulgePinchFilter;
+  var prototypeAccessors = {
+    radius: {
+      configurable: true
+    },
+    strength: {
+      configurable: true
+    },
+    center: {
+      configurable: true
+    }
+  };
+
+  BulgePinchFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    this.uniforms.dimensions[0] = input.filterFrame.width;
+    this.uniforms.dimensions[1] = input.filterFrame.height;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * The radius of the circle of effect.
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.radius.get = function () {
+    return this.uniforms.radius;
+  };
+
+  prototypeAccessors.radius.set = function (value) {
+    this.uniforms.radius = value;
+  };
+  /**
+   * The strength of the effect. -1 to 1 (-1 is strong pinch, 0 is no effect, 1 is strong bulge)
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.strength.get = function () {
+    return this.uniforms.strength;
+  };
+
+  prototypeAccessors.strength.set = function (value) {
+    this.uniforms.strength = value;
+  };
+  /**
+   * The x and y coordinates of the center of the circle of effect.
+   *
+   * @member {PIXI.Point}
+   */
+
+
+  prototypeAccessors.center.get = function () {
+    return this.uniforms.center;
+  };
+
+  prototypeAccessors.center.set = function (value) {
+    this.uniforms.center = value;
+  };
+
+  Object.defineProperties(BulgePinchFilter.prototype, prototypeAccessors);
+  return BulgePinchFilter;
+}(_core.Filter);
+
+exports.BulgePinchFilter = BulgePinchFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-color-map/lib/filter-color-map.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ColorMapFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _constants = require("@pixi/constants");
+
+/*!
+ * @pixi/filter-color-map - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-color-map is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform sampler2D colorMap;\nuniform float _mix;\nuniform float _size;\nuniform float _sliceSize;\nuniform float _slicePixelSize;\nuniform float _sliceInnerSize;\nvoid main() {\n    vec4 color = texture2D(uSampler, vTextureCoord.xy);\n\n    vec4 adjusted;\n    if (color.a > 0.0) {\n        color.rgb /= color.a;\n        float innerWidth = _size - 1.0;\n        float zSlice0 = min(floor(color.b * innerWidth), innerWidth);\n        float zSlice1 = min(zSlice0 + 1.0, innerWidth);\n        float xOffset = _slicePixelSize * 0.5 + color.r * _sliceInnerSize;\n        float s0 = xOffset + (zSlice0 * _sliceSize);\n        float s1 = xOffset + (zSlice1 * _sliceSize);\n        float yOffset = _sliceSize * 0.5 + color.g * (1.0 - _sliceSize);\n        vec4 slice0Color = texture2D(colorMap, vec2(s0,yOffset));\n        vec4 slice1Color = texture2D(colorMap, vec2(s1,yOffset));\n        float zOffset = fract(color.b * innerWidth);\n        adjusted = mix(slice0Color, slice1Color, zOffset);\n\n        color.rgb *= color.a;\n    }\n    gl_FragColor = vec4(mix(color, adjusted, _mix).rgb, color.a);\n\n}";
+/**
+ * The ColorMapFilter applies a color-map effect to an object.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/color-map.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-color-map|@pixi/filter-color-map}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {HTMLImageElement|HTMLCanvasElement|PIXI.BaseTexture|PIXI.Texture} [colorMap] - The colorMap texture of the filter.
+ * @param {boolean} [nearest=false] - Whether use NEAREST for colorMap texture.
+ * @param {number} [mix=1] - The mix from 0 to 1, where 0 is the original image and 1 is the color mapped image.
+ */
+
+var ColorMapFilter = /*@__PURE__*/function (Filter) {
+  function ColorMapFilter(colorMap, nearest, mix) {
+    if (nearest === void 0) nearest = false;
+    if (mix === void 0) mix = 1;
+    Filter.call(this, vertex, fragment);
+    this._size = 0;
+    this._sliceSize = 0;
+    this._slicePixelSize = 0;
+    this._sliceInnerSize = 0;
+    this._scaleMode = null;
+    this._nearest = false;
+    this.nearest = nearest;
+    /**
+     * The mix from 0 to 1, where 0 is the original image and 1 is the color mapped image.
+     * @member {number}
+     */
+
+    this.mix = mix;
+    this.colorMap = colorMap;
+  }
+
+  if (Filter) ColorMapFilter.__proto__ = Filter;
+  ColorMapFilter.prototype = Object.create(Filter && Filter.prototype);
+  ColorMapFilter.prototype.constructor = ColorMapFilter;
+  var prototypeAccessors = {
+    colorSize: {
+      configurable: true
+    },
+    colorMap: {
+      configurable: true
+    },
+    nearest: {
+      configurable: true
+    }
+  };
+  /**
+   * Override existing apply method in PIXI.Filter
+   * @private
+   */
+
+  ColorMapFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    this.uniforms._mix = this.mix;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * the size of one color slice
+   * @member {number}
+   * @readonly
+   */
+
+
+  prototypeAccessors.colorSize.get = function () {
+    return this._size;
+  };
+  /**
+   * the colorMap texture
+   * @member {PIXI.Texture}
+   */
+
+
+  prototypeAccessors.colorMap.get = function () {
+    return this._colorMap;
+  };
+
+  prototypeAccessors.colorMap.set = function (colorMap) {
+    if (!(colorMap instanceof _core.Texture)) {
+      colorMap = _core.Texture.from(colorMap);
+    }
+
+    if (colorMap && colorMap.baseTexture) {
+      colorMap.baseTexture.scaleMode = this._scaleMode;
+      colorMap.baseTexture.mipmap = false;
+      this._size = colorMap.height;
+      this._sliceSize = 1 / this._size;
+      this._slicePixelSize = this._sliceSize / this._size;
+      this._sliceInnerSize = this._slicePixelSize * (this._size - 1);
+      this.uniforms._size = this._size;
+      this.uniforms._sliceSize = this._sliceSize;
+      this.uniforms._slicePixelSize = this._slicePixelSize;
+      this.uniforms._sliceInnerSize = this._sliceInnerSize;
+      this.uniforms.colorMap = colorMap;
+    }
+
+    this._colorMap = colorMap;
+  };
+  /**
+   * Whether use NEAREST for colorMap texture.
+   * @member {boolean}
+   */
+
+
+  prototypeAccessors.nearest.get = function () {
+    return this._nearest;
+  };
+
+  prototypeAccessors.nearest.set = function (nearest) {
+    this._nearest = nearest;
+    this._scaleMode = nearest ? _constants.SCALE_MODES.NEAREST : _constants.SCALE_MODES.LINEAR;
+    var texture = this._colorMap;
+
+    if (texture && texture.baseTexture) {
+      texture.baseTexture._glTextures = {};
+      texture.baseTexture.scaleMode = this._scaleMode;
+      texture.baseTexture.mipmap = false;
+      texture._updateID++;
+      texture.baseTexture.emit('update', texture.baseTexture);
+    }
+  };
+  /**
+   * If the colorMap is based on canvas , and the content of canvas has changed,
+   *   then call `updateColorMap` for update texture.
+   */
+
+
+  ColorMapFilter.prototype.updateColorMap = function updateColorMap() {
+    var texture = this._colorMap;
+
+    if (texture && texture.baseTexture) {
+      texture._updateID++;
+      texture.baseTexture.emit('update', texture.baseTexture);
+      this.colorMap = texture;
+    }
+  };
+  /**
+   * Destroys this filter
+   *
+   * @param {boolean} [destroyBase=false] Whether to destroy the base texture of colorMap as well
+   */
+
+
+  ColorMapFilter.prototype.destroy = function destroy(destroyBase) {
+    if (this._colorMap) {
+      this._colorMap.destroy(destroyBase);
+    }
+
+    Filter.prototype.destroy.call(this);
+  };
+
+  Object.defineProperties(ColorMapFilter.prototype, prototypeAccessors);
+  return ColorMapFilter;
+}(_core.Filter);
+
+exports.ColorMapFilter = ColorMapFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js"}],"../node_modules/@pixi/filter-color-overlay/lib/filter-color-overlay.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ColorOverlayFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _utils = require("@pixi/utils");
+
+/*!
+ * @pixi/filter-color-overlay - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-color-overlay is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec3 color;\nvoid main(void) {\n    vec4 currentColor = texture2D(uSampler, vTextureCoord);\n    vec3 colorOverlay = color * currentColor.a;\n    gl_FragColor = vec4(colorOverlay.r, colorOverlay.g, colorOverlay.b, currentColor.a);\n}\n";
+/**
+ * Replace all colors within a source graphic with a single color.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/color-overlay.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-color-replace|@pixi/filter-color-replace}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number|Array<number>} [color=0x000000] The resulting color, as a 3 component RGB e.g. [1.0, 0.5, 1.0]
+ *
+ * @example
+ *  // replaces red with blue
+ *  someSprite.filters = [new ColorOverlayFilter(
+ *   [1, 0, 0],
+ *   [0, 0, 1],
+ *   0.001
+ *   )];
+ *
+ */
+
+var ColorOverlayFilter = /*@__PURE__*/function (Filter) {
+  function ColorOverlayFilter(color) {
+    if (color === void 0) color = 0x000000;
+    Filter.call(this, vertex, fragment);
+    this.uniforms.color = new Float32Array(3);
+    this.color = color;
+  }
+
+  if (Filter) ColorOverlayFilter.__proto__ = Filter;
+  ColorOverlayFilter.prototype = Object.create(Filter && Filter.prototype);
+  ColorOverlayFilter.prototype.constructor = ColorOverlayFilter;
+  var prototypeAccessors = {
+    color: {
+      configurable: true
+    }
+  };
+  /**
+   * The resulting color, as a 3 component RGB e.g. [1.0, 0.5, 1.0]
+   * @member {number|Array<number>}
+   * @default 0x000000
+   */
+
+  prototypeAccessors.color.set = function (value) {
+    var arr = this.uniforms.color;
+
+    if (typeof value === 'number') {
+      (0, _utils.hex2rgb)(value, arr);
+      this._color = value;
+    } else {
+      arr[0] = value[0];
+      arr[1] = value[1];
+      arr[2] = value[2];
+      this._color = (0, _utils.rgb2hex)(arr);
+    }
+  };
+
+  prototypeAccessors.color.get = function () {
+    return this._color;
+  };
+
+  Object.defineProperties(ColorOverlayFilter.prototype, prototypeAccessors);
+  return ColorOverlayFilter;
+}(_core.Filter);
+
+exports.ColorOverlayFilter = ColorOverlayFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/filter-color-replace/lib/filter-color-replace.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ColorReplaceFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _utils = require("@pixi/utils");
+
+/*!
+ * @pixi/filter-color-replace - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-color-replace is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec3 originalColor;\nuniform vec3 newColor;\nuniform float epsilon;\nvoid main(void) {\n    vec4 currentColor = texture2D(uSampler, vTextureCoord);\n    vec3 colorDiff = originalColor - (currentColor.rgb / max(currentColor.a, 0.0000000001));\n    float colorDistance = length(colorDiff);\n    float doReplace = step(colorDistance, epsilon);\n    gl_FragColor = vec4(mix(currentColor.rgb, (newColor + colorDiff) * currentColor.a, doReplace), currentColor.a);\n}\n";
+/**
+ * ColorReplaceFilter, originally by mishaa, updated by timetocode
+ * http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/color-replace.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-color-replace|@pixi/filter-color-replace}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number|Array<number>} [originalColor=0xFF0000] The color that will be changed, as a 3 component RGB e.g. [1.0, 1.0, 1.0]
+ * @param {number|Array<number>} [newColor=0x000000] The resulting color, as a 3 component RGB e.g. [1.0, 0.5, 1.0]
+ * @param {number} [epsilon=0.4] Tolerance/sensitivity of the floating-point comparison between colors (lower = more exact, higher = more inclusive)
+ *
+ * @example
+ *  // replaces true red with true blue
+ *  someSprite.filters = [new ColorReplaceFilter(
+ *   [1, 0, 0],
+ *   [0, 0, 1],
+ *   0.001
+ *   )];
+ *  // replaces the RGB color 220, 220, 220 with the RGB color 225, 200, 215
+ *  someOtherSprite.filters = [new ColorReplaceFilter(
+ *   [220/255.0, 220/255.0, 220/255.0],
+ *   [225/255.0, 200/255.0, 215/255.0],
+ *   0.001
+ *   )];
+ *  // replaces the RGB color 220, 220, 220 with the RGB color 225, 200, 215
+ *  someOtherSprite.filters = [new ColorReplaceFilter(0xdcdcdc, 0xe1c8d7, 0.001)];
+ *
+ */
+
+var ColorReplaceFilter = /*@__PURE__*/function (Filter) {
+  function ColorReplaceFilter(originalColor, newColor, epsilon) {
+    if (originalColor === void 0) originalColor = 0xFF0000;
+    if (newColor === void 0) newColor = 0x000000;
+    if (epsilon === void 0) epsilon = 0.4;
+    Filter.call(this, vertex, fragment);
+    this.uniforms.originalColor = new Float32Array(3);
+    this.uniforms.newColor = new Float32Array(3);
+    this.originalColor = originalColor;
+    this.newColor = newColor;
+    this.epsilon = epsilon;
+  }
+
+  if (Filter) ColorReplaceFilter.__proto__ = Filter;
+  ColorReplaceFilter.prototype = Object.create(Filter && Filter.prototype);
+  ColorReplaceFilter.prototype.constructor = ColorReplaceFilter;
+  var prototypeAccessors = {
+    originalColor: {
+      configurable: true
+    },
+    newColor: {
+      configurable: true
+    },
+    epsilon: {
+      configurable: true
+    }
+  };
+  /**
+   * The color that will be changed, as a 3 component RGB e.g. [1.0, 1.0, 1.0]
+   * @member {number|Array<number>}
+   * @default 0xFF0000
+   */
+
+  prototypeAccessors.originalColor.set = function (value) {
+    var arr = this.uniforms.originalColor;
+
+    if (typeof value === 'number') {
+      (0, _utils.hex2rgb)(value, arr);
+      this._originalColor = value;
+    } else {
+      arr[0] = value[0];
+      arr[1] = value[1];
+      arr[2] = value[2];
+      this._originalColor = (0, _utils.rgb2hex)(arr);
+    }
+  };
+
+  prototypeAccessors.originalColor.get = function () {
+    return this._originalColor;
+  };
+  /**
+   * The resulting color, as a 3 component RGB e.g. [1.0, 0.5, 1.0]
+   * @member {number|Array<number>}
+   * @default 0x000000
+   */
+
+
+  prototypeAccessors.newColor.set = function (value) {
+    var arr = this.uniforms.newColor;
+
+    if (typeof value === 'number') {
+      (0, _utils.hex2rgb)(value, arr);
+      this._newColor = value;
+    } else {
+      arr[0] = value[0];
+      arr[1] = value[1];
+      arr[2] = value[2];
+      this._newColor = (0, _utils.rgb2hex)(arr);
+    }
+  };
+
+  prototypeAccessors.newColor.get = function () {
+    return this._newColor;
+  };
+  /**
+   * Tolerance/sensitivity of the floating-point comparison between colors (lower = more exact, higher = more inclusive)
+   * @member {number}
+   * @default 0.4
+   */
+
+
+  prototypeAccessors.epsilon.set = function (value) {
+    this.uniforms.epsilon = value;
+  };
+
+  prototypeAccessors.epsilon.get = function () {
+    return this.uniforms.epsilon;
+  };
+
+  Object.defineProperties(ColorReplaceFilter.prototype, prototypeAccessors);
+  return ColorReplaceFilter;
+}(_core.Filter);
+
+exports.ColorReplaceFilter = ColorReplaceFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/filter-convolution/lib/filter-convolution.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ConvolutionFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-convolution - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-convolution is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "precision mediump float;\n\nvarying mediump vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nuniform vec2 texelSize;\nuniform float matrix[9];\n\nvoid main(void)\n{\n   vec4 c11 = texture2D(uSampler, vTextureCoord - texelSize); // top left\n   vec4 c12 = texture2D(uSampler, vec2(vTextureCoord.x, vTextureCoord.y - texelSize.y)); // top center\n   vec4 c13 = texture2D(uSampler, vec2(vTextureCoord.x + texelSize.x, vTextureCoord.y - texelSize.y)); // top right\n\n   vec4 c21 = texture2D(uSampler, vec2(vTextureCoord.x - texelSize.x, vTextureCoord.y)); // mid left\n   vec4 c22 = texture2D(uSampler, vTextureCoord); // mid center\n   vec4 c23 = texture2D(uSampler, vec2(vTextureCoord.x + texelSize.x, vTextureCoord.y)); // mid right\n\n   vec4 c31 = texture2D(uSampler, vec2(vTextureCoord.x - texelSize.x, vTextureCoord.y + texelSize.y)); // bottom left\n   vec4 c32 = texture2D(uSampler, vec2(vTextureCoord.x, vTextureCoord.y + texelSize.y)); // bottom center\n   vec4 c33 = texture2D(uSampler, vTextureCoord + texelSize); // bottom right\n\n   gl_FragColor =\n       c11 * matrix[0] + c12 * matrix[1] + c13 * matrix[2] +\n       c21 * matrix[3] + c22 * matrix[4] + c23 * matrix[5] +\n       c31 * matrix[6] + c32 * matrix[7] + c33 * matrix[8];\n\n   gl_FragColor.a = c22.a;\n}\n";
+/**
+ * The ConvolutionFilter class applies a matrix convolution filter effect.
+ * A convolution combines pixels in the input image with neighboring pixels to produce a new image.
+ * A wide variety of image effects can be achieved through convolutions, including blurring, edge
+ * detection, sharpening, embossing, and beveling. The matrix should be specified as a 9 point Array.
+ * See http://docs.gimp.org/en/plug-in-convmatrix.html for more info.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/convolution.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-convolution|@pixi/filter-convolution}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param [matrix=[0,0,0,0,0,0,0,0,0]] {number[]} An array of values used for matrix transformation. Specified as a 9 point Array.
+ * @param [width=200] {number} Width of the object you are transforming
+ * @param [height=200] {number} Height of the object you are transforming
+ */
+
+var ConvolutionFilter = /*@__PURE__*/function (Filter) {
+  function ConvolutionFilter(matrix, width, height) {
+    if (width === void 0) width = 200;
+    if (height === void 0) height = 200;
+    Filter.call(this, vertex, fragment);
+    this.uniforms.texelSize = new Float32Array(2);
+    this.uniforms.matrix = new Float32Array(9);
+
+    if (matrix !== undefined) {
+      this.matrix = matrix;
+    }
+
+    this.width = width;
+    this.height = height;
+  }
+
+  if (Filter) ConvolutionFilter.__proto__ = Filter;
+  ConvolutionFilter.prototype = Object.create(Filter && Filter.prototype);
+  ConvolutionFilter.prototype.constructor = ConvolutionFilter;
+  var prototypeAccessors = {
+    matrix: {
+      configurable: true
+    },
+    width: {
+      configurable: true
+    },
+    height: {
+      configurable: true
+    }
+  };
+  /**
+   * An array of values used for matrix transformation. Specified as a 9 point Array.
+   *
+   * @member {Array<number>}
+   */
+
+  prototypeAccessors.matrix.get = function () {
+    return this.uniforms.matrix;
+  };
+
+  prototypeAccessors.matrix.set = function (matrix) {
+    var this$1 = this;
+    matrix.forEach(function (v, i) {
+      return this$1.uniforms.matrix[i] = v;
+    });
+  };
+  /**
+   * Width of the object you are transforming
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.width.get = function () {
+    return 1 / this.uniforms.texelSize[0];
+  };
+
+  prototypeAccessors.width.set = function (value) {
+    this.uniforms.texelSize[0] = 1 / value;
+  };
+  /**
+   * Height of the object you are transforming
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.height.get = function () {
+    return 1 / this.uniforms.texelSize[1];
+  };
+
+  prototypeAccessors.height.set = function (value) {
+    this.uniforms.texelSize[1] = 1 / value;
+  };
+
+  Object.defineProperties(ConvolutionFilter.prototype, prototypeAccessors);
+  return ConvolutionFilter;
+}(_core.Filter);
+
+exports.ConvolutionFilter = ConvolutionFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-cross-hatch/lib/filter-cross-hatch.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CrossHatchFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-cross-hatch - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-cross-hatch is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "precision mediump float;\n\nvarying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\n\nvoid main(void)\n{\n    float lum = length(texture2D(uSampler, vTextureCoord.xy).rgb);\n\n    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);\n\n    if (lum < 1.00)\n    {\n        if (mod(gl_FragCoord.x + gl_FragCoord.y, 10.0) == 0.0)\n        {\n            gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n        }\n    }\n\n    if (lum < 0.75)\n    {\n        if (mod(gl_FragCoord.x - gl_FragCoord.y, 10.0) == 0.0)\n        {\n            gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n        }\n    }\n\n    if (lum < 0.50)\n    {\n        if (mod(gl_FragCoord.x + gl_FragCoord.y - 5.0, 10.0) == 0.0)\n        {\n            gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n        }\n    }\n\n    if (lum < 0.3)\n    {\n        if (mod(gl_FragCoord.x - gl_FragCoord.y - 5.0, 10.0) == 0.0)\n        {\n            gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n        }\n    }\n}\n";
+/**
+ * A Cross Hatch effect filter.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/cross-hatch.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-cross-hatch|@pixi/filter-cross-hatch}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ */
+
+var CrossHatchFilter = /*@__PURE__*/function (Filter) {
+  function CrossHatchFilter() {
+    Filter.call(this, vertex, fragment);
+  }
+
+  if (Filter) CrossHatchFilter.__proto__ = Filter;
+  CrossHatchFilter.prototype = Object.create(Filter && Filter.prototype);
+  CrossHatchFilter.prototype.constructor = CrossHatchFilter;
+  return CrossHatchFilter;
+}(_core.Filter);
+
+exports.CrossHatchFilter = CrossHatchFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-crt/lib/filter-crt.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CRTFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-crt - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-crt is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec4 filterArea;\nuniform vec2 dimensions;\n\nconst float SQRT_2 = 1.414213;\n\nconst float light = 1.0;\n\nuniform float curvature;\nuniform float lineWidth;\nuniform float lineContrast;\nuniform bool verticalLine;\nuniform float noise;\nuniform float noiseSize;\n\nuniform float vignetting;\nuniform float vignettingAlpha;\nuniform float vignettingBlur;\n\nuniform float seed;\nuniform float time;\n\nfloat rand(vec2 co) {\n    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);\n}\n\nvoid main(void)\n{\n    vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;\n    vec2 coord = pixelCoord / dimensions;\n\n    vec2 dir = vec2(coord - vec2(0.5, 0.5));\n\n    float _c = curvature > 0. ? curvature : 1.;\n    float k = curvature > 0. ?(length(dir * dir) * 0.25 * _c * _c + 0.935 * _c) : 1.;\n    vec2 uv = dir * k;\n\n    gl_FragColor = texture2D(uSampler, vTextureCoord);\n    vec3 rgb = gl_FragColor.rgb;\n\n\n    if (noise > 0.0 && noiseSize > 0.0)\n    {\n        pixelCoord.x = floor(pixelCoord.x / noiseSize);\n        pixelCoord.y = floor(pixelCoord.y / noiseSize);\n        float _noise = rand(pixelCoord * noiseSize * seed) - 0.5;\n        rgb += _noise * noise;\n    }\n\n    if (lineWidth > 0.0) {\n        float v = (verticalLine ? uv.x * dimensions.x : uv.y * dimensions.y) * min(1.0, 2.0 / lineWidth ) / _c;\n        float j = 1. + cos(v * 1.2 - time) * 0.5 * lineContrast;\n        rgb *= j;\n        float segment = verticalLine ? mod((dir.x + .5) * dimensions.x, 4.) : mod((dir.y + .5) * dimensions.y, 4.);\n        rgb *= 0.99 + ceil(segment) * 0.015;\n    }\n\n    if (vignetting > 0.0)\n    {\n        float outter = SQRT_2 - vignetting * SQRT_2;\n        float darker = clamp((outter - length(dir) * SQRT_2) / ( 0.00001 + vignettingBlur * SQRT_2), 0.0, 1.0);\n        rgb *= darker + (1.0 - darker) * (1.0 - vignettingAlpha);\n    }\n\n    gl_FragColor.rgb = rgb;\n}\n";
+/**
+ * The CRTFilter applies a CRT effect to an object.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/crt.gif)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-crt|@pixi/filter-crt}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ *
+ * @param {object} [options] - The optional parameters of CRT effect
+ * @param {number} [options.curvature=1.0] - Bent of interlaced lines, higher value means more bend
+ * @param {number} [options.lineWidth=1.0] - Width of the interlaced lines
+ * @param {number} [options.lineContrast=0.25] - Contrast of interlaced lines
+ * @param {number} [options.verticalLine=false] - `true` is vertical lines, `false` is horizontal
+ * @param {number} [options.noise=0.3] - Opacity/intensity of the noise effect between `0` and `1`
+ * @param {number} [options.noiseSize=1.0] - The size of the noise particles
+ * @param {number} [options.seed=0] - A seed value to apply to the random noise generation
+ * @param {number} [options.vignetting=0.3] - The radius of the vignette effect, smaller
+ *        values produces a smaller vignette
+ * @param {number} [options.vignettingAlpha=1.0] - Amount of opacity of vignette
+ * @param {number} [options.vignettingBlur=0.3] - Blur intensity of the vignette
+ * @param {number} [options.time=0] - For animating interlaced lines
+ */
+
+var CRTFilter = /*@__PURE__*/function (Filter) {
+  function CRTFilter(options) {
+    Filter.call(this, vertex, fragment);
+    this.uniforms.dimensions = new Float32Array(2);
+    /**
+     * For animating interlaced lines
+     *
+     * @member {number}
+     * @default 0
+     */
+
+    this.time = 0;
+    /**
+     * A seed value to apply to the random noise generation
+     *
+     * @member {number}
+     * @default 0
+     */
+
+    this.seed = 0;
+    Object.assign(this, {
+      curvature: 1.0,
+      lineWidth: 1.0,
+      lineContrast: 0.25,
+      verticalLine: false,
+      noise: 0.0,
+      noiseSize: 1.0,
+      seed: 0.0,
+      vignetting: 0.3,
+      vignettingAlpha: 1.0,
+      vignettingBlur: 0.3,
+      time: 0.0
+    }, options);
+  }
+
+  if (Filter) CRTFilter.__proto__ = Filter;
+  CRTFilter.prototype = Object.create(Filter && Filter.prototype);
+  CRTFilter.prototype.constructor = CRTFilter;
+  var prototypeAccessors = {
+    curvature: {
+      configurable: true
+    },
+    lineWidth: {
+      configurable: true
+    },
+    lineContrast: {
+      configurable: true
+    },
+    verticalLine: {
+      configurable: true
+    },
+    noise: {
+      configurable: true
+    },
+    noiseSize: {
+      configurable: true
+    },
+    vignetting: {
+      configurable: true
+    },
+    vignettingAlpha: {
+      configurable: true
+    },
+    vignettingBlur: {
+      configurable: true
+    }
+  };
+  /**
+   * Override existing apply method in PIXI.Filter
+   * @private
+   */
+
+  CRTFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    this.uniforms.dimensions[0] = input.filterFrame.width;
+    this.uniforms.dimensions[1] = input.filterFrame.height;
+    this.uniforms.seed = this.seed;
+    this.uniforms.time = this.time;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * Bent of interlaced lines, higher value means more bend
+   *
+   * @member {number}
+   * @default 1
+   */
+
+
+  prototypeAccessors.curvature.set = function (value) {
+    this.uniforms.curvature = value;
+  };
+
+  prototypeAccessors.curvature.get = function () {
+    return this.uniforms.curvature;
+  };
+  /**
+   * Width of interlaced lines
+   *
+   * @member {number}
+   * @default 1
+   */
+
+
+  prototypeAccessors.lineWidth.set = function (value) {
+    this.uniforms.lineWidth = value;
+  };
+
+  prototypeAccessors.lineWidth.get = function () {
+    return this.uniforms.lineWidth;
+  };
+  /**
+   * Contrast of interlaced lines
+   *
+   * @member {number}
+   * @default 0.25
+   */
+
+
+  prototypeAccessors.lineContrast.set = function (value) {
+    this.uniforms.lineContrast = value;
+  };
+
+  prototypeAccessors.lineContrast.get = function () {
+    return this.uniforms.lineContrast;
+  };
+  /**
+   * `true` for vertical lines, `false` for horizontal lines
+   *
+   * @member {boolean}
+   * @default false
+   */
+
+
+  prototypeAccessors.verticalLine.set = function (value) {
+    this.uniforms.verticalLine = value;
+  };
+
+  prototypeAccessors.verticalLine.get = function () {
+    return this.uniforms.verticalLine;
+  };
+  /**
+   * Opacity/intensity of the noise effect between `0` and `1`
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.noise.set = function (value) {
+    this.uniforms.noise = value;
+  };
+
+  prototypeAccessors.noise.get = function () {
+    return this.uniforms.noise;
+  };
+  /**
+   * The size of the noise particles
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.noiseSize.set = function (value) {
+    this.uniforms.noiseSize = value;
+  };
+
+  prototypeAccessors.noiseSize.get = function () {
+    return this.uniforms.noiseSize;
+  };
+  /**
+   * The radius of the vignette effect, smaller
+   * values produces a smaller vignette
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.vignetting.set = function (value) {
+    this.uniforms.vignetting = value;
+  };
+
+  prototypeAccessors.vignetting.get = function () {
+    return this.uniforms.vignetting;
+  };
+  /**
+   * Amount of opacity of vignette
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.vignettingAlpha.set = function (value) {
+    this.uniforms.vignettingAlpha = value;
+  };
+
+  prototypeAccessors.vignettingAlpha.get = function () {
+    return this.uniforms.vignettingAlpha;
+  };
+  /**
+   * Blur intensity of the vignette
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.vignettingBlur.set = function (value) {
+    this.uniforms.vignettingBlur = value;
+  };
+
+  prototypeAccessors.vignettingBlur.get = function () {
+    return this.uniforms.vignettingBlur;
+  };
+
+  Object.defineProperties(CRTFilter.prototype, prototypeAccessors);
+  return CRTFilter;
+}(_core.Filter);
+
+exports.CRTFilter = CRTFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-dot/lib/filter-dot.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DotFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-dot - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-dot is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "precision mediump float;\n\nvarying vec2 vTextureCoord;\nvarying vec4 vColor;\n\nuniform vec4 filterArea;\nuniform sampler2D uSampler;\n\nuniform float angle;\nuniform float scale;\n\nfloat pattern()\n{\n   float s = sin(angle), c = cos(angle);\n   vec2 tex = vTextureCoord * filterArea.xy;\n   vec2 point = vec2(\n       c * tex.x - s * tex.y,\n       s * tex.x + c * tex.y\n   ) * scale;\n   return (sin(point.x) * sin(point.y)) * 4.0;\n}\n\nvoid main()\n{\n   vec4 color = texture2D(uSampler, vTextureCoord);\n   float average = (color.r + color.g + color.b) / 3.0;\n   gl_FragColor = vec4(vec3(average * 10.0 - 5.0 + pattern()), color.a);\n}\n";
+/**
+ * @author Mat Groves http://matgroves.com/ @Doormat23
+ * original filter: https://github.com/evanw/glfx.js/blob/master/src/filters/fun/dotscreen.js
+ */
+
+/**
+ * This filter applies a dotscreen effect making display objects appear to be made out of
+ * black and white halftone dots like an old printer.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/dot.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-dot|@pixi/filter-dot}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number} [scale=1] The scale of the effect.
+ * @param {number} [angle=5] The radius of the effect.
+ */
+
+var DotFilter = /*@__PURE__*/function (Filter) {
+  function DotFilter(scale, angle) {
+    if (scale === void 0) scale = 1;
+    if (angle === void 0) angle = 5;
+    Filter.call(this, vertex, fragment);
+    this.scale = scale;
+    this.angle = angle;
+  }
+
+  if (Filter) DotFilter.__proto__ = Filter;
+  DotFilter.prototype = Object.create(Filter && Filter.prototype);
+  DotFilter.prototype.constructor = DotFilter;
+  var prototypeAccessors = {
+    scale: {
+      configurable: true
+    },
+    angle: {
+      configurable: true
+    }
+  };
+  /**
+   * The scale of the effect.
+   * @member {number}
+   * @default 1
+   */
+
+  prototypeAccessors.scale.get = function () {
+    return this.uniforms.scale;
+  };
+
+  prototypeAccessors.scale.set = function (value) {
+    this.uniforms.scale = value;
+  };
+  /**
+   * The radius of the effect.
+   * @member {number}
+   * @default 5
+   */
+
+
+  prototypeAccessors.angle.get = function () {
+    return this.uniforms.angle;
+  };
+
+  prototypeAccessors.angle.set = function (value) {
+    this.uniforms.angle = value;
+  };
+
+  Object.defineProperties(DotFilter.prototype, prototypeAccessors);
+  return DotFilter;
+}(_core.Filter);
+
+exports.DotFilter = DotFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-drop-shadow/lib/filter-drop-shadow.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DropShadowFilter = void 0;
+
+var _filterKawaseBlur = require("@pixi/filter-kawase-blur");
+
+var _core = require("@pixi/core");
+
+var _settings = require("@pixi/settings");
+
+var _math = require("@pixi/math");
+
+var _utils = require("@pixi/utils");
+
+/*!
+ * @pixi/filter-drop-shadow - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-drop-shadow is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform float alpha;\nuniform vec3 color;\n\nuniform vec2 shift;\nuniform vec4 inputSize;\n\nvoid main(void){\n    vec4 sample = texture2D(uSampler, vTextureCoord - shift * inputSize.zw);\n\n    // Premultiply alpha\n    sample.rgb = color.rgb * sample.a;\n\n    // alpha user alpha\n    sample *= alpha;\n\n    gl_FragColor = sample;\n}";
+/**
+ * Drop shadow filter.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/drop-shadow.png)
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-drop-shadow|@pixi/filter-drop-shadow}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {object} [options] Filter options
+ * @param {number} [options.rotation=45] The angle of the shadow in degrees.
+ * @param {number} [options.distance=5] Distance of shadow
+ * @param {number} [options.color=0x000000] Color of the shadow
+ * @param {number} [options.alpha=0.5] Alpha of the shadow
+ * @param {number} [options.shadowOnly=false] Whether render shadow only
+ * @param {number} [options.blur=2] - Sets the strength of the Blur properties simultaneously
+ * @param {number} [options.quality=3] - The quality of the Blur filter.
+ * @param {number[]} [options.kernels=null] - The kernels of the Blur filter.
+ * @param {number|number[]|PIXI.Point} [options.pixelSize=1] - the pixelSize of the Blur filter.
+ * @param {number} [options.resolution=PIXI.settings.RESOLUTION] - The resolution of the Blur filter.
+ */
+
+var DropShadowFilter = /*@__PURE__*/function (Filter) {
+  function DropShadowFilter(options) {
+    // Fallback support for ctor: (rotation, distance, blur, color, alpha)
+    if (options && options.constructor !== Object) {
+      // eslint-disable-next-line no-console
+      console.warn('DropShadowFilter now uses options instead of (rotation, distance, blur, color, alpha)');
+      options = {
+        rotation: options
+      };
+
+      if (arguments[1] !== undefined) {
+        options.distance = arguments[1];
+      }
+
+      if (arguments[2] !== undefined) {
+        options.blur = arguments[2];
+      }
+
+      if (arguments[3] !== undefined) {
+        options.color = arguments[3];
+      }
+
+      if (arguments[4] !== undefined) {
+        options.alpha = arguments[4];
+      }
+    }
+
+    options = Object.assign({
+      rotation: 45,
+      distance: 5,
+      color: 0x000000,
+      alpha: 0.5,
+      shadowOnly: false,
+      kernels: null,
+      blur: 2,
+      quality: 3,
+      pixelSize: 1,
+      resolution: _settings.settings.RESOLUTION
+    }, options);
+    Filter.call(this);
+    var kernels = options.kernels;
+    var blur = options.blur;
+    var quality = options.quality;
+    var pixelSize = options.pixelSize;
+    var resolution = options.resolution;
+    this._tintFilter = new Filter(vertex, fragment);
+    this._tintFilter.uniforms.color = new Float32Array(4);
+    this._tintFilter.uniforms.shift = new _math.Point();
+    this._tintFilter.resolution = resolution;
+    this._blurFilter = kernels ? new _filterKawaseBlur.KawaseBlurFilter(kernels) : new _filterKawaseBlur.KawaseBlurFilter(blur, quality);
+    this.pixelSize = pixelSize;
+    this.resolution = resolution;
+    var shadowOnly = options.shadowOnly;
+    var rotation = options.rotation;
+    var distance = options.distance;
+    var alpha = options.alpha;
+    var color = options.color;
+    this.shadowOnly = shadowOnly;
+    this.rotation = rotation;
+    this.distance = distance;
+    this.alpha = alpha;
+    this.color = color;
+
+    this._updatePadding();
+  }
+
+  if (Filter) DropShadowFilter.__proto__ = Filter;
+  DropShadowFilter.prototype = Object.create(Filter && Filter.prototype);
+  DropShadowFilter.prototype.constructor = DropShadowFilter;
+  var prototypeAccessors = {
+    resolution: {
+      configurable: true
+    },
+    distance: {
+      configurable: true
+    },
+    rotation: {
+      configurable: true
+    },
+    alpha: {
+      configurable: true
+    },
+    color: {
+      configurable: true
+    },
+    kernels: {
+      configurable: true
+    },
+    blur: {
+      configurable: true
+    },
+    quality: {
+      configurable: true
+    },
+    pixelSize: {
+      configurable: true
+    }
+  };
+
+  DropShadowFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    var target = filterManager.getFilterTexture();
+
+    this._tintFilter.apply(filterManager, input, target, 1);
+
+    this._blurFilter.apply(filterManager, target, output, clear);
+
+    if (this.shadowOnly !== true) {
+      filterManager.applyFilter(this, input, output, 0);
+    }
+
+    filterManager.returnFilterTexture(target);
+  };
+  /**
+   * Recalculate the proper padding amount.
+   * @private
+   */
+
+
+  DropShadowFilter.prototype._updatePadding = function _updatePadding() {
+    this.padding = this.distance + this.blur * 2;
+  };
+  /**
+   * Update the transform matrix of offset angle.
+   * @private
+   */
+
+
+  DropShadowFilter.prototype._updateShift = function _updateShift() {
+    this._tintFilter.uniforms.shift.set(this.distance * Math.cos(this.angle), this.distance * Math.sin(this.angle));
+  };
+  /**
+   * The resolution of the filter.
+   *
+   * @member {number}
+   * @default PIXI.settings.RESOLUTION
+   */
+
+
+  prototypeAccessors.resolution.get = function () {
+    return this._resolution;
+  };
+
+  prototypeAccessors.resolution.set = function (value) {
+    this._resolution = value;
+
+    if (this._tintFilter) {
+      this._tintFilter.resolution = value;
+    }
+
+    if (this._blurFilter) {
+      this._blurFilter.resolution = value;
+    }
+  };
+  /**
+   * Distance offset of the shadow
+   * @member {number}
+   * @default 5
+   */
+
+
+  prototypeAccessors.distance.get = function () {
+    return this._distance;
+  };
+
+  prototypeAccessors.distance.set = function (value) {
+    this._distance = value;
+
+    this._updatePadding();
+
+    this._updateShift();
+  };
+  /**
+   * The angle of the shadow in degrees
+   * @member {number}
+   * @default 2
+   */
+
+
+  prototypeAccessors.rotation.get = function () {
+    return this.angle / _math.DEG_TO_RAD;
+  };
+
+  prototypeAccessors.rotation.set = function (value) {
+    this.angle = value * _math.DEG_TO_RAD;
+
+    this._updateShift();
+  };
+  /**
+   * The alpha of the shadow
+   * @member {number}
+   * @default 1
+   */
+
+
+  prototypeAccessors.alpha.get = function () {
+    return this._tintFilter.uniforms.alpha;
+  };
+
+  prototypeAccessors.alpha.set = function (value) {
+    this._tintFilter.uniforms.alpha = value;
+  };
+  /**
+   * The color of the shadow.
+   * @member {number}
+   * @default 0x000000
+   */
+
+
+  prototypeAccessors.color.get = function () {
+    return (0, _utils.rgb2hex)(this._tintFilter.uniforms.color);
+  };
+
+  prototypeAccessors.color.set = function (value) {
+    (0, _utils.hex2rgb)(value, this._tintFilter.uniforms.color);
+  };
+  /**
+   * Sets the kernels of the Blur Filter
+   *
+   * @member {number[]}
+   */
+
+
+  prototypeAccessors.kernels.get = function () {
+    return this._blurFilter.kernels;
+  };
+
+  prototypeAccessors.kernels.set = function (value) {
+    this._blurFilter.kernels = value;
+  };
+  /**
+   * The blur of the shadow
+   * @member {number}
+   * @default 2
+   */
+
+
+  prototypeAccessors.blur.get = function () {
+    return this._blurFilter.blur;
+  };
+
+  prototypeAccessors.blur.set = function (value) {
+    this._blurFilter.blur = value;
+
+    this._updatePadding();
+  };
+  /**
+   * Sets the quality of the Blur Filter
+   *
+   * @member {number}
+   * @default 4
+   */
+
+
+  prototypeAccessors.quality.get = function () {
+    return this._blurFilter.quality;
+  };
+
+  prototypeAccessors.quality.set = function (value) {
+    this._blurFilter.quality = value;
+  };
+  /**
+   * Sets the pixelSize of the Kawase Blur filter
+   *
+   * @member {number|number[]|PIXI.Point}
+   * @default 1
+   */
+
+
+  prototypeAccessors.pixelSize.get = function () {
+    return this._blurFilter.pixelSize;
+  };
+
+  prototypeAccessors.pixelSize.set = function (value) {
+    this._blurFilter.pixelSize = value;
+  };
+
+  Object.defineProperties(DropShadowFilter.prototype, prototypeAccessors);
+  return DropShadowFilter;
+}(_core.Filter);
+
+exports.DropShadowFilter = DropShadowFilter;
+},{"@pixi/filter-kawase-blur":"../node_modules/@pixi/filter-kawase-blur/lib/filter-kawase-blur.esm.js","@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/settings":"../node_modules/@pixi/settings/lib/settings.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/filter-emboss/lib/filter-emboss.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.EmbossFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-emboss - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-emboss is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "precision mediump float;\n\nvarying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nuniform float strength;\nuniform vec4 filterArea;\n\n\nvoid main(void)\n{\n\tvec2 onePixel = vec2(1.0 / filterArea);\n\n\tvec4 color;\n\n\tcolor.rgb = vec3(0.5);\n\n\tcolor -= texture2D(uSampler, vTextureCoord - onePixel) * strength;\n\tcolor += texture2D(uSampler, vTextureCoord + onePixel) * strength;\n\n\tcolor.rgb = vec3((color.r + color.g + color.b) / 3.0);\n\n\tfloat alpha = texture2D(uSampler, vTextureCoord).a;\n\n\tgl_FragColor = vec4(color.rgb * alpha, alpha);\n}\n";
+/**
+ * An RGB Split Filter.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/emboss.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-emboss|@pixi/filter-emboss}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number} [strength=5] Strength of the emboss.
+ */
+
+var EmbossFilter = /*@__PURE__*/function (Filter) {
+  function EmbossFilter(strength) {
+    if (strength === void 0) strength = 5;
+    Filter.call(this, vertex, fragment);
+    this.strength = strength;
+  }
+
+  if (Filter) EmbossFilter.__proto__ = Filter;
+  EmbossFilter.prototype = Object.create(Filter && Filter.prototype);
+  EmbossFilter.prototype.constructor = EmbossFilter;
+  var prototypeAccessors = {
+    strength: {
+      configurable: true
+    }
+  };
+  /**
+   * Strength of emboss.
+   *
+   * @member {number}
+   */
+
+  prototypeAccessors.strength.get = function () {
+    return this.uniforms.strength;
+  };
+
+  prototypeAccessors.strength.set = function (value) {
+    this.uniforms.strength = value;
+  };
+
+  Object.defineProperties(EmbossFilter.prototype, prototypeAccessors);
+  return EmbossFilter;
+}(_core.Filter);
+
+exports.EmbossFilter = EmbossFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-glitch/lib/filter-glitch.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GlitchFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _constants = require("@pixi/constants");
+
+var _math = require("@pixi/math");
+
+/*!
+ * @pixi/filter-glitch - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-glitch is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "// precision highp float;\n\nvarying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec4 filterArea;\nuniform vec4 filterClamp;\nuniform vec2 dimensions;\nuniform float aspect;\n\nuniform sampler2D displacementMap;\nuniform float offset;\nuniform float sinDir;\nuniform float cosDir;\nuniform int fillMode;\n\nuniform float seed;\nuniform vec2 red;\nuniform vec2 green;\nuniform vec2 blue;\n\nconst int TRANSPARENT = 0;\nconst int ORIGINAL = 1;\nconst int LOOP = 2;\nconst int CLAMP = 3;\nconst int MIRROR = 4;\n\nvoid main(void)\n{\n    vec2 coord = (vTextureCoord * filterArea.xy) / dimensions;\n\n    if (coord.x > 1.0 || coord.y > 1.0) {\n        return;\n    }\n\n    float cx = coord.x - 0.5;\n    float cy = (coord.y - 0.5) * aspect;\n    float ny = (-sinDir * cx + cosDir * cy) / aspect + 0.5;\n\n    // displacementMap: repeat\n    // ny = ny > 1.0 ? ny - 1.0 : (ny < 0.0 ? 1.0 + ny : ny);\n\n    // displacementMap: mirror\n    ny = ny > 1.0 ? 2.0 - ny : (ny < 0.0 ? -ny : ny);\n\n    vec4 dc = texture2D(displacementMap, vec2(0.5, ny));\n\n    float displacement = (dc.r - dc.g) * (offset / filterArea.x);\n\n    coord = vTextureCoord + vec2(cosDir * displacement, sinDir * displacement * aspect);\n\n    if (fillMode == CLAMP) {\n        coord = clamp(coord, filterClamp.xy, filterClamp.zw);\n    } else {\n        if( coord.x > filterClamp.z ) {\n            if (fillMode == TRANSPARENT) {\n                discard;\n            } else if (fillMode == LOOP) {\n                coord.x -= filterClamp.z;\n            } else if (fillMode == MIRROR) {\n                coord.x = filterClamp.z * 2.0 - coord.x;\n            }\n        } else if( coord.x < filterClamp.x ) {\n            if (fillMode == TRANSPARENT) {\n                discard;\n            } else if (fillMode == LOOP) {\n                coord.x += filterClamp.z;\n            } else if (fillMode == MIRROR) {\n                coord.x *= -filterClamp.z;\n            }\n        }\n\n        if( coord.y > filterClamp.w ) {\n            if (fillMode == TRANSPARENT) {\n                discard;\n            } else if (fillMode == LOOP) {\n                coord.y -= filterClamp.w;\n            } else if (fillMode == MIRROR) {\n                coord.y = filterClamp.w * 2.0 - coord.y;\n            }\n        } else if( coord.y < filterClamp.y ) {\n            if (fillMode == TRANSPARENT) {\n                discard;\n            } else if (fillMode == LOOP) {\n                coord.y += filterClamp.w;\n            } else if (fillMode == MIRROR) {\n                coord.y *= -filterClamp.w;\n            }\n        }\n    }\n\n    gl_FragColor.r = texture2D(uSampler, coord + red * (1.0 - seed * 0.4) / filterArea.xy).r;\n    gl_FragColor.g = texture2D(uSampler, coord + green * (1.0 - seed * 0.3) / filterArea.xy).g;\n    gl_FragColor.b = texture2D(uSampler, coord + blue * (1.0 - seed * 0.2) / filterArea.xy).b;\n    gl_FragColor.a = texture2D(uSampler, coord).a;\n}\n";
+/**
+ * The GlitchFilter applies a glitch effect to an object.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/glitch.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-glitch|@pixi/filter-glitch}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {object} [options] - The more optional parameters of the filter.
+ * @param {number} [options.slices=5] - The maximum number of slices.
+ * @param {number} [options.offset=100] - The maximum offset amount of slices.
+ * @param {number} [options.direction=0] - The angle in degree of the offset of slices.
+ * @param {number} [options.fillMode=0] - The fill mode of the space after the offset. Acceptable values:
+ *  - `0` {@link PIXI.filters.GlitchFilter.TRANSPARENT TRANSPARENT}
+ *  - `1` {@link PIXI.filters.GlitchFilter.ORIGINAL ORIGINAL}
+ *  - `2` {@link PIXI.filters.GlitchFilter.LOOP LOOP}
+ *  - `3` {@link PIXI.filters.GlitchFilter.CLAMP CLAMP}
+ *  - `4` {@link PIXI.filters.GlitchFilter.MIRROR MIRROR}
+ * @param {number} [options.seed=0] - A seed value for randomizing glitch effect.
+ * @param {number} [options.average=false] - `true` will divide the bands roughly based on equal amounts
+ *                 where as setting to `false` will vary the band sizes dramatically (more random looking).
+ * @param {number} [options.minSize=8] - Minimum size of individual slice. Segment of total `sampleSize`
+ * @param {number} [options.sampleSize=512] - The resolution of the displacement map texture.
+ * @param {number} [options.red=[0,0]] - Red channel offset
+ * @param {number} [options.green=[0,0]] - Green channel offset.
+ * @param {number} [options.blue=[0,0]] - Blue channel offset.
+ */
+
+var GlitchFilter = /*@__PURE__*/function (Filter) {
+  function GlitchFilter(options) {
+    if (options === void 0) options = {};
+    Filter.call(this, vertex, fragment);
+    this.uniforms.dimensions = new Float32Array(2);
+    options = Object.assign({
+      slices: 5,
+      offset: 100,
+      direction: 0,
+      fillMode: 0,
+      average: false,
+      seed: 0,
+      red: [0, 0],
+      green: [0, 0],
+      blue: [0, 0],
+      minSize: 8,
+      sampleSize: 512
+    }, options);
+    this.direction = options.direction;
+    this.red = options.red;
+    this.green = options.green;
+    this.blue = options.blue;
+    /**
+     * The maximum offset value for each of the slices.
+     *
+     * @member {number}
+     */
+
+    this.offset = options.offset;
+    /**
+     * The fill mode of the space after the offset.
+     *
+     * @member {number}
+     */
+
+    this.fillMode = options.fillMode;
+    /**
+     * `true` will divide the bands roughly based on equal amounts
+     * where as setting to `false` will vary the band sizes dramatically (more random looking).
+     *
+     * @member {boolean}
+     * @default false
+     */
+
+    this.average = options.average;
+    /**
+     * A seed value for randomizing color offset. Animating
+     * this value to `Math.random()` produces a twitching effect.
+     *
+     * @member {number}
+     */
+
+    this.seed = options.seed;
+    /**
+     * Minimum size of slices as a portion of the `sampleSize`
+     *
+     * @member {number}
+     */
+
+    this.minSize = options.minSize;
+    /**
+     * Height of the displacement map canvas.
+     *
+     * @member {number}
+     * @readonly
+     */
+
+    this.sampleSize = options.sampleSize;
+    /**
+     * Internally generated canvas.
+     *
+     * @member {HTMLCanvasElement} _canvas
+     * @private
+     */
+
+    this._canvas = document.createElement('canvas');
+    this._canvas.width = 4;
+    this._canvas.height = this.sampleSize;
+    /**
+     * The displacement map is used to generate the bands.
+     * If using your own texture, `slices` will be ignored.
+     *
+     * @member {PIXI.Texture}
+     * @readonly
+     */
+
+    this.texture = _core.Texture.from(this._canvas, {
+      scaleMode: _constants.SCALE_MODES.NEAREST
+    });
+    /**
+     * Internal number of slices
+     * @member {number}
+     * @private
+     */
+
+    this._slices = 0; // Set slices
+
+    this.slices = options.slices;
+  }
+
+  if (Filter) GlitchFilter.__proto__ = Filter;
+  GlitchFilter.prototype = Object.create(Filter && Filter.prototype);
+  GlitchFilter.prototype.constructor = GlitchFilter;
+  var prototypeAccessors = {
+    sizes: {
+      configurable: true
+    },
+    offsets: {
+      configurable: true
+    },
+    slices: {
+      configurable: true
+    },
+    direction: {
+      configurable: true
+    },
+    red: {
+      configurable: true
+    },
+    green: {
+      configurable: true
+    },
+    blue: {
+      configurable: true
+    }
+  };
+  /**
+   * Override existing apply method in PIXI.Filter
+   * @private
+   */
+
+  GlitchFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    var width = input.filterFrame.width;
+    var height = input.filterFrame.height;
+    this.uniforms.dimensions[0] = width;
+    this.uniforms.dimensions[1] = height;
+    this.uniforms.aspect = height / width;
+    this.uniforms.seed = this.seed;
+    this.uniforms.offset = this.offset;
+    this.uniforms.fillMode = this.fillMode;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * Randomize the slices size (heights).
+   *
+   * @private
+   */
+
+
+  GlitchFilter.prototype._randomizeSizes = function _randomizeSizes() {
+    var arr = this._sizes;
+    var last = this._slices - 1;
+    var size = this.sampleSize;
+    var min = Math.min(this.minSize / size, 0.9 / this._slices);
+
+    if (this.average) {
+      var count = this._slices;
+      var rest = 1;
+
+      for (var i = 0; i < last; i++) {
+        var averageWidth = rest / (count - i);
+        var w = Math.max(averageWidth * (1 - Math.random() * 0.6), min);
+        arr[i] = w;
+        rest -= w;
+      }
+
+      arr[last] = rest;
+    } else {
+      var rest$1 = 1;
+      var ratio = Math.sqrt(1 / this._slices);
+
+      for (var i$1 = 0; i$1 < last; i$1++) {
+        var w$1 = Math.max(ratio * rest$1 * Math.random(), min);
+        arr[i$1] = w$1;
+        rest$1 -= w$1;
+      }
+
+      arr[last] = rest$1;
+    }
+
+    this.shuffle();
+  };
+  /**
+   * Shuffle the sizes of the slices, advanced usage.
+   */
+
+
+  GlitchFilter.prototype.shuffle = function shuffle() {
+    var arr = this._sizes;
+    var last = this._slices - 1; // shuffle
+
+    for (var i = last; i > 0; i--) {
+      var rand = Math.random() * i >> 0;
+      var temp = arr[i];
+      arr[i] = arr[rand];
+      arr[rand] = temp;
+    }
+  };
+  /**
+   * Randomize the values for offset from -1 to 1
+   *
+   * @private
+   */
+
+
+  GlitchFilter.prototype._randomizeOffsets = function _randomizeOffsets() {
+    for (var i = 0; i < this._slices; i++) {
+      this._offsets[i] = Math.random() * (Math.random() < 0.5 ? -1 : 1);
+    }
+  };
+  /**
+   * Regenerating random size, offsets for slices.
+   */
+
+
+  GlitchFilter.prototype.refresh = function refresh() {
+    this._randomizeSizes();
+
+    this._randomizeOffsets();
+
+    this.redraw();
+  };
+  /**
+   * Redraw displacement bitmap texture, advanced usage.
+   */
+
+
+  GlitchFilter.prototype.redraw = function redraw() {
+    var size = this.sampleSize;
+    var texture = this.texture;
+
+    var ctx = this._canvas.getContext('2d');
+
+    ctx.clearRect(0, 0, 8, size);
+    var offset;
+    var y = 0;
+
+    for (var i = 0; i < this._slices; i++) {
+      offset = Math.floor(this._offsets[i] * 256);
+      var height = this._sizes[i] * size;
+      var red = offset > 0 ? offset : 0;
+      var green = offset < 0 ? -offset : 0;
+      ctx.fillStyle = 'rgba(' + red + ', ' + green + ', 0, 1)';
+      ctx.fillRect(0, y >> 0, size, height + 1 >> 0);
+      y += height;
+    }
+
+    texture.baseTexture.update();
+    this.uniforms.displacementMap = texture;
+  };
+  /**
+   * Manually custom slices size (height) of displacement bitmap
+   *
+   * @member {number[]}
+   */
+
+
+  prototypeAccessors.sizes.set = function (sizes) {
+    var len = Math.min(this._slices, sizes.length);
+
+    for (var i = 0; i < len; i++) {
+      this._sizes[i] = sizes[i];
+    }
+  };
+
+  prototypeAccessors.sizes.get = function () {
+    return this._sizes;
+  };
+  /**
+   * Manually set custom slices offset of displacement bitmap, this is
+   * a collection of values from -1 to 1. To change the max offset value
+   * set `offset`.
+   *
+   * @member {number[]}
+   */
+
+
+  prototypeAccessors.offsets.set = function (offsets) {
+    var len = Math.min(this._slices, offsets.length);
+
+    for (var i = 0; i < len; i++) {
+      this._offsets[i] = offsets[i];
+    }
+  };
+
+  prototypeAccessors.offsets.get = function () {
+    return this._offsets;
+  };
+  /**
+   * The count of slices.
+   * @member {number}
+   * @default 5
+   */
+
+
+  prototypeAccessors.slices.get = function () {
+    return this._slices;
+  };
+
+  prototypeAccessors.slices.set = function (value) {
+    if (this._slices === value) {
+      return;
+    }
+
+    this._slices = value;
+    this.uniforms.slices = value;
+    this._sizes = this.uniforms.slicesWidth = new Float32Array(value);
+    this._offsets = this.uniforms.slicesOffset = new Float32Array(value);
+    this.refresh();
+  };
+  /**
+   * The angle in degree of the offset of slices.
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.direction.get = function () {
+    return this._direction;
+  };
+
+  prototypeAccessors.direction.set = function (value) {
+    if (this._direction === value) {
+      return;
+    }
+
+    this._direction = value;
+    var radians = value * _math.DEG_TO_RAD;
+    this.uniforms.sinDir = Math.sin(radians);
+    this.uniforms.cosDir = Math.cos(radians);
+  };
+  /**
+   * Red channel offset.
+   *
+   * @member {PIXI.Point}
+   */
+
+
+  prototypeAccessors.red.get = function () {
+    return this.uniforms.red;
+  };
+
+  prototypeAccessors.red.set = function (value) {
+    this.uniforms.red = value;
+  };
+  /**
+   * Green channel offset.
+   *
+   * @member {PIXI.Point}
+   */
+
+
+  prototypeAccessors.green.get = function () {
+    return this.uniforms.green;
+  };
+
+  prototypeAccessors.green.set = function (value) {
+    this.uniforms.green = value;
+  };
+  /**
+   * Blue offset.
+   *
+   * @member {PIXI.Point}
+   */
+
+
+  prototypeAccessors.blue.get = function () {
+    return this.uniforms.blue;
+  };
+
+  prototypeAccessors.blue.set = function (value) {
+    this.uniforms.blue = value;
+  };
+  /**
+   * Removes all references
+   */
+
+
+  GlitchFilter.prototype.destroy = function destroy() {
+    this.texture.destroy(true);
+    this.texture = null;
+    this._canvas = null;
+    this.red = null;
+    this.green = null;
+    this.blue = null;
+    this._sizes = null;
+    this._offsets = null;
+  };
+
+  Object.defineProperties(GlitchFilter.prototype, prototypeAccessors);
+  return GlitchFilter;
+}(_core.Filter);
+/**
+ * Fill mode as transparent
+ *
+ * @constant
+ * @static
+ * @member {int} TRANSPARENT
+ * @memberof PIXI.filters.GlitchFilter
+ * @readonly
+ */
+
+
+exports.GlitchFilter = GlitchFilter;
+GlitchFilter.TRANSPARENT = 0;
+/**
+ * Fill mode as original
+ *
+ * @constant
+ * @static
+ * @member {int} ORIGINAL
+ * @memberof PIXI.filters.GlitchFilter
+ * @readonly
+ */
+
+GlitchFilter.ORIGINAL = 1;
+/**
+ * Fill mode as loop
+ *
+ * @constant
+ * @static
+ * @member {int} LOOP
+ * @memberof PIXI.filters.GlitchFilter
+ * @readonly
+ */
+
+GlitchFilter.LOOP = 2;
+/**
+ * Fill mode as clamp
+ *
+ * @constant
+ * @static
+ * @member {int} CLAMP
+ * @memberof PIXI.filters.GlitchFilter
+ * @readonly
+ */
+
+GlitchFilter.CLAMP = 3;
+/**
+ * Fill mode as mirror
+ *
+ * @constant
+ * @static
+ * @member {int} MIRROR
+ * @memberof PIXI.filters.GlitchFilter
+ * @readonly
+ */
+
+GlitchFilter.MIRROR = 4;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/constants":"../node_modules/@pixi/constants/lib/constants.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js"}],"../node_modules/@pixi/filter-glow/lib/filter-glow.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GlowFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _utils = require("@pixi/utils");
+
+/*!
+ * @pixi/filter-glow - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-glow is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nvarying vec4 vColor;\n\nuniform sampler2D uSampler;\n\nuniform float outerStrength;\nuniform float innerStrength;\n\nuniform vec4 glowColor;\n\nuniform vec4 filterArea;\nuniform vec4 filterClamp;\nuniform bool knockout;\n\nconst float PI = 3.14159265358979323846264;\n\nconst float DIST = __DIST__;\nconst float ANGLE_STEP_SIZE = min(__ANGLE_STEP_SIZE__, PI * 2.0);\nconst float ANGLE_STEP_NUM = ceil(PI * 2.0 / ANGLE_STEP_SIZE);\n\nconst float MAX_TOTAL_ALPHA = ANGLE_STEP_NUM * DIST * (DIST + 1.0) / 2.0;\n\nvoid main(void) {\n    vec2 px = vec2(1.0 / filterArea.x, 1.0 / filterArea.y);\n\n    float totalAlpha = 0.0;\n\n    vec2 direction;\n    vec2 displaced;\n    vec4 curColor;\n\n    for (float angle = 0.0; angle < PI * 2.0; angle += ANGLE_STEP_SIZE) {\n       direction = vec2(cos(angle), sin(angle)) * px;\n\n       for (float curDistance = 0.0; curDistance < DIST; curDistance++) {\n           displaced = clamp(vTextureCoord + direction * \n                   (curDistance + 1.0), filterClamp.xy, filterClamp.zw);\n\n           curColor = texture2D(uSampler, displaced);\n\n           totalAlpha += (DIST - curDistance) * curColor.a;\n       }\n    }\n    \n    curColor = texture2D(uSampler, vTextureCoord);\n\n    float alphaRatio = (totalAlpha / MAX_TOTAL_ALPHA);\n\n    float innerGlowAlpha = (1.0 - alphaRatio) * innerStrength * curColor.a;\n    float innerGlowStrength = min(1.0, innerGlowAlpha);\n    \n    vec4 innerColor = mix(curColor, glowColor, innerGlowStrength);\n\n    float outerGlowAlpha = alphaRatio * outerStrength * (1. - curColor.a);\n    float outerGlowStrength = min(1.0 - innerColor.a, outerGlowAlpha);\n\n    vec4 outerGlowColor = outerGlowStrength * glowColor.rgba;\n    \n    if (knockout) {\n      float resultAlpha = outerGlowAlpha + innerGlowAlpha;\n      gl_FragColor = vec4(glowColor.rgb * resultAlpha, resultAlpha);\n    }\n    else {\n      gl_FragColor = innerColor + outerGlowColor;\n    }\n}\n";
+/**
+ * GlowFilter, originally by mishaa
+ * [codepen]{@link http://codepen.io/mishaa/pen/raKzrm}.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/glow.png)
+ * @class
+ *
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-glow|@pixi/filter-glow}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number} [options] Options for glow.
+ * @param {number} [options.distance=10] The distance of the glow. Make it 2 times more for resolution=2.
+ *        It can't be changed after filter creation.
+ * @param {number} [options.outerStrength=4] The strength of the glow outward from the edge of the sprite.
+ * @param {number} [options.innerStrength=0] The strength of the glow inward from the edge of the sprite.
+ * @param {number} [options.color=0xffffff] The color of the glow.
+ * @param {number} [options.quality=0.1] A number between 0 and 1 that describes the quality of the glow.
+ *        The higher the number the less performant.
+ * @param {boolean} [options.knockout=false] Toggle to hide the contents and only show glow.
+ *
+ * @example
+ *  someSprite.filters = [
+ *      new GlowFilter({ distance: 15, outerStrength: 2 })
+ *  ];
+ */
+
+var GlowFilter = /*@__PURE__*/function (Filter) {
+  function GlowFilter(options) {
+    var ref = Object.assign({}, GlowFilter.defaults, options);
+    var distance = ref.distance;
+    var outerStrength = ref.outerStrength;
+    var innerStrength = ref.innerStrength;
+    var color = ref.color;
+    var knockout = ref.knockout;
+    var quality = ref.quality;
+    distance = Math.round(distance);
+    Filter.call(this, vertex, fragment.replace(/__ANGLE_STEP_SIZE__/gi, '' + (1 / quality / distance).toFixed(7)).replace(/__DIST__/gi, distance.toFixed(0) + '.0'));
+    this.uniforms.glowColor = new Float32Array([0, 0, 0, 1]);
+    Object.assign(this, {
+      color: color,
+      outerStrength: outerStrength,
+      innerStrength: innerStrength,
+      padding: distance,
+      knockout: knockout
+    });
+  }
+
+  if (Filter) GlowFilter.__proto__ = Filter;
+  GlowFilter.prototype = Object.create(Filter && Filter.prototype);
+  GlowFilter.prototype.constructor = GlowFilter;
+  var prototypeAccessors = {
+    color: {
+      configurable: true
+    },
+    outerStrength: {
+      configurable: true
+    },
+    innerStrength: {
+      configurable: true
+    },
+    knockout: {
+      configurable: true
+    }
+  };
+  /**
+   * The color of the glow.
+   * @member {number}
+   * @default 0xFFFFFF
+   */
+
+  prototypeAccessors.color.get = function () {
+    return (0, _utils.rgb2hex)(this.uniforms.glowColor);
+  };
+
+  prototypeAccessors.color.set = function (value) {
+    (0, _utils.hex2rgb)(value, this.uniforms.glowColor);
+  };
+  /**
+   * The strength of the glow outward from the edge of the sprite.
+   * @member {number}
+   * @default 4
+   */
+
+
+  prototypeAccessors.outerStrength.get = function () {
+    return this.uniforms.outerStrength;
+  };
+
+  prototypeAccessors.outerStrength.set = function (value) {
+    this.uniforms.outerStrength = value;
+  };
+  /**
+   * The strength of the glow inward from the edge of the sprite.
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.innerStrength.get = function () {
+    return this.uniforms.innerStrength;
+  };
+
+  prototypeAccessors.innerStrength.set = function (value) {
+    this.uniforms.innerStrength = value;
+  };
+  /**
+   * Only draw the glow, not the texture itself
+   * @member {boolean}
+   * @default false
+   */
+
+
+  prototypeAccessors.knockout.get = function () {
+    return this.uniforms.knockout;
+  };
+
+  prototypeAccessors.knockout.set = function (value) {
+    this.uniforms.knockout = value;
+  };
+
+  Object.defineProperties(GlowFilter.prototype, prototypeAccessors);
+  return GlowFilter;
+}(_core.Filter);
+
+exports.GlowFilter = GlowFilter;
+GlowFilter.defaults = {
+  distance: 10,
+  outerStrength: 4,
+  innerStrength: 0,
+  color: 0xffffff,
+  quality: 0.1,
+  knockout: false
+};
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/filter-godray/lib/filter-godray.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GodrayFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _math = require("@pixi/math");
+
+/*!
+ * @pixi/filter-godray - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-godray is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var perlin = "vec3 mod289(vec3 x)\n{\n    return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\nvec4 mod289(vec4 x)\n{\n    return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\nvec4 permute(vec4 x)\n{\n    return mod289(((x * 34.0) + 1.0) * x);\n}\nvec4 taylorInvSqrt(vec4 r)\n{\n    return 1.79284291400159 - 0.85373472095314 * r;\n}\nvec3 fade(vec3 t)\n{\n    return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);\n}\n// Classic Perlin noise, periodic variant\nfloat pnoise(vec3 P, vec3 rep)\n{\n    vec3 Pi0 = mod(floor(P), rep); // Integer part, modulo period\n    vec3 Pi1 = mod(Pi0 + vec3(1.0), rep); // Integer part + 1, mod period\n    Pi0 = mod289(Pi0);\n    Pi1 = mod289(Pi1);\n    vec3 Pf0 = fract(P); // Fractional part for interpolation\n    vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0\n    vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);\n    vec4 iy = vec4(Pi0.yy, Pi1.yy);\n    vec4 iz0 = Pi0.zzzz;\n    vec4 iz1 = Pi1.zzzz;\n    vec4 ixy = permute(permute(ix) + iy);\n    vec4 ixy0 = permute(ixy + iz0);\n    vec4 ixy1 = permute(ixy + iz1);\n    vec4 gx0 = ixy0 * (1.0 / 7.0);\n    vec4 gy0 = fract(floor(gx0) * (1.0 / 7.0)) - 0.5;\n    gx0 = fract(gx0);\n    vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);\n    vec4 sz0 = step(gz0, vec4(0.0));\n    gx0 -= sz0 * (step(0.0, gx0) - 0.5);\n    gy0 -= sz0 * (step(0.0, gy0) - 0.5);\n    vec4 gx1 = ixy1 * (1.0 / 7.0);\n    vec4 gy1 = fract(floor(gx1) * (1.0 / 7.0)) - 0.5;\n    gx1 = fract(gx1);\n    vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);\n    vec4 sz1 = step(gz1, vec4(0.0));\n    gx1 -= sz1 * (step(0.0, gx1) - 0.5);\n    gy1 -= sz1 * (step(0.0, gy1) - 0.5);\n    vec3 g000 = vec3(gx0.x, gy0.x, gz0.x);\n    vec3 g100 = vec3(gx0.y, gy0.y, gz0.y);\n    vec3 g010 = vec3(gx0.z, gy0.z, gz0.z);\n    vec3 g110 = vec3(gx0.w, gy0.w, gz0.w);\n    vec3 g001 = vec3(gx1.x, gy1.x, gz1.x);\n    vec3 g101 = vec3(gx1.y, gy1.y, gz1.y);\n    vec3 g011 = vec3(gx1.z, gy1.z, gz1.z);\n    vec3 g111 = vec3(gx1.w, gy1.w, gz1.w);\n    vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));\n    g000 *= norm0.x;\n    g010 *= norm0.y;\n    g100 *= norm0.z;\n    g110 *= norm0.w;\n    vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));\n    g001 *= norm1.x;\n    g011 *= norm1.y;\n    g101 *= norm1.z;\n    g111 *= norm1.w;\n    float n000 = dot(g000, Pf0);\n    float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));\n    float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));\n    float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));\n    float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));\n    float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));\n    float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));\n    float n111 = dot(g111, Pf1);\n    vec3 fade_xyz = fade(Pf0);\n    vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);\n    vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);\n    float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);\n    return 2.2 * n_xyz;\n}\nfloat turb(vec3 P, vec3 rep, float lacunarity, float gain)\n{\n    float sum = 0.0;\n    float sc = 1.0;\n    float totalgain = 1.0;\n    for (float i = 0.0; i < 6.0; i++)\n    {\n        sum += totalgain * pnoise(P * sc, rep);\n        sc *= lacunarity;\n        totalgain *= gain;\n    }\n    return abs(sum);\n}\n";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\nuniform vec2 dimensions;\n\nuniform vec2 light;\nuniform bool parallel;\nuniform float aspect;\n\nuniform float gain;\nuniform float lacunarity;\nuniform float time;\n\n${perlin}\n\nvoid main(void) {\n    vec2 coord = vTextureCoord * filterArea.xy / dimensions.xy;\n\n    float d;\n\n    if (parallel) {\n        float _cos = light.x;\n        float _sin = light.y;\n        d = (_cos * coord.x) + (_sin * coord.y * aspect);\n    } else {\n        float dx = coord.x - light.x / dimensions.x;\n        float dy = (coord.y - light.y / dimensions.y) * aspect;\n        float dis = sqrt(dx * dx + dy * dy) + 0.00001;\n        d = dy / dis;\n    }\n\n    vec3 dir = vec3(d, d, 0.0);\n\n    float noise = turb(dir + vec3(time, 0.0, 62.1 + time) * 0.05, vec3(480.0, 320.0, 480.0), lacunarity, gain);\n    noise = mix(noise, 0.0, 0.3);\n    //fade vertically.\n    vec4 mist = vec4(noise, noise, noise, 1.0) * (1.0 - coord.y);\n    mist.a = 1.0;\n\n    gl_FragColor = texture2D(uSampler, vTextureCoord) + mist;\n}\n";
+/**
+ * GordayFilter, {@link https://codepen.io/alaingalvan originally} by Alain Galvan
+ *
+ *
+ *
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/godray.gif)
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-godray|@pixi/filter-godray}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ *
+ * @example
+ *  displayObject.filters = [new GodrayFilter()];
+ * @param {object} [options] Filter options
+ * @param {number} [options.angle=30] Angle/Light-source of the rays.
+ * @param {number} [options.gain=0.5] General intensity of the effect.
+ * @param {number} [options.lacunrity=2.5] The density of the fractal noise.
+ * @param {boolean} [options.parallel=true] `true` to use `angle`, `false` to use `center`
+ * @param {number} [options.time=0] The current time position.
+ * @param {PIXI.Point|number[]} [options.center=[0,0]] Focal point for non-parallel rays,
+ *        to use this `parallel` must be set to `false`.
+ */
+
+var GodrayFilter = /*@__PURE__*/function (Filter) {
+  function GodrayFilter(options) {
+    Filter.call(this, vertex, fragment.replace('${perlin}', perlin));
+    this.uniforms.dimensions = new Float32Array(2); // Fallback support for ctor: (angle, gain, lacunarity, time)
+
+    if (typeof options === 'number') {
+      // eslint-disable-next-line no-console
+      console.warn('GodrayFilter now uses options instead of (angle, gain, lacunarity, time)');
+      options = {
+        angle: options
+      };
+
+      if (arguments[1] !== undefined) {
+        options.gain = arguments[1];
+      }
+
+      if (arguments[2] !== undefined) {
+        options.lacunarity = arguments[2];
+      }
+
+      if (arguments[3] !== undefined) {
+        options.time = arguments[3];
+      }
+    }
+
+    options = Object.assign({
+      angle: 30,
+      gain: 0.5,
+      lacunarity: 2.5,
+      time: 0,
+      parallel: true,
+      center: [0, 0]
+    }, options);
+    this._angleLight = new _math.Point();
+    this.angle = options.angle;
+    this.gain = options.gain;
+    this.lacunarity = options.lacunarity;
+    /**
+     * `true` if light rays are parallel (uses angle),
+     * `false` to use the focal `center` point
+     *
+     * @member {boolean}
+     * @default true
+     */
+
+    this.parallel = options.parallel;
+    /**
+     * The position of the emitting point for light rays
+     * only used if `parallel` is set to `false`.
+     *
+     * @member {PIXI.Point|number[]}
+     * @default [0, 0]
+     */
+
+    this.center = options.center;
+    /**
+     * The current time.
+     *
+     * @member {number}
+     * @default 0
+     */
+
+    this.time = options.time;
+  }
+
+  if (Filter) GodrayFilter.__proto__ = Filter;
+  GodrayFilter.prototype = Object.create(Filter && Filter.prototype);
+  GodrayFilter.prototype.constructor = GodrayFilter;
+  var prototypeAccessors = {
+    angle: {
+      configurable: true
+    },
+    gain: {
+      configurable: true
+    },
+    lacunarity: {
+      configurable: true
+    }
+  };
+  /**
+   * Applies the filter.
+   * @private
+   * @param {PIXI.FilterManager} filterManager - The manager.
+   * @param {PIXI.RenderTarget} input - The input target.
+   * @param {PIXI.RenderTarget} output - The output target.
+   */
+
+  GodrayFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    var ref = input.filterFrame;
+    var width = ref.width;
+    var height = ref.height;
+    this.uniforms.light = this.parallel ? this._angleLight : this.center;
+    this.uniforms.parallel = this.parallel;
+    this.uniforms.dimensions[0] = width;
+    this.uniforms.dimensions[1] = height;
+    this.uniforms.aspect = height / width;
+    this.uniforms.time = this.time; // draw the filter...
+
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * The angle/light-source of the rays in degrees. For instance, a value of 0 is vertical rays,
+   *     values of 90 or -90 produce horizontal rays.
+   * @member {number}
+   * @default 30
+   */
+
+
+  prototypeAccessors.angle.get = function () {
+    return this._angle;
+  };
+
+  prototypeAccessors.angle.set = function (value) {
+    this._angle = value;
+    var radians = value * _math.DEG_TO_RAD;
+    this._angleLight.x = Math.cos(radians);
+    this._angleLight.y = Math.sin(radians);
+  };
+  /**
+   * General intensity of the effect. A value closer to 1 will produce a more intense effect,
+   * where a value closer to 0 will produce a subtler effect.
+   *
+   * @member {number}
+   * @default 0.5
+   */
+
+
+  prototypeAccessors.gain.get = function () {
+    return this.uniforms.gain;
+  };
+
+  prototypeAccessors.gain.set = function (value) {
+    this.uniforms.gain = value;
+  };
+  /**
+   * The density of the fractal noise. A higher amount produces more rays and a smaller amound
+   * produces fewer waves.
+   *
+   * @member {number}
+   * @default 2.5
+   */
+
+
+  prototypeAccessors.lacunarity.get = function () {
+    return this.uniforms.lacunarity;
+  };
+
+  prototypeAccessors.lacunarity.set = function (value) {
+    this.uniforms.lacunarity = value;
+  };
+
+  Object.defineProperties(GodrayFilter.prototype, prototypeAccessors);
+  return GodrayFilter;
+}(_core.Filter);
+
+exports.GodrayFilter = GodrayFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js"}],"../node_modules/@pixi/filter-motion-blur/lib/filter-motion-blur.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MotionBlurFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _math = require("@pixi/math");
+
+/*!
+ * @pixi/filter-motion-blur - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-motion-blur is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\n\nuniform vec2 uVelocity;\nuniform int uKernelSize;\nuniform float uOffset;\n\nconst int MAX_KERNEL_SIZE = 2048;\n\n// Notice:\n// the perfect way:\n//    int kernelSize = min(uKernelSize, MAX_KERNELSIZE);\n// BUT in real use-case , uKernelSize < MAX_KERNELSIZE almost always.\n// So use uKernelSize directly.\n\nvoid main(void)\n{\n    vec4 color = texture2D(uSampler, vTextureCoord);\n\n    if (uKernelSize == 0)\n    {\n        gl_FragColor = color;\n        return;\n    }\n\n    vec2 velocity = uVelocity / filterArea.xy;\n    float offset = -uOffset / length(uVelocity) - 0.5;\n    int k = uKernelSize - 1;\n\n    for(int i = 0; i < MAX_KERNEL_SIZE - 1; i++) {\n        if (i == k) {\n            break;\n        }\n        vec2 bias = velocity * (float(i) / float(k) + offset);\n        color += texture2D(uSampler, vTextureCoord + bias);\n    }\n    gl_FragColor = color / float(uKernelSize);\n}\n";
+/**
+ * The MotionBlurFilter applies a Motion blur to an object.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/motion-blur.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-motion-blur|@pixi/filter-motion-blur}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {PIXI.ObservablePoint|PIXI.Point|number[]} [velocity=[0, 0]] Sets the velocity of the motion for blur effect.
+ * @param {number} [kernelSize=5] - The kernelSize of the blur filter. Must be odd number >= 5
+ * @param {number} [offset=0] - The offset of the blur filter.
+ */
+
+var MotionBlurFilter = /*@__PURE__*/function (Filter) {
+  function MotionBlurFilter(velocity, kernelSize, offset) {
+    if (velocity === void 0) velocity = [0, 0];
+    if (kernelSize === void 0) kernelSize = 5;
+    if (offset === void 0) offset = 0;
+    Filter.call(this, vertex, fragment);
+    this.uniforms.uVelocity = new Float32Array(2);
+    this._velocity = new _math.ObservablePoint(this.velocityChanged, this);
+    this.velocity = velocity;
+    /**
+     * The kernelSize of the blur, higher values are slower but look better.
+     * Use odd value greater than 5.
+     * @member {number}
+     * @default 5
+     */
+
+    this.kernelSize = kernelSize;
+    this.offset = offset;
+  }
+
+  if (Filter) MotionBlurFilter.__proto__ = Filter;
+  MotionBlurFilter.prototype = Object.create(Filter && Filter.prototype);
+  MotionBlurFilter.prototype.constructor = MotionBlurFilter;
+  var prototypeAccessors = {
+    velocity: {
+      configurable: true
+    },
+    offset: {
+      configurable: true
+    }
+  };
+  /**
+   * Override existing apply method in PIXI.Filter
+   * @private
+   */
+
+  MotionBlurFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    var ref = this.velocity;
+    var x = ref.x;
+    var y = ref.y;
+    this.uniforms.uKernelSize = x !== 0 || y !== 0 ? this.kernelSize : 0;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * Sets the velocity of the motion for blur effect.
+   *
+   * @member {PIXI.ObservablePoint|PIXI.Point|number[]}
+   */
+
+
+  prototypeAccessors.velocity.set = function (value) {
+    if (Array.isArray(value)) {
+      this._velocity.set(value[0], value[1]);
+    } else if (value instanceof _math.Point || value instanceof _math.ObservablePoint) {
+      this._velocity.copyFrom(value);
+    }
+  };
+
+  prototypeAccessors.velocity.get = function () {
+    return this._velocity;
+  };
+  /**
+   * Handle velocity changed
+   * @private
+   */
+
+
+  MotionBlurFilter.prototype.velocityChanged = function velocityChanged() {
+    this.uniforms.uVelocity[0] = this._velocity.x;
+    this.uniforms.uVelocity[1] = this._velocity.y;
+  };
+  /**
+   * The offset of the blur filter.
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.offset.set = function (value) {
+    this.uniforms.uOffset = value;
+  };
+
+  prototypeAccessors.offset.get = function () {
+    return this.uniforms.uOffset;
+  };
+
+  Object.defineProperties(MotionBlurFilter.prototype, prototypeAccessors);
+  return MotionBlurFilter;
+}(_core.Filter);
+
+exports.MotionBlurFilter = MotionBlurFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js"}],"../node_modules/@pixi/filter-multi-color-replace/lib/filter-multi-color-replace.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MultiColorReplaceFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _utils = require("@pixi/utils");
+
+/*!
+ * @pixi/filter-multi-color-replace - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-multi-color-replace is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform float epsilon;\n\nconst int MAX_COLORS = %maxColors%;\n\nuniform vec3 originalColors[MAX_COLORS];\nuniform vec3 targetColors[MAX_COLORS];\n\nvoid main(void)\n{\n    gl_FragColor = texture2D(uSampler, vTextureCoord);\n\n    float alpha = gl_FragColor.a;\n    if (alpha < 0.0001)\n    {\n      return;\n    }\n\n    vec3 color = gl_FragColor.rgb / alpha;\n\n    for(int i = 0; i < MAX_COLORS; i++)\n    {\n      vec3 origColor = originalColors[i];\n      if (origColor.r < 0.0)\n      {\n        break;\n      }\n      vec3 colorDiff = origColor - color;\n      if (length(colorDiff) < epsilon)\n      {\n        vec3 targetColor = targetColors[i];\n        gl_FragColor = vec4((targetColor + colorDiff) * alpha, alpha);\n        return;\n      }\n    }\n}\n";
+/**
+ * Filter for replacing a color with another color. Similar to ColorReplaceFilter, but support multiple
+ * colors.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/multi-color-replace.png)
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-multi-color-replace|@pixi/filter-multi-color-replace}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {Array<Array>} replacements - The collection of replacement items. Each item is color-pair (an array length is 2).
+ *                       In the pair, the first value is original color , the second value is target color.
+ * @param {number} [epsilon=0.05] - Tolerance of the floating-point comparison between colors
+ *                                  (lower = more exact, higher = more inclusive)
+ * @param {number} [maxColors] - The maximum number of replacements filter is able to use. Because the
+ *                               fragment is only compiled once, this cannot be changed after construction.
+ *                               If omitted, the default value is the length of `replacements`.
+ *
+ * @example
+ *  // replaces pure red with pure blue, and replaces pure green with pure white
+ *  someSprite.filters = [new MultiColorReplaceFilter(
+ *    [
+ *      [0xFF0000, 0x0000FF],
+ *      [0x00FF00, 0xFFFFFF]
+ *    ],
+ *    0.001
+ *  )];
+ *
+ *  You also could use [R, G, B] as the color
+ *  someOtherSprite.filters = [new MultiColorReplaceFilter(
+ *    [
+ *      [ [1,0,0], [0,0,1] ],
+ *      [ [0,1,0], [1,1,1] ]
+ *    ],
+ *    0.001
+ *  )];
+ *
+ */
+
+var MultiColorReplaceFilter = /*@__PURE__*/function (Filter) {
+  function MultiColorReplaceFilter(replacements, epsilon, maxColors) {
+    if (epsilon === void 0) epsilon = 0.05;
+    if (maxColors === void 0) maxColors = null;
+    maxColors = maxColors || replacements.length;
+    Filter.call(this, vertex, fragment.replace(/%maxColors%/g, maxColors));
+    this.epsilon = epsilon;
+    this._maxColors = maxColors;
+    this._replacements = null;
+    this.uniforms.originalColors = new Float32Array(maxColors * 3);
+    this.uniforms.targetColors = new Float32Array(maxColors * 3);
+    this.replacements = replacements;
+  }
+
+  if (Filter) MultiColorReplaceFilter.__proto__ = Filter;
+  MultiColorReplaceFilter.prototype = Object.create(Filter && Filter.prototype);
+  MultiColorReplaceFilter.prototype.constructor = MultiColorReplaceFilter;
+  var prototypeAccessors = {
+    replacements: {
+      configurable: true
+    },
+    maxColors: {
+      configurable: true
+    },
+    epsilon: {
+      configurable: true
+    }
+  };
+  /**
+   * The source and target colors for replacement. See constructor for information on the format.
+   *
+   * @member {Array<Array>}
+   */
+
+  prototypeAccessors.replacements.set = function (replacements) {
+    var originals = this.uniforms.originalColors;
+    var targets = this.uniforms.targetColors;
+    var colorCount = replacements.length;
+
+    if (colorCount > this._maxColors) {
+      throw "Length of replacements (" + colorCount + ") exceeds the maximum colors length (" + this._maxColors + ")";
+    } // Fill with negative values
+
+
+    originals[colorCount * 3] = -1;
+
+    for (var i = 0; i < colorCount; i++) {
+      var pair = replacements[i]; // for original colors
+
+      var color = pair[0];
+
+      if (typeof color === 'number') {
+        color = (0, _utils.hex2rgb)(color);
+      } else {
+        pair[0] = (0, _utils.rgb2hex)(color);
+      }
+
+      originals[i * 3] = color[0];
+      originals[i * 3 + 1] = color[1];
+      originals[i * 3 + 2] = color[2]; // for target colors
+
+      var targetColor = pair[1];
+
+      if (typeof targetColor === 'number') {
+        targetColor = (0, _utils.hex2rgb)(targetColor);
+      } else {
+        pair[1] = (0, _utils.rgb2hex)(targetColor);
+      }
+
+      targets[i * 3] = targetColor[0];
+      targets[i * 3 + 1] = targetColor[1];
+      targets[i * 3 + 2] = targetColor[2];
+    }
+
+    this._replacements = replacements;
+  };
+
+  prototypeAccessors.replacements.get = function () {
+    return this._replacements;
+  };
+  /**
+   * Should be called after changing any of the contents of the replacements.
+   * This is a convenience method for resetting the `replacements`.
+   */
+
+
+  MultiColorReplaceFilter.prototype.refresh = function refresh() {
+    this.replacements = this._replacements;
+  };
+  /**
+   * The maximum number of color replacements supported by this filter. Can be changed
+   * _only_ during construction.
+   *
+   * @member {number}
+   * @readonly
+   */
+
+
+  prototypeAccessors.maxColors.get = function () {
+    return this._maxColors;
+  };
+  /**
+   * Tolerance of the floating-point comparison between colors (lower = more exact, higher = more inclusive)
+   *
+   * @member {number}
+   * @default 0.05
+   */
+
+
+  prototypeAccessors.epsilon.set = function (value) {
+    this.uniforms.epsilon = value;
+  };
+
+  prototypeAccessors.epsilon.get = function () {
+    return this.uniforms.epsilon;
+  };
+
+  Object.defineProperties(MultiColorReplaceFilter.prototype, prototypeAccessors);
+  return MultiColorReplaceFilter;
+}(_core.Filter);
+
+exports.MultiColorReplaceFilter = MultiColorReplaceFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/filter-old-film/lib/filter-old-film.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.OldFilmFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-old-film - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-old-film is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\nuniform vec2 dimensions;\n\nuniform float sepia;\nuniform float noise;\nuniform float noiseSize;\nuniform float scratch;\nuniform float scratchDensity;\nuniform float scratchWidth;\nuniform float vignetting;\nuniform float vignettingAlpha;\nuniform float vignettingBlur;\nuniform float seed;\n\nconst float SQRT_2 = 1.414213;\nconst vec3 SEPIA_RGB = vec3(112.0 / 255.0, 66.0 / 255.0, 20.0 / 255.0);\n\nfloat rand(vec2 co) {\n    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);\n}\n\nvec3 Overlay(vec3 src, vec3 dst)\n{\n    // if (dst <= 0.5) then: 2 * src * dst\n    // if (dst > 0.5) then: 1 - 2 * (1 - dst) * (1 - src)\n    return vec3((dst.x <= 0.5) ? (2.0 * src.x * dst.x) : (1.0 - 2.0 * (1.0 - dst.x) * (1.0 - src.x)),\n                (dst.y <= 0.5) ? (2.0 * src.y * dst.y) : (1.0 - 2.0 * (1.0 - dst.y) * (1.0 - src.y)),\n                (dst.z <= 0.5) ? (2.0 * src.z * dst.z) : (1.0 - 2.0 * (1.0 - dst.z) * (1.0 - src.z)));\n}\n\n\nvoid main()\n{\n    gl_FragColor = texture2D(uSampler, vTextureCoord);\n    vec3 color = gl_FragColor.rgb;\n\n    if (sepia > 0.0)\n    {\n        float gray = (color.x + color.y + color.z) / 3.0;\n        vec3 grayscale = vec3(gray);\n\n        color = Overlay(SEPIA_RGB, grayscale);\n\n        color = grayscale + sepia * (color - grayscale);\n    }\n\n    vec2 coord = vTextureCoord * filterArea.xy / dimensions.xy;\n\n    if (vignetting > 0.0)\n    {\n        float outter = SQRT_2 - vignetting * SQRT_2;\n        vec2 dir = vec2(vec2(0.5, 0.5) - coord);\n        dir.y *= dimensions.y / dimensions.x;\n        float darker = clamp((outter - length(dir) * SQRT_2) / ( 0.00001 + vignettingBlur * SQRT_2), 0.0, 1.0);\n        color.rgb *= darker + (1.0 - darker) * (1.0 - vignettingAlpha);\n    }\n\n    if (scratchDensity > seed && scratch != 0.0)\n    {\n        float phase = seed * 256.0;\n        float s = mod(floor(phase), 2.0);\n        float dist = 1.0 / scratchDensity;\n        float d = distance(coord, vec2(seed * dist, abs(s - seed * dist)));\n        if (d < seed * 0.6 + 0.4)\n        {\n            highp float period = scratchDensity * 10.0;\n\n            float xx = coord.x * period + phase;\n            float aa = abs(mod(xx, 0.5) * 4.0);\n            float bb = mod(floor(xx / 0.5), 2.0);\n            float yy = (1.0 - bb) * aa + bb * (2.0 - aa);\n\n            float kk = 2.0 * period;\n            float dw = scratchWidth / dimensions.x * (0.75 + seed);\n            float dh = dw * kk;\n\n            float tine = (yy - (2.0 - dh));\n\n            if (tine > 0.0) {\n                float _sign = sign(scratch);\n\n                tine = s * tine / period + scratch + 0.1;\n                tine = clamp(tine + 1.0, 0.5 + _sign * 0.5, 1.5 + _sign * 0.5);\n\n                color.rgb *= tine;\n            }\n        }\n    }\n\n    if (noise > 0.0 && noiseSize > 0.0)\n    {\n        vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;\n        pixelCoord.x = floor(pixelCoord.x / noiseSize);\n        pixelCoord.y = floor(pixelCoord.y / noiseSize);\n        // vec2 d = pixelCoord * noiseSize * vec2(1024.0 + seed * 512.0, 1024.0 - seed * 512.0);\n        // float _noise = snoise(d) * 0.5;\n        float _noise = rand(pixelCoord * noiseSize * seed) - 0.5;\n        color += _noise * noise;\n    }\n\n    gl_FragColor.rgb = color;\n}\n";
+/**
+ * The OldFilmFilter applies a Old film effect to an object.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/old-film.gif)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-old-film|@pixi/filter-old-film}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ *
+ * @param {object|number} [options] - The optional parameters of old film effect.
+ *                        When options is a number , it will be `seed`
+ * @param {number} [options.sepia=0.3] - The amount of saturation of sepia effect,
+ *        a value of `1` is more saturation and closer to `0` is less, and a value of
+ *        `0` produces no sepia effect
+ * @param {number} [options.noise=0.3] - Opacity/intensity of the noise effect between `0` and `1`
+ * @param {number} [options.noiseSize=1.0] - The size of the noise particles
+ * @param {number} [options.scratch=0.5] - How often scratches appear
+ * @param {number} [options.scratchDensity=0.3] - The density of the number of scratches
+ * @param {number} [options.scratchWidth=1.0] - The width of the scratches
+ * @param {number} [options.vignetting=0.3] - The radius of the vignette effect, smaller
+ *        values produces a smaller vignette
+ * @param {number} [options.vignettingAlpha=1.0] - Amount of opacity of vignette
+ * @param {number} [options.vignettingBlur=0.3] - Blur intensity of the vignette
+ * @param {number} [seed=0] - A see value to apply to the random noise generation
+ */
+
+var OldFilmFilter = /*@__PURE__*/function (Filter) {
+  function OldFilmFilter(options, seed) {
+    if (seed === void 0) seed = 0;
+    Filter.call(this, vertex, fragment);
+    this.uniforms.dimensions = new Float32Array(2);
+
+    if (typeof options === 'number') {
+      this.seed = options;
+      options = null;
+    } else {
+      /**
+       * A see value to apply to the random noise generation
+       * @member {number}
+       */
+      this.seed = seed;
+    }
+
+    Object.assign(this, {
+      sepia: 0.3,
+      noise: 0.3,
+      noiseSize: 1.0,
+      scratch: 0.5,
+      scratchDensity: 0.3,
+      scratchWidth: 1.0,
+      vignetting: 0.3,
+      vignettingAlpha: 1.0,
+      vignettingBlur: 0.3
+    }, options);
+  }
+
+  if (Filter) OldFilmFilter.__proto__ = Filter;
+  OldFilmFilter.prototype = Object.create(Filter && Filter.prototype);
+  OldFilmFilter.prototype.constructor = OldFilmFilter;
+  var prototypeAccessors = {
+    sepia: {
+      configurable: true
+    },
+    noise: {
+      configurable: true
+    },
+    noiseSize: {
+      configurable: true
+    },
+    scratch: {
+      configurable: true
+    },
+    scratchDensity: {
+      configurable: true
+    },
+    scratchWidth: {
+      configurable: true
+    },
+    vignetting: {
+      configurable: true
+    },
+    vignettingAlpha: {
+      configurable: true
+    },
+    vignettingBlur: {
+      configurable: true
+    }
+  };
+  /**
+   * Override existing apply method in PIXI.Filter
+   * @private
+   */
+
+  OldFilmFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    this.uniforms.dimensions[0] = input.filterFrame.width;
+    this.uniforms.dimensions[1] = input.filterFrame.height; // named `seed` because in the most programming languages,
+    // `random` used for "the function for generating random value".
+
+    this.uniforms.seed = this.seed;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * The amount of saturation of sepia effect,
+   * a value of `1` is more saturation and closer to `0` is less,
+   * and a value of `0` produces no sepia effect
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.sepia.set = function (value) {
+    this.uniforms.sepia = value;
+  };
+
+  prototypeAccessors.sepia.get = function () {
+    return this.uniforms.sepia;
+  };
+  /**
+   * Opacity/intensity of the noise effect between `0` and `1`
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.noise.set = function (value) {
+    this.uniforms.noise = value;
+  };
+
+  prototypeAccessors.noise.get = function () {
+    return this.uniforms.noise;
+  };
+  /**
+   * The size of the noise particles
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.noiseSize.set = function (value) {
+    this.uniforms.noiseSize = value;
+  };
+
+  prototypeAccessors.noiseSize.get = function () {
+    return this.uniforms.noiseSize;
+  };
+  /**
+   * How often scratches appear
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.scratch.set = function (value) {
+    this.uniforms.scratch = value;
+  };
+
+  prototypeAccessors.scratch.get = function () {
+    return this.uniforms.scratch;
+  };
+  /**
+   * The density of the number of scratches
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.scratchDensity.set = function (value) {
+    this.uniforms.scratchDensity = value;
+  };
+
+  prototypeAccessors.scratchDensity.get = function () {
+    return this.uniforms.scratchDensity;
+  };
+  /**
+   * The width of the scratches
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.scratchWidth.set = function (value) {
+    this.uniforms.scratchWidth = value;
+  };
+
+  prototypeAccessors.scratchWidth.get = function () {
+    return this.uniforms.scratchWidth;
+  };
+  /**
+   * The radius of the vignette effect, smaller
+   * values produces a smaller vignette
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.vignetting.set = function (value) {
+    this.uniforms.vignetting = value;
+  };
+
+  prototypeAccessors.vignetting.get = function () {
+    return this.uniforms.vignetting;
+  };
+  /**
+   * Amount of opacity of vignette
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.vignettingAlpha.set = function (value) {
+    this.uniforms.vignettingAlpha = value;
+  };
+
+  prototypeAccessors.vignettingAlpha.get = function () {
+    return this.uniforms.vignettingAlpha;
+  };
+  /**
+   * Blur intensity of the vignette
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.vignettingBlur.set = function (value) {
+    this.uniforms.vignettingBlur = value;
+  };
+
+  prototypeAccessors.vignettingBlur.get = function () {
+    return this.uniforms.vignettingBlur;
+  };
+
+  Object.defineProperties(OldFilmFilter.prototype, prototypeAccessors);
+  return OldFilmFilter;
+}(_core.Filter);
+
+exports.OldFilmFilter = OldFilmFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-outline/lib/filter-outline.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.OutlineFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _utils = require("@pixi/utils");
+
+/*!
+ * @pixi/filter-outline - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-outline is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec2 thickness;\nuniform vec4 outlineColor;\nuniform vec4 filterClamp;\n\nconst float DOUBLE_PI = 3.14159265358979323846264 * 2.;\n\nvoid main(void) {\n    vec4 ownColor = texture2D(uSampler, vTextureCoord);\n    vec4 curColor;\n    float maxAlpha = 0.;\n    vec2 displaced;\n    for (float angle = 0.; angle <= DOUBLE_PI; angle += ${angleStep}) {\n        displaced.x = vTextureCoord.x + thickness.x * cos(angle);\n        displaced.y = vTextureCoord.y + thickness.y * sin(angle);\n        curColor = texture2D(uSampler, clamp(displaced, filterClamp.xy, filterClamp.zw));\n        maxAlpha = max(maxAlpha, curColor.a);\n    }\n    float resultAlpha = max(maxAlpha, ownColor.a);\n    gl_FragColor = vec4((ownColor.rgb + outlineColor.rgb * (1. - ownColor.a)) * resultAlpha, resultAlpha);\n}\n";
+/**
+ * OutlineFilter, originally by mishaa
+ * http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966
+ * http://codepen.io/mishaa/pen/emGNRB<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/outline.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-outline|@pixi/filter-outline}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number} [thickness=1] The tickness of the outline. Make it 2 times more for resolution 2
+ * @param {number} [color=0x000000] The color of the outline.
+ * @param {number} [quality=0.1] The quality of the outline from `0` to `1`, using a higher quality
+ *        setting will result in slower performance and more accuracy.
+ *
+ * @example
+ *  someSprite.filters = [new OutlineFilter(2, 0x99ff99)];
+ */
+
+var OutlineFilter = /*@__PURE__*/function (Filter) {
+  function OutlineFilter(thickness, color, quality) {
+    if (thickness === void 0) thickness = 1;
+    if (color === void 0) color = 0x000000;
+    if (quality === void 0) quality = 0.1;
+    var samples = Math.max(quality * OutlineFilter.MAX_SAMPLES, OutlineFilter.MIN_SAMPLES);
+    var angleStep = (Math.PI * 2 / samples).toFixed(7);
+    Filter.call(this, vertex, fragment.replace(/\$\{angleStep\}/, angleStep));
+    this.uniforms.thickness = new Float32Array([0, 0]);
+    /**
+     * The thickness of the outline.
+     * @member {number}
+     * @default 1
+     */
+
+    this.thickness = thickness;
+    this.uniforms.outlineColor = new Float32Array([0, 0, 0, 1]);
+    this.color = color;
+    this.quality = quality;
+  }
+
+  if (Filter) OutlineFilter.__proto__ = Filter;
+  OutlineFilter.prototype = Object.create(Filter && Filter.prototype);
+  OutlineFilter.prototype.constructor = OutlineFilter;
+  var prototypeAccessors = {
+    color: {
+      configurable: true
+    }
+  };
+
+  OutlineFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    this.uniforms.thickness[0] = this.thickness / input._frame.width;
+    this.uniforms.thickness[1] = this.thickness / input._frame.height;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * The color of the glow.
+   * @member {number}
+   * @default 0x000000
+   */
+
+
+  prototypeAccessors.color.get = function () {
+    return (0, _utils.rgb2hex)(this.uniforms.outlineColor);
+  };
+
+  prototypeAccessors.color.set = function (value) {
+    (0, _utils.hex2rgb)(value, this.uniforms.outlineColor);
+  };
+
+  Object.defineProperties(OutlineFilter.prototype, prototypeAccessors);
+  return OutlineFilter;
+}(_core.Filter);
+/**
+ * The minimum number of samples for rendering outline.
+ * @static
+ * @member {number} MIN_SAMPLES
+ * @memberof PIXI.filters.OutlineFilter
+ * @default 1
+ */
+
+
+exports.OutlineFilter = OutlineFilter;
+OutlineFilter.MIN_SAMPLES = 1;
+/**
+ * The maximum number of samples for rendering outline.
+ * @static
+ * @member {number} MAX_SAMPLES
+ * @memberof PIXI.filters.OutlineFilter
+ * @default 100
+ */
+
+OutlineFilter.MAX_SAMPLES = 100;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/filter-pixelate/lib/filter-pixelate.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.PixelateFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-pixelate - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-pixelate is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "precision mediump float;\n\nvarying vec2 vTextureCoord;\n\nuniform vec2 size;\nuniform sampler2D uSampler;\n\nuniform vec4 filterArea;\n\nvec2 mapCoord( vec2 coord )\n{\n    coord *= filterArea.xy;\n    coord += filterArea.zw;\n\n    return coord;\n}\n\nvec2 unmapCoord( vec2 coord )\n{\n    coord -= filterArea.zw;\n    coord /= filterArea.xy;\n\n    return coord;\n}\n\nvec2 pixelate(vec2 coord, vec2 size)\n{\n\treturn floor( coord / size ) * size;\n}\n\nvoid main(void)\n{\n    vec2 coord = mapCoord(vTextureCoord);\n\n    coord = pixelate(coord, size);\n\n    coord = unmapCoord(coord);\n\n    gl_FragColor = texture2D(uSampler, coord);\n}\n";
+/**
+ * This filter applies a pixelate effect making display objects appear 'blocky'.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/pixelate.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-pixelate|@pixi/filter-pixelate}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {PIXI.Point|Array<number>|number} [size=10] Either the width/height of the size of the pixels, or square size
+ */
+
+var PixelateFilter = /*@__PURE__*/function (Filter) {
+  function PixelateFilter(size) {
+    if (size === void 0) size = 10;
+    Filter.call(this, vertex, fragment);
+    this.size = size;
+  }
+
+  if (Filter) PixelateFilter.__proto__ = Filter;
+  PixelateFilter.prototype = Object.create(Filter && Filter.prototype);
+  PixelateFilter.prototype.constructor = PixelateFilter;
+  var prototypeAccessors = {
+    size: {
+      configurable: true
+    }
+  };
+  /**
+   * This a point that describes the size of the blocks.
+   * x is the width of the block and y is the height.
+   *
+   * @member {PIXI.Point|Array<number>|number}
+   * @default 10
+   */
+
+  prototypeAccessors.size.get = function () {
+    return this.uniforms.size;
+  };
+
+  prototypeAccessors.size.set = function (value) {
+    if (typeof value === 'number') {
+      value = [value, value];
+    }
+
+    this.uniforms.size = value;
+  };
+
+  Object.defineProperties(PixelateFilter.prototype, prototypeAccessors);
+  return PixelateFilter;
+}(_core.Filter);
+
+exports.PixelateFilter = PixelateFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-radial-blur/lib/filter-radial-blur.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.RadialBlurFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-radial-blur - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-radial-blur is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\n\nuniform float uRadian;\nuniform vec2 uCenter;\nuniform float uRadius;\nuniform int uKernelSize;\n\nconst int MAX_KERNEL_SIZE = 2048;\n\nvoid main(void)\n{\n    vec4 color = texture2D(uSampler, vTextureCoord);\n\n    if (uKernelSize == 0)\n    {\n        gl_FragColor = color;\n        return;\n    }\n\n    float aspect = filterArea.y / filterArea.x;\n    vec2 center = uCenter.xy / filterArea.xy;\n    float gradient = uRadius / filterArea.x * 0.3;\n    float radius = uRadius / filterArea.x - gradient * 0.5;\n    int k = uKernelSize - 1;\n\n    vec2 coord = vTextureCoord;\n    vec2 dir = vec2(center - coord);\n    float dist = length(vec2(dir.x, dir.y * aspect));\n\n    float radianStep = uRadian;\n    if (radius >= 0.0 && dist > radius) {\n        float delta = dist - radius;\n        float gap = gradient;\n        float scale = 1.0 - abs(delta / gap);\n        if (scale <= 0.0) {\n            gl_FragColor = color;\n            return;\n        }\n        radianStep *= scale;\n    }\n    radianStep /= float(k);\n\n    float s = sin(radianStep);\n    float c = cos(radianStep);\n    mat2 rotationMatrix = mat2(vec2(c, -s), vec2(s, c));\n\n    for(int i = 0; i < MAX_KERNEL_SIZE - 1; i++) {\n        if (i == k) {\n            break;\n        }\n\n        coord -= center;\n        coord.y *= aspect;\n        coord = rotationMatrix * coord;\n        coord.y /= aspect;\n        coord += center;\n\n        vec4 sample = texture2D(uSampler, coord);\n\n        // switch to pre-multiplied alpha to correctly blur transparent images\n        // sample.rgb *= sample.a;\n\n        color += sample;\n    }\n\n    gl_FragColor = color / float(uKernelSize);\n}\n";
+/**
+ * The RadialBlurFilter applies a Motion blur to an object.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/radial-blur.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-radial-blur|@pixi/filter-radial-blur}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number} [angle=0] Sets the angle of the motion for blur effect.
+ * @param {PIXI.Point|number[]} [center=[0,0]] The center of the radial.
+ * @param {number} [kernelSize=5] - The kernelSize of the blur filter. But be odd number >= 3
+ * @param {number} [radius=-1] - The maximum size of the blur radius, `-1` is infinite
+ */
+
+var RadialBlurFilter = /*@__PURE__*/function (Filter) {
+  function RadialBlurFilter(angle, center, kernelSize, radius) {
+    if (angle === void 0) angle = 0;
+    if (center === void 0) center = [0, 0];
+    if (kernelSize === void 0) kernelSize = 5;
+    if (radius === void 0) radius = -1;
+    Filter.call(this, vertex, fragment);
+    this._angle = 0;
+    this.angle = angle;
+    this.center = center;
+    this.kernelSize = kernelSize;
+    this.radius = radius;
+  }
+
+  if (Filter) RadialBlurFilter.__proto__ = Filter;
+  RadialBlurFilter.prototype = Object.create(Filter && Filter.prototype);
+  RadialBlurFilter.prototype.constructor = RadialBlurFilter;
+  var prototypeAccessors = {
+    angle: {
+      configurable: true
+    },
+    center: {
+      configurable: true
+    },
+    radius: {
+      configurable: true
+    }
+  };
+  /**
+   * Override existing apply method in PIXI.Filter
+   * @private
+   */
+
+  RadialBlurFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    this.uniforms.uKernelSize = this._angle !== 0 ? this.kernelSize : 0;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * Sets the angle in degrees of the motion for blur effect.
+   *
+   * @member {PIXI.Point|number[]}
+   * @default [0, 0]
+   */
+
+
+  prototypeAccessors.angle.set = function (value) {
+    this._angle = value;
+    this.uniforms.uRadian = value * Math.PI / 180;
+  };
+
+  prototypeAccessors.angle.get = function () {
+    return this._angle;
+  };
+  /**
+   * Center of the effect.
+   *
+   * @member {PIXI.Point|number[]}
+   * @default [0, 0]
+   */
+
+
+  prototypeAccessors.center.get = function () {
+    return this.uniforms.uCenter;
+  };
+
+  prototypeAccessors.center.set = function (value) {
+    this.uniforms.uCenter = value;
+  };
+  /**
+   * Outer radius of the effect. The default value of `-1` is infinite.
+   *
+   * @member {number}
+   * @default -1
+   */
+
+
+  prototypeAccessors.radius.get = function () {
+    return this.uniforms.uRadius;
+  };
+
+  prototypeAccessors.radius.set = function (value) {
+    if (value < 0 || value === Infinity) {
+      value = -1;
+    }
+
+    this.uniforms.uRadius = value;
+  };
+
+  Object.defineProperties(RadialBlurFilter.prototype, prototypeAccessors);
+  return RadialBlurFilter;
+}(_core.Filter);
+
+exports.RadialBlurFilter = RadialBlurFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-reflection/lib/filter-reflection.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ReflectionFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-reflection - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-reflection is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec4 filterArea;\nuniform vec4 filterClamp;\nuniform vec2 dimensions;\n\nuniform bool mirror;\nuniform float boundary;\nuniform vec2 amplitude;\nuniform vec2 waveLength;\nuniform vec2 alpha;\nuniform float time;\n\nfloat rand(vec2 co) {\n    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);\n}\n\nvoid main(void)\n{\n    vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;\n    vec2 coord = pixelCoord / dimensions;\n\n    if (coord.y < boundary) {\n        gl_FragColor = texture2D(uSampler, vTextureCoord);\n        return;\n    }\n\n    float k = (coord.y - boundary) / (1. - boundary + 0.0001);\n    float areaY = boundary * dimensions.y / filterArea.y;\n    float v = areaY + areaY - vTextureCoord.y;\n    float y = mirror ? v : vTextureCoord.y;\n\n    float _amplitude = ((amplitude.y - amplitude.x) * k + amplitude.x ) / filterArea.x;\n    float _waveLength = ((waveLength.y - waveLength.x) * k + waveLength.x) / filterArea.y;\n    float _alpha = (alpha.y - alpha.x) * k + alpha.x;\n\n    float x = vTextureCoord.x + cos(v * 6.28 / _waveLength - time) * _amplitude;\n    x = clamp(x, filterClamp.x, filterClamp.z);\n\n    vec4 color = texture2D(uSampler, vec2(x, y));\n\n    gl_FragColor = color * _alpha;\n}\n";
+/**
+ * Applies a reflection effect to simulate the reflection on water with waves.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/reflection.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-reflection|@pixi/filter-reflection}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ *
+ * @param {object} [options] - The optional parameters of Reflection effect.
+ * @param {number} [options.mirror=true] - `true` to reflect the image, `false` for waves-only
+ * @param {number} [options.boundary=0.5] - Vertical position of the reflection point, default is 50% (middle)
+ *                 smaller numbers produce a larger reflection, larger numbers produce a smaller reflection.
+ * @param {number} [options.amplitude=[0, 20]] - Starting and ending amplitude of waves
+ * @param {number} [options.waveLength=[30, 100]] - Starting and ending length of waves
+ * @param {number} [options.alpha=[1, 1]] - Starting and ending alpha values
+ * @param {number} [options.time=0] - Time for animating position of waves
+ */
+
+var ReflectionFilter = /*@__PURE__*/function (Filter) {
+  function ReflectionFilter(options) {
+    Filter.call(this, vertex, fragment);
+    this.uniforms.amplitude = new Float32Array(2);
+    this.uniforms.waveLength = new Float32Array(2);
+    this.uniforms.alpha = new Float32Array(2);
+    this.uniforms.dimensions = new Float32Array(2);
+    Object.assign(this, {
+      mirror: true,
+      boundary: 0.5,
+      amplitude: [0, 20],
+      waveLength: [30, 100],
+      alpha: [1, 1],
+
+      /**
+       * Time for animating position of waves
+       *
+       * @member {number}
+       * @memberof PIXI.filters.ReflectionFilter#
+       * @default 0
+       */
+      time: 0
+    }, options);
+  }
+
+  if (Filter) ReflectionFilter.__proto__ = Filter;
+  ReflectionFilter.prototype = Object.create(Filter && Filter.prototype);
+  ReflectionFilter.prototype.constructor = ReflectionFilter;
+  var prototypeAccessors = {
+    mirror: {
+      configurable: true
+    },
+    boundary: {
+      configurable: true
+    },
+    amplitude: {
+      configurable: true
+    },
+    waveLength: {
+      configurable: true
+    },
+    alpha: {
+      configurable: true
+    }
+  };
+  /**
+   * Override existing apply method in PIXI.Filter
+   * @private
+   */
+
+  ReflectionFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    this.uniforms.dimensions[0] = input.filterFrame.width;
+    this.uniforms.dimensions[1] = input.filterFrame.height;
+    this.uniforms.time = this.time;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * `true` to reflect the image, `false` for waves-only
+   *
+   * @member {boolean}
+   * @default true
+   */
+
+
+  prototypeAccessors.mirror.set = function (value) {
+    this.uniforms.mirror = value;
+  };
+
+  prototypeAccessors.mirror.get = function () {
+    return this.uniforms.mirror;
+  };
+  /**
+   * Vertical position of the reflection point, default is 50% (middle)
+   * smaller numbers produce a larger reflection, larger numbers produce a smaller reflection.
+   *
+   * @member {number}
+   * @default 0.5
+   */
+
+
+  prototypeAccessors.boundary.set = function (value) {
+    this.uniforms.boundary = value;
+  };
+
+  prototypeAccessors.boundary.get = function () {
+    return this.uniforms.boundary;
+  };
+  /**
+   * Starting and ending amplitude of waves
+   * @member {number[]}
+   * @default [0, 20]
+   */
+
+
+  prototypeAccessors.amplitude.set = function (value) {
+    this.uniforms.amplitude[0] = value[0];
+    this.uniforms.amplitude[1] = value[1];
+  };
+
+  prototypeAccessors.amplitude.get = function () {
+    return this.uniforms.amplitude;
+  };
+  /**
+   * Starting and ending length of waves
+   * @member {number[]}
+   * @default [30, 100]
+   */
+
+
+  prototypeAccessors.waveLength.set = function (value) {
+    this.uniforms.waveLength[0] = value[0];
+    this.uniforms.waveLength[1] = value[1];
+  };
+
+  prototypeAccessors.waveLength.get = function () {
+    return this.uniforms.waveLength;
+  };
+  /**
+   * Starting and ending alpha values
+   * @member {number[]}
+   * @default [1, 1]
+   */
+
+
+  prototypeAccessors.alpha.set = function (value) {
+    this.uniforms.alpha[0] = value[0];
+    this.uniforms.alpha[1] = value[1];
+  };
+
+  prototypeAccessors.alpha.get = function () {
+    return this.uniforms.alpha;
+  };
+
+  Object.defineProperties(ReflectionFilter.prototype, prototypeAccessors);
+  return ReflectionFilter;
+}(_core.Filter);
+
+exports.ReflectionFilter = ReflectionFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-rgb-split/lib/filter-rgb-split.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.RGBSplitFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-rgb-split - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-rgb-split is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "precision mediump float;\n\nvarying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\nuniform vec2 red;\nuniform vec2 green;\nuniform vec2 blue;\n\nvoid main(void)\n{\n   gl_FragColor.r = texture2D(uSampler, vTextureCoord + red/filterArea.xy).r;\n   gl_FragColor.g = texture2D(uSampler, vTextureCoord + green/filterArea.xy).g;\n   gl_FragColor.b = texture2D(uSampler, vTextureCoord + blue/filterArea.xy).b;\n   gl_FragColor.a = texture2D(uSampler, vTextureCoord).a;\n}\n";
+/**
+ * An RGB Split Filter.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/rgb.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-rgb-split|@pixi/filter-rgb-split}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {PIXI.Point} [red=[-10,0]] Red channel offset
+ * @param {PIXI.Point} [green=[0, 10]] Green channel offset
+ * @param {PIXI.Point} [blue=[0, 0]] Blue channel offset
+ */
+
+var RGBSplitFilter = /*@__PURE__*/function (Filter) {
+  function RGBSplitFilter(red, green, blue) {
+    if (red === void 0) red = [-10, 0];
+    if (green === void 0) green = [0, 10];
+    if (blue === void 0) blue = [0, 0];
+    Filter.call(this, vertex, fragment);
+    this.red = red;
+    this.green = green;
+    this.blue = blue;
+  }
+
+  if (Filter) RGBSplitFilter.__proto__ = Filter;
+  RGBSplitFilter.prototype = Object.create(Filter && Filter.prototype);
+  RGBSplitFilter.prototype.constructor = RGBSplitFilter;
+  var prototypeAccessors = {
+    red: {
+      configurable: true
+    },
+    green: {
+      configurable: true
+    },
+    blue: {
+      configurable: true
+    }
+  };
+  /**
+   * Red channel offset.
+   *
+   * @member {PIXI.Point}
+   */
+
+  prototypeAccessors.red.get = function () {
+    return this.uniforms.red;
+  };
+
+  prototypeAccessors.red.set = function (value) {
+    this.uniforms.red = value;
+  };
+  /**
+   * Green channel offset.
+   *
+   * @member {PIXI.Point}
+   */
+
+
+  prototypeAccessors.green.get = function () {
+    return this.uniforms.green;
+  };
+
+  prototypeAccessors.green.set = function (value) {
+    this.uniforms.green = value;
+  };
+  /**
+   * Blue offset.
+   *
+   * @member {PIXI.Point}
+   */
+
+
+  prototypeAccessors.blue.get = function () {
+    return this.uniforms.blue;
+  };
+
+  prototypeAccessors.blue.set = function (value) {
+    this.uniforms.blue = value;
+  };
+
+  Object.defineProperties(RGBSplitFilter.prototype, prototypeAccessors);
+  return RGBSplitFilter;
+}(_core.Filter);
+
+exports.RGBSplitFilter = RGBSplitFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-shockwave/lib/filter-shockwave.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ShockwaveFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-shockwave - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-shockwave is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\nuniform vec4 filterClamp;\n\nuniform vec2 center;\n\nuniform float amplitude;\nuniform float wavelength;\n// uniform float power;\nuniform float brightness;\nuniform float speed;\nuniform float radius;\n\nuniform float time;\n\nconst float PI = 3.14159;\n\nvoid main()\n{\n    float halfWavelength = wavelength * 0.5 / filterArea.x;\n    float maxRadius = radius / filterArea.x;\n    float currentRadius = time * speed / filterArea.x;\n\n    float fade = 1.0;\n\n    if (maxRadius > 0.0) {\n        if (currentRadius > maxRadius) {\n            gl_FragColor = texture2D(uSampler, vTextureCoord);\n            return;\n        }\n        fade = 1.0 - pow(currentRadius / maxRadius, 2.0);\n    }\n\n    vec2 dir = vec2(vTextureCoord - center / filterArea.xy);\n    dir.y *= filterArea.y / filterArea.x;\n    float dist = length(dir);\n\n    if (dist <= 0.0 || dist < currentRadius - halfWavelength || dist > currentRadius + halfWavelength) {\n        gl_FragColor = texture2D(uSampler, vTextureCoord);\n        return;\n    }\n\n    vec2 diffUV = normalize(dir);\n\n    float diff = (dist - currentRadius) / halfWavelength;\n\n    float p = 1.0 - pow(abs(diff), 2.0);\n\n    // float powDiff = diff * pow(p, 2.0) * ( amplitude * fade );\n    float powDiff = 1.25 * sin(diff * PI) * p * ( amplitude * fade );\n\n    vec2 offset = diffUV * powDiff / filterArea.xy;\n\n    // Do clamp :\n    vec2 coord = vTextureCoord + offset;\n    vec2 clampedCoord = clamp(coord, filterClamp.xy, filterClamp.zw);\n    vec4 color = texture2D(uSampler, clampedCoord);\n    if (coord != clampedCoord) {\n        color *= max(0.0, 1.0 - length(coord - clampedCoord));\n    }\n\n    // No clamp :\n    // gl_FragColor = texture2D(uSampler, vTextureCoord + offset);\n\n    color.rgb *= 1.0 + (brightness - 1.0) * p * fade;\n\n    gl_FragColor = color;\n}\n";
+/**
+ * The ShockwaveFilter class lets you apply a shockwave effect.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/shockwave.gif)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-shockwave|@pixi/filter-shockwave}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ *
+ * @param {PIXI.Point|number[]} [center=[0.5, 0.5]] See `center` property.
+ * @param {object} [options] - The optional parameters of shockwave filter.
+ * @param {number} [options.amplitude=0.5] - See `amplitude`` property.
+ * @param {number} [options.wavelength=1.0] - See `wavelength` property.
+ * @param {number} [options.speed=500.0] - See `speed` property.
+ * @param {number} [options.brightness=8] - See `brightness` property.
+ * @param {number} [options.radius=4] - See `radius` property.
+ * @param {number} [time=0] - See `time` property.
+ */
+
+var ShockwaveFilter = /*@__PURE__*/function (Filter) {
+  function ShockwaveFilter(center, options, time) {
+    if (center === void 0) center = [0.0, 0.0];
+    if (options === void 0) options = {};
+    if (time === void 0) time = 0;
+    Filter.call(this, vertex, fragment);
+    this.center = center;
+
+    if (Array.isArray(options)) {
+      // eslint-disable-next-line no-console
+      console.warn('Deprecated Warning: ShockwaveFilter params Array has been changed to options Object.');
+      options = {};
+    }
+
+    options = Object.assign({
+      amplitude: 30.0,
+      wavelength: 160.0,
+      brightness: 1.0,
+      speed: 500.0,
+      radius: -1.0
+    }, options);
+    this.amplitude = options.amplitude;
+    this.wavelength = options.wavelength;
+    this.brightness = options.brightness;
+    this.speed = options.speed;
+    this.radius = options.radius;
+    /**
+     * Sets the elapsed time of the shockwave.
+     * It could control the current size of shockwave.
+     *
+     * @member {number}
+     */
+
+    this.time = time;
+  }
+
+  if (Filter) ShockwaveFilter.__proto__ = Filter;
+  ShockwaveFilter.prototype = Object.create(Filter && Filter.prototype);
+  ShockwaveFilter.prototype.constructor = ShockwaveFilter;
+  var prototypeAccessors = {
+    center: {
+      configurable: true
+    },
+    amplitude: {
+      configurable: true
+    },
+    wavelength: {
+      configurable: true
+    },
+    brightness: {
+      configurable: true
+    },
+    speed: {
+      configurable: true
+    },
+    radius: {
+      configurable: true
+    }
+  };
+
+  ShockwaveFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    /**
+     * There is no set/get of `time`, for performance.
+     * Because in the most real cases, `time` will be changed in ever game tick.
+     * Use set/get will take more function-call.
+     */
+    this.uniforms.time = this.time;
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * Sets the center of the shockwave in normalized screen coords. That is
+   * (0,0) is the top-left and (1,1) is the bottom right.
+   *
+   * @member {PIXI.Point|number[]}
+   */
+
+
+  prototypeAccessors.center.get = function () {
+    return this.uniforms.center;
+  };
+
+  prototypeAccessors.center.set = function (value) {
+    this.uniforms.center = value;
+  };
+  /**
+   * The amplitude of the shockwave.
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.amplitude.get = function () {
+    return this.uniforms.amplitude;
+  };
+
+  prototypeAccessors.amplitude.set = function (value) {
+    this.uniforms.amplitude = value;
+  };
+  /**
+   * The wavelength of the shockwave.
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.wavelength.get = function () {
+    return this.uniforms.wavelength;
+  };
+
+  prototypeAccessors.wavelength.set = function (value) {
+    this.uniforms.wavelength = value;
+  };
+  /**
+   * The brightness of the shockwave.
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.brightness.get = function () {
+    return this.uniforms.brightness;
+  };
+
+  prototypeAccessors.brightness.set = function (value) {
+    this.uniforms.brightness = value;
+  };
+  /**
+   * The speed about the shockwave ripples out.
+   * The unit is `pixel/second`
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.speed.get = function () {
+    return this.uniforms.speed;
+  };
+
+  prototypeAccessors.speed.set = function (value) {
+    this.uniforms.speed = value;
+  };
+  /**
+   * The maximum radius of shockwave.
+   * `< 0.0` means it's infinity.
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.radius.get = function () {
+    return this.uniforms.radius;
+  };
+
+  prototypeAccessors.radius.set = function (value) {
+    this.uniforms.radius = value;
+  };
+
+  Object.defineProperties(ShockwaveFilter.prototype, prototypeAccessors);
+  return ShockwaveFilter;
+}(_core.Filter);
+
+exports.ShockwaveFilter = ShockwaveFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-simple-lightmap/lib/filter-simple-lightmap.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SimpleLightmapFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _utils = require("@pixi/utils");
+
+/*!
+ * @pixi/filter-simple-lightmap - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-simple-lightmap is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform sampler2D uLightmap;\nuniform vec4 filterArea;\nuniform vec2 dimensions;\nuniform vec4 ambientColor;\nvoid main() {\n    vec4 diffuseColor = texture2D(uSampler, vTextureCoord);\n    vec2 lightCoord = (vTextureCoord * filterArea.xy) / dimensions;\n    vec4 light = texture2D(uLightmap, lightCoord);\n    vec3 ambient = ambientColor.rgb * ambientColor.a;\n    vec3 intensity = ambient + light.rgb;\n    vec3 finalColor = diffuseColor.rgb * intensity;\n    gl_FragColor = vec4(finalColor, diffuseColor.a);\n}\n";
+/**
+* SimpleLightmap, originally by Oza94
+* http://www.html5gamedevs.com/topic/20027-pixijs-simple-lightmapping/
+* http://codepen.io/Oza94/pen/EPoRxj
+*
+* You have to specify filterArea, or suffer consequences.
+* You may have to use it with `filter.dontFit = true`,
+*  until we rewrite this using same approach as for DisplacementFilter.
+*
+* ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/simple-lightmap.png)
+* @class
+* @extends PIXI.Filter
+* @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-simple-lightmap|@pixi/filter-simple-lightmap}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+* @param {PIXI.Texture} texture a texture where your lightmap is rendered
+* @param {Array<number>|number} [color=0x000000] An RGBA array of the ambient color
+* @param {number} [alpha=1] Default alpha set independent of color (if it's a number, not array).
+*
+* @example
+*  displayObject.filters = [new SimpleLightmapFilter(texture, 0x666666)];
+*/
+
+var SimpleLightmapFilter = /*@__PURE__*/function (Filter) {
+  function SimpleLightmapFilter(texture, color, alpha) {
+    if (color === void 0) color = 0x000000;
+    if (alpha === void 0) alpha = 1;
+    Filter.call(this, vertex, fragment);
+    this.uniforms.dimensions = new Float32Array(2);
+    this.uniforms.ambientColor = new Float32Array([0, 0, 0, alpha]);
+    this.texture = texture;
+    this.color = color;
+  }
+
+  if (Filter) SimpleLightmapFilter.__proto__ = Filter;
+  SimpleLightmapFilter.prototype = Object.create(Filter && Filter.prototype);
+  SimpleLightmapFilter.prototype.constructor = SimpleLightmapFilter;
+  var prototypeAccessors = {
+    texture: {
+      configurable: true
+    },
+    color: {
+      configurable: true
+    },
+    alpha: {
+      configurable: true
+    }
+  };
+  /**
+   * Applies the filter.
+   * @private
+   * @param {PIXI.FilterManager} filterManager - The manager.
+   * @param {PIXI.RenderTarget} input - The input target.
+   * @param {PIXI.RenderTarget} output - The output target.
+   */
+
+  SimpleLightmapFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    this.uniforms.dimensions[0] = input.filterFrame.width;
+    this.uniforms.dimensions[1] = input.filterFrame.height; // draw the filter...
+
+    filterManager.applyFilter(this, input, output, clear);
+  };
+  /**
+   * a texture where your lightmap is rendered
+   * @member {PIXI.Texture}
+   */
+
+
+  prototypeAccessors.texture.get = function () {
+    return this.uniforms.uLightmap;
+  };
+
+  prototypeAccessors.texture.set = function (value) {
+    this.uniforms.uLightmap = value;
+  };
+  /**
+   * An RGBA array of the ambient color or a hex color without alpha
+   * @member {Array<number>|number}
+   */
+
+
+  prototypeAccessors.color.set = function (value) {
+    var arr = this.uniforms.ambientColor;
+
+    if (typeof value === 'number') {
+      (0, _utils.hex2rgb)(value, arr);
+      this._color = value;
+    } else {
+      arr[0] = value[0];
+      arr[1] = value[1];
+      arr[2] = value[2];
+      arr[3] = value[3];
+      this._color = (0, _utils.rgb2hex)(arr);
+    }
+  };
+
+  prototypeAccessors.color.get = function () {
+    return this._color;
+  };
+  /**
+   * When setting `color` as hex, this can be used to set alpha independently.
+   * @member {number}
+   */
+
+
+  prototypeAccessors.alpha.get = function () {
+    return this.uniforms.ambientColor[3];
+  };
+
+  prototypeAccessors.alpha.set = function (value) {
+    this.uniforms.ambientColor[3] = value;
+  };
+
+  Object.defineProperties(SimpleLightmapFilter.prototype, prototypeAccessors);
+  return SimpleLightmapFilter;
+}(_core.Filter);
+
+exports.SimpleLightmapFilter = SimpleLightmapFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/utils":"../node_modules/@pixi/utils/lib/utils.es.js"}],"../node_modules/@pixi/filter-tilt-shift/lib/filter-tilt-shift.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TiltShiftYFilter = exports.TiltShiftXFilter = exports.TiltShiftFilter = exports.TiltShiftAxisFilter = void 0;
+
+var _core = require("@pixi/core");
+
+var _math = require("@pixi/math");
+
+/*!
+ * @pixi/filter-tilt-shift - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-tilt-shift is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nuniform float blur;\nuniform float gradientBlur;\nuniform vec2 start;\nuniform vec2 end;\nuniform vec2 delta;\nuniform vec2 texSize;\n\nfloat random(vec3 scale, float seed)\n{\n    return fract(sin(dot(gl_FragCoord.xyz + seed, scale)) * 43758.5453 + seed);\n}\n\nvoid main(void)\n{\n    vec4 color = vec4(0.0);\n    float total = 0.0;\n\n    float offset = random(vec3(12.9898, 78.233, 151.7182), 0.0);\n    vec2 normal = normalize(vec2(start.y - end.y, end.x - start.x));\n    float radius = smoothstep(0.0, 1.0, abs(dot(vTextureCoord * texSize - start, normal)) / gradientBlur) * blur;\n\n    for (float t = -30.0; t <= 30.0; t++)\n    {\n        float percent = (t + offset - 0.5) / 30.0;\n        float weight = 1.0 - abs(percent);\n        vec4 sample = texture2D(uSampler, vTextureCoord + delta / texSize * percent * radius);\n        sample.rgb *= sample.a;\n        color += sample * weight;\n        total += weight;\n    }\n\n    color /= total;\n    color.rgb /= color.a + 0.00001;\n\n    gl_FragColor = color;\n}\n";
+/**
+ * @author Vico @vicocotea
+ * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/blur/tiltshift.js by Evan Wallace : http://madebyevan.com/
+ */
+
+/**
+ * A TiltShiftAxisFilter.
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @private
+ */
+
+var TiltShiftAxisFilter = /*@__PURE__*/function (Filter) {
+  function TiltShiftAxisFilter(blur, gradientBlur, start, end) {
+    if (blur === void 0) blur = 100;
+    if (gradientBlur === void 0) gradientBlur = 600;
+    if (start === void 0) start = null;
+    if (end === void 0) end = null;
+    Filter.call(this, vertex, fragment);
+    this.uniforms.blur = blur;
+    this.uniforms.gradientBlur = gradientBlur;
+    this.uniforms.start = start || new _math.Point(0, window.innerHeight / 2);
+    this.uniforms.end = end || new _math.Point(600, window.innerHeight / 2);
+    this.uniforms.delta = new _math.Point(30, 30);
+    this.uniforms.texSize = new _math.Point(window.innerWidth, window.innerHeight);
+    this.updateDelta();
+  }
+
+  if (Filter) TiltShiftAxisFilter.__proto__ = Filter;
+  TiltShiftAxisFilter.prototype = Object.create(Filter && Filter.prototype);
+  TiltShiftAxisFilter.prototype.constructor = TiltShiftAxisFilter;
+  var prototypeAccessors = {
+    blur: {
+      configurable: true
+    },
+    gradientBlur: {
+      configurable: true
+    },
+    start: {
+      configurable: true
+    },
+    end: {
+      configurable: true
+    }
+  };
+  /**
+   * Updates the filter delta values.
+   * This is overridden in the X and Y filters, does nothing for this class.
+   *
+   */
+
+  TiltShiftAxisFilter.prototype.updateDelta = function updateDelta() {
+    this.uniforms.delta.x = 0;
+    this.uniforms.delta.y = 0;
+  };
+  /**
+   * The strength of the blur.
+   *
+   * @member {number}
+   * @memberof PIXI.filters.TiltShiftAxisFilter#
+   */
+
+
+  prototypeAccessors.blur.get = function () {
+    return this.uniforms.blur;
+  };
+
+  prototypeAccessors.blur.set = function (value) {
+    this.uniforms.blur = value;
+  };
+  /**
+   * The strength of the gradient blur.
+   *
+   * @member {number}
+   * @memberof PIXI.filters.TiltShiftAxisFilter#
+   */
+
+
+  prototypeAccessors.gradientBlur.get = function () {
+    return this.uniforms.gradientBlur;
+  };
+
+  prototypeAccessors.gradientBlur.set = function (value) {
+    this.uniforms.gradientBlur = value;
+  };
+  /**
+   * The X value to start the effect at.
+   *
+   * @member {PIXI.Point}
+   * @memberof PIXI.filters.TiltShiftAxisFilter#
+   */
+
+
+  prototypeAccessors.start.get = function () {
+    return this.uniforms.start;
+  };
+
+  prototypeAccessors.start.set = function (value) {
+    this.uniforms.start = value;
+    this.updateDelta();
+  };
+  /**
+   * The X value to end the effect at.
+   *
+   * @member {PIXI.Point}
+   * @memberof PIXI.filters.TiltShiftAxisFilter#
+   */
+
+
+  prototypeAccessors.end.get = function () {
+    return this.uniforms.end;
+  };
+
+  prototypeAccessors.end.set = function (value) {
+    this.uniforms.end = value;
+    this.updateDelta();
+  };
+
+  Object.defineProperties(TiltShiftAxisFilter.prototype, prototypeAccessors);
+  return TiltShiftAxisFilter;
+}(_core.Filter);
+/**
+ * @author Vico @vicocotea
+ * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/blur/tiltshift.js by Evan Wallace : http://madebyevan.com/
+ */
+
+/**
+ * A TiltShiftXFilter.
+ *
+ * @class
+ * @extends PIXI.TiltShiftAxisFilter
+ * @memberof PIXI.filters
+ * @private
+ */
+
+
+exports.TiltShiftAxisFilter = TiltShiftAxisFilter;
+
+var TiltShiftXFilter = /*@__PURE__*/function (TiltShiftAxisFilter) {
+  function TiltShiftXFilter() {
+    TiltShiftAxisFilter.apply(this, arguments);
+  }
+
+  if (TiltShiftAxisFilter) TiltShiftXFilter.__proto__ = TiltShiftAxisFilter;
+  TiltShiftXFilter.prototype = Object.create(TiltShiftAxisFilter && TiltShiftAxisFilter.prototype);
+  TiltShiftXFilter.prototype.constructor = TiltShiftXFilter;
+
+  TiltShiftXFilter.prototype.updateDelta = function updateDelta() {
+    var dx = this.uniforms.end.x - this.uniforms.start.x;
+    var dy = this.uniforms.end.y - this.uniforms.start.y;
+    var d = Math.sqrt(dx * dx + dy * dy);
+    this.uniforms.delta.x = dx / d;
+    this.uniforms.delta.y = dy / d;
+  };
+
+  return TiltShiftXFilter;
+}(TiltShiftAxisFilter);
+/**
+ * @author Vico @vicocotea
+ * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/blur/tiltshift.js by Evan Wallace : http://madebyevan.com/
+ */
+
+/**
+ * A TiltShiftYFilter.
+ *
+ * @class
+ * @extends PIXI.TiltShiftAxisFilter
+ * @memberof PIXI.filters
+ * @private
+ */
+
+
+exports.TiltShiftXFilter = TiltShiftXFilter;
+
+var TiltShiftYFilter = /*@__PURE__*/function (TiltShiftAxisFilter) {
+  function TiltShiftYFilter() {
+    TiltShiftAxisFilter.apply(this, arguments);
+  }
+
+  if (TiltShiftAxisFilter) TiltShiftYFilter.__proto__ = TiltShiftAxisFilter;
+  TiltShiftYFilter.prototype = Object.create(TiltShiftAxisFilter && TiltShiftAxisFilter.prototype);
+  TiltShiftYFilter.prototype.constructor = TiltShiftYFilter;
+
+  TiltShiftYFilter.prototype.updateDelta = function updateDelta() {
+    var dx = this.uniforms.end.x - this.uniforms.start.x;
+    var dy = this.uniforms.end.y - this.uniforms.start.y;
+    var d = Math.sqrt(dx * dx + dy * dy);
+    this.uniforms.delta.x = -dy / d;
+    this.uniforms.delta.y = dx / d;
+  };
+
+  return TiltShiftYFilter;
+}(TiltShiftAxisFilter);
+/**
+ * @author Vico @vicocotea
+ * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/blur/tiltshift.js by Evan Wallace : http://madebyevan.com/
+ */
+
+/**
+ * A TiltShift Filter. Manages the pass of both a TiltShiftXFilter and TiltShiftYFilter.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/tilt-shift.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-tilt-shift|@pixi/filter-tilt-shift}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number} [blur=100] The strength of the blur.
+ * @param {number} [gradientBlur=600] The strength of the gradient blur.
+ * @param {PIXI.Point} [start=null] The Y value to start the effect at.
+ * @param {PIXI.Point} [end=null] The Y value to end the effect at.
+ */
+
+
+exports.TiltShiftYFilter = TiltShiftYFilter;
+
+var TiltShiftFilter = /*@__PURE__*/function (Filter) {
+  function TiltShiftFilter(blur, gradientBlur, start, end) {
+    if (blur === void 0) blur = 100;
+    if (gradientBlur === void 0) gradientBlur = 600;
+    if (start === void 0) start = null;
+    if (end === void 0) end = null;
+    Filter.call(this);
+    this.tiltShiftXFilter = new TiltShiftXFilter(blur, gradientBlur, start, end);
+    this.tiltShiftYFilter = new TiltShiftYFilter(blur, gradientBlur, start, end);
+  }
+
+  if (Filter) TiltShiftFilter.__proto__ = Filter;
+  TiltShiftFilter.prototype = Object.create(Filter && Filter.prototype);
+  TiltShiftFilter.prototype.constructor = TiltShiftFilter;
+  var prototypeAccessors = {
+    blur: {
+      configurable: true
+    },
+    gradientBlur: {
+      configurable: true
+    },
+    start: {
+      configurable: true
+    },
+    end: {
+      configurable: true
+    }
+  };
+
+  TiltShiftFilter.prototype.apply = function apply(filterManager, input, output) {
+    var renderTarget = filterManager.getFilterTexture();
+    this.tiltShiftXFilter.apply(filterManager, input, renderTarget);
+    this.tiltShiftYFilter.apply(filterManager, renderTarget, output);
+    filterManager.returnFilterTexture(renderTarget);
+  };
+  /**
+   * The strength of the blur.
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.blur.get = function () {
+    return this.tiltShiftXFilter.blur;
+  };
+
+  prototypeAccessors.blur.set = function (value) {
+    this.tiltShiftXFilter.blur = this.tiltShiftYFilter.blur = value;
+  };
+  /**
+   * The strength of the gradient blur.
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.gradientBlur.get = function () {
+    return this.tiltShiftXFilter.gradientBlur;
+  };
+
+  prototypeAccessors.gradientBlur.set = function (value) {
+    this.tiltShiftXFilter.gradientBlur = this.tiltShiftYFilter.gradientBlur = value;
+  };
+  /**
+   * The Y value to start the effect at.
+   *
+   * @member {PIXI.Point}
+   */
+
+
+  prototypeAccessors.start.get = function () {
+    return this.tiltShiftXFilter.start;
+  };
+
+  prototypeAccessors.start.set = function (value) {
+    this.tiltShiftXFilter.start = this.tiltShiftYFilter.start = value;
+  };
+  /**
+   * The Y value to end the effect at.
+   *
+   * @member {PIXI.Point}
+   */
+
+
+  prototypeAccessors.end.get = function () {
+    return this.tiltShiftXFilter.end;
+  };
+
+  prototypeAccessors.end.set = function (value) {
+    this.tiltShiftXFilter.end = this.tiltShiftYFilter.end = value;
+  };
+
+  Object.defineProperties(TiltShiftFilter.prototype, prototypeAccessors);
+  return TiltShiftFilter;
+}(_core.Filter);
+
+exports.TiltShiftFilter = TiltShiftFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js","@pixi/math":"../node_modules/@pixi/math/lib/math.es.js"}],"../node_modules/@pixi/filter-twist/lib/filter-twist.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TwistFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-twist - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-twist is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nuniform float radius;\nuniform float angle;\nuniform vec2 offset;\nuniform vec4 filterArea;\n\nvec2 mapCoord( vec2 coord )\n{\n    coord *= filterArea.xy;\n    coord += filterArea.zw;\n\n    return coord;\n}\n\nvec2 unmapCoord( vec2 coord )\n{\n    coord -= filterArea.zw;\n    coord /= filterArea.xy;\n\n    return coord;\n}\n\nvec2 twist(vec2 coord)\n{\n    coord -= offset;\n\n    float dist = length(coord);\n\n    if (dist < radius)\n    {\n        float ratioDist = (radius - dist) / radius;\n        float angleMod = ratioDist * ratioDist * angle;\n        float s = sin(angleMod);\n        float c = cos(angleMod);\n        coord = vec2(coord.x * c - coord.y * s, coord.x * s + coord.y * c);\n    }\n\n    coord += offset;\n\n    return coord;\n}\n\nvoid main(void)\n{\n\n    vec2 coord = mapCoord(vTextureCoord);\n\n    coord = twist(coord);\n\n    coord = unmapCoord(coord);\n\n    gl_FragColor = texture2D(uSampler, coord );\n\n}\n";
+/**
+ * This filter applies a twist effect making display objects appear twisted in the given direction.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/twist.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-twist|@pixi/filter-twist}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {number} [radius=200] The radius of the twist.
+ * @param {number} [angle=4] The angle of the twist.
+ * @param {number} [padding=20] Padding for filter area.
+ */
+
+var TwistFilter = /*@__PURE__*/function (Filter) {
+  function TwistFilter(radius, angle, padding) {
+    if (radius === void 0) radius = 200;
+    if (angle === void 0) angle = 4;
+    if (padding === void 0) padding = 20;
+    Filter.call(this, vertex, fragment);
+    this.radius = radius;
+    this.angle = angle;
+    this.padding = padding;
+  }
+
+  if (Filter) TwistFilter.__proto__ = Filter;
+  TwistFilter.prototype = Object.create(Filter && Filter.prototype);
+  TwistFilter.prototype.constructor = TwistFilter;
+  var prototypeAccessors = {
+    offset: {
+      configurable: true
+    },
+    radius: {
+      configurable: true
+    },
+    angle: {
+      configurable: true
+    }
+  };
+  /**
+   * This point describes the the offset of the twist.
+   *
+   * @member {PIXI.Point}
+   */
+
+  prototypeAccessors.offset.get = function () {
+    return this.uniforms.offset;
+  };
+
+  prototypeAccessors.offset.set = function (value) {
+    this.uniforms.offset = value;
+  };
+  /**
+   * The radius of the twist.
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.radius.get = function () {
+    return this.uniforms.radius;
+  };
+
+  prototypeAccessors.radius.set = function (value) {
+    this.uniforms.radius = value;
+  };
+  /**
+   * The angle of the twist.
+   *
+   * @member {number}
+   */
+
+
+  prototypeAccessors.angle.get = function () {
+    return this.uniforms.angle;
+  };
+
+  prototypeAccessors.angle.set = function (value) {
+    this.uniforms.angle = value;
+  };
+
+  Object.defineProperties(TwistFilter.prototype, prototypeAccessors);
+  return TwistFilter;
+}(_core.Filter);
+
+exports.TwistFilter = TwistFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/@pixi/filter-zoom-blur/lib/filter-zoom-blur.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ZoomBlurFilter = void 0;
+
+var _core = require("@pixi/core");
+
+/*!
+ * @pixi/filter-zoom-blur - v3.1.0
+ * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ *
+ * @pixi/filter-zoom-blur is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\n\nuniform vec2 uCenter;\nuniform float uStrength;\nuniform float uInnerRadius;\nuniform float uRadius;\n\nconst float MAX_KERNEL_SIZE = 32.0;\n\n// author: http://byteblacksmith.com/improvements-to-the-canonical-one-liner-glsl-rand-for-opengl-es-2-0/\nhighp float rand(vec2 co, float seed) {\n    const highp float a = 12.9898, b = 78.233, c = 43758.5453;\n    highp float dt = dot(co + seed, vec2(a, b)), sn = mod(dt, 3.14159);\n    return fract(sin(sn) * c + seed);\n}\n\nvoid main() {\n\n    float minGradient = uInnerRadius * 0.3;\n    float innerRadius = (uInnerRadius + minGradient * 0.5) / filterArea.x;\n\n    float gradient = uRadius * 0.3;\n    float radius = (uRadius - gradient * 0.5) / filterArea.x;\n\n    float countLimit = MAX_KERNEL_SIZE;\n\n    vec2 dir = vec2(uCenter.xy / filterArea.xy - vTextureCoord);\n    float dist = length(vec2(dir.x, dir.y * filterArea.y / filterArea.x));\n\n    float strength = uStrength;\n\n    float delta = 0.0;\n    float gap;\n    if (dist < innerRadius) {\n        delta = innerRadius - dist;\n        gap = minGradient;\n    } else if (radius >= 0.0 && dist > radius) { // radius < 0 means it's infinity\n        delta = dist - radius;\n        gap = gradient;\n    }\n\n    if (delta > 0.0) {\n        float normalCount = gap / filterArea.x;\n        delta = (normalCount - delta) / normalCount;\n        countLimit *= delta;\n        strength *= delta;\n        if (countLimit < 1.0)\n        {\n            gl_FragColor = texture2D(uSampler, vTextureCoord);\n            return;\n        }\n    }\n\n    // randomize the lookup values to hide the fixed number of samples\n    float offset = rand(vTextureCoord, 0.0);\n\n    float total = 0.0;\n    vec4 color = vec4(0.0);\n\n    dir *= strength;\n\n    for (float t = 0.0; t < MAX_KERNEL_SIZE; t++) {\n        float percent = (t + offset) / MAX_KERNEL_SIZE;\n        float weight = 4.0 * (percent - percent * percent);\n        vec2 p = vTextureCoord + dir * percent;\n        vec4 sample = texture2D(uSampler, p);\n\n        // switch to pre-multiplied alpha to correctly blur transparent images\n        // sample.rgb *= sample.a;\n\n        color += sample * weight;\n        total += weight;\n\n        if (t > countLimit){\n            break;\n        }\n    }\n\n    color /= total;\n    // switch back from pre-multiplied alpha\n    // color.rgb /= color.a + 0.00001;\n\n    gl_FragColor = color;\n}\n";
+/**
+ * The ZoomFilter applies a Zoom blur to an object.<br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/zoom-blur.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @see {@link https://www.npmjs.com/package/@pixi/filter-zoom-blur|@pixi/filter-zoom-blur}
+ * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
+ * @param {object} [options] Filter options to use.
+ * @param {number} [options.strength=0.1] Sets the strength of the zoom blur effect
+ * @param {PIXI.Point|number[]} [options.center=[0,0]] The center of the zoom.
+ * @param {number} [options.innerRadius=0] The inner radius of zoom. The part in inner circle won't apply zoom blur effect.
+ * @param {number} [options.radius=-1] See `radius` property.
+ */
+
+var ZoomBlurFilter = /*@__PURE__*/function (Filter) {
+  function ZoomBlurFilter(options) {
+    Filter.call(this, vertex, fragment); // @deprecated (strength, center, innerRadius, radius) args
+
+    if (typeof options !== 'object') {
+      var strength = arguments[0];
+      var center = arguments[1];
+      var innerRadius = arguments[2];
+      var radius = arguments[3];
+      options = {};
+
+      if (strength !== undefined) {
+        options.strength = strength;
+      }
+
+      if (center !== undefined) {
+        options.center = center;
+      }
+
+      if (innerRadius !== undefined) {
+        options.innerRadius = innerRadius;
+      }
+
+      if (radius !== undefined) {
+        options.radius = radius;
+      }
+    }
+
+    Object.assign(this, {
+      strength: 0.1,
+      center: [0, 0],
+      innerRadius: 0,
+      radius: -1
+    }, options);
+  }
+
+  if (Filter) ZoomBlurFilter.__proto__ = Filter;
+  ZoomBlurFilter.prototype = Object.create(Filter && Filter.prototype);
+  ZoomBlurFilter.prototype.constructor = ZoomBlurFilter;
+  var prototypeAccessors = {
+    center: {
+      configurable: true
+    },
+    strength: {
+      configurable: true
+    },
+    innerRadius: {
+      configurable: true
+    },
+    radius: {
+      configurable: true
+    }
+  };
+  /**
+   * Center of the effect.
+   *
+   * @member {PIXI.Point|number[]}
+   * @default [0, 0]
+   */
+
+  prototypeAccessors.center.get = function () {
+    return this.uniforms.uCenter;
+  };
+
+  prototypeAccessors.center.set = function (value) {
+    this.uniforms.uCenter = value;
+  };
+  /**
+   * Intensity of the zoom effect.
+   *
+   * @member {number}
+   * @default 0.1
+   */
+
+
+  prototypeAccessors.strength.get = function () {
+    return this.uniforms.uStrength;
+  };
+
+  prototypeAccessors.strength.set = function (value) {
+    this.uniforms.uStrength = value;
+  };
+  /**
+   * Radius of the inner region not effected by blur.
+   *
+   * @member {number}
+   * @default 0
+   */
+
+
+  prototypeAccessors.innerRadius.get = function () {
+    return this.uniforms.uInnerRadius;
+  };
+
+  prototypeAccessors.innerRadius.set = function (value) {
+    this.uniforms.uInnerRadius = value;
+  };
+  /**
+   * Outer radius of the effect. The default value is `-1`.
+   * `< 0.0` means it's infinity.
+   *
+   * @member {number}
+   * @default -1
+   */
+
+
+  prototypeAccessors.radius.get = function () {
+    return this.uniforms.uRadius;
+  };
+
+  prototypeAccessors.radius.set = function (value) {
+    if (value < 0 || value === Infinity) {
+      value = -1;
+    }
+
+    this.uniforms.uRadius = value;
+  };
+
+  Object.defineProperties(ZoomBlurFilter.prototype, prototypeAccessors);
+  return ZoomBlurFilter;
+}(_core.Filter);
+
+exports.ZoomBlurFilter = ZoomBlurFilter;
+},{"@pixi/core":"../node_modules/@pixi/core/lib/core.es.js"}],"../node_modules/pixi-filters/lib/pixi-filters.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _filterAdjustment = require("@pixi/filter-adjustment");
+
+Object.keys(_filterAdjustment).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterAdjustment[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterAdjustment[key];
+    }
+  });
+});
+
+var _filterAdvancedBloom = require("@pixi/filter-advanced-bloom");
+
+Object.keys(_filterAdvancedBloom).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterAdvancedBloom[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterAdvancedBloom[key];
+    }
+  });
+});
+
+var _filterAscii = require("@pixi/filter-ascii");
+
+Object.keys(_filterAscii).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterAscii[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterAscii[key];
+    }
+  });
+});
+
+var _filterBevel = require("@pixi/filter-bevel");
+
+Object.keys(_filterBevel).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterBevel[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterBevel[key];
+    }
+  });
+});
+
+var _filterBloom = require("@pixi/filter-bloom");
+
+Object.keys(_filterBloom).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterBloom[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterBloom[key];
+    }
+  });
+});
+
+var _filterBulgePinch = require("@pixi/filter-bulge-pinch");
+
+Object.keys(_filterBulgePinch).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterBulgePinch[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterBulgePinch[key];
+    }
+  });
+});
+
+var _filterColorMap = require("@pixi/filter-color-map");
+
+Object.keys(_filterColorMap).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterColorMap[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterColorMap[key];
+    }
+  });
+});
+
+var _filterColorOverlay = require("@pixi/filter-color-overlay");
+
+Object.keys(_filterColorOverlay).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterColorOverlay[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterColorOverlay[key];
+    }
+  });
+});
+
+var _filterColorReplace = require("@pixi/filter-color-replace");
+
+Object.keys(_filterColorReplace).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterColorReplace[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterColorReplace[key];
+    }
+  });
+});
+
+var _filterConvolution = require("@pixi/filter-convolution");
+
+Object.keys(_filterConvolution).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterConvolution[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterConvolution[key];
+    }
+  });
+});
+
+var _filterCrossHatch = require("@pixi/filter-cross-hatch");
+
+Object.keys(_filterCrossHatch).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterCrossHatch[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterCrossHatch[key];
+    }
+  });
+});
+
+var _filterCrt = require("@pixi/filter-crt");
+
+Object.keys(_filterCrt).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterCrt[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterCrt[key];
+    }
+  });
+});
+
+var _filterDot = require("@pixi/filter-dot");
+
+Object.keys(_filterDot).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterDot[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterDot[key];
+    }
+  });
+});
+
+var _filterDropShadow = require("@pixi/filter-drop-shadow");
+
+Object.keys(_filterDropShadow).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterDropShadow[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterDropShadow[key];
+    }
+  });
+});
+
+var _filterEmboss = require("@pixi/filter-emboss");
+
+Object.keys(_filterEmboss).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterEmboss[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterEmboss[key];
+    }
+  });
+});
+
+var _filterGlitch = require("@pixi/filter-glitch");
+
+Object.keys(_filterGlitch).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterGlitch[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterGlitch[key];
+    }
+  });
+});
+
+var _filterGlow = require("@pixi/filter-glow");
+
+Object.keys(_filterGlow).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterGlow[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterGlow[key];
+    }
+  });
+});
+
+var _filterGodray = require("@pixi/filter-godray");
+
+Object.keys(_filterGodray).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterGodray[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterGodray[key];
+    }
+  });
+});
+
+var _filterKawaseBlur = require("@pixi/filter-kawase-blur");
+
+Object.keys(_filterKawaseBlur).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterKawaseBlur[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterKawaseBlur[key];
+    }
+  });
+});
+
+var _filterMotionBlur = require("@pixi/filter-motion-blur");
+
+Object.keys(_filterMotionBlur).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterMotionBlur[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterMotionBlur[key];
+    }
+  });
+});
+
+var _filterMultiColorReplace = require("@pixi/filter-multi-color-replace");
+
+Object.keys(_filterMultiColorReplace).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterMultiColorReplace[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterMultiColorReplace[key];
+    }
+  });
+});
+
+var _filterOldFilm = require("@pixi/filter-old-film");
+
+Object.keys(_filterOldFilm).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterOldFilm[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterOldFilm[key];
+    }
+  });
+});
+
+var _filterOutline = require("@pixi/filter-outline");
+
+Object.keys(_filterOutline).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterOutline[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterOutline[key];
+    }
+  });
+});
+
+var _filterPixelate = require("@pixi/filter-pixelate");
+
+Object.keys(_filterPixelate).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterPixelate[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterPixelate[key];
+    }
+  });
+});
+
+var _filterRadialBlur = require("@pixi/filter-radial-blur");
+
+Object.keys(_filterRadialBlur).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterRadialBlur[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterRadialBlur[key];
+    }
+  });
+});
+
+var _filterReflection = require("@pixi/filter-reflection");
+
+Object.keys(_filterReflection).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterReflection[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterReflection[key];
+    }
+  });
+});
+
+var _filterRgbSplit = require("@pixi/filter-rgb-split");
+
+Object.keys(_filterRgbSplit).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterRgbSplit[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterRgbSplit[key];
+    }
+  });
+});
+
+var _filterShockwave = require("@pixi/filter-shockwave");
+
+Object.keys(_filterShockwave).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterShockwave[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterShockwave[key];
+    }
+  });
+});
+
+var _filterSimpleLightmap = require("@pixi/filter-simple-lightmap");
+
+Object.keys(_filterSimpleLightmap).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterSimpleLightmap[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterSimpleLightmap[key];
+    }
+  });
+});
+
+var _filterTiltShift = require("@pixi/filter-tilt-shift");
+
+Object.keys(_filterTiltShift).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterTiltShift[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterTiltShift[key];
+    }
+  });
+});
+
+var _filterTwist = require("@pixi/filter-twist");
+
+Object.keys(_filterTwist).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterTwist[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterTwist[key];
+    }
+  });
+});
+
+var _filterZoomBlur = require("@pixi/filter-zoom-blur");
+
+Object.keys(_filterZoomBlur).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filterZoomBlur[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _filterZoomBlur[key];
+    }
+  });
+});
+},{"@pixi/filter-adjustment":"../node_modules/@pixi/filter-adjustment/lib/filter-adjustment.esm.js","@pixi/filter-advanced-bloom":"../node_modules/@pixi/filter-advanced-bloom/lib/filter-advanced-bloom.esm.js","@pixi/filter-ascii":"../node_modules/@pixi/filter-ascii/lib/filter-ascii.esm.js","@pixi/filter-bevel":"../node_modules/@pixi/filter-bevel/lib/filter-bevel.esm.js","@pixi/filter-bloom":"../node_modules/@pixi/filter-bloom/lib/filter-bloom.esm.js","@pixi/filter-bulge-pinch":"../node_modules/@pixi/filter-bulge-pinch/lib/filter-bulge-pinch.esm.js","@pixi/filter-color-map":"../node_modules/@pixi/filter-color-map/lib/filter-color-map.esm.js","@pixi/filter-color-overlay":"../node_modules/@pixi/filter-color-overlay/lib/filter-color-overlay.esm.js","@pixi/filter-color-replace":"../node_modules/@pixi/filter-color-replace/lib/filter-color-replace.esm.js","@pixi/filter-convolution":"../node_modules/@pixi/filter-convolution/lib/filter-convolution.esm.js","@pixi/filter-cross-hatch":"../node_modules/@pixi/filter-cross-hatch/lib/filter-cross-hatch.esm.js","@pixi/filter-crt":"../node_modules/@pixi/filter-crt/lib/filter-crt.esm.js","@pixi/filter-dot":"../node_modules/@pixi/filter-dot/lib/filter-dot.esm.js","@pixi/filter-drop-shadow":"../node_modules/@pixi/filter-drop-shadow/lib/filter-drop-shadow.esm.js","@pixi/filter-emboss":"../node_modules/@pixi/filter-emboss/lib/filter-emboss.esm.js","@pixi/filter-glitch":"../node_modules/@pixi/filter-glitch/lib/filter-glitch.esm.js","@pixi/filter-glow":"../node_modules/@pixi/filter-glow/lib/filter-glow.esm.js","@pixi/filter-godray":"../node_modules/@pixi/filter-godray/lib/filter-godray.esm.js","@pixi/filter-kawase-blur":"../node_modules/@pixi/filter-kawase-blur/lib/filter-kawase-blur.esm.js","@pixi/filter-motion-blur":"../node_modules/@pixi/filter-motion-blur/lib/filter-motion-blur.esm.js","@pixi/filter-multi-color-replace":"../node_modules/@pixi/filter-multi-color-replace/lib/filter-multi-color-replace.esm.js","@pixi/filter-old-film":"../node_modules/@pixi/filter-old-film/lib/filter-old-film.esm.js","@pixi/filter-outline":"../node_modules/@pixi/filter-outline/lib/filter-outline.esm.js","@pixi/filter-pixelate":"../node_modules/@pixi/filter-pixelate/lib/filter-pixelate.esm.js","@pixi/filter-radial-blur":"../node_modules/@pixi/filter-radial-blur/lib/filter-radial-blur.esm.js","@pixi/filter-reflection":"../node_modules/@pixi/filter-reflection/lib/filter-reflection.esm.js","@pixi/filter-rgb-split":"../node_modules/@pixi/filter-rgb-split/lib/filter-rgb-split.esm.js","@pixi/filter-shockwave":"../node_modules/@pixi/filter-shockwave/lib/filter-shockwave.esm.js","@pixi/filter-simple-lightmap":"../node_modules/@pixi/filter-simple-lightmap/lib/filter-simple-lightmap.esm.js","@pixi/filter-tilt-shift":"../node_modules/@pixi/filter-tilt-shift/lib/filter-tilt-shift.esm.js","@pixi/filter-twist":"../node_modules/@pixi/filter-twist/lib/filter-twist.esm.js","@pixi/filter-zoom-blur":"../node_modules/@pixi/filter-zoom-blur/lib/filter-zoom-blur.esm.js"}],"filters.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _pixiFilters = require("pixi-filters");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Filters = /*#__PURE__*/function () {
+  function Filters(game) {
+    _classCallCheck(this, Filters);
+
+    this.game = game;
+    this.filter = null;
+    this.container = new PIXI.Container();
+    this.container.width = this.game.width;
+    this.container.height = this.game.height;
+    /*	this.sprite=new PIXI.Sprite(PIXI.Texture.WHITE);
+    	this.sprite.width=this.game.width;
+    	this.sprite.height=this.game.height;
+    	this.container.addChild(this.sprite);
+    	this.sprite.alpha=0;*/
+
+    this.container.parentLayer = this.game.layerBottom;
+    this.game.app.stage.addChild(this.container);
+  }
+
+  _createClass(Filters, [{
+    key: "start",
+    value: function start(style) {
+      if (style == "Sun") {
+        this.filter = new _pixiFilters.GodrayFilter();
+        this.game.activeScene.background.filters = [this.filter]; //	this.container.filters=[this.filter,new PIXI.filters.AlphaFilter(0.1)];
+      }
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
+      this.game.activeScene.background.filters = [];
+      this.filter = null;
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      this.filter.time += this.game.app.ticker.elapsedMS / 1000;
+    }
+  }]);
+
+  return Filters;
+}();
+
+var _default = Filters;
+exports.default = _default;
+},{"pixi-filters":"../node_modules/pixi-filters/lib/pixi-filters.esm.js"}],"../node_modules/localforage/dist/localforage.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /*!
@@ -63920,7 +73203,7 @@ module.exports = localforage_js;
 },{"3":3}]},{},[4])(4)
 });
 
-},{}],"KZ7Y":[function(require,module,exports) {
+},{}],"storage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64060,7 +73343,7 @@ var Storage = /*#__PURE__*/function () {
 }();
 
 exports.default = Storage;
-},{"localforage":"EM1A"}],"GOKF":[function(require,module,exports) {
+},{"localforage":"../node_modules/localforage/dist/localforage.js"}],"sound.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64076,10 +73359,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 //JSGAM sound library
 var Sound = /*#__PURE__*/function () {
-  function Sound() {
+  function Sound(game) {
     _classCallCheck(this, Sound);
 
-    this.game = null;
+    this.game = game;
     this.source = null;
     this.sprite = null;
     this.id = null;
@@ -64135,7 +73418,7 @@ var Sound = /*#__PURE__*/function () {
 }();
 
 exports.default = Sound;
-},{}],"fZQ1":[function(require,module,exports) {
+},{}],"class/scene.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64150,11 +73433,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var Scene = /*#__PURE__*/function () {
-  function Scene() {
+  function Scene(game) {
     _classCallCheck(this, Scene);
 
     this.container = new PIXI.Container();
-    this.game = null;
+    this.game = game;
   }
 
   _createClass(Scene, [{
@@ -64193,7 +73476,7 @@ var Scene = /*#__PURE__*/function () {
 
 var _default = Scene;
 exports.default = _default;
-},{}],"EwzB":[function(require,module,exports) {
+},{}],"class/text.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64203,11 +73486,11 @@ exports.Infotxt = exports.TextField = exports.Button = void 0;
 
 var _pixi = require("pixi.js");
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -64423,8 +73706,9 @@ var TextField = /*#__PURE__*/function () {
       } else {
         this.setText("");
         this.hide();
-        this.talker.shutup();
-        this.game.player.stand();
+        this.talker.shutup(); //  this.game.activeNPC=null;
+
+        this.game.player.unlock();
         if (this.game.activeObject !== null) this.game.activeObject.cancel();
       }
     }
@@ -64500,7 +73784,7 @@ var TextField = /*#__PURE__*/function () {
 }();
 
 exports.TextField = TextField;
-},{"pixi.js":"wbEC"}],"PMik":[function(require,module,exports) {
+},{"pixi.js":"../node_modules/pixi.js/lib/pixi.es.js"}],"class/menu.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64575,7 +73859,7 @@ var Menu = /*#__PURE__*/function () {
 
 var _default = Menu;
 exports.default = _default;
-},{"./text.js":"EwzB"}],"eUeR":[function(require,module,exports) {
+},{"./text.js":"class/text.js"}],"class/mainmenu.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64689,7 +73973,7 @@ var MainMenu = /*#__PURE__*/function (_Menu) {
 
 var _default = MainMenu;
 exports.default = _default;
-},{"./menu.js":"PMik"}],"pIlA":[function(require,module,exports) {
+},{"./menu.js":"class/menu.js"}],"class/language.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64810,7 +74094,7 @@ var Language = /*#__PURE__*/function (_Menu) {
 
 var _default = Language;
 exports.default = _default;
-},{"./menu.js":"PMik","./text.js":"EwzB"}],"yKjB":[function(require,module,exports) {
+},{"./menu.js":"class/menu.js","./text.js":"class/text.js"}],"class/help.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64909,7 +74193,7 @@ var Help = /*#__PURE__*/function () {
 
 var _default = Help;
 exports.default = _default;
-},{"./text.js":"EwzB"}],"ZTS9":[function(require,module,exports) {
+},{"./text.js":"class/text.js"}],"class/credits.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65031,7 +74315,7 @@ var Credits = /*#__PURE__*/function () {
 
 var _default = Credits;
 exports.default = _default;
-},{"gsap":"TpQl"}],"khqL":[function(require,module,exports) {
+},{"gsap":"../node_modules/gsap/index.js"}],"class/confirmation.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65119,7 +74403,7 @@ var Confirmation = /*#__PURE__*/function (_Menu) {
 
 var _default = Confirmation;
 exports.default = _default;
-},{"./menu.js":"PMik","./text.js":"EwzB"}],"xJND":[function(require,module,exports) {
+},{"./menu.js":"class/menu.js","./text.js":"class/text.js"}],"class/title.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65296,7 +74580,7 @@ var Title = /*#__PURE__*/function (_Scene) {
 
 var _default = Title;
 exports.default = _default;
-},{"./scene.js":"fZQ1","./mainmenu.js":"eUeR","./language.js":"pIlA","./help.js":"yKjB","./credits.js":"ZTS9","./confirmation.js":"khqL"}],"NhMM":[function(require,module,exports) {
+},{"./scene.js":"class/scene.js","./mainmenu.js":"class/mainmenu.js","./language.js":"class/language.js","./help.js":"class/help.js","./credits.js":"class/credits.js","./confirmation.js":"class/confirmation.js"}],"../node_modules/hxdaedalus-js/hxDaedalus.js":[function(require,module,exports) {
 var global = arguments[3];
 // Generated by Haxe 3.4.0 (git build development @ d3955c6)
 // with "haxe -js bin\hxDaedalus.js --macro include('hxDaedalus') --macro include('hxPixels') --macro include('wings.jsCanvas')"
@@ -71350,7 +80634,7 @@ js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
 wings_jsCanvas_CanvasHeader.__meta__ = { fields : { parseInt : { 'static' : null}, toHashColor : { 'static' : null}}};
 })(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this, typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 
-},{}],"FuT9":[function(require,module,exports) {
+},{}],"../node_modules/walkable/index.js":[function(require,module,exports) {
 var hxDaedalus = require("hxdaedalus-js").hxDaedalus;
 
 var RectMesh = hxDaedalus.factories.RectMesh;
@@ -71453,7 +80737,7 @@ Walkable.prototype.findPath = function (fromX, fromY, toX, toY, radius) {
 
 module.exports = Walkable;
 
-},{"hxdaedalus-js":"NhMM"}],"Bkuk":[function(require,module,exports) {
+},{"hxdaedalus-js":"../node_modules/hxdaedalus-js/hxDaedalus.js"}],"class/gamescene.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -71503,6 +80787,8 @@ var GameScene = /*#__PURE__*/function (_Scene) {
   _createClass(GameScene, [{
     key: "build",
     value: function build() {
+      var _this = this;
+
       if (this.foreground !== undefined) this.foreground.parentLayer = this.game.layerTop; //Z-order
 
       this.background.parentLayer = this.game.layerBottom; //Z-order
@@ -71518,38 +80804,32 @@ var GameScene = /*#__PURE__*/function (_Scene) {
       }
 
       if (this.config.Obstacles !== undefined) {
-        var obstacles = Object.values(this.config.Obstacles);
-        this.config.Obstacles = obstacles;
-
-        for (var i = 0; i < this.config.Obstacles.length; i++) {
-          this.walkable.addPolygon(this.config.Obstacles[i]);
-        }
+        this.config.Obstacles = Object.values(this.config.Obstacles);
+        this.config.Obstacles.forEach(function (element, index) {
+          _this.walkable.addPolygon(element);
+        });
       } //Add objects to the scene
 
 
-      var sceneObjects = this.config.Objects;
-
-      if (sceneObjects) {
-        for (var _i = 0; _i < sceneObjects.length; _i++) {
-          if (this.game.objects[sceneObjects[_i]] !== undefined) {
-            this.container.addChild(this.game.objects[sceneObjects[_i]].sprite);
+      if (this.config.Objects) {
+        this.config.Objects.forEach(function (element, index) {
+          if (_this.game.objects[element] !== undefined) {
+            _this.container.addChild(_this.game.objects[element].sprite);
           } else {
-            console.log("Error:Game object " + sceneObjects[_i] + " not found");
+            console.log("Error:Game object " + element + " not found");
           }
-        }
+        });
       } //Add NPCs (non-playable characters) to the scene
 
 
-      var sceneChars = this.config.Characters;
-
-      if (sceneChars) {
-        for (var _i2 = 0; _i2 < sceneChars.length; _i2++) {
-          if (this.game.npcs[sceneChars[_i2]] !== undefined) {
-            this.container.addChild(this.game.npcs[sceneChars[_i2]].sprite);
+      if (this.config.Characters) {
+        this.config.Characters.forEach(function (element, index) {
+          if (_this.game.npcs[element] !== undefined) {
+            _this.container.addChild(_this.game.npcs[element].sprite);
           } else {
-            console.log("Error:Game character " + sceneChars[_i2] + " not found");
+            console.log("Error:Game character " + element + " not found");
           }
-        }
+        });
       }
     }
   }, {
@@ -71557,9 +80837,11 @@ var GameScene = /*#__PURE__*/function (_Scene) {
     value: function getPosition(event) {
       var coord = event.data.getLocalPosition(this.game.app.stage);
 
-      if (!this.game.player.lock && this.game.activeObject === null && this.game.activeNPC === null) {
-        this.game.player.move(coord);
-      }
+      if (!this.game.player.lock
+      /* && this.game.activeObject===null && this.game.activeNPC===null*/
+      ) {
+          this.game.player.move(coord);
+        }
     }
   }, {
     key: "getPath",
@@ -71573,7 +80855,7 @@ var GameScene = /*#__PURE__*/function (_Scene) {
 
 var _default = GameScene;
 exports.default = _default;
-},{"./scene.js":"fZQ1","walkable":"FuT9"}],"LMeo":[function(require,module,exports) {
+},{"./scene.js":"class/scene.js","walkable":"../node_modules/walkable/index.js"}],"class/cutscene.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -71590,9 +80872,10 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var CutScene = /*#__PURE__*/function () {
-  function CutScene() {
+  function CutScene(game) {
     _classCallCheck(this, CutScene);
 
+    this.game = game;
     this.container = new PIXI.Container();
     this.music = null;
     this.voice = null;
@@ -71777,7 +81060,7 @@ var CutScene = /*#__PURE__*/function () {
 
 var _default = CutScene;
 exports.default = _default;
-},{"gsap":"TpQl"}],"EjSi":[function(require,module,exports) {
+},{"gsap":"../node_modules/gsap/index.js"}],"../node_modules/polyk/dist/polyk.js":[function(require,module,exports) {
 var define;
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
@@ -72530,9 +81813,9 @@ function emptyPoints (num) {
 }
 
 })));
+//# sourceMappingURL=polyk.js.map
 
-
-},{}],"vZYL":[function(require,module,exports) {
+},{}],"collisions.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -72610,7 +81893,7 @@ function checkPath(coords, obstaclesPolys, walkPoly) {
 
   return newPos;
 }
-},{"polyk":"EjSi"}],"koTY":[function(require,module,exports) {
+},{"polyk":"../node_modules/polyk/dist/polyk.js"}],"class/gameobject.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -72627,11 +81910,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var GameObject = /*#__PURE__*/function () {
-  function GameObject() {
+  function GameObject(game) {
     _classCallCheck(this, GameObject);
 
     this.sprite = null;
-    this.game = null;
+    this.game = game;
     this.action = null;
   }
 
@@ -72963,7 +82246,7 @@ var GameObject = /*#__PURE__*/function () {
 
 var _default = GameObject;
 exports.default = _default;
-},{"../collisions.js":"vZYL"}],"cAfK":[function(require,module,exports) {
+},{"../collisions.js":"collisions.js"}],"class/inventory.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -73168,7 +82451,7 @@ var Inventory = /*#__PURE__*/function () {
 
 var _default = Inventory;
 exports.default = _default;
-},{"../collisions.js":"vZYL"}],"v2k2":[function(require,module,exports) {
+},{"../collisions.js":"collisions.js"}],"class/puzzle.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -73297,6 +82580,7 @@ var Puzzle = /*#__PURE__*/function () {
           this.game.npcs[this.config.NPCSay.Name].say(_text);
         } else {
           this.game.player.stand();
+          this.game.player.unlock();
         }
 
         if (this.config.Sound !== undefined && !this.game.silentMode) {
@@ -73322,6 +82606,7 @@ var Puzzle = /*#__PURE__*/function () {
         this.solved = true;
       } else {
         this.game.player.stand();
+        this.game.player.unlock();
       }
 
       this.game.activePuzzle = null;
@@ -73333,7 +82618,7 @@ var Puzzle = /*#__PURE__*/function () {
 
 var _default = Puzzle;
 exports.default = _default;
-},{}],"EUnr":[function(require,module,exports) {
+},{}],"../node_modules/pixi5-dragonbones/dragonBones.js":[function(require,module,exports) {
 var global = arguments[3];
 var define;
 "use strict";
@@ -89374,7 +98659,7 @@ var dragonBones;
     dragonBones.PixiFactory = PixiFactory;
 })(dragonBones || (dragonBones = {}));
 
-},{}],"w4vd":[function(require,module,exports) {
+},{}],"class/character.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -89405,10 +98690,10 @@ var dragonBones = require('pixi5-dragonbones');
 var dbfactory = dragonBones.PixiFactory.factory;
 
 var Character = /*#__PURE__*/function () {
-  function Character() {
+  function Character(game) {
     _classCallCheck(this, Character);
 
-    this.game = null;
+    this.game = game;
     this.state = null;
     this.lock = false;
     this.endAction = null;
@@ -89461,6 +98746,11 @@ var Character = /*#__PURE__*/function () {
       this.sprite.visible = true;
     }
   }, {
+    key: "unlock",
+    value: function unlock() {
+      this.lock = false;
+    }
+  }, {
     key: "width",
     value: function width() {
       return this.sprite.getBounds().width;
@@ -89507,6 +98797,7 @@ var Character = /*#__PURE__*/function () {
           if (this.sprite.x < newPosition.x) this.sprite.armature.flipX = false;else this.sprite.armature.flipX = true;
           this.game.activeState = this;
           if (this.tween !== null) this.tween.kill();
+          this.lock = true;
           this.tween = _gsap.gsap.to(this.sprite, {
             duration: animationTime,
             motionPath: finalPath,
@@ -89537,19 +98828,17 @@ var Character = /*#__PURE__*/function () {
     value: function stop() {
       this.animate(this.animations.Stand);
       this.game.activeState = null;
-      this.lock = false;
 
       if (this.endAction !== null) {
         if (this.endAction === "Look") this.look();else if (this.endAction === "Take") this.take();else if (this.endAction === "Use") this.use();else if (this.endAction === "Talk") this.talk();
         this.endAction = null;
-      }
+      } else this.unlock();
     }
   }, {
     key: "stand",
     value: function stand() {
       this.animate(this.animations.Stand);
       this.game.activeState = null;
-      this.lock = false;
     }
   }, {
     key: "say",
@@ -89614,7 +98903,7 @@ var Character = /*#__PURE__*/function () {
 
 var _default = Character;
 exports.default = _default;
-},{"pixi.js":"wbEC","pixi5-dragonbones":"EUnr","gsap":"TpQl","../collisions.js":"vZYL"}],"LKzY":[function(require,module,exports) {
+},{"pixi.js":"../node_modules/pixi.js/lib/pixi.es.js","pixi5-dragonbones":"../node_modules/pixi5-dragonbones/dragonBones.js","gsap":"../node_modules/gsap/index.js","../collisions.js":"collisions.js"}],"class/player.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -89742,6 +99031,7 @@ var Player = /*#__PURE__*/function (_Character) {
       }
 
       this.stand();
+      this.unlock();
     }
   }, {
     key: "use",
@@ -89765,6 +99055,7 @@ var Player = /*#__PURE__*/function (_Character) {
         if (this.game.activeObject.config.Door) {
           this.game.changeScene(this.game.activeObject.config.Door.To, this.game.activeObject.config.Door.Player);
           this.stand();
+          this.unlock();
         } else {
           this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
         }
@@ -89778,10 +99069,10 @@ var Player = /*#__PURE__*/function (_Character) {
       //Player must look in the right direction
       if (this.sprite.x < this.game.activeNPC.sprite.x) {
         this.sprite.armature.flipX = false;
-        if (this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX = false;else this.game.activeNPC.sprite.armature.flipX = true;
+        if (!this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX = true;
       } else {
         this.sprite.armature.flipX = true;
-        if (this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX = true;else this.game.activeNPC.sprite.armature.flipX = false;
+        if (this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX = false;
       } //Let's talk
 
 
@@ -89794,7 +99085,7 @@ var Player = /*#__PURE__*/function (_Character) {
 
 var _default = Player;
 exports.default = _default;
-},{"./character.js":"w4vd","../collisions.js":"vZYL"}],"NQ1q":[function(require,module,exports) {
+},{"./character.js":"class/character.js","../collisions.js":"collisions.js"}],"class/npc.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -89954,7 +99245,7 @@ var NPC = /*#__PURE__*/function (_Character) {
 
 var _default = NPC;
 exports.default = _default;
-},{"./character.js":"w4vd"}],"JL1J":[function(require,module,exports) {
+},{"./character.js":"class/character.js"}],"class/dialogue.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -89972,9 +99263,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 //Branches dialogue system
 var Dialogue = /*#__PURE__*/function () {
-  function Dialogue() {
+  function Dialogue(game) {
     _classCallCheck(this, Dialogue);
 
+    this.game = game;
     this.timeoutID = null;
     this.firstTime = true;
     this.choice = null;
@@ -90090,7 +99382,7 @@ var Dialogue = /*#__PURE__*/function () {
 
 var _default = Dialogue;
 exports.default = _default;
-},{"./text.js":"EwzB"}],"n7v1":[function(require,module,exports) {
+},{"./text.js":"class/text.js"}],"class/logo.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -90196,7 +99488,7 @@ var Logo = /*#__PURE__*/function () {
 
 var _default = Logo;
 exports.default = _default;
-},{"gsap":"TpQl"}],"DwQs":[function(require,module,exports) {
+},{"gsap":"../node_modules/gsap/index.js"}],"class/options.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -90206,11 +99498,11 @@ exports.default = void 0;
 
 var _pixi = require("pixi.js");
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -90387,7 +99679,7 @@ var Options = /*#__PURE__*/function () {
 
 var _default = Options;
 exports.default = _default;
-},{"pixi.js":"wbEC"}],"CN57":[function(require,module,exports) {
+},{"pixi.js":"../node_modules/pixi.js/lib/pixi.es.js"}],"class/progressbar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -90432,7 +99724,7 @@ var ProgressBar = /*#__PURE__*/function () {
 
 var _default = ProgressBar;
 exports.default = _default;
-},{}],"QcRT":[function(require,module,exports) {
+},{}],"game.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -90449,6 +99741,10 @@ var _PixiPlugin = require("gsap/PixiPlugin");
 var _MotionPathPlugin = require("gsap/MotionPathPlugin");
 
 var _loader = _interopRequireDefault(require("./loader.js"));
+
+var _particles = _interopRequireDefault(require("./particles.js"));
+
+var _filters = _interopRequireDefault(require("./filters.js"));
 
 var _storage = _interopRequireDefault(require("./storage.js"));
 
@@ -90623,74 +99919,29 @@ var Game = /*#__PURE__*/function () {
       this.activeState = null;
       this.finished = false;
       this.storage = new _storage.default(this);
-      if (this.settings.Logos !== undefined) this.logo = new _logo.default(this);
+      if (this.settings.Logos !== undefined) this.logo = new _logo.default(this); //Initialize particles and filter systems
+
+      this.particles = new _particles.default(this);
+      this.filters = new _filters.default(this);
       this.titleLabel = "Title";
       if (this.settings.HoldTime !== undefined) this.holdTime = this.settings.HoldTime * 1000;
       if (this.settings.dialogueChoices !== undefined) this.dialogueChoices = this.settings.dialogueChoices;else this.dialogueChoices = 3; //Setup title screen
 
-      this.addScene(this.titleLabel, new _title.default(), this.settings.TitleScreen); //Add sounds,music and voices
+      this.addTitle(); //Add sounds,music and voices
 
-      var i;
-      var length = this.data.music.length;
+      this.addAudio(this.data.music, this.data.sounds, this.data.voices); //Add game objects
 
-      for (i = 0; i < length; i++) {
-        this.addMusic(this.data.music[i].Name, new _sound.default(), this.data.music[i]);
-      }
+      this.addObjects(this.data.objects); //Non-playable characters
 
-      length = this.data.sounds.length;
+      this.addNPC(this.data.npc); //Dialogues
 
-      for (i = 0; i < length; i++) {
-        this.addSound(this.data.sounds[i].Name, new _sound.default(), this.data.sounds[i]);
-      }
+      this.addDialogues(this.data.dialogues); //Add game scenes
 
-      length = this.data.voices.length;
+      this.addScenes(this.data.scenes); //Add cutscenes
 
-      for (i = 0; i < length; i++) {
-        this.addVoice(this.data.voices[i].Name, new _sound.default(), this.data.voices[i]);
-      } //Add game objects
+      this.addCutscenes(this.data.cutscenes); //Puzzles
 
-
-      length = this.data.objects.length;
-
-      for (i = 0; i < length; i++) {
-        this.addObject(this.data.objects[i].Name, new _gameobject.default(), this.data.objects[i]);
-      } //Non-playable characters
-
-
-      length = this.data.npc.length;
-
-      for (i = 0; i < length; i++) {
-        this.addNPC(this.data.npc[i].Name, new _npc.default(), this.data.npc[i]);
-      } //Dialogues
-
-
-      length = this.data.dialogues.length;
-
-      for (i = 0; i < length; i++) {
-        this.addDialogue(this.data.dialogues[i].Name, new _dialogue.default(), this.data.dialogues[i]);
-      } //Add game scenes
-
-
-      length = this.data.scenes.length;
-
-      for (i = 0; i < length; i++) {
-        this.addScene(this.data.scenes[i].Name, new _gamescene.default(), this.data.scenes[i]);
-      } //Add cutscenes
-
-
-      length = this.data.cutscenes.length;
-
-      for (i = 0; i < length; i++) {
-        this.addCutscene(this.data.cutscenes[i].Name, new _cutscene.default(), this.data.cutscenes[i]);
-      } //Puzzles
-
-
-      length = this.data.puzzles.length;
-
-      for (i = 0; i < length; i++) {
-        this.addPuzzle(this.data.puzzles[i].Name, new _puzzle.default(), this.data.puzzles[i]);
-      } //Add Inventory
-
+      this.addPuzzles(this.data.puzzles); //Add Inventory
 
       this.addInventory(); //Add text field
 
@@ -90722,86 +99973,126 @@ var Game = /*#__PURE__*/function () {
       if (this.activeState != null) {
         this.activeState.update(dt);
       }
+
+      if (this.particles.emitter != null) this.particles.update();
+      if (this.filters.filter != null) this.filters.update();
     }
   }, {
-    key: "addMusic",
-    value: function addMusic(name, music, config) {
-      this.music[name] = music; //Music parameters
-
-      music.config = config; //Set game so music can access it
-
-      music.game = this;
-      music.source = this.files.resources[name].sound;
+    key: "addTitle",
+    value: function addTitle() {
+      this.scenes[this.titleLabel] = new _title.default(this);
+      this.scenes[this.titleLabel].setup(this.settings.TitleScreen);
+      this.scenes[this.titleLabel].build();
     }
   }, {
-    key: "addSound",
-    value: function addSound(name, sound, config) {
-      this.sounds[name] = sound; //Music parameters
+    key: "addAudio",
+    value: function addAudio(music, sounds, voices) {
+      var _this = this;
 
-      sound.config = config; //Set game so music can access it
+      if (music !== undefined) {
+        music.forEach(function (element, index) {
+          _this.music[element.Name] = new _sound.default(_this);
+          _this.music[element.Name].config = element;
+          _this.music[element.Name].source = _this.files.resources[element.Name].sound;
+        });
+      }
 
-      sound.game = this;
-      sound.source = this.files.resources[name].sound;
+      if (sounds !== undefined) {
+        sounds.forEach(function (element, index) {
+          _this.sounds[element.Name] = new _sound.default(_this);
+          _this.sounds[element.Name].config = element;
+          _this.sounds[element.Name].source = _this.files.resources[element.Name].sound;
 
-      if (config.Sprites) {
-        var audioSprite = Object.assign.apply(Object, [{}].concat(_toConsumableArray(config.Sprites.map(function (object) {
-          return _defineProperty({}, object.key, object.value);
-        }))));
-        sound.source._sprite = audioSprite;
+          if (element.Sprites) {
+            var audioSprite = Object.assign.apply(Object, [{}].concat(_toConsumableArray(element.Sprites.map(function (object) {
+              return _defineProperty({}, object.key, object.value);
+            }))));
+            _this.sounds[element.Name].source._sprite = audioSprite;
+          }
+        });
+      }
+
+      if (voices !== undefined) {
+        voices.forEach(function (element, index) {
+          _this.voices[element.Name] = new _sound.default(_this);
+          _this.voices[element.Name].config = element;
+          _this.voices[element.Name].source = _this.files.resources[element.Name].sound;
+          _this.voices[element.Name].source._sprite = element.Sprites;
+        });
       }
     }
   }, {
-    key: "addVoice",
-    value: function addVoice(name, voice, config) {
-      this.voices[name] = voice; //Music parameters
+    key: "addObjects",
+    value: function addObjects(objects) {
+      var _this2 = this;
 
-      voice.config = config; //Set game so music can access it
+      objects.forEach(function (element, index) {
+        _this2.objects[element.Name] = new _gameobject.default(_this2);
+        _this2.objects[element.Name].config = element;
 
-      voice.game = this;
-      voice.source = this.files.resources[name].sound;
-      voice.source._sprite = config.Sprites;
+        _this2.objects[element.Name].build();
+      });
     }
   }, {
-    key: "addObject",
-    value: function addObject(name, object, config) {
-      this.objects[name] = object; //Config the object
+    key: "addScenes",
+    value: function addScenes(scenes) {
+      var _this3 = this;
 
-      object.config = config; //Set game so object can access it
+      scenes.forEach(function (element, index) {
+        _this3.scenes[element.Name] = new _gamescene.default(_this3);
+        _this3.scenes[element.Name].config = element;
 
-      object.game = this; //Build object
+        _this3.scenes[element.Name].setup(element);
 
-      object.build();
+        _this3.scenes[element.Name].build();
+      });
     }
   }, {
-    key: "addScene",
-    value: function addScene(name, scene, config) {
-      this.scenes[name] = scene; //Config the scene
+    key: "addCutscenes",
+    value: function addCutscenes(cutscenes) {
+      var _this4 = this;
 
-      scene.setup(config); //Set game so scene can access it
+      cutscenes.forEach(function (element, index) {
+        _this4.cutscenes[element.Name] = new _cutscene.default(_this4);
+        _this4.cutscenes[element.Name].config = element;
 
-      scene.game = this; //Build scene
-
-      scene.build();
+        _this4.cutscenes[element.Name].build();
+      });
     }
   }, {
-    key: "addCutscene",
-    value: function addCutscene(name, cutscene, config) {
-      this.cutscenes[name] = cutscene; //Config the scene
+    key: "addPuzzles",
+    value: function addPuzzles(puzzles) {
+      var _this5 = this;
 
-      cutscene.config = config; //Set game so scene can access it
-
-      cutscene.game = this; //Build scene
-
-      cutscene.build();
+      puzzles.forEach(function (element, index) {
+        _this5.puzzles[element.Name] = new _puzzle.default(_this5);
+        _this5.puzzles[element.Name].config = element;
+      });
     }
   }, {
-    key: "addPuzzle",
-    value: function addPuzzle(name, puzzle, config) {
-      this.puzzles[name] = puzzle; //Puzzle's config
+    key: "addNPC",
+    value: function addNPC(charas) {
+      var _this6 = this;
 
-      puzzle.config = config; //Set game so puzzle can access it
+      charas.forEach(function (element, index) {
+        _this6.npcs[element.Name] = new _npc.default(_this6);
+        _this6.npcs[element.Name].config = element;
 
-      puzzle.game = this;
+        _this6.npcs[element.Name].setup(element);
+
+        _this6.npcs[element.Name].build();
+      });
+    }
+  }, {
+    key: "addDialogues",
+    value: function addDialogues(dialogues) {
+      var _this7 = this;
+
+      dialogues.forEach(function (element, index) {
+        _this7.dialogues[element.Name] = new _dialogue.default(_this7);
+
+        _this7.dialogues[element.Name].setup(element);
+      });
     }
   }, {
     key: "addZOrder",
@@ -90844,25 +100135,9 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "addPlayer",
     value: function addPlayer() {
-      this.player = new _player.default();
-      this.player.game = this;
+      this.player = new _player.default(this);
       this.data.player.Name = "player";
       this.player.setup(this.data.player);
-    }
-  }, {
-    key: "addNPC",
-    value: function addNPC(name, char, config) {
-      this.npcs[name] = char;
-      char.game = this;
-      char.setup(config);
-      char.build();
-    }
-  }, {
-    key: "addDialogue",
-    value: function addDialogue(name, dialogue, config) {
-      this.dialogues[name] = dialogue;
-      dialogue.game = this;
-      dialogue.setup(config);
     }
   }, {
     key: "addTextField",
@@ -90999,6 +100274,19 @@ var Game = /*#__PURE__*/function () {
           this.player.size = this.activeScene.config.Player.Size;
           this.player.scale();
         }
+      } //Particles and filters systems
+
+
+      if (this.particles.emitter != null) this.particles.stop();
+
+      if (this.activeScene.config.Particles !== undefined) {
+        this.particles.start(this.activeScene.config.Particles);
+      }
+
+      if (this.filters.filter != null) this.filters.stop();
+
+      if (this.activeScene.config.Filter !== undefined) {
+        this.filters.start(this.activeScene.config.Filter);
       } //Save game progress
 
 
@@ -91076,7 +100364,7 @@ var Game = /*#__PURE__*/function () {
 
 var _default = Game;
 exports.default = _default;
-},{"pixi.js":"wbEC","pixi-layers":"hSFE","gsap":"TpQl","gsap/PixiPlugin":"Y7PD","gsap/MotionPathPlugin":"DOrM","./loader.js":"cGmI","./storage.js":"KZ7Y","./sound.js":"GOKF","./class/title.js":"xJND","./class/gamescene.js":"Bkuk","./class/cutscene.js":"LMeo","./class/gameobject.js":"koTY","./class/inventory.js":"cAfK","./class/puzzle.js":"v2k2","./class/text.js":"EwzB","./class/player.js":"LKzY","./class/npc.js":"NQ1q","./class/dialogue.js":"JL1J","./class/logo.js":"n7v1","./class/options.js":"DwQs","./class/progressbar.js":"CN57"}],"Focm":[function(require,module,exports) {
+},{"pixi.js":"../node_modules/pixi.js/lib/pixi.es.js","pixi-layers":"../node_modules/pixi-layers/dist/pixi-layers.js","gsap":"../node_modules/gsap/index.js","gsap/PixiPlugin":"../node_modules/gsap/PixiPlugin.js","gsap/MotionPathPlugin":"../node_modules/gsap/MotionPathPlugin.js","./loader.js":"loader.js","./particles.js":"particles.js","./filters.js":"filters.js","./storage.js":"storage.js","./sound.js":"sound.js","./class/title.js":"class/title.js","./class/gamescene.js":"class/gamescene.js","./class/cutscene.js":"class/cutscene.js","./class/gameobject.js":"class/gameobject.js","./class/inventory.js":"class/inventory.js","./class/puzzle.js":"class/puzzle.js","./class/text.js":"class/text.js","./class/player.js":"class/player.js","./class/npc.js":"class/npc.js","./class/dialogue.js":"class/dialogue.js","./class/logo.js":"class/logo.js","./class/options.js":"class/options.js","./class/progressbar.js":"class/progressbar.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -91096,5 +100384,208 @@ console.log("JSGAM 5.1.0d https://github.com/kreezii/jsgam");
 var _default = _game.default; //export {Game};
 
 exports.default = _default;
-},{"./game":"QcRT"}]},{},["Focm"], "jsgam")
-//# sourceMappingURL=/jsgam.js.map
+},{"./game":"game.js"}],"../../../../.npm-packages/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var global = arguments[3];
+var OVERLAY_ID = '__parcel__error__overlay__';
+var OldModule = module.bundle.Module;
+
+function Module(moduleName) {
+  OldModule.call(this, moduleName);
+  this.hot = {
+    data: module.bundle.hotData,
+    _acceptCallbacks: [],
+    _disposeCallbacks: [],
+    accept: function (fn) {
+      this._acceptCallbacks.push(fn || function () {});
+    },
+    dispose: function (fn) {
+      this._disposeCallbacks.push(fn);
+    }
+  };
+  module.bundle.hotData = null;
+}
+
+module.bundle.Module = Module;
+var checkedAssets, assetsToAccept;
+var parent = module.bundle.parent;
+
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+  var hostname = "" || location.hostname;
+  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35975" + '/');
+
+  ws.onmessage = function (event) {
+    checkedAssets = {};
+    assetsToAccept = [];
+    var data = JSON.parse(event.data);
+
+    if (data.type === 'update') {
+      var handled = false;
+      data.assets.forEach(function (asset) {
+        if (!asset.isNew) {
+          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
+
+          if (didAccept) {
+            handled = true;
+          }
+        }
+      }); // Enable HMR for CSS by default.
+
+      handled = handled || data.assets.every(function (asset) {
+        return asset.type === 'css' && asset.generated.js;
+      });
+
+      if (handled) {
+        console.clear();
+        data.assets.forEach(function (asset) {
+          hmrApply(global.parcelRequire, asset);
+        });
+        assetsToAccept.forEach(function (v) {
+          hmrAcceptRun(v[0], v[1]);
+        });
+      } else if (location.reload) {
+        // `location` global exists in a web worker context but lacks `.reload()` function.
+        location.reload();
+      }
+    }
+
+    if (data.type === 'reload') {
+      ws.close();
+
+      ws.onclose = function () {
+        location.reload();
+      };
+    }
+
+    if (data.type === 'error-resolved') {
+      console.log('[parcel] ✨ Error resolved');
+      removeErrorOverlay();
+    }
+
+    if (data.type === 'error') {
+      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
+      removeErrorOverlay();
+      var overlay = createErrorOverlay(data);
+      document.body.appendChild(overlay);
+    }
+  };
+}
+
+function removeErrorOverlay() {
+  var overlay = document.getElementById(OVERLAY_ID);
+
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+function createErrorOverlay(data) {
+  var overlay = document.createElement('div');
+  overlay.id = OVERLAY_ID; // html encode message and stack trace
+
+  var message = document.createElement('div');
+  var stackTrace = document.createElement('pre');
+  message.innerText = data.error.message;
+  stackTrace.innerText = data.error.stack;
+  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
+  return overlay;
+}
+
+function getParents(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return [];
+  }
+
+  var parents = [];
+  var k, d, dep;
+
+  for (k in modules) {
+    for (d in modules[k][1]) {
+      dep = modules[k][1][d];
+
+      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
+        parents.push(k);
+      }
+    }
+  }
+
+  if (bundle.parent) {
+    parents = parents.concat(getParents(bundle.parent, id));
+  }
+
+  return parents;
+}
+
+function hmrApply(bundle, asset) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (modules[asset.id] || !bundle.parent) {
+    var fn = new Function('require', 'module', 'exports', asset.generated.js);
+    asset.isNew = !modules[asset.id];
+    modules[asset.id] = [fn, asset.deps];
+  } else if (bundle.parent) {
+    hmrApply(bundle.parent, asset);
+  }
+}
+
+function hmrAcceptCheck(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (!modules[id] && bundle.parent) {
+    return hmrAcceptCheck(bundle.parent, id);
+  }
+
+  if (checkedAssets[id]) {
+    return;
+  }
+
+  checkedAssets[id] = true;
+  var cached = bundle.cache[id];
+  assetsToAccept.push([bundle, id]);
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    return true;
+  }
+
+  return getParents(global.parcelRequire, id).some(function (id) {
+    return hmrAcceptCheck(global.parcelRequire, id);
+  });
+}
+
+function hmrAcceptRun(bundle, id) {
+  var cached = bundle.cache[id];
+  bundle.hotData = {};
+
+  if (cached) {
+    cached.hot.data = bundle.hotData;
+  }
+
+  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
+    cached.hot._disposeCallbacks.forEach(function (cb) {
+      cb(bundle.hotData);
+    });
+  }
+
+  delete bundle.cache[id];
+  bundle(id);
+  cached = bundle.cache[id];
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    cached.hot._acceptCallbacks.forEach(function (cb) {
+      cb();
+    });
+
+    return true;
+  }
+}
+},{}]},{},["../../../../.npm-packages/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], "jsgam")

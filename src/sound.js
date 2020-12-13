@@ -1,8 +1,8 @@
 //JSGAM sound library
 
 export default class Sound{
-  constructor(){
-    this.game=null;
+  constructor(game){
+    this.game=game;
     this.source=null;
     this.sprite=null;
     this.id=null;

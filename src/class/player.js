@@ -66,6 +66,7 @@ class Player extends Character{
       this.game.activeObject.cancel();
     }
     this.stand();
+    this.unlock();
   }
 
   use(){
@@ -88,6 +89,7 @@ class Player extends Character{
         this.game.changeScene(this.game.activeObject.config.Door.To,
           this.game.activeObject.config.Door.Player);
           this.stand();
+          this.unlock();
       }else{
         this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
       }
@@ -99,12 +101,10 @@ class Player extends Character{
     //Player must look in the right direction
     if(this.sprite.x<this.game.activeNPC.sprite.x){
       this.sprite.armature.flipX=false;
-      if(this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX=false;
-      else this.game.activeNPC.sprite.armature.flipX=true;
+      if(!this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX=true;
     }else{
       this.sprite.armature.flipX=true;
-      if(this.game.activeNPC.config.Mirror) this.game.activeNPC.sprite.armature.flipX=true;
-      else this.game.activeNPC.sprite.armature.flipX=false;
+      if(this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX=false;
     }
 
     //Let's talk

@@ -164,7 +164,8 @@ class TextField{
       this.setText("");
       this.hide();
       this.talker.shutup();
-      this.game.player.stand();
+    //  this.game.activeNPC=null;
+      this.game.player.unlock();
       if(this.game.activeObject!==null) this.game.activeObject.cancel();
     }
   }
