@@ -96,6 +96,10 @@ class Puzzle{
           let npcRemove=this.game.npc[this.config.Remove.NPC];
           npcRemove.remove();
         }
+
+        if(this.config.Remove.Partner){
+          this.game.partner=null;
+        }
       }
 
       if(this.config.Resolve!==undefined)this.game.puzzles[this.config.Resolve].resolve();

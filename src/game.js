@@ -25,6 +25,7 @@ import Inventory from './class/inventory.js';
 import Puzzle from './class/puzzle.js';
 import {TextField} from './class/text.js';
 import Player from './class/player.js';
+import Partner from './class/partner.js';
 import NPC from './class/npc.js';
 import Dialogue from './class/dialogue.js';
 import Logo from './class/logo.js';
@@ -125,6 +126,7 @@ class Game {
     this.tween=null;
     this.logo=null;
     this.options=null;
+    this.partner=null;
 
     this.scenes={};
     this.cutscenes={};
@@ -146,7 +148,7 @@ class Game {
     this.activeCutscene=null;
     this.activeVoice=null;
 
-    this.activeState=null;
+    this.movingState=null;
 
     this.finished=false;
 
@@ -197,6 +199,9 @@ class Game {
     //Add player
     this.addPlayer();
 
+    //Add partner
+    if(this.data.partner) this.addPartner();
+
     //Add Options if they are defined
     if(this.settings.Options!==undefined) this.addOptions();
 
@@ -223,8 +228,8 @@ class Game {
 
   loop(dt){
     // update current state
-    if (this.activeState != null) {
-        this.activeState.update(dt);
+    if (this.movingState != null) {
+        this.movingState.update(dt);
     }
     if(this.particles.emitter!=null) this.particles.update();
     if(this.filters.filter!=null) this.filters.update();
@@ -356,6 +361,14 @@ class Game {
     this.player.setup(this.data.player);
   }
 
+  addPartner(){
+    this.partner=new Partner(this);
+    this.partner.config=this.data.partner;
+    this.data.partner.Name="partner";
+    this.partner.setup(this.data.partner);
+    this.partner.build();
+  }
+
   addTextField(){
     this.textField=new TextField();
     this.textField.game=this;
@@ -411,6 +424,9 @@ class Game {
     //Show Player
     this.app.stage.addChild(this.player.sprite);
 
+    //Add partner if exists
+    if(this.partner!=null) this.app.stage.addChild(this.partner.sprite);
+
     //Add Text Field
     this.app.stage.addChild(this.textField.container);
   }
@@ -424,6 +440,7 @@ class Game {
       this.options.hideIcon();
     }
     this.player.hide();
+    if(this.partner!=null) this.partner.hide();
     if(this.activeScene.music!==undefined){
       this.music[this.activeScene.music].stop();
     }
@@ -434,6 +451,10 @@ class Game {
     if(this.options!==null){
       this.options.showIcon();
     }
+    if(this.activeScene.config.Partner!==undefined){
+      if(this.partner!==null) //addPartner();
+      this.partner.show();
+    }else this.partner.hide();
     this.player.show();
     this.activeScene.show();
     this.fadeIn();

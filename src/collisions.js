@@ -13,6 +13,7 @@ function collision(a, b)
   if(a!=undefined && b !=undefined){
     if(a.hitArea) result=PolyK.ContainsPoint(a.hitArea.points,b.x,b.y);
     else if(b.hitArea) result=PolyK.ContainsPoint(b.hitArea.points,a.x,a.y);
+    else if(b.Area) result=PolyK.ContainsPoint(b.Area,a.x,a.y);
     else result=boxesIntersect(a,b);
   }
 

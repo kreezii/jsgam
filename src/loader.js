@@ -114,6 +114,13 @@ class GameLoader extends Loader{
          this.game.data.player=files[i].data.Player;
        }
 
+       //Look for partner files
+       if(files[i].data.Partner){
+         this.add('partnerTex', files[i].data.Partner.Texture)
+             .add('partnerJson', files[i].data.Partner.Json)
+             .add('partnerSkeleton', files[i].data.Partner.Skeleton);
+         this.game.data.partner=files[i].data.Partner;
+       }
        //Look for NPC files
        if(files[i].data.Characters){
          let npcSrc=files[i].data.Characters;

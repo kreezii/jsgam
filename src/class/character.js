@@ -4,7 +4,7 @@ const dragonBones=require('pixi5-dragonbones');
 const dbfactory=dragonBones.PixiFactory.factory;
 import { gsap } from "gsap";
 
-import {checkPath} from '../collisions.js'
+import {checkPath,collision} from '../collisions.js'
 
 class Character{
   constructor(game){
@@ -104,7 +104,7 @@ class Character{
         if(this.sprite.x<newPosition.x) this.sprite.armature.flipX=false;
         else this.sprite.armature.flipX=true;
 
-        this.game.activeState=this;
+        this.game.movingState=this;
 
         if(this.tween!==null) this.tween.kill();
         this.lock=true;
@@ -124,13 +124,20 @@ class Character{
 
   scale(){
     let scaleChar=this.sprite.y/this.game.height*this.size;
-    if(scaleChar<this.game.activeScene.config.Depth) scaleChar=this.game.activeScene.config.Depth;
+    let depths=this.game.activeScene.config.Depth;
+
+    if(depths!=undefined){
+      depths.forEach((element) => {
+        if(collision(this.sprite,element)) scaleChar=element.Size;
+      });
+    }
+
     this.sprite.scale.set(scaleChar);
   }
 
   stop(){
     this.animate(this.animations.Stand);
-    this.game.activeState=null;
+    this.game.movingState=null;
 
     if(this.endAction!==null){
       if(this.endAction==="Look") this.look();
@@ -143,7 +150,7 @@ class Character{
 
   stand(){
     this.animate(this.animations.Stand);
-    this.game.activeState=null;
+    this.game.movingState=null;
   }
 
   say(text,voice){
