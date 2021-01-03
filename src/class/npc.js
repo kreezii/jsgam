@@ -32,15 +32,13 @@ class NPC extends Character{
     if(this.interaction){
       let distance=this.width();
       if(this.game.player.sprite.x<this.sprite.x) distance*=-1;
-    /*  if(this.game.player.sprite.x<this.sprite.x) distance=this.sprite.getBounds().width*-1;
-      else distance=this.sprite.getBounds().width+this.game.player.sprite;*/
       let moveTo={x:this.sprite.x+distance,y:this.sprite.y};
 
       if(this.interaction.button===2  || this.holding){
+        this.action="Talk";
         //Check if we talk with the character
         if(this.config.Dialogue!==undefined){
           this.game.activeDialogue=this.game.dialogues[this.config.Dialogue];
-          this.action="Talk";
         }
       }else{
         this.action="Look";

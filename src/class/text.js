@@ -54,20 +54,26 @@ class Phrases{
 
   get(){
     this.clear();
-    let options=this.game.activeDialogue.currentBranch.Choices;
-    let length=options.length;
-    if(length>this.game.dialogueChoices) length=this.game.dialogueChoices;
-    for(let i=0;i<length;i++){
-      if(options[i].disabled){
-        this.option[i].alpha=0.5;
-      }else this.option[i].alpha=1;
-      this.option[i].visible=true;
-      let text=options[i].Text[this.game.activeLanguage];
-      if(text===undefined) text=options[i].Text[0];
-      this.option[i].text=text;
+    if(this.game.activeDialogue.currentBranch!==undefined){
+      let options=this.game.activeDialogue.currentBranch.Choices;
+      let length=options.length;
+      if(length>this.game.dialogueChoices) length=this.game.dialogueChoices;
+      for(let i=0;i<length;i++){
+        if(options[i].disabled){
+          this.option[i].alpha=0.5;
+        }else this.option[i].alpha=1;
+        this.option[i].visible=true;
+        let text=options[i].Text[this.game.activeLanguage];
+        if(text===undefined) text=options[i].Text[0];
+        this.option[i].text=text;
+      }
+      this.update();
+      this.show();
+    }else{
+      this.game.activeDialogue=null;
+      this.game.textField.end();
     }
-    this.update();
-    this.show();
+
   }
 
   clear(){
@@ -163,7 +169,7 @@ class TextField{
     }else{
       this.setText("");
       this.hide();
-      this.talker.shutup();
+      if(this.talker!==undefined) this.talker.shutup();
     //  this.game.activeNPC=null;
       this.game.player.unlock();
       if(this.game.activeObject!==null) this.game.activeObject.cancel();

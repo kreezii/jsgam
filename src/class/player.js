@@ -89,26 +89,33 @@ class Player extends Character{
         this.game.changeScene(this.game.activeObject.config.Door.To,
           this.game.activeObject.config.Door.Player);
           this.stand();
-          this.unlock();
       }else{
-        this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
+        if(this.game.activeObject.config.NotUsable) this.say(this.game.activeObject.config.NotUsable[this.game.activeLanguage]);
+        else this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
       }
       this.game.activeObject.cancel();
     }
   }
 
   talk(){
-    //Player must look in the right direction
-    if(this.sprite.x<this.game.activeNPC.sprite.x){
-      this.sprite.armature.flipX=false;
-      if(!this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX=true;
-    }else{
-      this.sprite.armature.flipX=true;
-      if(this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX=false;
-    }
+    //Check if we talk with the character
+    if(this.game.activeDialogue!==null){
+      //Player must look in the right direction
+      if(this.sprite.x<this.game.activeNPC.sprite.x){
+        this.sprite.armature.flipX=false;
+        if(!this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX=true;
+      }else{
+        this.sprite.armature.flipX=true;
+        if(this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX=false;
+      }
 
-    //Let's talk
-    this.game.activeDialogue.start();
+      //Let's talk
+      this.game.activeDialogue.start();
+    }else{
+      if(this.game.activeNPC.config.NotTalkable) this.say(this.game.activeNPC.config.NotTalkable[this.game.activeLanguage]);
+      else this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
+      this.game.activeNPC.cancel();
+    }
   }
 
 }

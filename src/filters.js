@@ -1,5 +1,4 @@
-import {GodrayFilter} from 'pixi-filters';
-
+import {GodrayFilter,AdjustmentFilter,ReflectionFilter} from 'pixi-filters';
 
 class Filters{
   constructor(game){
@@ -8,30 +7,45 @@ class Filters{
 		this.container=new PIXI.Container();
 		this.container.width=this.game.width;
 		this.container.height=this.game.height;
-	/*	this.sprite=new PIXI.Sprite(PIXI.Texture.WHITE);
-		this.sprite.width=this.game.width;
-		this.sprite.height=this.game.height;
-		this.container.addChild(this.sprite);
-		this.sprite.alpha=0;*/
 		this.container.parentLayer = this.game.layerBottom;
 		this.game.app.stage.addChild(this.container);
   }
 
   start(style){
+    this.style=style;
     if(style=="Sun"){
-			this.filter=new GodrayFilter();
+			this.filter=new GodrayFilter({alpha:.5});
 			this.game.activeScene.background.filters=[this.filter];
-		//	this.container.filters=[this.filter,new PIXI.filters.AlphaFilter(0.1)];
-		}
+    }else if(style=="Heat"){
+			this.filter=new ReflectionFilter(
+        {
+          mirror:false,
+          boundary:0,
+          amplitude:[1,1]
+        });
+			this.game.activeScene.background.filters=[this.filter];
+    }else if(style="Night"){
+      let config={
+        brightness: .8,
+        red: .25,
+        green: .25,
+        blue: .8
+      };
+      this.filter=new AdjustmentFilter(config);
+      this.game.layerBottom.filters=[this.filter];
+      this.game.layer.filters=[this.filter];
+      this.game.layerTop.filters=[this.filter];
+    }
   }
 
 	stop(){
 		this.game.activeScene.background.filters=[];
 		this.filter=null;
+    this.style=null;
 	}
 
   update(){
-		this.filter.time += this.game.app.ticker.elapsedMS / 1000;
+		if(this.style=="Sun" || this.style=="Heat") this.filter.time += this.game.app.ticker.elapsedMS / 1000;
   }
 }
 

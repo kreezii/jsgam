@@ -70381,9 +70381,31 @@ var Filters = /*#__PURE__*/function () {
   _createClass(Filters, [{
     key: "start",
     value: function start(style) {
+      this.style = style;
+
       if (style == "Sun") {
-        this.filter = new _pixiFilters.GodrayFilter();
-        this.game.activeScene.background.filters = [this.filter]; //	this.container.filters=[this.filter,new PIXI.filters.AlphaFilter(0.1)];
+        this.filter = new _pixiFilters.GodrayFilter({
+          alpha: .5
+        });
+        this.game.activeScene.background.filters = [this.filter];
+      } else if (style == "Heat") {
+        this.filter = new _pixiFilters.ReflectionFilter({
+          mirror: false,
+          boundary: 0,
+          amplitude: [1, 1]
+        });
+        this.game.activeScene.background.filters = [this.filter];
+      } else if (style = "Night") {
+        var config = {
+          brightness: .8,
+          red: .25,
+          green: .25,
+          blue: .8
+        };
+        this.filter = new _pixiFilters.AdjustmentFilter(config);
+        this.game.layerBottom.filters = [this.filter];
+        this.game.layer.filters = [this.filter];
+        this.game.layerTop.filters = [this.filter];
       }
     }
   }, {
@@ -70391,11 +70413,12 @@ var Filters = /*#__PURE__*/function () {
     value: function stop() {
       this.game.activeScene.background.filters = [];
       this.filter = null;
+      this.style = null;
     }
   }, {
     key: "update",
     value: function update() {
-      this.filter.time += this.game.app.ticker.elapsedMS / 1000;
+      if (this.style == "Sun" || this.style == "Heat") this.filter.time += this.game.app.ticker.elapsedMS / 1000;
     }
   }]);
 
@@ -73597,23 +73620,29 @@ var Phrases = /*#__PURE__*/function () {
     key: "get",
     value: function get() {
       this.clear();
-      var options = this.game.activeDialogue.currentBranch.Choices;
-      var length = options.length;
-      if (length > this.game.dialogueChoices) length = this.game.dialogueChoices;
 
-      for (var i = 0; i < length; i++) {
-        if (options[i].disabled) {
-          this.option[i].alpha = 0.5;
-        } else this.option[i].alpha = 1;
+      if (this.game.activeDialogue.currentBranch !== undefined) {
+        var options = this.game.activeDialogue.currentBranch.Choices;
+        var length = options.length;
+        if (length > this.game.dialogueChoices) length = this.game.dialogueChoices;
 
-        this.option[i].visible = true;
-        var text = options[i].Text[this.game.activeLanguage];
-        if (text === undefined) text = options[i].Text[0];
-        this.option[i].text = text;
+        for (var i = 0; i < length; i++) {
+          if (options[i].disabled) {
+            this.option[i].alpha = 0.5;
+          } else this.option[i].alpha = 1;
+
+          this.option[i].visible = true;
+          var text = options[i].Text[this.game.activeLanguage];
+          if (text === undefined) text = options[i].Text[0];
+          this.option[i].text = text;
+        }
+
+        this.update();
+        this.show();
+      } else {
+        this.game.activeDialogue = null;
+        this.game.textField.end();
       }
-
-      this.update();
-      this.show();
     }
   }, {
     key: "clear",
@@ -73712,7 +73741,7 @@ var TextField = /*#__PURE__*/function () {
       } else {
         this.setText("");
         this.hide();
-        this.talker.shutup(); //  this.game.activeNPC=null;
+        if (this.talker !== undefined) this.talker.shutup(); //  this.game.activeNPC=null;
 
         this.game.player.unlock();
         if (this.game.activeObject !== null) this.game.activeObject.cancel();
@@ -99074,9 +99103,8 @@ var Player = /*#__PURE__*/function (_Character) {
         if (this.game.activeObject.config.Door) {
           this.game.changeScene(this.game.activeObject.config.Door.To, this.game.activeObject.config.Door.Player);
           this.stand();
-          this.unlock();
         } else {
-          this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
+          if (this.game.activeObject.config.NotUsable) this.say(this.game.activeObject.config.NotUsable[this.game.activeLanguage]);else this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
         }
 
         this.game.activeObject.cancel();
@@ -99085,17 +99113,23 @@ var Player = /*#__PURE__*/function (_Character) {
   }, {
     key: "talk",
     value: function talk() {
-      //Player must look in the right direction
-      if (this.sprite.x < this.game.activeNPC.sprite.x) {
-        this.sprite.armature.flipX = false;
-        if (!this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX = true;
+      //Check if we talk with the character
+      if (this.game.activeDialogue !== null) {
+        //Player must look in the right direction
+        if (this.sprite.x < this.game.activeNPC.sprite.x) {
+          this.sprite.armature.flipX = false;
+          if (!this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX = true;
+        } else {
+          this.sprite.armature.flipX = true;
+          if (this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX = false;
+        } //Let's talk
+
+
+        this.game.activeDialogue.start();
       } else {
-        this.sprite.armature.flipX = true;
-        if (this.game.activeNPC.sprite.armature.flipX) this.game.activeNPC.sprite.armature.flipX = false;
-      } //Let's talk
-
-
-      this.game.activeDialogue.start();
+        if (this.game.activeNPC.config.NotTalkable) this.say(this.game.activeNPC.config.NotTalkable[this.game.activeLanguage]);else this.say(this.game.data.texts.NotUsable[this.game.activeLanguage]);
+        this.game.activeNPC.cancel();
+      }
     }
   }]);
 
@@ -99184,19 +99218,16 @@ var NPC = /*#__PURE__*/function (_Character) {
       if (this.interaction) {
         var distance = this.width();
         if (this.game.player.sprite.x < this.sprite.x) distance *= -1;
-        /*  if(this.game.player.sprite.x<this.sprite.x) distance=this.sprite.getBounds().width*-1;
-          else distance=this.sprite.getBounds().width+this.game.player.sprite;*/
-
         var moveTo = {
           x: this.sprite.x + distance,
           y: this.sprite.y
         };
 
         if (this.interaction.button === 2 || this.holding) {
-          //Check if we talk with the character
+          this.action = "Talk"; //Check if we talk with the character
+
           if (this.config.Dialogue !== undefined) {
             this.game.activeDialogue = this.game.dialogues[this.config.Dialogue];
-            this.action = "Talk";
           }
         } else {
           this.action = "Look";
@@ -99341,7 +99372,7 @@ var Partner = /*#__PURE__*/function (_NPC) {
       if (this.pressTimeoutID) clearTimeout(this.pressTimeoutID);
 
       if (this.interaction) {
-        var distance = this.width();
+        var distance = this.width() * 2;
         if (this.game.player.sprite.x < this.sprite.x) distance *= -1;
         var moveTo = {
           x: this.sprite.x + distance,
@@ -99349,13 +99380,12 @@ var Partner = /*#__PURE__*/function (_NPC) {
         };
 
         if (this.interaction.button === 2 || this.holding) {
-          //Check if we talk with the character
+          this.action = "Talk"; //Check if we talk with the character
+
           if (this.game.activeScene.config.Partner.Dialogue) {
             this.game.activeDialogue = this.game.dialogues[this.game.activeScene.config.Partner.Dialogue];
-            this.action = "Talk";
           } else if (this.config.Dialogue !== undefined) {
             this.game.activeDialogue = this.game.dialogues[this.config.Dialogue];
-            this.action = "Talk";
           }
         } else {
           this.action = "Look";
@@ -100364,6 +100394,7 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "pause",
     value: function pause() {
+      this.player.lock = true;
       this.activeScene.hide();
       this.inventory.hide();
       this.inventory.hideIcon();
@@ -100395,6 +100426,7 @@ var Game = /*#__PURE__*/function () {
       } else this.partner.hide();
 
       this.player.show();
+      this.player.unlock();
       this.activeScene.show();
       this.fadeIn();
     }

@@ -432,6 +432,7 @@ class Game {
   }
 
   pause(){
+    this.player.lock=true;
     this.activeScene.hide();
     this.inventory.hide();
     this.inventory.hideIcon();
@@ -456,6 +457,7 @@ class Game {
       this.partner.show();
     }else this.partner.hide();
     this.player.show();
+    this.player.unlock();
     this.activeScene.show();
     this.fadeIn();
   }
