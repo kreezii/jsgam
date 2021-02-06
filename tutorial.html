@@ -43,9 +43,6 @@
           <i class="button fas fa-bars"></i>
       </span>
       <div class="menu-items">
-        <div class="grid-container full">
-          <a href="#intro" class="button">Introduction</a>
-        </div>
         <div class="grid-container fifths">
           <a href="#graphics" class="button">Graphics</a>
           <a href="#fonts" class="button">Fonts</a>
@@ -68,6 +65,7 @@
           <li>Angel Code Bitmap Fonts to display text in the game</li>
           <li>A JSON file with the game parameters</li>
         </ul>
+        <p><strong><a class="button button-primary" href="files/jsgam-tutorial-files.zip">Download</a></strong> the resource files used in this tutorial.</p>
         Let's start getting the :
         <a class="button button-primary" href="https://github.com/kreezii/jsgam-template" target="_blank"><i class="fas fa-layer-group"></i>Game Template</a>
         <section class="container">
@@ -188,9 +186,8 @@ new jsgam(config); //This command makes all the magic
       </article>
       <h3>Characters</h3>
       <article id="charas">
-        In this example we only have one character, the player. To make characters we'll use <a href="" target="_blank">Blender</a>, <a href="" target="_blank">GIMP and COA Tools. Download the plug-ins:<br>
-        <a class="button button-primary" href="files/coa_tools.zip" target="_blank"><i class="fas fa-download"></i>Blender</a>
-        <a class="button button-primary" href="files/coatools_gimp.zip" target="_blank"><i class="fas fa-download"></i>GIMP</a>
+        In this example we only have one character, the player. To make characters we'll use <a href="https://www.blender.org/download/" target="_blank">Blender</a> and <a href="https://www.gimp.org/" target="_blank">GIMP</a>.<br>Download the plug-ins:<br>
+        <a class="button button-primary" href="https://github.com/ndee85/coa_tools/tree/blender28" target="_blank"><i class="fas fa-download"></i>COATools</a>
         <p>
           GIMP Exporter:<br/>
           The coatools_exporter.py should be copied to your GIMP plug-ins folder which is located in:
@@ -205,7 +202,7 @@ new jsgam(config); //This command makes all the magic
         </p>
         <h4>Export from GIMP</h4>
         <p>
-          Download the <a href="files/character-template.xcf">character template</a> GIMP file.<br>
+          Open the <strong>character-template.xcf</strong> GIMP file.<br>
           Export to CoaTools <code>File->Export to CoaTools...</code><br>
           We get a folder with a JSON file and a subfolder with the image files.
         </p>
@@ -214,6 +211,7 @@ new jsgam(config); //This command makes all the magic
         </div>
         <h4>Import to Blender</h4>
         <p>
+          Zip the <strong>Blender/coa_folder</strong> folder<br>
           Open Blender, press <strong>'N'</strong> key to show the properties panel and select COA Tools.<br>
           Click on <strong>"Set Textuted Shading Mode"</strong> and <strong>2D View</strong><br>
           Now click on <code>Re/Import Sprites</code> and select the JSON we exported from GIMP.
@@ -439,8 +437,57 @@ new jsgam(config); //This command makes all the magic
         <h4>Puzzles</h4>
         Puzzles are the game events, in our example we are going to open the door with the key and when we open that door the game ends (not a very difficult puzzle, but it's just an example).
         <div class="grid-container halves">
-          <img src="imgs/inventory-key.png"/>
+          <img src="imgs/puzzle-endgame.png"/>
+          <img src="imgs/puzzle-modify.png"/>
         </div>
+        First we create a puzzle called <strong>End-Game</strong>, go to the Puzzles tab, click on <code>+Puzzle</code>, <code>Properties</code> and check the <code>EndGame</code> option.<br>
+        Now we create another puzzle called <strong>Open-Door</strong> and add the property <code>Modify</code> (<small>we can modify objects, characters, the player and scenes</small>),
+        in our case we are going to modify an object, so we select <strong>Object</strong>.
+        <div class="grid-container full">
+          <img src="imgs/puzzle-modify-use.png"/>
+        </div>
+        <p>Select the Object we want to modify <strong>(2)</strong> add the <code>Use</code> property <strong>(1)</strong> and finally choose the puzzle to resolve when we use that object <strong>(3)</strong>.<br>
+        Basically we are telling to the game engine to finish the game when the player use the door.<br>
+        Now we need to tell the engine when we <strong>combine</strong>the key with the door to resolve the puzzle</p>
+        <div class="grid-container full">
+          <img src="imgs/object-combine.png"/>
+        </div>
+        We select the key object (1)(2), add the Combine property(3), with the object <strong>Door-obj</strong>(4) and resolve the puzzle <strong>"Open-Door"</strong>(5).<br>
+        Save the adventure and test.
+        <h4>Export</h4>
+        <strong>Save or Export the adventure?</strong>
+        <ul>
+          <li><strong>Save:</strong> saves the adventure and the sources data, this file can be used in the game and to load the adventure with the editor.
+            Use this option to <big>develop</big> the game.
+          </li>
+          <li><strong>Export:</strong> saves the adventure, remove the sources data and minify.This file can be used in the game but not to load with the editor.
+            Use this option to <big>distribute</big> the game.
+          </li>
+        </ul>
+        <div class="grid-container halves">
+          <img src="imgs/save-adventure.png"/>
+          <img src="imgs/export-adventure.png"/>
+        </div>
+        When you export the adventure you get a file with the extension <code>.min.json</code>, make sure to change it in the <code>index.js</code>.
+        <div class="grid-container full">
+          <img src="imgs/minifiedjson.png"/>
+        </div>
+        <h3>Congratulations</h3>
+         <p>You made your first adventure with JSGAM.<br>
+           <strong>Next steps?</strong><br>
+           Inspect the editor properties to know what you can do with puzzles, add cutscenes to your game, other characters, dialogues, music and sounds.<br>
+           A good way to continue this tutorial is to download <strong>The Wizard and The Squirrel</strong> game and load it in the editor.
+           <div class="grid-container full">
+             <div>
+               <h4>The Wizard and The Squirrel</h4>
+               <img class="card" src="imgs/wizard-adventure.png" alt="Game Image"/>
+               <p>A wizard gets in troubles when his book of spells disappears...
+               </p>
+               <a href="https://kreezii.github.io/wizard-adventure/" class="button button-play" target="_blank"></i>Play Now</a>
+               <a href="https://github.com/kreezii/wizard-adventure" class="button" target="_blank">Source</a>
+             </div>
+           </div>
+         </p>
       </article>
     </section>
   </main>
