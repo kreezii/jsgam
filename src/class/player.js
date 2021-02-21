@@ -70,12 +70,14 @@ class Player extends Character{
   }
 
   use(){
-    if(this.game.activeObject.config.Animation){
-      this.lock=true;
-      this.animate(this.game.activeObject.config.Animation,1);
-      this.sprite.once(this.event.COMPLETE, this.useEnd, this);
-    }else{
-      this.useEnd();
+    if(this.game.activeObject){
+      if(this.game.activeObject.config.Animation){
+        this.lock=true;
+        this.animate(this.game.activeObject.config.Animation,1);
+        this.sprite.once(this.event.COMPLETE, this.useEnd, this);
+      }else{
+        this.useEnd();
+      }
     }
   }
 

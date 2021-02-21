@@ -70368,12 +70368,6 @@ var Filters = /*#__PURE__*/function () {
     this.container = new PIXI.Container();
     this.container.width = this.game.width;
     this.container.height = this.game.height;
-    /*	this.sprite=new PIXI.Sprite(PIXI.Texture.WHITE);
-    	this.sprite.width=this.game.width;
-    	this.sprite.height=this.game.height;
-    	this.container.addChild(this.sprite);
-    	this.sprite.alpha=0;*/
-
     this.container.parentLayer = this.game.layerBottom;
     this.game.app.stage.addChild(this.container);
   }
@@ -82401,11 +82395,11 @@ var Inventory = /*#__PURE__*/function () {
       //Inventory is limited to 25 objects
       var i;
       var numObjs = this.objects.length;
-      if (numObjs > 25) numObjs = 25;
+      if (numObjs > 20) numObjs = 20;
       var containerWidth = this.background.width - this.border[0] * 2;
       var containerHeight = this.background.height - this.border[1] * 2;
       var objectWidth = containerWidth / 5;
-      var objectHeight = containerHeight / 5;
+      var objectHeight = containerHeight / 4;
 
       for (i = 0; i < numObjs; i++) {
         var tmpObj = this.game.objects[this.objects[i]].sprite;
@@ -82501,10 +82495,11 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var Puzzle = /*#__PURE__*/function () {
-  function Puzzle() {
+  function Puzzle(game) {
     _classCallCheck(this, Puzzle);
 
     this.solved = false;
+    this.game = game;
   }
 
   _createClass(Puzzle, [{
@@ -99084,12 +99079,14 @@ var Player = /*#__PURE__*/function (_Character) {
   }, {
     key: "use",
     value: function use() {
-      if (this.game.activeObject.config.Animation) {
-        this.lock = true;
-        this.animate(this.game.activeObject.config.Animation, 1);
-        this.sprite.once(this.event.COMPLETE, this.useEnd, this);
-      } else {
-        this.useEnd();
+      if (this.game.activeObject) {
+        if (this.game.activeObject.config.Animation) {
+          this.lock = true;
+          this.animate(this.game.activeObject.config.Animation, 1);
+          this.sprite.once(this.event.COMPLETE, this.useEnd, this);
+        } else {
+          this.useEnd();
+        }
       }
     }
   }, {
@@ -99217,6 +99214,11 @@ var NPC = /*#__PURE__*/function (_Character) {
 
       if (this.interaction) {
         var distance = this.width();
+
+        if (this.config.Distance !== undefined) {
+          if (this.config.Distance == "Near") distance /= 2;else if (this.config.Distance == "Far") distance *= 2;
+        }
+
         if (this.game.player.sprite.x < this.sprite.x) distance *= -1;
         var moveTo = {
           x: this.sprite.x + distance,
@@ -99372,7 +99374,12 @@ var Partner = /*#__PURE__*/function (_NPC) {
       if (this.pressTimeoutID) clearTimeout(this.pressTimeoutID);
 
       if (this.interaction) {
-        var distance = this.width() * 2;
+        var distance = this.width();
+
+        if (this.config.Distance !== undefined) {
+          if (this.config.Distance == "Near") distance /= 2;else if (this.config.Distance == "Far") distance *= 2;
+        }
+
         if (this.game.player.sprite.x < this.sprite.x) distance *= -1;
         var moveTo = {
           x: this.sprite.x + distance,
@@ -99521,7 +99528,7 @@ var Dialogue = /*#__PURE__*/function () {
       }
 
       if (choiceSelected.Puzzle) {
-        this.game.puzzles[choiceSelected.Puzzle].resolve();
+        if (this.game.puzzles[choiceSelected.Puzzle] !== undefined) this.game.puzzles[choiceSelected.Puzzle].resolve();
       }
 
       if (choiceSelected.EndDialogue) {
@@ -100166,6 +100173,7 @@ var Game = /*#__PURE__*/function () {
           _this.music[element.Name] = new _sound.default(_this);
           _this.music[element.Name].config = element;
           _this.music[element.Name].source = _this.files.resources[element.Name].sound;
+          _this.music[element.Name].source._loop = true;
         });
       }
 

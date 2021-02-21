@@ -100,12 +100,12 @@ class Inventory{
       //Inventory is limited to 25 objects
       let i;
       let numObjs=this.objects.length;
-      if(numObjs>25) numObjs=25;
+      if(numObjs>20) numObjs=20;
 
       let containerWidth=this.background.width-this.border[0]*2;
       let containerHeight=this.background.height-this.border[1]*2;
       let objectWidth=containerWidth/5;
-      let objectHeight=containerHeight/5;
+      let objectHeight=containerHeight/4;
 
       for(i=0;i<numObjs;i++){
         let tmpObj=this.game.objects[this.objects[i]].sprite;

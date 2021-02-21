@@ -247,6 +247,7 @@ class Game {
         this.music[element.Name]=new Sound(this);
         this.music[element.Name].config=element;
         this.music[element.Name].source=this.files.resources[element.Name].sound;
+        this.music[element.Name].source._loop=true;
       });
     }
 

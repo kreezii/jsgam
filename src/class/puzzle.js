@@ -1,6 +1,7 @@
 class Puzzle{
-  constructor(){
+  constructor(game){
     this.solved=false;
+    this.game=game;
   }
 
   resolve(){

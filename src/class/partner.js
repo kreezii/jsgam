@@ -21,7 +21,12 @@ class Partner extends NPC{
   release(){
     if(this.pressTimeoutID) clearTimeout(this.pressTimeoutID);
     if(this.interaction){
-      let distance=this.width()*2;
+      let distance=this.width();
+      if(this.config.Distance!==undefined){
+        if(this.config.Distance=="Near") distance/=2;
+        else if(this.config.Distance=="Far") distance*=2;
+      }
+
       if(this.game.player.sprite.x<this.sprite.x) distance*=-1;
       let moveTo={x:this.sprite.x+distance,y:this.sprite.y};
 

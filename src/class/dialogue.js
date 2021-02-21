@@ -80,7 +80,7 @@ class Dialogue{
     }
 
     if(choiceSelected.Puzzle){
-      this.game.puzzles[choiceSelected.Puzzle].resolve();
+      if(this.game.puzzles[choiceSelected.Puzzle]!==undefined) this.game.puzzles[choiceSelected.Puzzle].resolve();
     }
 
     if(choiceSelected.EndDialogue){
