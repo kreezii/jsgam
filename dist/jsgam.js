@@ -82540,10 +82540,16 @@ var Puzzle = /*#__PURE__*/function () {
           if (this.config.Modify.Scene) {
             var sceneMod = this.config.Modify.Scene;
 
-            if (this.config.Modify.Scene.WalkArea) {
+            if (sceneMod.WalkArea) {
               this.game.scenes[sceneMod.Name].walkable.deleteObstacle(this.game.scenes[sceneMod.Name].polyWalk);
               this.game.scenes[sceneMod.Name].config.WalkArea = sceneMod.WalkArea;
               this.game.scenes[sceneMod.Name].walkable.addPolygon(sceneMod.WalkArea);
+            }
+
+            if (sceneMod.Partner) {
+              if (sceneMod.Partner.Dialogue) this.game.scenes[sceneMod.Name].config.Partner.Dialogue = sceneMod.Partner.Dialogue;
+              if (sceneMod.Partner.Position) this.game.scenes[sceneMod.Name].config.Partner.Position = sceneMod.Partner.Position;
+              if (sceneMod.Partner.Size) this.game.scenes[sceneMod.Name].config.Partner.Size = sceneMod.Partner.Size;
             }
           }
 
@@ -98857,8 +98863,13 @@ var Character = /*#__PURE__*/function () {
 
       var scaleChar = this.sprite.y / this.game.height * this.size;
       var depths = this.game.activeScene.config.Depth;
+      var scaleRatio = this.game.activeScene.config.ScaleRatio;
 
-      if (depths != undefined) {
+      if (scaleRatio !== undefined) {
+        scaleChar *= scaleRatio;
+      }
+
+      if (depths !== undefined) {
         depths.forEach(function (element) {
           if ((0, _collisions.collision)(_this.sprite, element)) scaleChar = element.Size;
         });

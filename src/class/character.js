@@ -125,8 +125,13 @@ class Character{
   scale(){
     let scaleChar=this.sprite.y/this.game.height*this.size;
     let depths=this.game.activeScene.config.Depth;
+    let scaleRatio=this.game.activeScene.config.ScaleRatio;
 
-    if(depths!=undefined){
+    if(scaleRatio!==undefined){
+      scaleChar*=scaleRatio;
+    }
+
+    if(depths!==undefined){
       depths.forEach((element) => {
         if(collision(this.sprite,element)) scaleChar=element.Size;
       });
