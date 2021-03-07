@@ -118,7 +118,7 @@ class Puzzle{
         let text=this.config.NPCSay.Text[this.game.activeLanguage];
         if(text===undefined) text=this.config.NPCSay.Text[0];
         this.game.npcs[this.config.NPCSay.Name].say(text);
-      }else{
+      }else if(this.game.activeDialogue==null){
         this.game.player.stand();
         this.game.player.unlock();
       }

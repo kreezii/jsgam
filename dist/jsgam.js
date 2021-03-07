@@ -82618,7 +82618,7 @@ var Puzzle = /*#__PURE__*/function () {
           var _text = this.config.NPCSay.Text[this.game.activeLanguage];
           if (_text === undefined) _text = this.config.NPCSay.Text[0];
           this.game.npcs[this.config.NPCSay.Name].say(_text);
-        } else {
+        } else if (this.game.activeDialogue == null) {
           this.game.player.stand();
           this.game.player.unlock();
         }
@@ -99554,6 +99554,7 @@ var Dialogue = /*#__PURE__*/function () {
     value: function end() {
       this.game.activeNPC = null;
       this.game.activeDialogue = null;
+      this.game.player.stand();
     }
   }, {
     key: "timeOut",

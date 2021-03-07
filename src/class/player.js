@@ -85,7 +85,7 @@ class Player extends Character{
     if(this.game.activePuzzle!==undefined && this.game.activePuzzle!==null && !this.game.activePuzzle.solved){
       this.game.activePuzzle.resolve();
     }
-
+    
     if(this.game.activeObject!==undefined && this.game.activeObject!==null) {
       if(this.game.activeObject.config.Door){
         this.game.changeScene(this.game.activeObject.config.Door.To,
