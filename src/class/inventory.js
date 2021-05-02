@@ -139,12 +139,17 @@ class Inventory{
           }
           this.game.player.say(this.config.Description[this.game.activeLanguage],voice);
 
-        }else if(this.config.Combine!==undefined && objectHit!==null){
+        }else if(this.config.Combine!==undefined  && objectHit!==null){
           if(this.config.Combine.With===objectHit) {
             if(this.game.inventory.objects.includes(this.config.Combine.With)) combineInventory=true;
             this.game.activePuzzle=this.game.puzzles[this.config.Combine.Puzzle];
           }
           if(!combineInventory) this.action="Use";
+        }else if(this.config.Give!==undefined  && objectHit!==null){
+          if(this.config.Give.To===objectHit) {
+            this.game.activePuzzle=this.game.puzzles[this.config.Give.Puzzle];
+          }
+          this.action="Use";
         }
 /*
         if(this.action!==null){

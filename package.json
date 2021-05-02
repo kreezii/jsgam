@@ -31,12 +31,12 @@
     "libs": "^0.1.2",
     "localforage": "^1.9.0",
     "particles.js": "^2.0.0",
-    "pixi-filters": "^3.1.1",
+    "pixi-filters": "^3.2.2",
     "pixi-layers": "^0.3.1",
     "pixi-particles": "^4.3.0",
-    "pixi.js": "^5.3.3",
+    "pixi.js": "^5.3.9",
     "pixi5-dragonbones": "^5.7.0-2",
     "polyk": "^0.24.0",
-    "walkable": "^1.0.5"
+    "walkable": "^1.0.7"
   }
 }

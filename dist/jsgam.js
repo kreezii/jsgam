@@ -573,8 +573,8 @@ var _objectAssign = _interopRequireDefault(require("object-assign"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*!
- * @pixi/polyfill - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/polyfill - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/polyfill is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -855,8 +855,8 @@ var _ismobilejs = _interopRequireDefault(require("ismobilejs"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*!
- * @pixi/settings - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/settings - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/settings is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -3653,8 +3653,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.WRAP_MODES = exports.TYPES = exports.TARGETS = exports.SCALE_MODES = exports.RENDERER_TYPE = exports.PRECISION = exports.MSAA_QUALITY = exports.MIPMAP_MODES = exports.MASK_TYPES = exports.GC_MODES = exports.FORMATS = exports.ENV = exports.DRAW_MODES = exports.CLEAR_MODES = exports.BUFFER_BITS = exports.BLEND_MODES = exports.ALPHA_MODES = void 0;
 
 /*!
- * @pixi/constants - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/constants - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/constants is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -4234,8 +4234,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*!
- * @pixi/utils - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/utils - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/utils is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -4266,7 +4266,7 @@ _settings.settings.RETINA_PREFIX = /@([0-9\.]+)x/;
 
 _settings.settings.FAIL_IF_MAJOR_PERFORMANCE_CAVEAT = true;
 var saidHello = false;
-var VERSION = '5.3.3';
+var VERSION = '5.3.9';
 /**
  * Skips the hello message of renderers that are created after this is run.
  *
@@ -5248,8 +5248,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.groupD8 = exports.Transform = exports.SHAPES = exports.RoundedRectangle = exports.Rectangle = exports.RAD_TO_DEG = exports.Polygon = exports.Point = exports.PI_2 = exports.ObservablePoint = exports.Matrix = exports.Ellipse = exports.DEG_TO_RAD = exports.Circle = void 0;
 
 /*!
- * @pixi/math - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/math - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/math is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -7592,8 +7592,8 @@ var _math = require("@pixi/math");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/display - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/display - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/display is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -9572,8 +9572,8 @@ var _display = require("@pixi/display");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/accessibility - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/accessibility - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/accessibility is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -10257,8 +10257,8 @@ exports.UPDATE_PRIORITY = exports.TickerPlugin = exports.Ticker = void 0;
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/ticker - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/ticker - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/ticker is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -11250,8 +11250,8 @@ var _display = require("@pixi/display");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/interaction - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/interaction - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/interaction is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -13842,8 +13842,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.Runner = void 0;
 
 /*!
- * @pixi/runner - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/runner - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/runner is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -14094,8 +14094,8 @@ var _ticker = require("@pixi/ticker");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/core - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/core - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/core is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -16450,7 +16450,7 @@ function (_super) {
   SVGResource.test = function (source, extension) {
     // url file extension is SVG
     return extension === 'svg' // source is SVG data-uri
-    || typeof source === 'string' && source.indexOf('data:image/svg+xml;base64') === 0 // source is SVG inline
+    || typeof source === 'string' && /^data:image\/svg\+xml(;(charset=utf8|utf8))?;base64/.test(source) // source is SVG inline
     || typeof source === 'string' && source.indexOf('<svg') === 0;
   };
   /**
@@ -19527,7 +19527,7 @@ function (_super) {
       ? Math.max(padding, filter.padding) // new behavior: sum the padding
       : padding + filter.padding; // only auto fit if all filters are autofit
 
-      autoFit = autoFit || filter.autoFit;
+      autoFit = autoFit && filter.autoFit;
       legacy = legacy || filter.legacy;
     }
 
@@ -20242,7 +20242,13 @@ function (_super) {
 
 
   ContextSystem.prototype.validateContext = function (gl) {
-    var attributes = gl.getContextAttributes(); // this is going to be fairly simple for now.. but at least we have room to grow!
+    var attributes = gl.getContextAttributes();
+    var isWebGl2 = 'WebGL2RenderingContext' in window && gl instanceof window.WebGL2RenderingContext;
+
+    if (isWebGl2) {
+      this.webGLVersion = 2;
+    } // this is going to be fairly simple for now.. but at least we have room to grow!
+
 
     if (!attributes.stencil) {
       /* eslint-disable max-len, no-console */
@@ -20250,7 +20256,7 @@ function (_super) {
       /* eslint-enable max-len, no-console */
     }
 
-    var hasuint32 = 'WebGL2RenderingContext' in window && gl instanceof window.WebGL2RenderingContext || !!gl.getExtension('OES_element_index_uint');
+    var hasuint32 = isWebGl2 || !!gl.getExtension('OES_element_index_uint');
     this.supports.uint32Indices = hasuint32;
 
     if (!hasuint32) {
@@ -20930,7 +20936,7 @@ function (_super) {
     var context = this.renderer.context;
     this.CONTEXT_UID = this.renderer.CONTEXT_UID; // webgl2
 
-    if (!gl.createVertexArray) {
+    if (context.webGLVersion !== 2) {
       // webgl 1!
       var nativeVaoExtension_1 = this.renderer.context.extensions.vertexArrayObject;
 
@@ -20967,7 +20973,7 @@ function (_super) {
       }
     }
 
-    if (!gl.vertexAttribDivisor) {
+    if (context.webGLVersion !== 2) {
       var instanceExt_1 = gl.getExtension('ANGLE_instanced_arrays');
 
       if (instanceExt_1) {
@@ -21005,14 +21011,16 @@ function (_super) {
     // will likely need to modify the shader attribute locations at run time!
 
     var vaos = geometry.glVertexArrayObjects[this.CONTEXT_UID];
+    var incRefCount = false;
 
     if (!vaos) {
       this.managedGeometries[geometry.id] = geometry;
       geometry.disposeRunner.add(this);
       geometry.glVertexArrayObjects[this.CONTEXT_UID] = vaos = {};
+      incRefCount = true;
     }
 
-    var vao = vaos[shader.program.id] || this.initGeometryVao(geometry, shader.program);
+    var vao = vaos[shader.program.id] || this.initGeometryVao(geometry, shader.program, incRefCount);
     this._activeGeometry = geometry;
 
     if (this._activeVao !== vao) {
@@ -21125,10 +21133,15 @@ function (_super) {
    * @protected
    * @param {PIXI.Geometry} geometry - Instance of geometry to to generate Vao for
    * @param {PIXI.Program} program - Instance of program
+   * @param {boolean} [incRefCount=false] - Increment refCount of all geometry buffers
    */
 
 
-  GeometrySystem.prototype.initGeometryVao = function (geometry, program) {
+  GeometrySystem.prototype.initGeometryVao = function (geometry, program, incRefCount) {
+    if (incRefCount === void 0) {
+      incRefCount = true;
+    }
+
     this.checkCompatibility(geometry, program);
     var gl = this.gl;
     var CONTEXT_UID = this.CONTEXT_UID;
@@ -21193,7 +21206,9 @@ function (_super) {
         buffer.disposeRunner.add(this);
       }
 
-      buffer._glBuffers[CONTEXT_UID].refCount++;
+      if (incRefCount) {
+        buffer._glBuffers[CONTEXT_UID].refCount++;
+      }
     } // TODO - maybe make this a data object?
     // lets wait to see if we need to first!
 
@@ -24689,12 +24704,11 @@ function (_super) {
 
 
   TextureGCSystem.prototype.unload = function (displayObject) {
-    var _a;
+    var tm = this.renderer.texture;
+    var texture = displayObject._texture; // only destroy non generated textures
 
-    var tm = this.renderer.texture; // only destroy non generated textures
-
-    if ((_a = displayObject._texture) === null || _a === void 0 ? void 0 : _a.framebuffer) {
-      tm.destroyTexture(displayObject._texture);
+    if (texture && !texture.framebuffer) {
+      tm.destroyTexture(texture);
     }
 
     for (var i = displayObject.children.length - 1; i >= 0; i--) {
@@ -24973,7 +24987,7 @@ function (_super) {
           this.currentLocation = i;
         }
 
-        gl.bindTexture(gl.TEXTURE_2D, this.emptyTextures[texture.target].texture);
+        gl.bindTexture(texture.target, this.emptyTextures[texture.target].texture);
         boundTextures[i] = null;
       }
     }
@@ -27175,8 +27189,8 @@ var _display = require("@pixi/display");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/app - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/app - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/app is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -27474,6 +27488,7 @@ function () {
 
 
   ResizePlugin.destroy = function () {
+    window.removeEventListener('resize', this.queueResize);
     this.cancelResize();
     this.cancelResize = null;
     this.queueResize = null;
@@ -27500,8 +27515,8 @@ var _math = require("@pixi/math");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/extract - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/extract - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/extract is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -30300,8 +30315,8 @@ var _resourceLoader = require("resource-loader");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/loaders - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/loaders - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/loaders is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -30702,8 +30717,8 @@ var _core = require("@pixi/core");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/particles - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/particles - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/particles is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -31650,8 +31665,8 @@ var _constants = require("@pixi/constants");
 var _display = require("@pixi/display");
 
 /*!
- * @pixi/graphics - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/graphics - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/graphics is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -32440,53 +32455,95 @@ function buildNonNativeLine(graphicsData, graphicsGeometry) {
 
     var omx = x1 - (px - x1) * outerWeight;
     var omy = y1 - (py - y1) * outerWeight;
+    /* Is the inside miter point too far away, creating a spike? */
 
-    if (style.join === LINE_JOIN.BEVEL || pdist / widthSquared > miterLimitSquared) {
-      if (clockwise)
-        /* rotating at inner angle */
-        {
-          verts.push(imx, imy); // inner miter point
+    var smallerInsideSegmentSq = Math.min(dx0 * dx0 + dy0 * dy0, dx1 * dx1 + dy1 * dy1);
+    var insideWeight = clockwise ? innerWeight : outerWeight;
+    var smallerInsideDiagonalSq = smallerInsideSegmentSq + insideWeight * insideWeight * widthSquared;
+    var insideMiterOk = pdist <= smallerInsideDiagonalSq;
 
-          verts.push(x1 + perpx * outerWeight, y1 + perpy * outerWeight); // first segment's outer vertex
+    if (insideMiterOk) {
+      if (style.join === LINE_JOIN.BEVEL || pdist / widthSquared > miterLimitSquared) {
+        if (clockwise)
+          /* rotating at inner angle */
+          {
+            verts.push(imx, imy); // inner miter point
 
-          verts.push(imx, imy); // inner miter point
+            verts.push(x1 + perpx * outerWeight, y1 + perpy * outerWeight); // first segment's outer vertex
 
-          verts.push(x1 + perp1x * outerWeight, y1 + perp1y * outerWeight); // second segment's outer vertex
-        } else
-        /* rotating at outer angle */
-        {
-          verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight); // first segment's inner vertex
+            verts.push(imx, imy); // inner miter point
 
-          verts.push(omx, omy); // outer miter point
+            verts.push(x1 + perp1x * outerWeight, y1 + perp1y * outerWeight); // second segment's outer vertex
+          } else
+          /* rotating at outer angle */
+          {
+            verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight); // first segment's inner vertex
 
-          verts.push(x1 - perp1x * innerWeight, y1 - perp1y * innerWeight); // second segment's outer vertex
+            verts.push(omx, omy); // outer miter point
 
-          verts.push(omx, omy); // outer miter point
+            verts.push(x1 - perp1x * innerWeight, y1 - perp1y * innerWeight); // second segment's outer vertex
+
+            verts.push(omx, omy); // outer miter point
+          }
+
+        indexCount += 2;
+      } else if (style.join === LINE_JOIN.ROUND) {
+        if (clockwise)
+          /* arc is outside */
+          {
+            verts.push(imx, imy);
+            verts.push(x1 + perpx * outerWeight, y1 + perpy * outerWeight);
+            indexCount += round(x1, y1, x1 + perpx * outerWeight, y1 + perpy * outerWeight, x1 + perp1x * outerWeight, y1 + perp1y * outerWeight, verts, true) + 4;
+            verts.push(imx, imy);
+            verts.push(x1 + perp1x * outerWeight, y1 + perp1y * outerWeight);
+          } else
+          /* arc is inside */
+          {
+            verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight);
+            verts.push(omx, omy);
+            indexCount += round(x1, y1, x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, verts, false) + 4;
+            verts.push(x1 - perp1x * innerWeight, y1 - perp1y * innerWeight);
+            verts.push(omx, omy);
+          }
+      } else {
+        verts.push(imx, imy);
+        verts.push(omx, omy);
+      }
+    } else // inside miter is NOT ok
+      {
+        verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight); // first segment's inner vertex
+
+        verts.push(x1 + perpx * outerWeight, y1 + perpy * outerWeight); // first segment's outer vertex
+
+        if (style.join === LINE_JOIN.BEVEL || pdist / widthSquared > miterLimitSquared) ;else if (style.join === LINE_JOIN.ROUND) {
+          if (clockwise)
+            /* arc is outside */
+            {
+              indexCount += round(x1, y1, x1 + perpx * outerWeight, y1 + perpy * outerWeight, x1 + perp1x * outerWeight, y1 + perp1y * outerWeight, verts, true) + 2;
+            } else
+            /* arc is inside */
+            {
+              indexCount += round(x1, y1, x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, verts, false) + 2;
+            }
+        } else {
+          if (clockwise) {
+            verts.push(omx, omy); // inner miter point
+
+            verts.push(omx, omy); // inner miter point
+          } else {
+            verts.push(imx, imy); // outer miter point
+
+            verts.push(imx, imy); // outer miter point
+          }
+
+          indexCount += 2;
         }
+        verts.push(x1 - perp1x * innerWeight, y1 - perp1y * innerWeight); // second segment's inner vertex
 
-      indexCount += 2;
-    } else if (style.join === LINE_JOIN.ROUND) {
-      if (clockwise)
-        /* arc is outside */
-        {
-          verts.push(imx, imy);
-          verts.push(x1 + perpx * outerWeight, y1 + perpy * outerWeight);
-          indexCount += round(x1, y1, x1 + perpx * outerWeight, y1 + perpy * outerWeight, x1 + perp1x * outerWeight, y1 + perp1y * outerWeight, verts, true) + 4;
-          verts.push(imx, imy);
-          verts.push(x1 + perp1x * outerWeight, y1 + perp1y * outerWeight);
-        } else
-        /* arc is inside */
-        {
-          verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight);
-          verts.push(omx, omy);
-          indexCount += round(x1, y1, x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, verts, false) + 4;
-          verts.push(x1 - perp1x * innerWeight, y1 - perp1y * innerWeight);
-          verts.push(omx, omy);
-        }
-    } else {
-      verts.push(imx, imy);
-      verts.push(omx, omy);
-    }
+        verts.push(x1 + perp1x * outerWeight, y1 + perp1y * outerWeight); // second segment's outer vertex
+
+        indexCount += 2;
+      }
   }
 
   x0 = points[(length - 2) * 2];
@@ -35105,10 +35162,10 @@ function (_super) {
   Graphics.prototype._render = function (renderer) {
     this.finishPoly();
     var geometry = this._geometry;
-    var hasuit32 = renderer.context.supports.uint32Indices; // batch part..
+    var hasuint32 = renderer.context.supports.uint32Indices; // batch part..
     // batch it!
 
-    geometry.updateBatches(hasuit32);
+    geometry.updateBatches(hasuint32);
 
     if (geometry.batchable) {
       if (this.batchDirty !== geometry.batchDirty) {
@@ -35257,9 +35314,10 @@ function (_super) {
       // and that only gets created if we actually need it..
       // but may be more than one plugins for graphics
       if (!DEFAULT_SHADERS[pluginName]) {
-        var sampleValues = new Int32Array(16);
+        var MAX_TEXTURES = renderer.plugins.batch.MAX_TEXTURES;
+        var sampleValues = new Int32Array(MAX_TEXTURES);
 
-        for (var i = 0; i < 16; i++) {
+        for (var i = 0; i < MAX_TEXTURES; i++) {
           sampleValues[i] = i;
         }
 
@@ -35441,8 +35499,6 @@ function (_super) {
 
 
   Graphics.prototype.destroy = function (options) {
-    _super.prototype.destroy.call(this, options);
-
     this._geometry.refCount--;
 
     if (this._geometry.refCount === 0) {
@@ -35502,8 +35558,8 @@ var _settings = require("@pixi/settings");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/sprite - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/sprite - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/sprite is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -36178,8 +36234,8 @@ var _math = require("@pixi/math");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/text - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/text - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/text is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -37202,7 +37258,7 @@ function () {
     var width = 0;
     var line = '';
     var lines = '';
-    var cache = {};
+    var cache = Object.create(null);
     var letterSpacing = style.letterSpacing,
         whiteSpace = style.whiteSpace; // How to handle whitespaces
 
@@ -37377,7 +37433,7 @@ function () {
   TextMetrics.getFromCache = function (key, letterSpacing, cache, context) {
     var width = cache[key];
 
-    if (width === undefined) {
+    if (typeof width !== 'number') {
       var spacing = key.length * letterSpacing;
       width = context.measureText(key).width + spacing;
       cache[key] = width;
@@ -37972,10 +38028,10 @@ function (_super) {
     // beneath the text, whilst also having the proper text shadow styling.
 
     for (var i = 0; i < passesCount; ++i) {
-      var isShadowPass = style.dropShadow && i === 0;
-      var dsOffsetText = isShadowPass ? height * 2 : 0; // we only want the drop shadow, so put text way off-screen
+      var isShadowPass = style.dropShadow && i === 0; // we only want the drop shadow, so put text way off-screen
 
-      var dsOffsetShadow = dsOffsetText * this.resolution;
+      var dsOffsetText = isShadowPass ? Math.ceil(Math.max(1, height) + style.padding * 2) : 0;
+      var dsOffsetShadow = dsOffsetText * this._resolution;
 
       if (isShadowPass) {
         // On Safari, text with gradient and drop shadows together do not position correctly
@@ -37996,7 +38052,7 @@ function (_super) {
         //       https://github.com/microsoft/TypeScript/issues/2521
 
         context.strokeStyle = style.stroke;
-        context.shadowColor = '0';
+        context.shadowColor = 'black';
         context.shadowBlur = 0;
         context.shadowOffsetX = 0;
         context.shadowOffsetY = 0;
@@ -38446,8 +38502,8 @@ var _display = require("@pixi/display");
 var _text = require("@pixi/text");
 
 /*!
- * @pixi/prepare - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/prepare - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/prepare is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39223,8 +39279,8 @@ var _utils = require("@pixi/utils");
 var _loaders = require("@pixi/loaders");
 
 /*!
- * @pixi/spritesheet - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/spritesheet - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/spritesheet is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39635,8 +39691,8 @@ var _utils = require("@pixi/utils");
 var _constants = require("@pixi/constants");
 
 /*!
- * @pixi/sprite-tiling - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/sprite-tiling - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/sprite-tiling is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39744,7 +39800,7 @@ function (_super) {
      * @member {PIXI.TextureMatrix}
      */
 
-    _this.uvMatrix = texture.uvMatrix || new _core.TextureMatrix(texture);
+    _this.uvMatrix = _this.texture.uvMatrix || new _core.TextureMatrix(texture);
     /**
      * Plugin that is responsible for rendering this element.
      * Allows to customize the rendering process without overriding '_render' method.
@@ -39993,7 +40049,7 @@ function (_super) {
 
 exports.TilingSprite = TilingSprite;
 var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\nuniform mat3 translationMatrix;\nuniform mat3 uTransform;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * translationMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n\n    vTextureCoord = (uTransform * vec3(aTextureCoord, 1.0)).xy;\n}\n";
-var fragment = "varying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nuniform vec4 uColor;\nuniform mat3 uMapCoord;\nuniform vec4 uClampFrame;\nuniform vec2 uClampOffset;\n\nvoid main(void)\n{\n    vec2 coord = vTextureCoord - floor(vTextureCoord - uClampOffset);\n    coord = (uMapCoord * vec3(coord, 1.0)).xy;\n    coord = clamp(coord, uClampFrame.xy, uClampFrame.zw);\n\n    vec4 texSample = texture2D(uSampler, coord);\n    gl_FragColor = texSample * uColor;\n}\n";
+var fragment = "varying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nuniform vec4 uColor;\nuniform mat3 uMapCoord;\nuniform vec4 uClampFrame;\nuniform vec2 uClampOffset;\n\nvoid main(void)\n{\n    vec2 coord = vTextureCoord + ceil(uClampOffset - vTextureCoord);\n    coord = (uMapCoord * vec3(coord, 1.0)).xy;\n    coord = clamp(coord, uClampFrame.xy, uClampFrame.zw);\n\n    vec4 texSample = texture2D(uSampler, coord);\n    gl_FragColor = texSample * uColor;\n}\n";
 var fragmentSimple = "varying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nuniform vec4 uColor;\n\nvoid main(void)\n{\n    vec4 sample = texture2D(uSampler, vTextureCoord);\n    gl_FragColor = sample * uColor;\n}\n";
 var tempMat = new _math.Matrix();
 /**
@@ -40132,8 +40188,8 @@ var _settings = require("@pixi/settings");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/mesh - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/mesh - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/mesh is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -40362,10 +40418,7 @@ function (_super) {
      */
 
     _this.vertexDirty = 0;
-    _this._transformID = -1; // Inherited from DisplayMode, set defaults
-
-    _this.tint = 0xFFFFFF;
-    _this.blendMode = _constants.BLEND_MODES.NORMAL;
+    _this._transformID = -1;
     /**
      * Internal roundPixels field
      *
@@ -40982,8 +41035,8 @@ var _display = require("@pixi/display");
 var _loaders = require("@pixi/loaders");
 
 /*!
- * @pixi/text-bitmap - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/text-bitmap - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/text-bitmap is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -41165,7 +41218,8 @@ function () {
       page: [],
       char: [],
       chars: [],
-      kerning: []
+      kerning: [],
+      kernings: []
     };
 
     for (var i in items) {
@@ -41326,10 +41380,57 @@ function () {
   };
 
   return XMLFormat;
+}();
+/**
+ * BitmapFont format that's XML-based.
+ *
+ * @class
+ * @private
+ */
+
+
+var XMLStringFormat =
+/** @class */
+function () {
+  function XMLStringFormat() {}
+  /**
+   * Check if resource refers to text xml font data.
+   *
+   * @static
+   * @private
+   * @param {any} data
+   * @return {boolean} True if resource could be treated as font data, false otherwise.
+   */
+
+
+  XMLStringFormat.test = function (data) {
+    if (typeof data === 'string' && data.indexOf('<font>') > -1) {
+      var xml = new self.DOMParser().parseFromString(data, 'text/xml');
+      return XMLFormat.test(xml);
+    }
+
+    return false;
+  };
+  /**
+   * Convert the text XML into BitmapFontData that we can use.
+   *
+   * @static
+   * @private
+   * @param {string} xmlTxt
+   * @return {BitmapFontData} Data to use for BitmapFont
+   */
+
+
+  XMLStringFormat.parse = function (xmlTxt) {
+    var xml = new window.DOMParser().parseFromString(xmlTxt, 'text/xml');
+    return XMLFormat.parse(xml);
+  };
+
+  return XMLStringFormat;
 }(); // Registered formats, maybe make this extensible in the future?
 
 
-var formats = [TextFormat, XMLFormat];
+var formats = [TextFormat, XMLFormat, XMLStringFormat];
 /**
  * Auto-detect BitmapFont parsing format based on data.
  * @private
@@ -41508,7 +41609,7 @@ function drawGlyph(canvas, context, metrics, x, y, resolution, style) {
     context.shadowOffsetX = Math.cos(style.dropShadowAngle) * style.dropShadowDistance;
     context.shadowOffsetY = Math.sin(style.dropShadowAngle) * style.dropShadowDistance;
   } else {
-    context.shadowColor = '0';
+    context.shadowColor = 'black';
     context.shadowBlur = 0;
     context.shadowOffsetX = 0;
     context.shadowOffsetY = 0;
@@ -41522,7 +41623,8 @@ function drawGlyph(canvas, context, metrics, x, y, resolution, style) {
     context.fillText(char, tx, ty + metrics.lineHeight - fontProperties.descent);
   }
 
-  context.setTransform();
+  context.setTransform(1, 0, 0, 1, 0, 0); // defaults needed for older browsers (e.g. Opera 29)
+
   context.fillStyle = 'rgba(0, 0, 0, 0)';
 }
 /**
@@ -41590,13 +41692,16 @@ function () {
   /**
    * @param {PIXI.BitmapFontData} data
    * @param {PIXI.Texture[]|Object.<string, PIXI.Texture>} textures
+   * @param {boolean} [ownsTextures] - Setting to `true` will destroy page textures
+   *        when the font is uninstalled.
    */
-  function BitmapFont(data, textures) {
+  function BitmapFont(data, textures, ownsTextures) {
     var info = data.info[0];
     var common = data.common[0];
     var page = data.page[0];
     var res = (0, _utils.getResolutionOfUrl)(page.file);
     var pageTextures = {};
+    this._ownsTextures = ownsTextures;
     /**
      * The name of the font face.
      *
@@ -41705,7 +41810,10 @@ function () {
     }
 
     for (var id in this.pageTextures) {
-      this.pageTextures[id].destroy(true);
+      if (this._ownsTextures) {
+        this.pageTextures[id].destroy(true);
+      }
+
       this.pageTextures[id] = null;
     } // Set readonly null.
 
@@ -41721,12 +41829,15 @@ function () {
    *        characters map that could be provided as xml or raw string.
    * @param {Object.<string, PIXI.Texture>|PIXI.Texture|PIXI.Texture[]}
    *        textures - List of textures for each page.
+   * @param {boolean} managedTexture - Set to `true` to destroy page textures
+   *        when the font is uninstalled. By default fonts created with
+   *        `BitmapFont.from` or from the `BitmapFontLoader` are `true`.
    * @return {PIXI.BitmapFont} Result font object with font, size, lineHeight
    *         and char fields.
    */
 
 
-  BitmapFont.install = function (data, textures) {
+  BitmapFont.install = function (data, textures, ownsTextures) {
     var fontData;
 
     if (data instanceof BitmapFontData) {
@@ -41746,7 +41857,7 @@ function () {
       textures = [textures];
     }
 
-    var font = new BitmapFont(fontData, textures);
+    var font = new BitmapFont(fontData, textures, ownsTextures);
     BitmapFont.available[font.font] = font;
     return font;
   };
@@ -41754,7 +41865,7 @@ function () {
    * Remove bitmap font by name.
    *
    * @static
-   * @param {string} name
+   * @param {string} name - Name of the font to uninstall.
    */
 
 
@@ -41916,7 +42027,7 @@ function () {
       positionX = Math.ceil(positionX);
     }
 
-    var font = new BitmapFont(fontData, textures); // Make it easier to replace a font
+    var font = new BitmapFont(fontData, textures, true); // Make it easier to replace a font
 
     if (BitmapFont.available[name] !== undefined) {
       BitmapFont.uninstall(name);
@@ -42181,16 +42292,13 @@ function (_super) {
       _this.dirty = true;
     }, _this, 0, 0);
     /**
-     * If true PixiJS will Math.floor() x/y values when rendering, stopping pixel interpolation.
-     * Advantages can include sharper image quality (like text) and faster rendering on canvas.
-     * The main disadvantage is movement of objects may appear less smooth.
-     * To set the global default, change {@link PIXI.settings.ROUND_PIXELS}
+     * If true PixiJS will Math.floor() x/y values when rendering
      *
      * @member {boolean}
      * @default PIXI.settings.ROUND_PIXELS
      */
 
-    _this.roundPixels = _settings.settings.ROUND_PIXELS;
+    _this._roundPixels = _settings.settings.ROUND_PIXELS;
     /**
      * Set to `true` if the BitmapText needs to be redrawn.
      *
@@ -42198,6 +42306,13 @@ function (_super) {
      */
 
     _this.dirty = true;
+    /**
+     * Cached char texture is destroyed when BitmapText is destroyed
+     * @member {Record<number, Texture>}
+     * @private
+     */
+
+    _this._textureCache = {};
     return _this;
   }
   /**
@@ -42352,7 +42467,9 @@ function (_super) {
         pageMeshData.uvsCount = 0;
         pageMeshData.total = 0; // TODO need to get page texture here somehow..
 
-        pageMeshData.mesh.texture = new _core.Texture(texture.baseTexture);
+        var _textureCache = this._textureCache;
+        _textureCache[baseTextureUid] = _textureCache[baseTextureUid] || new _core.Texture(texture.baseTexture);
+        pageMeshData.mesh.texture = _textureCache[baseTextureUid];
         pageMeshData.mesh.tint = this._tint;
         newPagesMeshData.push(pageMeshData);
         pagesMeshData[baseTextureUid] = pageMeshData;
@@ -42389,6 +42506,13 @@ function (_super) {
         pageMeshData.vertices = new Float32Array(4 * 2 * total);
         pageMeshData.uvs = new Float32Array(4 * 2 * total);
         pageMeshData.indices = new Uint16Array(6 * total);
+      } else {
+        var total_1 = pageMeshData.total;
+        var vertices = pageMeshData.vertices; // Clear the garbage at the end of the vertices buffer. This will prevent the bounds miscalculation.
+
+        for (var i_1 = total_1 * 4 * 2; i_1 < vertices.length; i_1++) {
+          vertices[i_1] = 0;
+        }
       } // as a buffer maybe bigger than the current word, we set the size of the meshMaterial
       // to match the number of letters needed
 
@@ -42398,7 +42522,13 @@ function (_super) {
 
     for (var i = 0; i < lenChars; i++) {
       var char = chars[i];
-      var xPos = (char.position.x + lineAlignOffsets[char.line]) * scale;
+      var offset = char.position.x + lineAlignOffsets[char.line];
+
+      if (this._roundPixels) {
+        offset = Math.round(offset);
+      }
+
+      var xPos = offset * scale;
       var yPos = char.position.y * scale;
       var texture = char.texture;
       var pageMesh = pagesMeshData[texture.baseTexture.uid];
@@ -42440,7 +42570,7 @@ function (_super) {
         var anchorOffsetX = this._textWidth * this.anchor.x;
         var anchorOffsetY = this._textHeight * this.anchor.y;
 
-        for (var i_1 = 0; i_1 < pageMeshData.total; i_1++) {
+        for (var i_2 = 0; i_2 < pageMeshData.total; i_2++) {
           pageMeshData.vertices[vertexCount++] -= anchorOffsetX;
           pageMeshData.vertices[vertexCount++] -= anchorOffsetY;
           pageMeshData.vertices[vertexCount++] -= anchorOffsetX;
@@ -42704,6 +42834,28 @@ function (_super) {
     enumerable: false,
     configurable: true
   });
+  Object.defineProperty(BitmapText.prototype, "roundPixels", {
+    /**
+     * If true PixiJS will Math.floor() x/y values when rendering, stopping pixel interpolation.
+     * Advantages can include sharper image quality (like text) and faster rendering on canvas.
+     * The main disadvantage is movement of objects may appear less smooth.
+     * To set the global default, change {@link PIXI.settings.ROUND_PIXELS}
+     *
+     * @member {boolean}
+     * @default PIXI.settings.ROUND_PIXELS
+     */
+    get: function () {
+      return this._roundPixels;
+    },
+    set: function (value) {
+      if (value !== this._roundPixels) {
+        this._roundPixels = value;
+        this.dirty = true;
+      }
+    },
+    enumerable: false,
+    configurable: true
+  });
   Object.defineProperty(BitmapText.prototype, "textHeight", {
     /**
      * The height of the overall text, different from fontSize,
@@ -42738,6 +42890,20 @@ function (_super) {
       style.fontName = style.font.name;
       style.fontSize = typeof style.font.size === 'number' ? style.font.size : parseInt(style.font.size, 10);
     }
+  };
+
+  BitmapText.prototype.destroy = function (options) {
+    var _textureCache = this._textureCache;
+
+    for (var id in _textureCache) {
+      var texture = _textureCache[id];
+      texture.destroy();
+      delete _textureCache[id];
+    }
+
+    this._textureCache = null;
+
+    _super.prototype.destroy.call(this, options);
   };
   /**
    * Register a bitmap font with data and a texture.
@@ -42801,7 +42967,7 @@ function () {
 
 
   BitmapFontLoader.add = function () {
-    _loaders.LoaderResource.setExtensionXhrType('fnt', _loaders.LoaderResource.XHR_RESPONSE_TYPE.DOCUMENT);
+    _loaders.LoaderResource.setExtensionXhrType('fnt', _loaders.LoaderResource.XHR_RESPONSE_TYPE.TEXT);
   };
   /**
    * Called after a resource is loaded.
@@ -42828,7 +42994,7 @@ function () {
       textures[page.metadata.pageFile] = page.texture;
 
       if (Object.keys(textures).length === data.page.length) {
-        resource.bitmapFont = BitmapFont.install(data, textures);
+        resource.bitmapFont = BitmapFont.install(data, textures, true);
         next();
       }
     };
@@ -42944,8 +43110,8 @@ exports.AlphaFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-alpha - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/filter-alpha - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/filter-alpha is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -43067,8 +43233,8 @@ var _core = require("@pixi/core");
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/filter-blur - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/filter-blur - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/filter-blur is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -43677,7 +43843,7 @@ function (_super) {
    * @param {boolean} horizontal - Do pass along the x-axis (`true`) or y-axis (`false`).
    * @param {number} [strength=8] - The strength of the blur filter.
    * @param {number} [quality=4] - The quality of the blur filter.
-   * @param {number} [resolution=1] - The resolution of the blur filter.
+   * @param {number} [resolution=PIXI.settings.FILTER_RESOLUTION] - The resolution of the blur filter.
    * @param {number} [kernelSize=5] - The kernelSize of the blur filter.Options: 5, 7, 9, 11, 13, 15.
    */
 
@@ -43692,7 +43858,7 @@ function (_super) {
     }
 
     if (resolution === void 0) {
-      resolution = _settings.settings.RESOLUTION;
+      resolution = _settings.settings.FILTER_RESOLUTION;
     }
 
     if (kernelSize === void 0) {
@@ -43826,7 +43992,7 @@ function (_super) {
   /**
    * @param {number} [strength=8] - The strength of the blur filter.
    * @param {number} [quality=4] - The quality of the blur filter.
-   * @param {number} [resolution=1] - The resolution of the blur filter.
+   * @param {number} [resolution=PIXI.settings.FILTER_RESOLUTION] - The resolution of the blur filter.
    * @param {number} [kernelSize=5] - The kernelSize of the blur filter.Options: 5, 7, 9, 11, 13, 15.
    */
 
@@ -43841,7 +44007,7 @@ function (_super) {
     }
 
     if (resolution === void 0) {
-      resolution = _settings.settings.RESOLUTION;
+      resolution = _settings.settings.FILTER_RESOLUTION;
     }
 
     if (kernelSize === void 0) {
@@ -44007,8 +44173,8 @@ exports.ColorMatrixFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-color-matrix - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/filter-color-matrix - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/filter-color-matrix is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -44550,8 +44716,8 @@ var _core = require("@pixi/core");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/filter-displacement - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/filter-displacement - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/filter-displacement is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -44720,8 +44886,8 @@ exports.FXAAFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-fxaa - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/filter-fxaa - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/filter-fxaa is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -44808,8 +44974,8 @@ exports.NoiseFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-noise - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/filter-noise - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/filter-noise is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -44956,8 +45122,8 @@ var _utils = require("@pixi/utils");
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/mixin-cache-as-bitmap - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/mixin-cache-as-bitmap - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/mixin-cache-as-bitmap is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -45116,6 +45282,7 @@ _display.DisplayObject.prototype._initCachedDisplayObject = function _initCached
 
   var cachedRenderTexture = renderer.renderTexture.current;
   var cachedSourceFrame = renderer.renderTexture.sourceFrame.clone();
+  var cachedDestinationFrame = renderer.renderTexture.destinationFrame.clone();
   var cachedProjectionTransform = renderer.projection.transform; // We also store the filter stack - I will definitely look to change how this works a little later down the line.
   // const stack = renderer.filterManager.filterStack;
   // this renderTexture will be used to store the cached DisplayObject
@@ -45139,7 +45306,7 @@ _display.DisplayObject.prototype._initCachedDisplayObject = function _initCached
   renderer.render(this, renderTexture, true, m, false); // now restore the state be setting the new properties
 
   renderer.projection.transform = cachedProjectionTransform;
-  renderer.renderTexture.bind(cachedRenderTexture, cachedSourceFrame); // renderer.filterManager.filterStack = stack;
+  renderer.renderTexture.bind(cachedRenderTexture, cachedSourceFrame, cachedDestinationFrame); // renderer.filterManager.filterStack = stack;
 
   this.render = this._renderCached; // the rest is the same as for Canvas
 
@@ -45332,8 +45499,8 @@ _display.DisplayObject.prototype._cacheAsBitmapDestroy = function _cacheAsBitmap
 var _display = require("@pixi/display");
 
 /*!
- * @pixi/mixin-get-child-by-name - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/mixin-get-child-by-name - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/mixin-get-child-by-name is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -45391,8 +45558,8 @@ var _display = require("@pixi/display");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/mixin-get-global-position - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/mixin-get-global-position - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/mixin-get-global-position is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -45442,8 +45609,8 @@ var _constants = require("@pixi/constants");
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/mesh-extras - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/mesh-extras - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/mesh-extras is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -45947,6 +46114,12 @@ function (_super) {
     _super.prototype._render.call(this, renderer);
   };
 
+  SimplePlane.prototype.destroy = function (options) {
+    this.shader.texture.off('update', this.textureUpdated, this);
+
+    _super.prototype.destroy.call(this, options);
+  };
+
   return SimplePlane;
 }(_mesh.Mesh);
 /**
@@ -46352,8 +46525,8 @@ var _sprite = require("@pixi/sprite");
 var _ticker = require("@pixi/ticker");
 
 /*!
- * @pixi/sprite-animated - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * @pixi/sprite-animated - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * @pixi/sprite-animated is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -46646,6 +46819,10 @@ function (_super) {
 
 
   AnimatedSprite.prototype.update = function (deltaTime) {
+    if (!this._playing) {
+      return;
+    }
+
     var elapsed = this.animationSpeed * deltaTime;
     var previousFrame = this.currentFrame;
 
@@ -46801,7 +46978,7 @@ function (_super) {
     /**
      * The array of textures used for this AnimatedSprite.
      *
-     * @member {PIXI.Texture[]}
+     * @member {PIXI.Texture[]|PIXI.AnimatedSprite.FrameObject[]}
      */
     get: function () {
       return this._textures;
@@ -47265,8 +47442,8 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 /*!
- * pixi.js - v5.3.3
- * Compiled Tue, 04 Aug 2020 16:23:09 UTC
+ * pixi.js - v5.3.9
+ * Compiled Wed, 24 Mar 2021 19:54:16 UTC
  *
  * pixi.js is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -48735,7 +48912,7 @@ _app.Application.registerPlugin(_loaders.AppLoaderPlugin);
  */
 
 
-var VERSION = '5.3.3';
+var VERSION = '5.3.9';
 /**
  * @namespace PIXI
  */
@@ -49585,7 +49762,7 @@ var pixi_display;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports._getCache = exports._getSetter = exports._missingPlugin = exports._round = exports._roundModifier = exports._config = exports._ticker = exports._plugins = exports._checkPlugin = exports._replaceRandom = exports._colorStringFilter = exports._sortPropTweensByPriority = exports._forEachName = exports._removeLinkedListItem = exports._setDefaults = exports._relExp = exports._renderComplexString = exports._isUndefined = exports._isString = exports._numWithUnitExp = exports._numExp = exports._getProperty = exports.shuffle = exports.interpolate = exports.unitize = exports.pipe = exports.mapRange = exports.toArray = exports.splitColor = exports.clamp = exports.getUnit = exports.normalize = exports.snap = exports.random = exports.distribute = exports.wrapYoyo = exports.wrap = exports.Circ = exports.Expo = exports.Sine = exports.Bounce = exports.SteppedEase = exports.Back = exports.Elastic = exports.Strong = exports.Quint = exports.Quart = exports.Cubic = exports.Quad = exports.Linear = exports.Power4 = exports.Power3 = exports.Power2 = exports.Power1 = exports.Power0 = exports.default = exports.gsap = exports.PropTween = exports.TweenLite = exports.TweenMax = exports.Tween = exports.TimelineLite = exports.TimelineMax = exports.Timeline = exports.Animation = exports.GSCache = void 0;
+exports._colorExp = exports._getCache = exports._getSetter = exports._missingPlugin = exports._round = exports._roundModifier = exports._config = exports._ticker = exports._plugins = exports._checkPlugin = exports._replaceRandom = exports._colorStringFilter = exports._sortPropTweensByPriority = exports._forEachName = exports._removeLinkedListItem = exports._setDefaults = exports._relExp = exports._renderComplexString = exports._isUndefined = exports._isString = exports._numWithUnitExp = exports._numExp = exports._getProperty = exports.shuffle = exports.interpolate = exports.unitize = exports.pipe = exports.mapRange = exports.toArray = exports.splitColor = exports.clamp = exports.getUnit = exports.normalize = exports.snap = exports.random = exports.distribute = exports.wrapYoyo = exports.wrap = exports.Circ = exports.Expo = exports.Sine = exports.Bounce = exports.SteppedEase = exports.Back = exports.Elastic = exports.Strong = exports.Quint = exports.Quart = exports.Cubic = exports.Quad = exports.Linear = exports.Power4 = exports.Power3 = exports.Power2 = exports.Power1 = exports.Power0 = exports.default = exports.gsap = exports.PropTween = exports.TweenLite = exports.TweenMax = exports.Tween = exports.TimelineLite = exports.TimelineMax = exports.Timeline = exports.Animation = exports.GSCache = void 0;
 
 function _assertThisInitialized(self) {
   if (self === void 0) {
@@ -49601,10 +49778,10 @@ function _inheritsLoose(subClass, superClass) {
   subClass.__proto__ = superClass;
 }
 /*!
- * GSAP 3.5.1
+ * GSAP 3.6.1
  * https://greensock.com
  *
- * @license Copyright 2008-2020, GreenSock. All rights reserved.
+ * @license Copyright 2008-2021, GreenSock. All rights reserved.
  * Subject to the terms at https://greensock.com/standard-license or for
  * Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
@@ -49626,6 +49803,7 @@ var _config = {
   overwrite: false,
   delay: 0
 },
+    _suppressOverwrites,
     _bigNum = 1e8,
     _tinyNum = 1 / _bigNum,
     _2PI = Math.PI * 2,
@@ -49663,13 +49841,14 @@ var _config = {
 _isArray = Array.isArray,
     _strictNumExp = /(?:-?\.?\d|\.)+/gi,
     //only numbers (including negatives and decimals) but NOT relative values.
-_numExp = /[-+=.]*\d+[.e\-+]*\d*[e\-\+]*\d*/g,
+_numExp = /[-+=.]*\d+[.e\-+]*\d*[e\-+]*\d*/g,
     //finds any numbers, including ones that start with += or -=, negative numbers, and ones in scientific notation like 1e-8.
 _numWithUnitExp = /[-+=.]*\d+[.e-]*\d*[a-z%]*/g,
-    _complexStringNumExp = /[-+=.]*\d+(?:\.|e-|e)*\d*/gi,
+    _complexStringNumExp = /[-+=.]*\d+\.?\d*(?:e-|e\+)?\d*/gi,
     //duplicate so that while we're looping through matches from exec(), it doesn't contaminate the lastIndex of _numExp which we use to search for colors too.
-_relExp = /[+-]=-?[\.\d]+/,
+_relExp = /[+-]=-?[.\d]+/,
     _delimitedValueExp = /[#\-+.]*\b[a-z\d-=+%.]+/gi,
+    _unitExp = /[\d.+\-=]+(?:e[-+]\d*)*/i,
     _globalTimeline,
     _win,
     _coreInitted,
@@ -49708,6 +49887,7 @@ _relExp = /[+-]=-?[\.\d]+/,
   _isObject(target) || _isFunction(target) || (targets = [targets]);
 
   if (!(harnessPlugin = (target._gsap || {}).harness)) {
+    // find the first target with a harness. We assume targets passed into an animation will be of similar type, meaning the same kind of harness can be used for them all (performance optimization)
     i = _harnessPlugins.length;
 
     while (i-- && !_harnessPlugins[i].targetTest(target)) {}
@@ -49817,7 +49997,7 @@ _round = function _round(value) {
 },
     _mergeDeep = function _mergeDeep(base, toMerge) {
   for (var p in toMerge) {
-    base[p] = _isObject(toMerge[p]) ? _mergeDeep(base[p] || (base[p] = {}), toMerge[p]) : toMerge[p];
+    p !== "__proto__" && p !== "constructor" && p !== "prototype" && (base[p] = _isObject(toMerge[p]) ? _mergeDeep(base[p] || (base[p] = {}), toMerge[p]) : toMerge[p]);
   }
 
   return base;
@@ -49954,7 +50134,8 @@ _round = function _round(value) {
 },
     // feed in the totalTime and cycleDuration and it'll return the cycle (iteration minus 1) and if the playhead is exactly at the very END, it will NOT bump up to the next cycle.
 _animationCycle = function _animationCycle(tTime, cycleDuration) {
-  return (tTime /= cycleDuration) && ~~tTime === tTime ? ~~tTime - 1 : ~~tTime;
+  var whole = Math.floor(tTime /= cycleDuration);
+  return tTime && whole === tTime ? whole - 1 : whole;
 },
     _parentToChildTotalTime = function _parentToChildTotalTime(parentTime, child) {
   return (parentTime - child._start) * child._ts + (child._ts >= 0 ? 0 : child._dirty ? child.totalDuration() : child._tDur);
@@ -49967,7 +50148,7 @@ _animationCycle = function _animationCycle(tTime, cycleDuration) {
   var parent = animation._dp;
 
   if (parent && parent.smoothChildTiming && animation._ts) {
-    animation._start = _round(animation._dp._time - (animation._ts > 0 ? totalTime / animation._ts : ((animation._dirty ? animation.totalDuration() : animation._tDur) - totalTime) / -animation._ts));
+    animation._start = _round(parent._time - (animation._ts > 0 ? totalTime / animation._ts : ((animation._dirty ? animation.totalDuration() : animation._tDur) - totalTime) / -animation._ts));
 
     _setEnd(animation);
 
@@ -50043,10 +50224,15 @@ _postAddChecks = function _postAddChecks(timeline, child) {
     return 1;
   }
 },
-    _renderZeroDurationTween = function _renderZeroDurationTween(tween, totalTime, suppressEvents, force) {
+    _parentPlayheadIsBeforeStart = function _parentPlayheadIsBeforeStart(_ref) {
+  var parent = _ref.parent;
+  return parent && parent._ts && parent._initted && !parent._lock && (parent.rawTime() < 0 || _parentPlayheadIsBeforeStart(parent));
+},
+    // check parent's _lock because when a timeline repeats/yoyos and does its artificial wrapping, we shouldn't force the ratio back to 0
+_renderZeroDurationTween = function _renderZeroDurationTween(tween, totalTime, suppressEvents, force) {
   var prevRatio = tween.ratio,
-      ratio = totalTime < 0 || !totalTime && prevRatio && !tween._start && tween._zTime > _tinyNum && !tween._dp._lock || (tween._ts < 0 || tween._dp._ts < 0) && tween.data !== "isFromStart" && tween.data !== "isStart" ? 0 : 1,
-      // check parent's _lock because when a timeline repeats/yoyos and does its artificial wrapping, we shouldn't force the ratio back to 0. Also, if the tween or its parent is reversed and the totalTime is 0, we should go to a ratio of 0.
+      ratio = totalTime < 0 || !totalTime && (!tween._start && _parentPlayheadIsBeforeStart(tween) || (tween._ts < 0 || tween._dp._ts < 0) && tween.data !== "isFromStart" && tween.data !== "isStart") ? 0 : 1,
+      // if the tween or its parent is reversed and the totalTime is 0, we should go to a ratio of 0.
   repeatDelay = tween._rDelay,
       tTime = 0,
       pt,
@@ -50058,6 +50244,7 @@ _postAddChecks = function _postAddChecks(timeline, child) {
     tTime = _clamp(0, tween._tDur, totalTime);
     iteration = _animationCycle(tTime, repeatDelay);
     prevIteration = _animationCycle(tween._tTime, repeatDelay);
+    tween._yoyo && iteration & 1 && (ratio = 1 - ratio);
 
     if (iteration !== prevIteration) {
       prevRatio = 1 - ratio;
@@ -50080,7 +50267,6 @@ _postAddChecks = function _postAddChecks(timeline, child) {
     tween._from && (ratio = 1 - ratio);
     tween._time = 0;
     tween._tTime = tTime;
-    suppressEvents || _callback(tween, "onStart");
     pt = tween._pt;
 
     while (pt) {
@@ -50184,7 +50370,13 @@ _postAddChecks = function _postAddChecks(timeline, child) {
   return value < min ? min : value > max ? max : value;
 },
     getUnit = function getUnit(value) {
-  return (value = (value + "").substr((parseFloat(value) + "").length)) && isNaN(value) ? value : "";
+  if (typeof value !== "string") {
+    return "";
+  }
+
+  var v = _unitExp.exec(value);
+
+  return v ? value.substr(v.index + v[0].length) : "";
 },
     // note: protect against padded numbers as strings, like "100.100". That shouldn't return "00" as the unit. If it's numeric, return no unit.
 clamp = function clamp(min, max, value) {
@@ -50305,7 +50497,8 @@ distribute = function distribute(v) {
   var p = v < 1 ? Math.pow(10, (v + "").length - 2) : 1; //to avoid floating point math errors (like 24 * 0.1 == 2.4000000000000004), we chop off at a specific number of decimal places (much faster than toFixed()
 
   return function (raw) {
-    return Math.floor(Math.round(parseFloat(raw) / v) * v * p) / p + (_isNumber(raw) ? 0 : getUnit(raw));
+    var n = Math.round(parseFloat(raw) / v) * v * p;
+    return (n - n % 1) / p + (_isNumber(raw) ? 0 : getUnit(raw)); // n - n % 1 replaces Math.floor() in order to handle negative values properly. For example, Math.floor(-150.00000000000003) is 151!
   };
 },
     snap = function snap(snapTo, value) {
@@ -50360,7 +50553,7 @@ distribute = function distribute(v) {
 },
     random = function random(min, max, roundingIncrement, returnFunction) {
   return _conditionalReturn(_isArray(min) ? !max : roundingIncrement === true ? !!(roundingIncrement = 0) : !returnFunction, function () {
-    return _isArray(min) ? min[~~(Math.random() * min.length)] : (roundingIncrement = roundingIncrement || 1e-5) && (returnFunction = roundingIncrement < 1 ? Math.pow(10, (roundingIncrement + "").length - 2) : 1) && Math.floor(Math.round((min + Math.random() * (max - min)) / roundingIncrement) * roundingIncrement * returnFunction) / returnFunction;
+    return _isArray(min) ? min[~~(Math.random() * min.length)] : (roundingIncrement = roundingIncrement || 1e-5) && (returnFunction = roundingIncrement < 1 ? Math.pow(10, (roundingIncrement + "").length - 2) : 1) && Math.floor(Math.round((min - roundingIncrement / 2 + Math.random() * (max - min + roundingIncrement * .99)) / roundingIncrement) * roundingIncrement * returnFunction) / returnFunction;
   });
 },
     pipe = function pipe() {
@@ -50524,6 +50717,7 @@ distribute = function distribute(v) {
     _interrupt = function _interrupt(animation) {
   _removeFromParent(animation);
 
+  animation.scrollTrigger && animation.scrollTrigger.kill(false);
   animation.progress() < 1 && _callback(animation, "onInterrupt");
   return animation;
 },
@@ -50635,12 +50829,18 @@ _255 = 255,
     if (_colorLookup[v]) {
       a = _colorLookup[v];
     } else if (v.charAt(0) === "#") {
-      if (v.length === 4) {
-        //for shorthand like #9F0
+      if (v.length < 6) {
+        //for shorthand like #9F0 or #9F0F (could have alpha)
         r = v.charAt(1);
         g = v.charAt(2);
         b = v.charAt(3);
-        v = "#" + r + r + g + g + b + b;
+        v = "#" + r + r + g + g + b + b + (v.length === 5 ? v.charAt(4) + v.charAt(4) : "");
+      }
+
+      if (v.length === 9) {
+        // hex with alpha, like #fd5e53ff
+        a = parseInt(v.substr(1, 6), 16);
+        return [a >> 16, a >> 8 & _255, a & _255, parseInt(v.substr(7), 16) / 255];
       }
 
       v = parseInt(v.substr(1), 16);
@@ -50754,7 +50954,7 @@ _255 = 255,
   return result + shell[l];
 },
     _colorExp = function () {
-  var s = "(?:\\b(?:(?:rgb|rgba|hsl|hsla)\\(.+?\\))|\\B#(?:[0-9a-f]{3}){1,2}\\b",
+  var s = "(?:\\b(?:(?:rgb|rgba|hsl|hsla)\\(.+?\\))|\\B#(?:[0-9a-f]{3,4}){1,2}\\b",
       //we'll dynamically build this Regular Expression to conserve file size. After building it, it will be able to find rgb(), rgba(), # (hexadecimal), and named color values like red, blue, purple, etc.,
   p;
 
@@ -51057,6 +51257,7 @@ _propagateYoyoEase = function _propagateYoyoEase(timeline, isYoyo) {
 
 exports._ticker = _ticker;
 exports._colorStringFilter = _colorStringFilter;
+exports._colorExp = _colorExp;
 exports.splitColor = splitColor;
 exports.interpolate = interpolate;
 exports.mapRange = mapRange;
@@ -51184,7 +51385,8 @@ var Animation = /*#__PURE__*/function () {
     this.vars = vars;
     this._delay = +vars.delay || 0;
 
-    if (this._repeat = vars.repeat || 0) {
+    if (this._repeat = vars.repeat === Infinity ? -2 : vars.repeat || 0) {
+      // TODO: repeat: Infinity on a timeline's children must flag that timeline internally and affect its totalDuration, otherwise it'll stop in the negative direction when reaching the start.
       this._rDelay = vars.repeatDelay || 0;
       this._yoyo = !!vars.yoyo || !!vars.yoyoEase;
     }
@@ -51235,8 +51437,10 @@ var Animation = /*#__PURE__*/function () {
     var parent = this._dp;
 
     if (parent && parent.smoothChildTiming && this._ts) {
-      _alignPlayhead(this, _totalTime); //in case any of the ancestor timelines had completed but should now be enabled, we should reset their totalTime() which will also ensure that they're lined up properly and enabled. Skip for animations that are on the root (wasteful). Example: a TimelineLite.exportRoot() is performed when there's a paused tween on the root, the export will not complete until that tween is unpaused, but imagine a child gets restarted later, after all [unpaused] tweens have completed. The start of that child would get pushed out, but one of the ancestors may have completed.
+      _alignPlayhead(this, _totalTime);
 
+      !parent._dp || parent.parent || _postAddChecks(parent, this); // edge case: if this is a child of a timeline that already completed, for example, we must re-activate the parent.
+      //in case any of the ancestor timelines had completed but should now be enabled, we should reset their totalTime() which will also ensure that they're lined up properly and enabled. Skip for animations that are on the root (wasteful). Example: a TimelineLite.exportRoot() is performed when there's a paused tween on the root, the export will not complete until that tween is unpaused, but imagine a child gets restarted later, after all [unpaused] tweens have completed. The start of that child would get pushed out, but one of the ancestors may have completed.
 
       while (parent.parent) {
         if (parent.parent._time !== parent._start + (parent._ts >= 0 ? parent._tTime / parent._ts : (parent.totalDuration() - parent._tTime) / -parent._ts)) {
@@ -51255,8 +51459,12 @@ var Animation = /*#__PURE__*/function () {
     if (this._tTime !== _totalTime || !this._dur && !suppressEvents || this._initted && Math.abs(this._zTime) === _tinyNum || !_totalTime && !this._initted && (this.add || this._ptLookup)) {
       // check for _ptLookup on a Tween instance to ensure it has actually finished being instantiated, otherwise if this.reverse() gets called in the Animation constructor, it could trigger a render() here even though the _targets weren't populated, thus when _init() is called there won't be any PropTweens (it'll act like the tween is non-functional)
       this._ts || (this._pTime = _totalTime); // otherwise, if an animation is paused, then the playhead is moved back to zero, then resumed, it'd revert back to the original time at the pause
+      //if (!this._lock) { // avoid endless recursion (not sure we need this yet or if it's worth the performance hit)
+      //   this._lock = 1;
 
-      _lazySafeRender(this, _totalTime, suppressEvents);
+      _lazySafeRender(this, _totalTime, suppressEvents); //   this._lock = 0;
+      //}
+
     }
 
     return this;
@@ -51367,11 +51575,11 @@ var Animation = /*#__PURE__*/function () {
 
   _proto.repeat = function repeat(value) {
     if (arguments.length) {
-      this._repeat = value;
+      this._repeat = value === Infinity ? -2 : value;
       return _onUpdateTotalDuration(this);
     }
 
-    return this._repeat;
+    return this._repeat === -2 ? Infinity : this._repeat;
   };
 
   _proto.repeatDelay = function repeatDelay(value) {
@@ -51430,7 +51638,7 @@ var Animation = /*#__PURE__*/function () {
   };
 
   _proto.invalidate = function invalidate() {
-    this._initted = 0;
+    this._initted = this._act = 0;
     this._zTime = -_tinyNum;
     return this;
   };
@@ -51631,6 +51839,11 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         //adjust the time for repeats and yoyos
         yoyo = this._yoyo;
         cycleDuration = dur + this._rDelay;
+
+        if (this._repeat < -1 && totalTime < 0) {
+          return this.totalTime(cycleDuration * 100 + totalTime, suppressEvents, force);
+        }
+
         time = _round(tTime % cycleDuration); //round to avoid floating point errors. (4 % 0.8 should be 0 but some browsers report it as 0.79999999!)
 
         if (tTime === tDur) {
@@ -51675,7 +51888,8 @@ var Timeline = /*#__PURE__*/function (_Animation) {
           !suppressEvents && this.parent && _callback(this, "onRepeat");
           this.vars.repeatRefresh && !isYoyo && (this.invalidate()._lock = 1);
 
-          if (prevTime !== this._time || prevPaused !== !this._ts) {
+          if (prevTime && prevTime !== this._time || prevPaused !== !this._ts || this.vars.onRepeat && !this.parent && !this._act) {
+            // if prevTime is 0 and we render at the very end, _time will be the end, thus won't match. So in this edge case, prevTime won't match _time but that's okay. If it gets killed in the onRepeat, eject as well.
             return this;
           }
 
@@ -51687,7 +51901,6 @@ var Timeline = /*#__PURE__*/function (_Animation) {
             this._lock = 2;
             prevTime = rewinding ? dur : -0.0001;
             this.render(prevTime, true);
-            this.vars.repeatRefresh && !isYoyo && this.invalidate();
           }
 
           this._lock = 0;
@@ -51717,6 +51930,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         this._onUpdate = this.vars.onUpdate;
         this._initted = 1;
         this._zTime = totalTime;
+        prevTime = 0; // upon init, the playhead should always go forward; someone could invalidate() a completed timeline and then if they restart(), that would make child tweens render in reverse order which could lock in the wrong starting values if they build on each other, like tl.to(obj, {x: 100}).to(obj, {x: 0}).
       }
 
       !prevTime && time && !suppressEvents && _callback(this, "onStart");
@@ -51806,9 +52020,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
   _proto2.add = function add(child, position) {
     var _this2 = this;
 
-    if (!_isNumber(position)) {
-      position = _parsePosition(this, position);
-    }
+    _isNumber(position) || (position = _parsePosition(this, position));
 
     if (!(child instanceof Animation)) {
       if (_isArray(child)) {
@@ -51978,7 +52190,13 @@ var Timeline = /*#__PURE__*/function (_Animation) {
     }
 
     return a;
-  };
+  } // potential future feature - targets() on timelines
+  // targets() {
+  // 	let result = [];
+  // 	this.getChildren(true, true, false).forEach(t => result.push(...t.targets()));
+  // 	return result;
+  // }
+  ;
 
   _proto2.tweenTo = function tweenTo(position, vars) {
     vars = vars || {};
@@ -51989,9 +52207,11 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         startAt = _vars.startAt,
         _onStart = _vars.onStart,
         onStartParams = _vars.onStartParams,
-        tween = Tween.to(tl, _setDefaults(vars, {
-      ease: "none",
+        immediateRender = _vars.immediateRender,
+        tween = Tween.to(tl, _setDefaults({
+      ease: vars.ease || "none",
       lazy: false,
+      immediateRender: false,
       time: endTime,
       overwrite: "auto",
       duration: vars.duration || Math.abs((endTime - (startAt && "time" in startAt ? startAt.time : tl._time)) / tl.timeScale()) || _tinyNum,
@@ -52001,9 +52221,9 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         tween._dur !== duration && _setDuration(tween, duration, 0, 1).render(tween._time, true, true);
         _onStart && _onStart.apply(tween, onStartParams || []); //in case the user had an onStart in the vars - we don't want to overwrite it.
       }
-    }));
+    }, vars));
 
-    return tween;
+    return immediateRender ? tween.render(0) : tween;
   };
 
   _proto2.tweenFromTo = function tweenFromTo(fromPosition, toPosition, vars) {
@@ -52093,7 +52313,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
       child = next;
     }
 
-    this._time = this._tTime = this._pTime = 0;
+    this._dp && (this._time = this._tTime = this._pTime = 0);
     includeLabels && (this.labels = {});
     return _uncache(this);
   };
@@ -52342,7 +52562,7 @@ _initTween = function _initTween(tween, time) {
       targets = tween._targets,
       parent = tween.parent,
       fullTargets = parent && parent.data === "nested" ? parent.parent._targets : targets,
-      autoOverwrite = tween._overwrite === "auto",
+      autoOverwrite = tween._overwrite === "auto" && !_suppressOverwrites,
       tl = tween.timeline,
       cleanVars,
       i,
@@ -52399,6 +52619,8 @@ _initTween = function _initTween(tween, time) {
           time && (tween._zTime = time);
           return; //we skip initialization here so that overwriting doesn't occur until the tween actually begins. Otherwise, if you create several immediateRender:true tweens of the same target/properties to drop into a Timeline, the last one created would overwrite the first ones because they didn't get placed into the timeline yet before the first render occurs and kicks in overwriting.
         }
+      } else if (autoRevert === false) {
+        tween._startAt = 0;
       }
     } else if (runBackwards && dur) {
       //from() tweens must be handled uniquely: their beginning values must be rendered but we don't want overwriting to occur yet (when time is still 0). Wait until the tween actually begins before doing all the routines like overwriting. At that time, we should render at the END of the tween to ensure that things initialize correctly (remember, from() tweens go backwards)
@@ -52572,7 +52794,8 @@ var Tween = /*#__PURE__*/function (_Animation2) {
         defaults: defaults || {}
       });
       tl.kill();
-      tl.parent = _assertThisInitialized(_this3);
+      tl.parent = tl._dp = _assertThisInitialized(_this3);
+      tl._start = 0;
 
       if (keyframes) {
         _setDefaults(tl.vars.defaults, {
@@ -52631,7 +52854,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
       _this3.timeline = 0; //speed optimization, faster lookups (no going up the prototype chain)
     }
 
-    if (overwrite === true) {
+    if (overwrite === true && !_suppressOverwrites) {
       _overwritingTween = _assertThisInitialized(_this3);
 
       _globalTimeline.killTweensOf(parsedTargets);
@@ -52671,7 +52894,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
 
     if (!dur) {
       _renderZeroDurationTween(this, totalTime, suppressEvents, force);
-    } else if (tTime !== this._tTime || !totalTime || force || this._startAt && this._zTime < 0 !== totalTime < 0) {
+    } else if (tTime !== this._tTime || !totalTime || force || !this._initted && this._tTime || this._startAt && this._zTime < 0 !== totalTime < 0) {
       //this senses if we're crossing over the start time, in which case we must record _zTime and force the render, but we do it in this lengthy conditional way for performance reasons (usually we can skip the calculations): this._initted && (this._zTime < 0) !== (totalTime < 0)
       time = tTime;
       timeline = this.timeline;
@@ -52679,6 +52902,11 @@ var Tween = /*#__PURE__*/function (_Animation2) {
       if (this._repeat) {
         //adjust the time for repeats and yoyos
         cycleDuration = dur + this._rDelay;
+
+        if (this._repeat < -1 && totalTime < 0) {
+          return this.totalTime(cycleDuration * 100 + totalTime, suppressEvents, force);
+        }
+
         time = _round(tTime % cycleDuration); //round to avoid floating point errors. (4 % 0.8 should be 0 but some browsers report it as 0.79999999!)
 
         if (tTime === tDur) {
@@ -52788,7 +53016,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
   };
 
   _proto3.invalidate = function invalidate() {
-    this._pt = this._op = this._startAt = this._onUpdate = this._act = this._lazy = 0;
+    this._pt = this._op = this._startAt = this._onUpdate = this._lazy = this.ratio = 0;
     this._ptLookup = [];
     this.timeline && this.timeline.invalidate();
     return _Animation2.prototype.invalidate.call(this);
@@ -52800,16 +53028,13 @@ var Tween = /*#__PURE__*/function (_Animation2) {
     }
 
     if (!targets && (!vars || vars === "all")) {
-      this._lazy = 0;
-
-      if (this.parent) {
-        return _interrupt(this);
-      }
+      this._lazy = this._pt = 0;
+      return this.parent ? _interrupt(this) : this;
     }
 
     if (this.timeline) {
       var tDur = this.timeline.totalDuration();
-      this.timeline.killTweensOf(targets, vars, _overwritingTween && _overwritingTween.vars.overwrite !== true)._first || _interrupt(this); // if nothing is left tweenng, interrupt.
+      this.timeline.killTweensOf(targets, vars, _overwritingTween && _overwritingTween.vars.overwrite !== true)._first || _interrupt(this); // if nothing is left tweening, interrupt.
 
       this.parent && tDur !== this.timeline.totalDuration() && _setDuration(this, this._dur * this.timeline._tDur / tDur, 0, 1); // if a nested tween is killed that changes the duration, it should affect this tween's duration. We must use the ratio, though, because sometimes the internal timeline is stretched like for keyframes where they don't all add up to whatever the parent tween's duration was set to.
 
@@ -53209,12 +53434,12 @@ var _gsap = {
   config: function config(value) {
     return _mergeDeep(_config, value || {});
   },
-  registerEffect: function registerEffect(_ref) {
-    var name = _ref.name,
-        effect = _ref.effect,
-        plugins = _ref.plugins,
-        defaults = _ref.defaults,
-        extendTimeline = _ref.extendTimeline;
+  registerEffect: function registerEffect(_ref2) {
+    var name = _ref2.name,
+        effect = _ref2.effect,
+        plugins = _ref2.plugins,
+        defaults = _ref2.defaults,
+        extendTimeline = _ref2.extendTimeline;
     (plugins || "").split(",").forEach(function (pluginName) {
       return pluginName && !_plugins[pluginName] && !_globals[pluginName] && _warn(name + " effect requires " + pluginName + " plugin.");
     });
@@ -53299,7 +53524,10 @@ var _gsap = {
     Timeline: Timeline,
     Animation: Animation,
     getCache: _getCache,
-    _removeLinkedListItem: _removeLinkedListItem
+    _removeLinkedListItem: _removeLinkedListItem,
+    suppressOverwrites: function suppressOverwrites(value) {
+      return _suppressOverwrites = value;
+    }
   }
 };
 
@@ -53407,7 +53635,7 @@ var gsap = _gsap.registerPlugin({
 
 
 exports.default = exports.gsap = gsap;
-Tween.version = Timeline.version = gsap.version = "3.5.1";
+Tween.version = Timeline.version = gsap.version = "3.6.1";
 _coreReady = 1;
 
 if (_windowExists()) {
@@ -53461,10 +53689,10 @@ exports.checkPrefix = exports._createElement = exports._getBBox = exports.defaul
 var _gsapCore = require("./gsap-core.js");
 
 /*!
- * CSSPlugin 3.5.1
+ * CSSPlugin 3.6.1
  * https://greensock.com
  *
- * Copyright 2008-2020, GreenSock. All rights reserved.
+ * Copyright 2008-2021, GreenSock. All rights reserved.
  * Subject to the terms at https://greensock.com/standard-license or for
  * Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
@@ -53709,9 +53937,9 @@ _convertToUnit = function _convertToUnit(target, property, value, unit) {
   curUnit !== "px" && !toPixels && (curValue = _convertToUnit(target, property, value, "px"));
   isSVG = target.getCTM && _isSVG(target);
 
-  if (toPercent && (_transformProps[property] || ~property.indexOf("adius"))) {
-    //transforms and borderRadius are relative to the size of the element itself!
-    return (0, _gsapCore._round)(curValue / (isSVG ? target.getBBox()[horizontal ? "width" : "height"] : target[measureProperty]) * amount);
+  if ((toPercent || curUnit === "%") && (_transformProps[property] || ~property.indexOf("adius"))) {
+    px = isSVG ? target.getBBox()[horizontal ? "width" : "height"] : target[measureProperty];
+    return (0, _gsapCore._round)(toPercent ? curValue / px * amount : curValue / 100 * px);
   }
 
   style[horizontal ? "width" : "height"] = amount + (toPixels ? curUnit : unit);
@@ -53770,7 +53998,7 @@ _convertToUnit = function _convertToUnit(target, property, value, unit) {
     }
   }
 
-  return unit && !~(value + "").indexOf(" ") ? _convertToUnit(target, property, value, unit) + unit : value;
+  return unit && !~(value + "").trim().indexOf(" ") ? _convertToUnit(target, property, value, unit) + unit : value;
 },
     _tweenComplexCSSString = function _tweenComplexCSSString(target, prop, start, end) {
   //note: we call _tweenComplexCSSString.call(pluginInstance...) to ensure that it's scoped properly. We may call it from within a plugin too, thus "this" would refer to the plugin.
@@ -53868,7 +54096,7 @@ _convertToUnit = function _convertToUnit(target, property, value, unit) {
           //note: SVG spec allows omission of comma/space when a negative sign is wedged between two numbers, like 2.5-5.3 instead of 2.5,-5.3 but when tweening, the negative value may switch to positive, so we insert the comma just in case.
           s: startNum,
           c: relative ? relative * endNum : endNum - startNum,
-          m: color && color < 4 ? Math.round : 0
+          m: color && color < 4 || prop === "zIndex" ? Math.round : 0
         };
       }
     }
@@ -53878,9 +54106,7 @@ _convertToUnit = function _convertToUnit(target, property, value, unit) {
     pt.r = prop === "display" && end === "none" ? _renderNonTweeningValueOnlyAtEnd : _renderNonTweeningValue;
   }
 
-  if (_gsapCore._relExp.test(end)) {
-    pt.e = 0; //if the end string contains relative values or dynamic random(...) values, delete the end it so that on the final render we don't actually set it to the string with += or -= characters (forces it to use the calculated value).
-  }
+  _gsapCore._relExp.test(end) && (pt.e = 0); //if the end string contains relative values or dynamic random(...) values, delete the end it so that on the final render we don't actually set it to the string with += or -= characters (forces it to use the calculated value).
 
   this._pt = pt; //start the linked list with this new PropTween. Remember, we call _tweenComplexCSSString.call(pluginInstance...) to ensure that it's scoped properly. We may call it from within another plugin too, thus "this" would refer to the plugin.
 
@@ -54199,7 +54425,7 @@ _identity2DMatrix = [1, 0, 0, 1, 0, 0],
   matrix = _getMatrix(target, cache.svg);
 
   if (cache.svg) {
-    t1 = !cache.uncache && target.getAttribute("data-svg-origin");
+    t1 = !cache.uncache && !uncache && target.getAttribute("data-svg-origin");
 
     _applySVGOrigin(target, t1 || origin, !!t1 || cache.originIsAbsolute, cache.smooth !== false, matrix);
   }
@@ -54225,7 +54451,7 @@ _identity2DMatrix = [1, 0, 0, 1, 0, 0],
       rotation = a || b ? _atan2(b, a) * _RAD2DEG : 0; //note: if scaleX is 0, we cannot accurately measure rotation. Same for skewX with a scaleY of 0. Therefore, we default to the previously recorded value (or zero if that doesn't exist).
 
       skewX = c || d ? _atan2(c, d) * _RAD2DEG + rotation : 0;
-      skewX && (scaleY *= Math.cos(skewX * _DEG2RAD));
+      skewX && (scaleY *= Math.abs(Math.cos(skewX * _DEG2RAD)));
 
       if (cache.svg) {
         x -= xOrigin - (xOrigin * a + yOrigin * c);
@@ -54323,8 +54549,8 @@ _identity2DMatrix = [1, 0, 0, 1, 0, 0],
     }
   }
 
-  cache.x = ((cache.xPercent = x && Math.round(target.offsetWidth / 2) === Math.round(-x) ? -50 : 0) ? 0 : x) + px;
-  cache.y = ((cache.yPercent = y && Math.round(target.offsetHeight / 2) === Math.round(-y) ? -50 : 0) ? 0 : y) + px;
+  cache.x = x - ((cache.xPercent = x && (cache.xPercent || (Math.round(target.offsetWidth / 2) === Math.round(-x) ? -50 : 0))) ? target.offsetWidth * cache.xPercent / 100 : 0) + px;
+  cache.y = y - ((cache.yPercent = y && (cache.yPercent || (Math.round(target.offsetHeight / 2) === Math.round(-y) ? -50 : 0))) ? target.offsetHeight * cache.yPercent / 100 : 0) + px;
   cache.z = z + px;
   cache.scaleX = (0, _gsapCore._round)(scaleX);
   cache.scaleY = (0, _gsapCore._round)(scaleY);
@@ -54520,11 +54746,7 @@ _addPxTranslate = function _addPxTranslate(target, start, value) {
 
   temp = "matrix(" + a11 + "," + a21 + "," + a12 + "," + a22 + "," + tx + "," + ty + ")";
   target.setAttribute("transform", temp);
-
-  if (forceCSS) {
-    //some browsers prioritize CSS transforms over the transform attribute. When we sense that the user has CSS transforms applied, we must overwrite them this way (otherwise some browser simply won't render the  transform attribute changes!)
-    target.style[_transformProp] = temp;
-  }
+  forceCSS && (target.style[_transformProp] = temp); //some browsers prioritize CSS transforms over the transform attribute. When we sense that the user has CSS transforms applied, we must overwrite them this way (otherwise some browser simply won't render the  transform attribute changes!)
 },
     _addRotationalPropTween = function _addRotationalPropTween(plugin, target, property, startNum, endValue, relative) {
   var cap = 360,
@@ -54561,11 +54783,19 @@ _addPxTranslate = function _addPxTranslate(target, start, value) {
 
   return pt;
 },
+    _assign = function _assign(target, source) {
+  // Internet Explorer doesn't have Object.assign(), so we recreate it here.
+  for (var p in source) {
+    target[p] = source[p];
+  }
+
+  return target;
+},
     _addRawTransformPTs = function _addRawTransformPTs(plugin, transforms, target) {
   //for handling cases where someone passes in a whole transform string, like transform: "scale(2, 3) rotate(20deg) translateY(30em)"
-  var style = _tempDivStyler.style,
-      startCache = target._gsap,
+  var startCache = _assign({}, target._gsap),
       exclude = "perspective,force3D,transformOrigin,svgOrigin",
+      style = target.style,
       endCache,
       p,
       startValue,
@@ -54574,13 +54804,22 @@ _addPxTranslate = function _addPxTranslate(target, start, value) {
       endNum,
       startUnit,
       endUnit;
-  style.cssText = getComputedStyle(target).cssText + ";position:absolute;display:block;"; //%-based translations will fail unless we set the width/height to match the original target (and padding/borders can affect it)
 
-  style[_transformProp] = transforms;
+  if (startCache.svg) {
+    startValue = target.getAttribute("transform");
+    target.setAttribute("transform", "");
+    style[_transformProp] = transforms;
+    endCache = _parseTransform(target, 1);
 
-  _doc.body.appendChild(_tempDivStyler);
+    _removeProperty(target, _transformProp);
 
-  endCache = _parseTransform(_tempDivStyler, 1);
+    target.setAttribute("transform", startValue);
+  } else {
+    startValue = getComputedStyle(target)[_transformProp];
+    style[_transformProp] = transforms;
+    endCache = _parseTransform(target, 1);
+    style[_transformProp] = startValue;
+  }
 
   for (p in _transformProps) {
     startValue = startCache[p];
@@ -54592,14 +54831,14 @@ _addPxTranslate = function _addPxTranslate(target, start, value) {
       endUnit = (0, _gsapCore.getUnit)(endValue);
       startNum = startUnit !== endUnit ? _convertToUnit(target, p, startValue, endUnit) : parseFloat(startValue);
       endNum = parseFloat(endValue);
-      plugin._pt = new _gsapCore.PropTween(plugin._pt, startCache, p, startNum, endNum - startNum, _renderCSSProp);
+      plugin._pt = new _gsapCore.PropTween(plugin._pt, endCache, p, startNum, endNum - startNum, _renderCSSProp);
       plugin._pt.u = endUnit || 0;
 
       plugin._props.push(p);
     }
   }
 
-  _doc.body.removeChild(_tempDivStyler);
+  _assign(endCache, startCache);
 }; // handle splitting apart padding, margin, borderWidth, and borderRadius into their 4 components. Firefox, for example, won't report borderRadius correctly - it will only do borderTopLeftRadius and the other corners. We also want to handle paddingTop, marginLeft, borderRightWidth, etc.
 
 
@@ -54644,6 +54883,7 @@ var CSSPlugin = {
   init: function init(target, vars, tween, index, targets) {
     var props = this._props,
         style = target.style,
+        startAt = tween.vars.startAt,
         startValue,
         endValue,
         endNum,
@@ -54669,7 +54909,7 @@ var CSSPlugin = {
       endValue = vars[p];
 
       if (_gsapCore._plugins[p] && (0, _gsapCore._checkPlugin)(p, vars, tween, index, target, targets)) {
-        //plugins
+        // plugins
         continue;
       }
 
@@ -54686,21 +54926,35 @@ var CSSPlugin = {
       }
 
       if (specialProp) {
-        if (specialProp(this, target, p, endValue, tween)) {
-          hasPriority = 1;
-        }
+        specialProp(this, target, p, endValue, tween) && (hasPriority = 1);
       } else if (p.substr(0, 2) === "--") {
         //CSS variable
-        this.add(style, "setProperty", getComputedStyle(target).getPropertyValue(p) + "", endValue + "", index, targets, 0, 0, p);
-      } else if (type !== "undefined") {
-        startValue = _get(target, p);
-        startNum = parseFloat(startValue);
-        relative = type === "string" && endValue.charAt(1) === "=" ? +(endValue.charAt(0) + "1") : 0;
+        startValue = (getComputedStyle(target).getPropertyValue(p) + "").trim();
+        endValue += "";
+        _gsapCore._colorExp.lastIndex = 0;
 
-        if (relative) {
-          endValue = endValue.substr(2);
+        if (!_gsapCore._colorExp.test(startValue)) {
+          // colors don't have units
+          startUnit = (0, _gsapCore.getUnit)(startValue);
+          endUnit = (0, _gsapCore.getUnit)(endValue);
         }
 
+        endUnit ? startUnit !== endUnit && (startValue = _convertToUnit(target, p, startValue, endUnit) + endUnit) : startUnit && (endValue += startUnit);
+        this.add(style, "setProperty", startValue, endValue, index, targets, 0, 0, p);
+      } else if (type !== "undefined") {
+        if (startAt && p in startAt) {
+          // in case someone hard-codes a complex value as the start, like top: "calc(2vh / 2)". Without this, it'd use the computed value (always in px)
+          startValue = typeof startAt[p] === "function" ? startAt[p].call(tween, index, target, targets) : startAt[p];
+          p in _gsapCore._config.units && !(0, _gsapCore.getUnit)(startValue) && (startValue += _gsapCore._config.units[p]); // for cases when someone passes in a unitless value like {x: 100}; if we try setting translate(100, 0px) it won't work.
+
+          (startValue + "").charAt(1) === "=" && (startValue = _get(target, p)); // can't work with relative values
+        } else {
+          startValue = _get(target, p);
+        }
+
+        startNum = parseFloat(startValue);
+        relative = type === "string" && endValue.charAt(1) === "=" ? +(endValue.charAt(0) + "1") : 0;
+        relative && (endValue = endValue.substr(2));
         endNum = parseFloat(endValue);
 
         if (p in _propertyAliases) {
@@ -54725,7 +54979,7 @@ var CSSPlugin = {
         if (isTransformRelated) {
           if (!transformPropTween) {
             cache = target._gsap;
-            cache.renderTransform || _parseTransform(target); // if, for example, gsap.set(... {transform:"translateX(50vw)"}), the _get() call doesn't parse the transform, thus cache.renderTransform won't be set yet so force the parsing of the transform here.
+            cache.renderTransform && !vars.parseTransform || _parseTransform(target, vars.parseTransform); // if, for example, gsap.set(... {transform:"translateX(50vw)"}), the _get() call doesn't parse the transform, thus cache.renderTransform won't be set yet so force the parsing of the transform here.
 
             smooth = vars.smoothOrigin !== false && cache.smooth;
             transformPropTween = this._pt = new _gsapCore.PropTween(this._pt, style, _transformProp, 0, 1, cache.renderTransform, cache, 0, -1); //the first time through, create the rendering PropTween so that it runs LAST (in the linked list, we keep adding to the beginning)
@@ -54781,7 +55035,7 @@ var CSSPlugin = {
 
           endUnit = (0, _gsapCore.getUnit)(endValue) || (p in _gsapCore._config.units ? _gsapCore._config.units[p] : startUnit);
           startUnit !== endUnit && (startNum = _convertToUnit(target, p, startValue, endUnit));
-          this._pt = new _gsapCore.PropTween(this._pt, isTransformRelated ? cache : style, p, startNum, relative ? relative * endNum : endNum - startNum, endUnit === "px" && vars.autoRound !== false && !isTransformRelated ? _renderRoundedCSSProp : _renderCSSProp);
+          this._pt = new _gsapCore.PropTween(this._pt, isTransformRelated ? cache : style, p, startNum, relative ? relative * endNum : endNum - startNum, !isTransformRelated && (endUnit === "px" || p === "zIndex") && vars.autoRound !== false ? _renderRoundedCSSProp : _renderCSSProp);
           this._pt.u = endUnit || 0;
 
           if (startUnit !== endUnit) {
@@ -55002,10 +55256,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = exports.PixiPlugin = void 0;
 
 /*!
- * PixiPlugin 3.5.1
+ * PixiPlugin 3.6.1
  * https://greensock.com
  *
- * @license Copyright 2008-2020, GreenSock. All rights reserved.
+ * @license Copyright 2008-2021, GreenSock. All rights reserved.
  * Subject to the terms at https://greensock.com/standard-license or for
  * Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
@@ -55372,7 +55626,7 @@ for (i = 0; i < _xyContexts.length; i++) {
 }
 
 var PixiPlugin = {
-  version: "3.5.1",
+  version: "3.6.1",
   name: "pixi",
   register: function register(core, Plugin, propTween) {
     gsap = core;
@@ -55491,10 +55745,10 @@ exports.subdivideSegmentNear = subdivideSegmentNear;
 exports.rawPathToString = rawPathToString;
 
 /*!
- * paths 3.5.1
+ * paths 3.6.1
  * https://greensock.com
  *
- * Copyright 2008-2020, GreenSock. All rights reserved.
+ * Copyright 2008-2021, GreenSock. All rights reserved.
  * Subject to the terms at https://greensock.com/standard-license or for
  * Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
@@ -55532,6 +55786,9 @@ var _svgPathExp = /[achlmqstvz]|(-?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/ig,
 _round = function _round(value) {
   return Math.round(value * _roundingNum) / _roundingNum || 0;
 },
+    _roundPrecise = function _roundPrecise(value) {
+  return Math.round(value * 1e10) / 1e10 || 0;
+},
     _splitSegment = function _splitSegment(rawPath, segIndex, i, t) {
   var segment = rawPath[segIndex],
       shift = t === 1 ? 6 : subdivideSegment(segment, i, t);
@@ -55544,15 +55801,10 @@ _round = function _round(value) {
 },
     _reverseRawPath = function _reverseRawPath(rawPath, skipOuter) {
   var i = rawPath.length;
-
-  if (!skipOuter) {
-    rawPath.reverse();
-  }
+  skipOuter || rawPath.reverse();
 
   while (i--) {
-    if (!rawPath[i].reversed) {
-      reverseSegment(rawPath[i]);
-    }
+    rawPath[i].reversed || reverseSegment(rawPath[i]);
   }
 },
     _copyMetaData = function _copyMetaData(source, copy) {
@@ -55564,7 +55816,7 @@ _round = function _round(value) {
     copy.lookup = source.lookup.slice(0);
     copy.minLength = source.minLength;
     copy.resolution = source.resolution;
-  } else {
+  } else if (source.totalPoints) {
     //rawPath
     copy.totalPoints = source.totalPoints;
   }
@@ -55577,7 +55829,7 @@ _appendOrMerge = function _appendOrMerge(rawPath, segment) {
       prevSeg = rawPath[index - 1] || [],
       l = prevSeg.length;
 
-  if (segment[0] === prevSeg[l - 2] && segment[1] === prevSeg[l - 1]) {
+  if (index && segment[0] === prevSeg[l - 2] && segment[1] === prevSeg[l - 1]) {
     segment = prevSeg.concat(segment.slice(2));
     index--;
   }
@@ -55793,30 +56045,29 @@ function getRotationAtBezierT(segment, i, t) {
 }
 
 function sliceRawPath(rawPath, start, end) {
-  if (_isUndefined(end)) {
-    end = 1;
-  }
+  end = _isUndefined(end) ? 1 : _roundPrecise(end) || 0; // we must round to avoid issues like 4.15 / 8 = 0.8300000000000001 instead of 0.83 or 2.8 / 5 = 0.5599999999999999 instead of 0.56 and if someone is doing a loop like start: 2.8 / 0.5, end: 2.8 / 0.5 + 1.
 
-  start = start || 0;
-  var reverse = start > end,
-      loops = Math.max(0, ~~(_abs(end - start) - 1e-8));
+  start = _roundPrecise(start) || 0;
+  var loops = Math.max(0, ~~(_abs(end - start) - 1e-8)),
+      path = copyRawPath(rawPath);
 
-  if (reverse) {
-    reverse = end;
-    end = start;
-    start = reverse;
-    reverse = 1;
-    loops -= loops ? 1 : 0;
+  if (start > end) {
+    start = 1 - start;
+    end = 1 - end;
+
+    _reverseRawPath(path);
+
+    path.totalLength = 0;
   }
 
   if (start < 0 || end < 0) {
-    var offset = ~~Math.min(start, end) + 1;
+    var offset = Math.abs(~~Math.min(start, end)) + 1;
     start += offset;
     end += offset;
   }
 
-  var path = copyRawPath(rawPath.totalLength ? rawPath : cacheRawPathMeasurements(rawPath)),
-      wrap = end > 1,
+  path.totalLength || cacheRawPathMeasurements(path);
+  var wrap = end > 1,
       s = getProgressData(path, start, _temp, true),
       e = getProgressData(path, end, _temp2),
       eSeg = e.segment,
@@ -55827,7 +56078,7 @@ function sliceRawPath(rawPath, start, end) {
       si = s.i,
       sameSegment = sSegIndex === eSegIndex,
       sameBezier = ei === si && sameSegment,
-      invertedOrder = sameSegment && si > ei || sameBezier && s.t > e.t,
+      wrapsBehind,
       sShift,
       eShift,
       i,
@@ -55837,55 +56088,43 @@ function sliceRawPath(rawPath, start, end) {
       j;
 
   if (wrap || loops) {
+    wrapsBehind = eSegIndex < sSegIndex || sameSegment && ei < si || sameBezier && e.t < s.t;
+
     if (_splitSegment(path, sSegIndex, si, s.t)) {
-      sShift = 1;
       sSegIndex++;
 
-      if (sameBezier) {
-        if (invertedOrder) {
-          e.t /= s.t;
-        } else {
-          e.t = (e.t - s.t) / (1 - s.t);
-          eSegIndex++;
-          ei = 0;
-        }
-      } else if (sSegIndex <= eSegIndex + 1 && !invertedOrder) {
+      if (!wrapsBehind) {
         eSegIndex++;
 
-        if (sameSegment) {
+        if (sameBezier) {
+          e.t = (e.t - s.t) / (1 - s.t);
+          ei = 0;
+        } else if (sameSegment) {
           ei -= si;
         }
       }
     }
 
-    if (!e.t) {
+    if (1 - (end - start) < 1e-5) {
+      eSegIndex = sSegIndex - 1;
+    } else if (!e.t && eSegIndex) {
       eSegIndex--;
-      reverse && sSegIndex--;
-    } else if (_splitSegment(path, eSegIndex, ei, e.t)) {
-      invertedOrder && sShift && sSegIndex++;
-      reverse && eSegIndex++;
+    } else if (_splitSegment(path, eSegIndex, ei, e.t) && wrapsBehind) {
+      sSegIndex++;
+    }
+
+    if (s.t === 1) {
+      sSegIndex = (sSegIndex + 1) % path.length;
     }
 
     copy = [];
     totalSegments = path.length;
     l = 1 + totalSegments * loops;
     j = sSegIndex;
+    l += (totalSegments - sSegIndex + eSegIndex) % totalSegments;
 
-    if (reverse) {
-      eSegIndex = (eSegIndex || totalSegments) - 1;
-      l += (totalSegments - eSegIndex + sSegIndex) % totalSegments;
-
-      for (i = 0; i < l; i++) {
-        _appendOrMerge(copy, path[j]);
-
-        j = (j || totalSegments) - 1;
-      }
-    } else {
-      l += (totalSegments - sSegIndex + eSegIndex) % totalSegments;
-
-      for (i = 0; i < l; i++) {
-        _appendOrMerge(copy, path[j++ % totalSegments]);
-      }
+    for (i = 0; i < l; i++) {
+      _appendOrMerge(copy, path[j++ % totalSegments]);
     }
 
     path = copy;
@@ -55894,24 +56133,14 @@ function sliceRawPath(rawPath, start, end) {
 
     if (start !== end) {
       sShift = subdivideSegment(sSeg, si, sameBezier ? s.t / e.t : s.t);
-
-      if (sameSegment) {
-        eShift += sShift;
-      }
-
+      sameSegment && (eShift += sShift);
       eSeg.splice(ei + eShift + 2);
-
-      if (sShift || si) {
-        sSeg.splice(0, si + sShift);
-      }
-
+      (sShift || si) && sSeg.splice(0, si + sShift);
       i = path.length;
 
       while (i--) {
         //chop off any extra segments
-        if (i < sSegIndex || i > eSegIndex) {
-          path.splice(i, 1);
-        }
+        (i < sSegIndex || i > eSegIndex) && path.splice(i, 1);
       }
     } else {
       eSeg.angle = getRotationAtBezierT(eSeg, ei + eShift, 0); //record the value before we chop because it'll be impossible to determine the angle after its length is 0!
@@ -55925,7 +56154,6 @@ function sliceRawPath(rawPath, start, end) {
     }
   }
 
-  reverse && _reverseRawPath(path, wrap || loops);
   path.totalLength = 0;
   return path;
 } //measures a Segment according to its resolution (so if segment.resolution is 6, for example, it'll take 6 samples equally across each Bezier) and create/populate a "samples" Array that has the length up to each of those sample points (always increasing from the start) as well as a "lookup" array that's broken up according to the smallest distance between 2 samples. This gives us a very fast way of looking up a progress position rather than looping through all the points/Beziers. You can optionally have it only measure a subset, starting at startIndex and going for a specific number of beziers (remember, there are 3 x/y pairs each, for a total of 6 elements for each Bezier). It will also populate a "totalLength" property, but that's not generally super accurate because by default it'll only take 6 samples per Bezier. But for performance reasons, it's perfectly adequate for measuring progress values along the path. If you need a more accurate totalLength, either increase the resolution or use the more advanced bezierToPoints() method which keeps adding points until they don't deviate by more than a certain precision value.
@@ -56097,43 +56325,53 @@ function getProgressData(rawPath, progress, decoratee, pushToNextIfAtEnd) {
       i,
       t;
 
-  if (rawPath.length > 1) {
-    //speed optimization: most of the time, there's only one segment so skip the recursion.
-    length = rawPath.totalLength * progress;
-    max = i = 0;
+  if (!progress) {
+    t = i = segIndex = 0;
+    segment = rawPath[0];
+  } else if (progress === 1) {
+    t = 1;
+    segIndex = rawPath.length - 1;
+    segment = rawPath[segIndex];
+    i = segment.length - 8;
+  } else {
+    if (rawPath.length > 1) {
+      //speed optimization: most of the time, there's only one segment so skip the recursion.
+      length = rawPath.totalLength * progress;
+      max = i = 0;
 
-    while ((max += rawPath[i++].totalLength) < length) {
-      segIndex = i;
+      while ((max += rawPath[i++].totalLength) < length) {
+        segIndex = i;
+      }
+
+      segment = rawPath[segIndex];
+      min = max - segment.totalLength;
+      progress = (length - min) / (max - min) || 0;
     }
 
-    segment = rawPath[segIndex];
-    min = max - segment.totalLength;
-    progress = (length - min) / (max - min) || 0;
-  }
+    samples = segment.samples;
+    resolution = segment.resolution; //how many samples per cubic bezier chunk
 
-  samples = segment.samples;
-  resolution = segment.resolution; //how many samples per cubic bezier chunk
+    length = segment.totalLength * progress;
+    i = segment.lookup[~~(length / segment.minLength)] || 0;
+    min = i ? samples[i - 1] : 0;
+    max = samples[i];
 
-  length = segment.totalLength * progress;
-  i = segment.lookup[~~(length / segment.minLength)] || 0;
-  min = i ? samples[i - 1] : 0;
-  max = samples[i];
+    if (max < length) {
+      min = max;
+      max = samples[++i];
+    }
 
-  if (max < length) {
-    min = max;
-    max = samples[++i];
-  }
+    t = 1 / resolution * ((length - min) / (max - min) + i % resolution);
+    i = ~~(i / resolution) * 6;
 
-  t = 1 / resolution * ((length - min) / (max - min) + i % resolution);
-  i = ~~(i / resolution) * 6;
-
-  if (pushToNextIfAtEnd && t === 1) {
-    if (i + 6 < segment.length) {
-      i += 6;
-      t = 0;
-    } else if (segIndex + 1 < rawPath.length) {
-      i = t = 0;
-      segment = rawPath[++segIndex];
+    if (pushToNextIfAtEnd && t === 1) {
+      if (i + 6 < segment.length) {
+        i += 6;
+        t = 0;
+      } else if (segIndex + 1 < rawPath.length) {
+        i = t = 0;
+        segment = rawPath[++segIndex];
+      }
     }
   }
 
@@ -56178,7 +56416,7 @@ function getPositionOnPath(rawPath, progress, includeAngle, point) {
   samples = segment.samples;
   resolution = segment.resolution;
   length = segment.totalLength * progress;
-  i = segment.lookup[~~(length / segment.minLength)] || 0;
+  i = segment.lookup[progress < 1 ? ~~(length / segment.minLength) : segment.lookup.length - 1] || 0;
   min = i ? samples[i - 1] : 0;
   max = samples[i];
 
@@ -56595,6 +56833,8 @@ function flatPointsToSegment(points, curviness) {
 
 function pointsToSegment(points, curviness, cornerThreshold) {
   //points = simplifyPoints(points, tolerance);
+  _abs(points[0] - points[2]) < 1e-4 && _abs(points[1] - points[3]) < 1e-4 && (points = points.slice(2)); // if the first two points are super close, dump the first one.
+
   var l = points.length - 2,
       x = +points[0],
       y = +points[1],
@@ -56643,6 +56883,11 @@ function pointsToSegment(points, curviness, cornerThreshold) {
     y = nextY;
     nextX = +points[i + 2];
     nextY = +points[i + 3];
+
+    if (x === nextX && y === nextY) {
+      continue;
+    }
+
     dx1 = dx2;
     dy1 = dy2;
     dx2 = nextX - x;
@@ -56679,7 +56924,7 @@ function pointsToSegment(points, curviness, cornerThreshold) {
     }
   }
 
-  segment.push(_round(nextX), _round(nextY), _round(nextX), _round(nextY));
+  x !== nextX || y !== nextY || segment.length < 4 ? segment.push(_round(nextX), _round(nextY), _round(nextX), _round(nextY)) : segment.length -= 2;
 
   if (closed) {
     segment.splice(0, 6);
@@ -56730,15 +56975,9 @@ function simplifyStep(points, first, last, tolerance, simplified) {
   }
 
   if (maxSqDist > tolerance) {
-    if (index - first > 2) {
-      simplifyStep(points, first, index, tolerance, simplified);
-    }
-
+    index - first > 2 && simplifyStep(points, first, index, tolerance, simplified);
     simplified.push(points[index], points[index + 1]);
-
-    if (last - index > 2) {
-      simplifyStep(points, index, last, tolerance, simplified);
-    }
+    last - index > 2 && simplifyStep(points, index, last, tolerance, simplified);
   }
 } //points is an array of x/y values like [x, y, x, y, x, y]
 
@@ -57004,13 +57243,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getGlobalMatrix = getGlobalMatrix;
-exports.Matrix2D = void 0;
+exports._setDoc = exports._getDocScrollLeft = exports._getDocScrollTop = exports.Matrix2D = void 0;
 
 /*!
- * matrix 3.5.1
+ * matrix 3.6.1
  * https://greensock.com
  *
- * Copyright 2008-2020, GreenSock. All rights reserved.
+ * Copyright 2008-2021, GreenSock. All rights reserved.
  * Subject to the terms at https://greensock.com/standard-license or for
  * Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
@@ -57062,11 +57301,12 @@ var _doc,
   return doc;
 },
     _forceNonZeroScale = function _forceNonZeroScale(e) {
-  // walks up the element's ancestors and finds any that had their scale set to 0 via GSAP, and changes them to 0.0001 to ensure that measurements work
+  // walks up the element's ancestors and finds any that had their scale set to 0 via GSAP, and changes them to 0.0001 to ensure that measurements work. Firefox has a bug that causes it to incorrectly report getBoundingClientRect() when scale is 0.
   var a, cache;
 
   while (e && e !== _body) {
     cache = e._gsap;
+    cache && cache.uncache && cache.get(e, "x"); // force re-parsing of transforms if necessary
 
     if (cache && !cache.scaleX && !cache.scaleY && cache.renderTransform) {
       cache.scaleX = cache.scaleY = 1e-4;
@@ -57128,7 +57368,7 @@ _divTemps = [],
         type = svg ? i ? "rect" : "g" : "div",
         x = i !== 2 ? 0 : 100,
         y = i === 3 ? 100 : 0,
-        css = "position:absolute;display:block;pointer-events:none;",
+        css = "position:absolute;display:block;pointer-events:none;margin:0;padding:0;",
         e = _doc.createElementNS ? _doc.createElementNS(ns.replace(/^https/, "http"), type) : _doc.createElement(type);
 
     if (i) {
@@ -57142,10 +57382,7 @@ _divTemps = [],
 
         _divContainer.appendChild(e);
       } else {
-        if (!_svgContainer) {
-          _svgContainer = _createSibling(element);
-        }
-
+        _svgContainer || (_svgContainer = _createSibling(element));
         e.setAttribute("width", 0.01);
         e.setAttribute("height", 0.01);
         e.setAttribute("transform", "translate(" + x + "," + y + ")");
@@ -57174,20 +57411,19 @@ _divTemps = [],
   var svg = _svgOwner(element),
       isRootSVG = element === svg,
       siblings = svg ? _svgTemps : _divTemps,
+      parent = element.parentNode,
       container,
       m,
       b,
       x,
-      y;
+      y,
+      cs;
 
   if (element === _win) {
     return element;
   }
 
-  if (!siblings.length) {
-    siblings.push(_createSibling(element, 1), _createSibling(element, 2), _createSibling(element, 3));
-  }
-
+  siblings.length || siblings.push(_createSibling(element, 1), _createSibling(element, 2), _createSibling(element, 3));
   container = svg ? _svgContainer : _divContainer;
 
   if (svg) {
@@ -57212,8 +57448,8 @@ _divTemps = [],
       x = y = 0;
     }
 
+    (isRootSVG ? svg : parent).appendChild(container);
     container.setAttribute("transform", "matrix(" + m.a + "," + m.b + "," + m.c + "," + m.d + "," + (m.e + x) + "," + (m.f + y) + ")");
-    (isRootSVG ? svg : element.parentNode).appendChild(container);
   } else {
     x = y = 0;
 
@@ -57231,18 +57467,30 @@ _divTemps = [],
       }
     }
 
+    cs = _win.getComputedStyle(element);
+
+    if (cs.position !== "absolute") {
+      m = element.offsetParent;
+
+      while (parent && parent !== m) {
+        // if there's an ancestor element between the element and its offsetParent that's scrolled, we must factor that in.
+        x += parent.scrollLeft || 0;
+        y += parent.scrollTop || 0;
+        parent = parent.parentNode;
+      }
+    }
+
     b = container.style;
     b.top = element.offsetTop - y + "px";
     b.left = element.offsetLeft - x + "px";
-    m = _win.getComputedStyle(element);
-    b[_transformProp] = m[_transformProp];
-    b[_transformOriginProp] = m[_transformOriginProp];
-    b.border = m.border;
-    b.borderLeftStyle = m.borderLeftStyle;
-    b.borderTopStyle = m.borderTopStyle;
-    b.borderLeftWidth = m.borderLeftWidth;
-    b.borderTopWidth = m.borderTopWidth;
-    b.position = m.position === "fixed" ? "fixed" : "absolute";
+    b[_transformProp] = cs[_transformProp];
+    b[_transformOriginProp] = cs[_transformOriginProp]; // b.border = m.border;
+    // b.borderLeftStyle = m.borderLeftStyle;
+    // b.borderTopStyle = m.borderTopStyle;
+    // b.borderLeftWidth = m.borderLeftWidth;
+    // b.borderTopWidth = m.borderTopWidth;
+
+    b.position = cs.position === "fixed" ? "fixed" : "absolute";
     element.parentNode.appendChild(container);
   }
 
@@ -57257,6 +57505,10 @@ _divTemps = [],
   m.f = f;
   return m;
 };
+
+exports._getDocScrollLeft = _getDocScrollLeft;
+exports._getDocScrollTop = _getDocScrollTop;
+exports._setDoc = _setDoc;
 
 var Matrix2D = /*#__PURE__*/function () {
   function Matrix2D(a, b, c, d, e, f) {
@@ -57349,7 +57601,7 @@ var Matrix2D = /*#__PURE__*/function () {
   };
 
   return Matrix2D;
-}(); //feed in an element and it'll return a 2D matrix (optionally inverted) so that you can translate between coordinate spaces.
+}(); // Feed in an element and it'll return a 2D matrix (optionally inverted) so that you can translate between coordinate spaces.
 // Inverting lets you translate a global point into a local coordinate space. No inverting lets you go the other way.
 // We needed this to work around various browser bugs, like Firefox doesn't accurately report getScreenCTM() when there
 // are transforms applied to ancestor elements.
@@ -57360,13 +57612,13 @@ var Matrix2D = /*#__PURE__*/function () {
 
 exports.Matrix2D = Matrix2D;
 
-function getGlobalMatrix(element, inverse, adjustGOffset) {
+function getGlobalMatrix(element, inverse, adjustGOffset, includeScrollInFixed) {
   // adjustGOffset is typically used only when grabbing an element's PARENT's global matrix, and it ignores the x/y offset of any SVG <g> elements because they behave in a special way.
   if (!element || !element.parentNode || (_doc || _setDoc(element)).documentElement === element) {
     return new Matrix2D();
   }
 
-  var zeroScales = _forceNonZeroScale(element.parentNode),
+  var zeroScales = _forceNonZeroScale(element),
       svg = _svgOwner(element),
       temps = svg ? _svgTemps : _divTemps,
       container = _placeSiblings(element, adjustGOffset),
@@ -57374,7 +57626,7 @@ function getGlobalMatrix(element, inverse, adjustGOffset) {
       b2 = temps[1].getBoundingClientRect(),
       b3 = temps[2].getBoundingClientRect(),
       parent = container.parentNode,
-      isFixed = _isFixed(element),
+      isFixed = !includeScrollInFixed && _isFixed(element),
       m = new Matrix2D((b2.left - b1.left) / 100, (b2.top - b1.top) / 100, (b3.left - b1.left) / 100, (b3.top - b1.top) / 100, b1.left + (isFixed ? 0 : _getDocScrollLeft()), b1.top + (isFixed ? 0 : _getDocScrollTop()));
 
   parent.removeChild(container);
@@ -57409,18 +57661,18 @@ var _paths = require("./utils/paths.js");
 var _matrix = require("./utils/matrix.js");
 
 /*!
- * MotionPathPlugin 3.5.1
+ * MotionPathPlugin 3.6.1
  * https://greensock.com
  *
- * @license Copyright 2008-2020, GreenSock. All rights reserved.
+ * @license Copyright 2008-2021, GreenSock. All rights reserved.
  * Subject to the terms at https://greensock.com/standard-license or for
  * Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
 */
 
 /* eslint-disable */
-var _xProps = ["x", "translateX", "left", "marginLeft"],
-    _yProps = ["y", "translateY", "top", "marginTop"],
+var _xProps = "x,translateX,left,marginLeft,xPercent".split(","),
+    _yProps = "y,translateY,top,marginTop,yPercent".split(","),
     _DEG2RAD = Math.PI / 180,
     gsap,
     PropTween,
@@ -57433,10 +57685,11 @@ var _xProps = ["x", "translateX", "left", "marginLeft"],
   //mode: 0 = x but don't fill y yet, 1 = y, 2 = x and fill y with 0.
   var l = values.length,
       si = mode === 2 ? 0 : mode,
-      i = 0;
+      i = 0,
+      v;
 
   for (; i < l; i++) {
-    segment[si] = parseFloat(values[i][property]);
+    segment[si] = v = parseFloat(values[i][property]);
     mode === 2 && (segment[si + 1] = 0);
     si += 2;
   }
@@ -57456,11 +57709,11 @@ var _xProps = ["x", "translateX", "left", "marginLeft"],
     y = segment[i + 1] += y;
   }
 },
-    _segmentToRawPath = function _segmentToRawPath(plugin, segment, target, x, y, slicer, vars) {
+    _segmentToRawPath = function _segmentToRawPath(plugin, segment, target, x, y, slicer, vars, unitX, unitY) {
   if (vars.type === "cubic") {
     segment = [segment];
   } else {
-    segment.unshift(_getPropNum(target, x, vars.unitX), y ? _getPropNum(target, y, vars.unitY) : 0);
+    segment.unshift(_getPropNum(target, x, unitX), y ? _getPropNum(target, y, unitY) : 0);
     vars.relative && _relativize(segment);
     var pointFunc = y ? _paths.pointsToSegment : _paths.flatPointsToSegment;
     segment = [pointFunc(segment, vars.curviness)];
@@ -57468,9 +57721,9 @@ var _xProps = ["x", "translateX", "left", "marginLeft"],
 
   segment = slicer(_align(segment, target, vars));
 
-  _addDimensionalPropTween(plugin, target, x, segment, "x", vars.unitX);
+  _addDimensionalPropTween(plugin, target, x, segment, "x", unitX);
 
-  y && _addDimensionalPropTween(plugin, target, y, segment, "y", vars.unitY);
+  y && _addDimensionalPropTween(plugin, target, y, segment, "y", unitY);
   return (0, _paths.cacheRawPathMeasurements)(segment, vars.resolution || (vars.curviness === 0 ? 20 : 12)); //when curviness is 0, it creates control points right on top of the anchors which makes it more sensitive to resolution, thus we change the default accordingly.
 },
     _emptyFunc = function _emptyFunc(v) {
@@ -57608,7 +57861,7 @@ var _xProps = ["x", "translateX", "left", "marginLeft"],
 };
 
 var MotionPathPlugin = {
-  version: "3.5.1",
+  version: "3.6.1",
   name: "motionPath",
   register: function register(core, Plugin, propTween) {
     gsap = core;
@@ -57629,14 +57882,17 @@ var MotionPathPlugin = {
     }
 
     var rawPaths = [],
-        path = vars.path,
+        _vars = vars,
+        path = _vars.path,
+        autoRotate = _vars.autoRotate,
+        unitX = _vars.unitX,
+        unitY = _vars.unitY,
+        x = _vars.x,
+        y = _vars.y,
         firstObj = path[0],
-        autoRotate = vars.autoRotate,
         slicer = _sliceModifier(vars.start, "end" in vars ? vars.end : 1),
         rawPath,
-        p,
-        x,
-        y;
+        p;
 
     this.rawPaths = rawPaths;
     this.target = target;
@@ -57654,22 +57910,22 @@ var MotionPathPlugin = {
 
     if (Array.isArray(path) && !("closed" in path) && typeof firstObj !== "number") {
       for (p in firstObj) {
-        if (~_xProps.indexOf(p)) {
+        if (!x && ~_xProps.indexOf(p)) {
           x = p;
-        } else if (~_yProps.indexOf(p)) {
+        } else if (!y && ~_yProps.indexOf(p)) {
           y = p;
         }
       }
 
       if (x && y) {
         //correlated values
-        rawPaths.push(_segmentToRawPath(this, _populateSegmentFromArray(_populateSegmentFromArray([], path, x, 0), path, y, 1), target, vars.x || x, vars.y || y, slicer, vars));
+        rawPaths.push(_segmentToRawPath(this, _populateSegmentFromArray(_populateSegmentFromArray([], path, x, 0), path, y, 1), target, x, y, slicer, vars, unitX || _getUnit(path[0][x]), unitY || _getUnit(path[0][y])));
       } else {
         x = y = 0;
       }
 
       for (p in firstObj) {
-        p !== x && p !== y && rawPaths.push(_segmentToRawPath(this, _populateSegmentFromArray([], path, p, 2), target, p, 0, slicer, vars));
+        p !== x && p !== y && rawPaths.push(_segmentToRawPath(this, _populateSegmentFromArray([], path, p, 2), target, p, 0, slicer, vars, _getUnit(path[0][p])));
       }
     } else {
       rawPath = slicer(_align((0, _paths.getRawPath)(vars.path), target, vars));
@@ -64580,8 +64836,8 @@ var _core = require("@pixi/core");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/filter-kawase-blur - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-kawase-blur - v3.2.0
+ * Compiled Wed, 23 Dec 2020 00:29:02 UTC
  *
  * @pixi/filter-kawase-blur is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -64652,8 +64908,8 @@ var KawaseBlurFilter = /*@__PURE__*/function (Filter) {
    */
 
   KawaseBlurFilter.prototype.apply = function apply(filterManager, input, output, clear) {
-    var uvX = this.pixelSize.x / input._frame.width;
-    var uvY = this.pixelSize.y / input._frame.height;
+    var uvX = this._pixelSize.x / input._frame.width;
+    var uvY = this._pixelSize.y / input._frame.height;
     var offset;
 
     if (this._quality === 1 || this._blur === 0) {
@@ -64685,6 +64941,12 @@ var KawaseBlurFilter = /*@__PURE__*/function (Filter) {
       filterManager.returnFilterTexture(renderTarget);
     }
   };
+
+  KawaseBlurFilter.prototype._updatePadding = function _updatePadding() {
+    this.padding = Math.ceil(this._kernels.reduce(function (acc, v) {
+      return acc + v + 0.5;
+    }, 0));
+  };
   /**
    * Auto generate kernels by blur & quality
    * @private
@@ -64707,6 +64969,8 @@ var KawaseBlurFilter = /*@__PURE__*/function (Filter) {
     }
 
     this._kernels = kernels;
+
+    this._updatePadding();
   };
   /**
    * The kernel size of the blur filter, for advanced usage.
@@ -64826,8 +65090,8 @@ var _filterKawaseBlur = require("@pixi/filter-kawase-blur");
 var _settings = require("@pixi/settings");
 
 /*!
- * @pixi/filter-advanced-bloom - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-advanced-bloom - v3.2.0
+ * Compiled Wed, 23 Dec 2020 00:29:02 UTC
  *
  * @pixi/filter-advanced-bloom is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -64897,7 +65161,7 @@ var fragment$1 = "uniform sampler2D uSampler;\nvarying vec2 vTextureCoord;\n\nun
  * @param {number} [options.quality=4] - The quality of the Blur filter.
  * @param {number[]} [options.kernels=null] - The kernels of the Blur filter.
  * @param {number|number[]|PIXI.Point} [options.pixelSize=1] - the pixelSize of the Blur filter.
- * @param {number} [options.resolution=PIXI.settings.RESOLUTION] - The resolution of the Blur filter.
+ * @param {number} [options.resolution=PIXI.settings.FILTER_RESOLUTION] - The resolution of the Blur filter.
  */
 
 var AdvancedBloomFilter = /*@__PURE__*/function (Filter) {
@@ -64918,7 +65182,7 @@ var AdvancedBloomFilter = /*@__PURE__*/function (Filter) {
       blur: 8,
       quality: 4,
       pixelSize: 1,
-      resolution: _settings.settings.RESOLUTION
+      resolution: _settings.settings.FILTER_RESOLUTION
     }, options);
     /**
      * To adjust the strength of the bloom. Higher values is more intense brightness.
@@ -65181,8 +65445,8 @@ var _math = require("@pixi/math");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/filter-bevel - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-bevel - v3.1.1
+ * Compiled Wed, 30 Dec 2020 18:30:18 UTC
  *
  * @pixi/filter-bevel is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -65262,7 +65526,11 @@ var BevelFilter = /*@__PURE__*/function (Filter) {
      * @default 0.7
      */
 
-    this.shadowAlpha = options.shadowAlpha;
+    this.shadowAlpha = options.shadowAlpha; // Workaround: https://github.com/pixijs/pixi-filters/issues/230
+    // applies correctly only if there is at least a single-pixel padding with alpha=0 around an image
+    // To solve this problem, a padding of 1 put on the filter should suffice
+
+    this.padding = 1;
   }
 
   if (Filter) BevelFilter.__proto__ = Filter;
@@ -65376,8 +65644,8 @@ var _settings = require("@pixi/settings");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/filter-bloom - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-bloom - v3.2.0
+ * Compiled Wed, 23 Dec 2020 00:29:02 UTC
  *
  * @pixi/filter-bloom is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -65395,14 +65663,14 @@ var _math = require("@pixi/math");
  * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
  * @param {number|PIXI.Point|number[]} [blur=2] Sets the strength of both the blurX and blurY properties simultaneously
  * @param {number} [quality=4] The quality of the blurX & blurY filter.
- * @param {number} [resolution=PIXI.settings.RESOLUTION] The resolution of the blurX & blurY filter.
+ * @param {number} [resolution=PIXI.settings.FILTER_RESOLUTION] The resolution of the blurX & blurY filter.
  * @param {number} [kernelSize=5] The kernelSize of the blurX & blurY filter.Options: 5, 7, 9, 11, 13, 15.
  */
 var BloomFilter = /*@__PURE__*/function (Filter) {
   function BloomFilter(blur, quality, resolution, kernelSize) {
     if (blur === void 0) blur = 2;
     if (quality === void 0) quality = 4;
-    if (resolution === void 0) resolution = _settings.settings.RESOLUTION;
+    if (resolution === void 0) resolution = _settings.settings.FILTER_RESOLUTION;
     if (kernelSize === void 0) kernelSize = 5;
     Filter.call(this);
     var blurX;
@@ -65440,12 +65708,12 @@ var BloomFilter = /*@__PURE__*/function (Filter) {
     }
   };
 
-  BloomFilter.prototype.apply = function apply(filterManager, input, output) {
-    var renderTarget = filterManager.getFilterTexture(true); //TODO - copyTexSubImage2D could be used here?
+  BloomFilter.prototype.apply = function apply(filterManager, input, output, clear) {
+    var renderTarget = filterManager.getFilterTexture(); //TODO - copyTexSubImage2D could be used here?
 
-    this.defaultFilter.apply(filterManager, input, output);
+    this.defaultFilter.apply(filterManager, input, output, clear);
     this.blurXFilter.apply(filterManager, input, renderTarget);
-    this.blurYFilter.apply(filterManager, renderTarget, output);
+    this.blurYFilter.apply(filterManager, renderTarget, output, 0);
     filterManager.returnFilterTexture(renderTarget);
   };
   /**
@@ -66060,8 +66328,8 @@ exports.ConvolutionFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-convolution - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-convolution - v3.1.1
+ * Compiled Wed, 30 Dec 2020 18:30:18 UTC
  *
  * @pixi/filter-convolution is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -66073,7 +66341,7 @@ var fragment = "precision mediump float;\n\nvarying mediump vec2 vTextureCoord;\
  * A convolution combines pixels in the input image with neighboring pixels to produce a new image.
  * A wide variety of image effects can be achieved through convolutions, including blurring, edge
  * detection, sharpening, embossing, and beveling. The matrix should be specified as a 9 point Array.
- * See http://docs.gimp.org/en/plug-in-convmatrix.html for more info.<br>
+ * See https://docs.gimp.org/2.10/en/gimp-filter-convolution-matrix.html for more info.<br>
  * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/convolution.png)
  *
  * @class
@@ -66219,14 +66487,14 @@ exports.CRTFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-crt - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-crt - v3.2.0
+ * Compiled Wed, 23 Dec 2020 00:29:02 UTC
  *
  * @pixi/filter-crt is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
  */
 var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
-var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec4 filterArea;\nuniform vec2 dimensions;\n\nconst float SQRT_2 = 1.414213;\n\nconst float light = 1.0;\n\nuniform float curvature;\nuniform float lineWidth;\nuniform float lineContrast;\nuniform bool verticalLine;\nuniform float noise;\nuniform float noiseSize;\n\nuniform float vignetting;\nuniform float vignettingAlpha;\nuniform float vignettingBlur;\n\nuniform float seed;\nuniform float time;\n\nfloat rand(vec2 co) {\n    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);\n}\n\nvoid main(void)\n{\n    vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;\n    vec2 coord = pixelCoord / dimensions;\n\n    vec2 dir = vec2(coord - vec2(0.5, 0.5));\n\n    float _c = curvature > 0. ? curvature : 1.;\n    float k = curvature > 0. ?(length(dir * dir) * 0.25 * _c * _c + 0.935 * _c) : 1.;\n    vec2 uv = dir * k;\n\n    gl_FragColor = texture2D(uSampler, vTextureCoord);\n    vec3 rgb = gl_FragColor.rgb;\n\n\n    if (noise > 0.0 && noiseSize > 0.0)\n    {\n        pixelCoord.x = floor(pixelCoord.x / noiseSize);\n        pixelCoord.y = floor(pixelCoord.y / noiseSize);\n        float _noise = rand(pixelCoord * noiseSize * seed) - 0.5;\n        rgb += _noise * noise;\n    }\n\n    if (lineWidth > 0.0) {\n        float v = (verticalLine ? uv.x * dimensions.x : uv.y * dimensions.y) * min(1.0, 2.0 / lineWidth ) / _c;\n        float j = 1. + cos(v * 1.2 - time) * 0.5 * lineContrast;\n        rgb *= j;\n        float segment = verticalLine ? mod((dir.x + .5) * dimensions.x, 4.) : mod((dir.y + .5) * dimensions.y, 4.);\n        rgb *= 0.99 + ceil(segment) * 0.015;\n    }\n\n    if (vignetting > 0.0)\n    {\n        float outter = SQRT_2 - vignetting * SQRT_2;\n        float darker = clamp((outter - length(dir) * SQRT_2) / ( 0.00001 + vignettingBlur * SQRT_2), 0.0, 1.0);\n        rgb *= darker + (1.0 - darker) * (1.0 - vignettingAlpha);\n    }\n\n    gl_FragColor.rgb = rgb;\n}\n";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec4 filterArea;\nuniform vec2 dimensions;\n\nconst float SQRT_2 = 1.414213;\n\nconst float light = 1.0;\n\nuniform float curvature;\nuniform float lineWidth;\nuniform float lineContrast;\nuniform bool verticalLine;\nuniform float noise;\nuniform float noiseSize;\n\nuniform float vignetting;\nuniform float vignettingAlpha;\nuniform float vignettingBlur;\n\nuniform float seed;\nuniform float time;\n\nfloat rand(vec2 co) {\n    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);\n}\n\nvoid main(void)\n{\n    vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;\n    vec2 dir = vec2(vTextureCoord.xy - vec2(0.5, 0.5)) * filterArea.xy / dimensions;\n\n    gl_FragColor = texture2D(uSampler, vTextureCoord);\n    vec3 rgb = gl_FragColor.rgb;\n\n    if (noise > 0.0 && noiseSize > 0.0)\n    {\n        pixelCoord.x = floor(pixelCoord.x / noiseSize);\n        pixelCoord.y = floor(pixelCoord.y / noiseSize);\n        float _noise = rand(pixelCoord * noiseSize * seed) - 0.5;\n        rgb += _noise * noise;\n    }\n\n    if (lineWidth > 0.0)\n    {\n        float _c = curvature > 0. ? curvature : 1.;\n        float k = curvature > 0. ?(length(dir * dir) * 0.25 * _c * _c + 0.935 * _c) : 1.;\n        vec2 uv = dir * k;\n\n        float v = (verticalLine ? uv.x * dimensions.x : uv.y * dimensions.y) * min(1.0, 2.0 / lineWidth ) / _c;\n        float j = 1. + cos(v * 1.2 - time) * 0.5 * lineContrast;\n        rgb *= j;\n        float segment = verticalLine ? mod((dir.x + .5) * dimensions.x, 4.) : mod((dir.y + .5) * dimensions.y, 4.);\n        rgb *= 0.99 + ceil(segment) * 0.015;\n    }\n\n    if (vignetting > 0.0)\n    {\n        float outter = SQRT_2 - vignetting * SQRT_2;\n        float darker = clamp((outter - length(dir) * SQRT_2) / ( 0.00001 + vignettingBlur * SQRT_2), 0.0, 1.0);\n        rgb *= darker + (1.0 - darker) * (1.0 - vignettingAlpha);\n    }\n\n    gl_FragColor.rgb = rgb;\n}\n";
 /**
  * The CRTFilter applies a CRT effect to an object.<br>
  * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/crt.gif)
@@ -66583,8 +66851,8 @@ var _math = require("@pixi/math");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/filter-drop-shadow - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-drop-shadow - v3.2.0
+ * Compiled Wed, 23 Dec 2020 00:29:02 UTC
  *
  * @pixi/filter-drop-shadow is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -66609,7 +66877,7 @@ var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nunifor
  * @param {number} [options.quality=3] - The quality of the Blur filter.
  * @param {number[]} [options.kernels=null] - The kernels of the Blur filter.
  * @param {number|number[]|PIXI.Point} [options.pixelSize=1] - the pixelSize of the Blur filter.
- * @param {number} [options.resolution=PIXI.settings.RESOLUTION] - The resolution of the Blur filter.
+ * @param {number} [options.resolution=PIXI.settings.FILTER_RESOLUTION] - The resolution of the Blur filter.
  */
 
 var DropShadowFilter = /*@__PURE__*/function (Filter) {
@@ -66649,7 +66917,7 @@ var DropShadowFilter = /*@__PURE__*/function (Filter) {
       blur: 2,
       quality: 3,
       pixelSize: 1,
-      resolution: _settings.settings.RESOLUTION
+      resolution: _settings.settings.FILTER_RESOLUTION
     }, options);
     Filter.call(this);
     var kernels = options.kernels;
@@ -66746,7 +67014,7 @@ var DropShadowFilter = /*@__PURE__*/function (Filter) {
    * The resolution of the filter.
    *
    * @member {number}
-   * @default PIXI.settings.RESOLUTION
+   * @default PIXI.settings.FILTER_RESOLUTION
    */
 
 
@@ -67472,8 +67740,8 @@ var _core = require("@pixi/core");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/filter-glow - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-glow - v3.2.0
+ * Compiled Wed, 23 Dec 2020 00:29:02 UTC
  *
  * @pixi/filter-glow is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -67626,15 +67894,15 @@ var _core = require("@pixi/core");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/filter-godray - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-godray - v3.2.0
+ * Compiled Wed, 23 Dec 2020 00:29:02 UTC
  *
  * @pixi/filter-godray is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
  */
 var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
 var perlin = "vec3 mod289(vec3 x)\n{\n    return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\nvec4 mod289(vec4 x)\n{\n    return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\nvec4 permute(vec4 x)\n{\n    return mod289(((x * 34.0) + 1.0) * x);\n}\nvec4 taylorInvSqrt(vec4 r)\n{\n    return 1.79284291400159 - 0.85373472095314 * r;\n}\nvec3 fade(vec3 t)\n{\n    return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);\n}\n// Classic Perlin noise, periodic variant\nfloat pnoise(vec3 P, vec3 rep)\n{\n    vec3 Pi0 = mod(floor(P), rep); // Integer part, modulo period\n    vec3 Pi1 = mod(Pi0 + vec3(1.0), rep); // Integer part + 1, mod period\n    Pi0 = mod289(Pi0);\n    Pi1 = mod289(Pi1);\n    vec3 Pf0 = fract(P); // Fractional part for interpolation\n    vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0\n    vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);\n    vec4 iy = vec4(Pi0.yy, Pi1.yy);\n    vec4 iz0 = Pi0.zzzz;\n    vec4 iz1 = Pi1.zzzz;\n    vec4 ixy = permute(permute(ix) + iy);\n    vec4 ixy0 = permute(ixy + iz0);\n    vec4 ixy1 = permute(ixy + iz1);\n    vec4 gx0 = ixy0 * (1.0 / 7.0);\n    vec4 gy0 = fract(floor(gx0) * (1.0 / 7.0)) - 0.5;\n    gx0 = fract(gx0);\n    vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);\n    vec4 sz0 = step(gz0, vec4(0.0));\n    gx0 -= sz0 * (step(0.0, gx0) - 0.5);\n    gy0 -= sz0 * (step(0.0, gy0) - 0.5);\n    vec4 gx1 = ixy1 * (1.0 / 7.0);\n    vec4 gy1 = fract(floor(gx1) * (1.0 / 7.0)) - 0.5;\n    gx1 = fract(gx1);\n    vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);\n    vec4 sz1 = step(gz1, vec4(0.0));\n    gx1 -= sz1 * (step(0.0, gx1) - 0.5);\n    gy1 -= sz1 * (step(0.0, gy1) - 0.5);\n    vec3 g000 = vec3(gx0.x, gy0.x, gz0.x);\n    vec3 g100 = vec3(gx0.y, gy0.y, gz0.y);\n    vec3 g010 = vec3(gx0.z, gy0.z, gz0.z);\n    vec3 g110 = vec3(gx0.w, gy0.w, gz0.w);\n    vec3 g001 = vec3(gx1.x, gy1.x, gz1.x);\n    vec3 g101 = vec3(gx1.y, gy1.y, gz1.y);\n    vec3 g011 = vec3(gx1.z, gy1.z, gz1.z);\n    vec3 g111 = vec3(gx1.w, gy1.w, gz1.w);\n    vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));\n    g000 *= norm0.x;\n    g010 *= norm0.y;\n    g100 *= norm0.z;\n    g110 *= norm0.w;\n    vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));\n    g001 *= norm1.x;\n    g011 *= norm1.y;\n    g101 *= norm1.z;\n    g111 *= norm1.w;\n    float n000 = dot(g000, Pf0);\n    float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));\n    float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));\n    float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));\n    float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));\n    float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));\n    float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));\n    float n111 = dot(g111, Pf1);\n    vec3 fade_xyz = fade(Pf0);\n    vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);\n    vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);\n    float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x);\n    return 2.2 * n_xyz;\n}\nfloat turb(vec3 P, vec3 rep, float lacunarity, float gain)\n{\n    float sum = 0.0;\n    float sc = 1.0;\n    float totalgain = 1.0;\n    for (float i = 0.0; i < 6.0; i++)\n    {\n        sum += totalgain * pnoise(P * sc, rep);\n        sc *= lacunarity;\n        totalgain *= gain;\n    }\n    return abs(sum);\n}\n";
-var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\nuniform vec2 dimensions;\n\nuniform vec2 light;\nuniform bool parallel;\nuniform float aspect;\n\nuniform float gain;\nuniform float lacunarity;\nuniform float time;\n\n${perlin}\n\nvoid main(void) {\n    vec2 coord = vTextureCoord * filterArea.xy / dimensions.xy;\n\n    float d;\n\n    if (parallel) {\n        float _cos = light.x;\n        float _sin = light.y;\n        d = (_cos * coord.x) + (_sin * coord.y * aspect);\n    } else {\n        float dx = coord.x - light.x / dimensions.x;\n        float dy = (coord.y - light.y / dimensions.y) * aspect;\n        float dis = sqrt(dx * dx + dy * dy) + 0.00001;\n        d = dy / dis;\n    }\n\n    vec3 dir = vec3(d, d, 0.0);\n\n    float noise = turb(dir + vec3(time, 0.0, 62.1 + time) * 0.05, vec3(480.0, 320.0, 480.0), lacunarity, gain);\n    noise = mix(noise, 0.0, 0.3);\n    //fade vertically.\n    vec4 mist = vec4(noise, noise, noise, 1.0) * (1.0 - coord.y);\n    mist.a = 1.0;\n\n    gl_FragColor = texture2D(uSampler, vTextureCoord) + mist;\n}\n";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\nuniform vec2 dimensions;\n\nuniform vec2 light;\nuniform bool parallel;\nuniform float aspect;\n\nuniform float gain;\nuniform float lacunarity;\nuniform float time;\nuniform float alpha;\n\n${perlin}\n\nvoid main(void) {\n    vec2 coord = vTextureCoord * filterArea.xy / dimensions.xy;\n\n    float d;\n\n    if (parallel) {\n        float _cos = light.x;\n        float _sin = light.y;\n        d = (_cos * coord.x) + (_sin * coord.y * aspect);\n    } else {\n        float dx = coord.x - light.x / dimensions.x;\n        float dy = (coord.y - light.y / dimensions.y) * aspect;\n        float dis = sqrt(dx * dx + dy * dy) + 0.00001;\n        d = dy / dis;\n    }\n\n    vec3 dir = vec3(d, d, 0.0);\n\n    float noise = turb(dir + vec3(time, 0.0, 62.1 + time) * 0.05, vec3(480.0, 320.0, 480.0), lacunarity, gain);\n    noise = mix(noise, 0.0, 0.3);\n    //fade vertically.\n    vec4 mist = vec4(noise, noise, noise, 1.0) * (1.0 - coord.y);\n    mist.a = 1.0;\n    // apply user alpha\n    mist *= alpha;\n\n    gl_FragColor = texture2D(uSampler, vTextureCoord) + mist;\n\n}\n";
 /**
  * GordayFilter, {@link https://codepen.io/alaingalvan originally} by Alain Galvan
  *
@@ -67657,6 +67925,7 @@ var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nunifor
  * @param {number} [options.time=0] The current time position.
  * @param {PIXI.Point|number[]} [options.center=[0,0]] Focal point for non-parallel rays,
  *        to use this `parallel` must be set to `false`.
+ * @param {number} [options.alpha=1.0] the alpha, defaults to 1, affects transparency of rays
  */
 
 var GodrayFilter = /*@__PURE__*/function (Filter) {
@@ -67682,6 +67951,10 @@ var GodrayFilter = /*@__PURE__*/function (Filter) {
       if (arguments[3] !== undefined) {
         options.time = arguments[3];
       }
+
+      if (arguments[4] !== undefined) {
+        options.alpha = arguments[4];
+      }
     }
 
     options = Object.assign({
@@ -67690,12 +67963,14 @@ var GodrayFilter = /*@__PURE__*/function (Filter) {
       lacunarity: 2.5,
       time: 0,
       parallel: true,
-      center: [0, 0]
+      center: [0, 0],
+      alpha: 1
     }, options);
     this._angleLight = new _math.Point();
     this.angle = options.angle;
     this.gain = options.gain;
     this.lacunarity = options.lacunarity;
+    this.alpha = options.alpha;
     /**
      * `true` if light rays are parallel (uses angle),
      * `false` to use the focal `center` point
@@ -67736,6 +68011,9 @@ var GodrayFilter = /*@__PURE__*/function (Filter) {
     },
     lacunarity: {
       configurable: true
+    },
+    alpha: {
+      configurable: true
     }
   };
   /**
@@ -67755,7 +68033,8 @@ var GodrayFilter = /*@__PURE__*/function (Filter) {
     this.uniforms.dimensions[0] = width;
     this.uniforms.dimensions[1] = height;
     this.uniforms.aspect = height / width;
-    this.uniforms.time = this.time; // draw the filter...
+    this.uniforms.time = this.time;
+    this.uniforms.alpha = this.alpha; // draw the filter...
 
     filterManager.applyFilter(this, input, output, clear);
   };
@@ -67808,6 +68087,20 @@ var GodrayFilter = /*@__PURE__*/function (Filter) {
 
   prototypeAccessors.lacunarity.set = function (value) {
     this.uniforms.lacunarity = value;
+  };
+  /**
+   * The alpha (opacity) of the rays.  0 is fully transparent, 1 is fully opaque
+   * @member {number}
+   * @default 1
+   */
+
+
+  prototypeAccessors.alpha.get = function () {
+    return this.uniforms.alpha;
+  };
+
+  prototypeAccessors.alpha.set = function (value) {
+    this.uniforms.alpha = value;
   };
 
   Object.defineProperties(GodrayFilter.prototype, prototypeAccessors);
@@ -68401,8 +68694,8 @@ var _core = require("@pixi/core");
 var _utils = require("@pixi/utils");
 
 /*!
- * @pixi/filter-outline - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-outline - v3.2.0
+ * Compiled Wed, 23 Dec 2020 00:29:02 UTC
  *
  * @pixi/filter-outline is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -68438,16 +68731,12 @@ var OutlineFilter = /*@__PURE__*/function (Filter) {
     var angleStep = (Math.PI * 2 / samples).toFixed(7);
     Filter.call(this, vertex, fragment.replace(/\$\{angleStep\}/, angleStep));
     this.uniforms.thickness = new Float32Array([0, 0]);
-    /**
-     * The thickness of the outline.
-     * @member {number}
-     * @default 1
-     */
-
-    this.thickness = thickness;
     this.uniforms.outlineColor = new Float32Array([0, 0, 0, 1]);
-    this.color = color;
-    this.quality = quality;
+    Object.assign(this, {
+      thickness: thickness,
+      color: color,
+      quality: quality
+    });
   }
 
   if (Filter) OutlineFilter.__proto__ = Filter;
@@ -68456,12 +68745,15 @@ var OutlineFilter = /*@__PURE__*/function (Filter) {
   var prototypeAccessors = {
     color: {
       configurable: true
+    },
+    thickness: {
+      configurable: true
     }
   };
 
   OutlineFilter.prototype.apply = function apply(filterManager, input, output, clear) {
-    this.uniforms.thickness[0] = this.thickness / input._frame.width;
-    this.uniforms.thickness[1] = this.thickness / input._frame.height;
+    this.uniforms.thickness[0] = this._thickness / input._frame.width;
+    this.uniforms.thickness[1] = this._thickness / input._frame.height;
     filterManager.applyFilter(this, input, output, clear);
   };
   /**
@@ -68477,6 +68769,21 @@ var OutlineFilter = /*@__PURE__*/function (Filter) {
 
   prototypeAccessors.color.set = function (value) {
     (0, _utils.hex2rgb)(value, this.uniforms.outlineColor);
+  };
+  /**
+   * The thickness of the outline.
+   * @member {number}
+   * @default 1
+   */
+
+
+  prototypeAccessors.thickness.get = function () {
+    return this._thickness;
+  };
+
+  prototypeAccessors.thickness.set = function (value) {
+    this._thickness = value;
+    this.padding = value;
   };
 
   Object.defineProperties(OutlineFilter.prototype, prototypeAccessors);
@@ -69335,8 +69642,8 @@ var _core = require("@pixi/core");
 var _math = require("@pixi/math");
 
 /*!
- * @pixi/filter-tilt-shift - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-tilt-shift - v3.2.0
+ * Compiled Wed, 23 Dec 2020 00:29:02 UTC
  *
  * @pixi/filter-tilt-shift is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -69592,7 +69899,7 @@ var TiltShiftFilter = /*@__PURE__*/function (Filter) {
 
   TiltShiftFilter.prototype.apply = function apply(filterManager, input, output) {
     var renderTarget = filterManager.getFilterTexture();
-    this.tiltShiftXFilter.apply(filterManager, input, renderTarget);
+    this.tiltShiftXFilter.apply(filterManager, input, renderTarget, 1);
     this.tiltShiftYFilter.apply(filterManager, renderTarget, output);
     filterManager.returnFilterTexture(renderTarget);
   };
@@ -69668,9 +69975,11 @@ exports.TwistFilter = void 0;
 
 var _core = require("@pixi/core");
 
+var _math = require("@pixi/math");
+
 /*!
- * @pixi/filter-twist - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-twist - v3.1.1
+ * Compiled Wed, 30 Dec 2020 18:30:18 UTC
  *
  * @pixi/filter-twist is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -69686,20 +69995,37 @@ var fragment = "varying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nunif
  * @memberof PIXI.filters
  * @see {@link https://www.npmjs.com/package/@pixi/filter-twist|@pixi/filter-twist}
  * @see {@link https://www.npmjs.com/package/pixi-filters|pixi-filters}
- * @param {number} [radius=200] The radius of the twist.
- * @param {number} [angle=4] The angle of the twist.
- * @param {number} [padding=20] Padding for filter area.
+ * @param {object} [options] Object object to use.
+ * @param {number} [options.radius=200] The radius of the twist.
+ * @param {number} [options.angle=4] The angle of the twist.
+ * @param {number} [options.padding=20] Padding for filter area.
+ * @param {number} [options.offset] Center of twist, in local, pixel coordinates.
  */
 
 var TwistFilter = /*@__PURE__*/function (Filter) {
-  function TwistFilter(radius, angle, padding) {
-    if (radius === void 0) radius = 200;
-    if (angle === void 0) angle = 4;
-    if (padding === void 0) padding = 20;
-    Filter.call(this, vertex, fragment);
-    this.radius = radius;
-    this.angle = angle;
-    this.padding = padding;
+  function TwistFilter(options) {
+    Filter.call(this, vertex, fragment); // @deprecated: constructor (radius, angle, padding)
+
+    if (typeof options === 'number') {
+      options = {
+        radius: options
+      };
+
+      if (arguments[1] !== undefined) {
+        options.angle = arguments[1];
+      }
+
+      if (arguments[2] !== undefined) {
+        options.padding = arguments[2];
+      }
+    }
+
+    Object.assign(this, {
+      radius: 200,
+      angle: 4,
+      padding: 20,
+      offset: new _math.Point()
+    }, options);
   }
 
   if (Filter) TwistFilter.__proto__ = Filter;
@@ -69763,7 +70089,7 @@ var TwistFilter = /*@__PURE__*/function (Filter) {
 }(_core.Filter);
 
 exports.TwistFilter = TwistFilter;
-},{"@pixi/core":"p2j5"}],"kWmh":[function(require,module,exports) {
+},{"@pixi/core":"p2j5","@pixi/math":"oNQC"}],"kWmh":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -69774,14 +70100,14 @@ exports.ZoomBlurFilter = void 0;
 var _core = require("@pixi/core");
 
 /*!
- * @pixi/filter-zoom-blur - v3.1.0
- * Compiled Wed, 11 Mar 2020 20:38:18 UTC
+ * @pixi/filter-zoom-blur - v3.1.1
+ * Compiled Wed, 30 Dec 2020 18:30:18 UTC
  *
  * @pixi/filter-zoom-blur is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
  */
 var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
-var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\n\nuniform vec2 uCenter;\nuniform float uStrength;\nuniform float uInnerRadius;\nuniform float uRadius;\n\nconst float MAX_KERNEL_SIZE = 32.0;\n\n// author: http://byteblacksmith.com/improvements-to-the-canonical-one-liner-glsl-rand-for-opengl-es-2-0/\nhighp float rand(vec2 co, float seed) {\n    const highp float a = 12.9898, b = 78.233, c = 43758.5453;\n    highp float dt = dot(co + seed, vec2(a, b)), sn = mod(dt, 3.14159);\n    return fract(sin(sn) * c + seed);\n}\n\nvoid main() {\n\n    float minGradient = uInnerRadius * 0.3;\n    float innerRadius = (uInnerRadius + minGradient * 0.5) / filterArea.x;\n\n    float gradient = uRadius * 0.3;\n    float radius = (uRadius - gradient * 0.5) / filterArea.x;\n\n    float countLimit = MAX_KERNEL_SIZE;\n\n    vec2 dir = vec2(uCenter.xy / filterArea.xy - vTextureCoord);\n    float dist = length(vec2(dir.x, dir.y * filterArea.y / filterArea.x));\n\n    float strength = uStrength;\n\n    float delta = 0.0;\n    float gap;\n    if (dist < innerRadius) {\n        delta = innerRadius - dist;\n        gap = minGradient;\n    } else if (radius >= 0.0 && dist > radius) { // radius < 0 means it's infinity\n        delta = dist - radius;\n        gap = gradient;\n    }\n\n    if (delta > 0.0) {\n        float normalCount = gap / filterArea.x;\n        delta = (normalCount - delta) / normalCount;\n        countLimit *= delta;\n        strength *= delta;\n        if (countLimit < 1.0)\n        {\n            gl_FragColor = texture2D(uSampler, vTextureCoord);\n            return;\n        }\n    }\n\n    // randomize the lookup values to hide the fixed number of samples\n    float offset = rand(vTextureCoord, 0.0);\n\n    float total = 0.0;\n    vec4 color = vec4(0.0);\n\n    dir *= strength;\n\n    for (float t = 0.0; t < MAX_KERNEL_SIZE; t++) {\n        float percent = (t + offset) / MAX_KERNEL_SIZE;\n        float weight = 4.0 * (percent - percent * percent);\n        vec2 p = vTextureCoord + dir * percent;\n        vec4 sample = texture2D(uSampler, p);\n\n        // switch to pre-multiplied alpha to correctly blur transparent images\n        // sample.rgb *= sample.a;\n\n        color += sample * weight;\n        total += weight;\n\n        if (t > countLimit){\n            break;\n        }\n    }\n\n    color /= total;\n    // switch back from pre-multiplied alpha\n    // color.rgb /= color.a + 0.00001;\n\n    gl_FragColor = color;\n}\n";
+var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\n\nuniform vec2 uCenter;\nuniform float uStrength;\nuniform float uInnerRadius;\nuniform float uRadius;\n\nconst float MAX_KERNEL_SIZE = ${maxKernelSize};\n\n// author: http://byteblacksmith.com/improvements-to-the-canonical-one-liner-glsl-rand-for-opengl-es-2-0/\nhighp float rand(vec2 co, float seed) {\n    const highp float a = 12.9898, b = 78.233, c = 43758.5453;\n    highp float dt = dot(co + seed, vec2(a, b)), sn = mod(dt, 3.14159);\n    return fract(sin(sn) * c + seed);\n}\n\nvoid main() {\n\n    float minGradient = uInnerRadius * 0.3;\n    float innerRadius = (uInnerRadius + minGradient * 0.5) / filterArea.x;\n\n    float gradient = uRadius * 0.3;\n    float radius = (uRadius - gradient * 0.5) / filterArea.x;\n\n    float countLimit = MAX_KERNEL_SIZE;\n\n    vec2 dir = vec2(uCenter.xy / filterArea.xy - vTextureCoord);\n    float dist = length(vec2(dir.x, dir.y * filterArea.y / filterArea.x));\n\n    float strength = uStrength;\n\n    float delta = 0.0;\n    float gap;\n    if (dist < innerRadius) {\n        delta = innerRadius - dist;\n        gap = minGradient;\n    } else if (radius >= 0.0 && dist > radius) { // radius < 0 means it's infinity\n        delta = dist - radius;\n        gap = gradient;\n    }\n\n    if (delta > 0.0) {\n        float normalCount = gap / filterArea.x;\n        delta = (normalCount - delta) / normalCount;\n        countLimit *= delta;\n        strength *= delta;\n        if (countLimit < 1.0)\n        {\n            gl_FragColor = texture2D(uSampler, vTextureCoord);\n            return;\n        }\n    }\n\n    // randomize the lookup values to hide the fixed number of samples\n    float offset = rand(vTextureCoord, 0.0);\n\n    float total = 0.0;\n    vec4 color = vec4(0.0);\n\n    dir *= strength;\n\n    for (float t = 0.0; t < MAX_KERNEL_SIZE; t++) {\n        float percent = (t + offset) / MAX_KERNEL_SIZE;\n        float weight = 4.0 * (percent - percent * percent);\n        vec2 p = vTextureCoord + dir * percent;\n        vec4 sample = texture2D(uSampler, p);\n\n        // switch to pre-multiplied alpha to correctly blur transparent images\n        // sample.rgb *= sample.a;\n\n        color += sample * weight;\n        total += weight;\n\n        if (t > countLimit){\n            break;\n        }\n    }\n\n    color /= total;\n    // switch back from pre-multiplied alpha\n    // color.rgb /= color.a + 0.00001;\n\n    gl_FragColor = color;\n}\n";
 /**
  * The ZoomFilter applies a Zoom blur to an object.<br>
  * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/zoom-blur.png)
@@ -69796,12 +70122,13 @@ var fragment = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nunifor
  * @param {PIXI.Point|number[]} [options.center=[0,0]] The center of the zoom.
  * @param {number} [options.innerRadius=0] The inner radius of zoom. The part in inner circle won't apply zoom blur effect.
  * @param {number} [options.radius=-1] See `radius` property.
+ * @param {number} [options.maxKernelSize=32] On older iOS devices, it's better to not go above `13.0`. Decreasing this
+ *        value will produce a lower-quality blur effect with more dithering.
  */
 
 var ZoomBlurFilter = /*@__PURE__*/function (Filter) {
   function ZoomBlurFilter(options) {
-    Filter.call(this, vertex, fragment); // @deprecated (strength, center, innerRadius, radius) args
-
+    // @deprecated (strength, center, innerRadius, radius) args
     if (typeof options !== 'object') {
       var strength = arguments[0];
       var center = arguments[1];
@@ -69824,14 +70151,21 @@ var ZoomBlurFilter = /*@__PURE__*/function (Filter) {
       if (radius !== undefined) {
         options.radius = radius;
       }
-    }
+    } // Apply default values
 
-    Object.assign(this, {
+
+    options = Object.assign({
       strength: 0.1,
       center: [0, 0],
       innerRadius: 0,
-      radius: -1
+      radius: -1,
+      maxKernelSize: 32
     }, options);
+    Filter.call(this, vertex, fragment.replace('${maxKernelSize}', options.maxKernelSize.toFixed(1)));
+    this.strength = options.strength;
+    this.center = options.center;
+    this.innerRadius = options.innerRadius;
+    this.radius = options.radius;
   }
 
   if (Filter) ZoomBlurFilter.__proto__ = Filter;
@@ -73628,7 +73962,7 @@ var Phrases = /*#__PURE__*/function () {
           this.option[i].visible = true;
           var text = options[i].Text[this.game.activeLanguage];
           if (text === undefined) text = options[i].Text[0];
-          this.option[i].text = text;
+          this.option[i].text = "- " + text;
         }
 
         this.update();
@@ -73737,15 +74071,15 @@ var TextField = /*#__PURE__*/function () {
         this.hide();
         if (this.talker !== undefined) this.talker.shutup(); //  this.game.activeNPC=null;
 
-        this.game.player.unlock();
         if (this.game.activeObject !== null) this.game.activeObject.cancel();
+        this.game.player.unlock();
       }
     }
   }, {
     key: "skip",
     value: function skip() {
-      this.end();
       if (this.talker) clearTimeout(this.talker.timeoutID);
+      this.end();
     }
   }, {
     key: "setPosition",
@@ -80754,14 +81088,15 @@ Walkable.prototype.deleteObstacle = function (obj) {
   this.mesh.deleteObject(obj);
 };
 
-Walkable.prototype.findPath = function (fromX, fromY, toX, toY, radius) {
+Walkable.prototype.findPath = function (fromX, fromY, toX, toY, radius, path) {
+  if (path === undefined) path = this.path;
   this.entity.set_radius(radius);
   this.entity.x = fromX;
   this.entity.y = fromY;
 
-  this.pathFinder.findPath(toX, toY, this.path);
+  this.pathFinder.findPath(toX, toY, path);
 
-  return this.path;
+  return path;
 };
 
 module.exports = Walkable;
@@ -82442,6 +82777,12 @@ var Inventory = /*#__PURE__*/function () {
           }
 
           if (!combineInventory) this.action = "Use";
+        } else if (this.config.Give !== undefined && objectHit !== null) {
+          if (this.config.Give.To === objectHit) {
+            this.game.activePuzzle = this.game.puzzles[this.config.Give.Puzzle];
+          }
+
+          this.action = "Use";
         }
         /*
                 if(this.action!==null){
@@ -99554,7 +99895,6 @@ var Dialogue = /*#__PURE__*/function () {
     value: function end() {
       this.game.activeNPC = null;
       this.game.activeDialogue = null;
-      this.game.player.stand();
     }
   }, {
     key: "timeOut",

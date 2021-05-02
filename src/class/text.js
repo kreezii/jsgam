@@ -65,7 +65,7 @@ class Phrases{
         this.option[i].visible=true;
         let text=options[i].Text[this.game.activeLanguage];
         if(text===undefined) text=options[i].Text[0];
-        this.option[i].text=text;
+        this.option[i].text="- "+text;
       }
       this.update();
       this.show();
@@ -171,14 +171,14 @@ class TextField{
       this.hide();
       if(this.talker!==undefined) this.talker.shutup();
     //  this.game.activeNPC=null;
-      this.game.player.unlock();
       if(this.game.activeObject!==null) this.game.activeObject.cancel();
+      this.game.player.unlock();
     }
   }
 
   skip(){
-    this.end();
     if(this.talker) clearTimeout(this.talker.timeoutID);
+    this.end();
   }
 
   setPosition(position){
