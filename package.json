@@ -1,0 +1,30 @@
+{
+    "name": "jsgam",
+    "description": "Point and click adventure game engine.",
+    "version": "0.0.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kreezii/jsgam.git"
+    },
+    "author": "Raúl Vañes (https://github.com/kreezii)",
+    "license": "MIT",
+    "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
+    "bugs": {
+        "url": "https://github.com/kreezii/jsgam/issues"
+    },
+    "homepage": "https://kreezii.github.io/jsgam/",
+    "scripts": {
+        "dev": "node log.js dev & vite --config vite/config.dev.mjs",
+        "build": "node log.js build & vite build --config vite/config.prod.mjs",
+        "dev-nolog": "vite --config vite/config.dev.mjs",
+        "build-nolog": "vite build --config vite/config.prod.mjs"
+    },
+    "devDependencies": {
+        "typescript": "~5.7.2",
+        "vite": "^6.3.1"
+    },
+    "dependencies": {
+        "phaser": "^3.90.0",
+        "terser": "^5.39.0"
+    }
+}
